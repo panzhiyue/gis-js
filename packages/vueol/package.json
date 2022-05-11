@@ -1,0 +1,28 @@
+{
+  "name": "vueol",
+  "version": "1.0.0-beta.1",
+  "description": "openlayer的vue组件",
+  "keywords": [
+    "openlayers",
+    "vue",
+    "yarn",
+    "lerna"
+  ],
+  "author": "panzhiyue <892105346@qq.com>",
+  "homepage": "",
+  "license": "ISC",
+  "main": "lib/vueol.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "dependencies": {
+    "ol": "^6.14.1"
+  }
+}
