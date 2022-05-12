@@ -23,10 +23,13 @@
     "dev:docs": "vue-docgen -watch -c ./docgen.config.js",
     "build:docs": "vue-docgen -c ./docgen.config.js"
   },
-  "main": "lib/index.js",
-  "module": "lib/index.mjs",
+  "main": "src/index.js",
   "dependencies": {
     "ol": "^6.14.1",
     "vue": "2.6.14"
+  },
+  "devDependencies": {
+    "less": "^2.7.2",
+    "less-loader": "^4.0.5"
   }
 }

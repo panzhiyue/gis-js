@@ -124,7 +124,7 @@ export default {
   .vue2ol-control-popup-content-wrapper {
     background: white;
     color: #333;
-    box-shadow: 0 3px 14px rgb(0 0 0 / 40%);
+    box-shadow: 0 3px 14px rgb(0,0,0);
     padding: 1px;
     text-align: left;
     border-radius: 12px;

@@ -2,8 +2,7 @@
 
 // 侧边栏
 module.exports = {
-  '/vue2ol/components/': [
-    {
+  '/vue2ol/components/': [{
     title: '组件',
     collapsable: false, //是否可折叠，可选的，默认true
     children: [{
@@ -18,8 +17,9 @@ module.exports = {
       {
         title: "Control",
         children: [
+          ['control/MouseInfo', 'MouseInfo'],
           ['control/MouseTips', 'MouseTips'],
-          ['control/Pickup', 'Pickup'],
+          ['control/Popup', 'Popup'],
         ]
       },
       {
@@ -48,17 +48,6 @@ module.exports = {
           ['geom/MultiPoint', 'MultiPoint'],
           ['geom/MultiLineString', 'MultiLineString'],
           ['geom/MultiPolygon', 'MultiPolygon'],
-        ]
-      },
-      {
-        title: "Animation",
-        children: [
-          ['animation/Scatter', 'Scatter'],
-          ['animation/Flight', 'Flight'],
-          ['animation/Track', 'Track'],
-          ['animation/Radar', 'Radar'],
-          ['animation/DynamicLine', 'DynamicLine'],
-          ['animation/ArrowLine', 'ArrowLine'],
         ]
       }
     ]
