@@ -1,11 +1,11 @@
-# `vueol`
+# `vue2ol`
 
 > TODO: description
 
 ## Usage
 
 ```
-const vueol = require('vueol');
+const vue2ol = require('vue2ol');
 
 // TODO: DEMONSTRATE API
 ```

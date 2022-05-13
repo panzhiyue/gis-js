@@ -27,13 +27,13 @@ export default [{
             format: "cjs",
             file: pkg.main,
             exports: "auto",
-            name: 'vueol', // 此处修改为希望包挂在window上的名称
+            name: 'vue2ol', // 此处修改为希望包挂在window上的名称
             sourcemap: false
         },
         {
             format: "es",
             file: pkg.module,
-            name: 'vueol', // 此处修改为希望包挂在window上的名称
+            name: 'vue2ol', // 此处修改为希望包挂在window上的名称
             sourcemap: false
         },
     ],

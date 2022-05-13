@@ -1,7 +1,7 @@
 'use strict';
 
-const vueol = require('..');
+const vue2ol = require('..');
 
-describe('vueol', () => {
+describe('vue2ol', () => {
     it('needs tests');
 });
