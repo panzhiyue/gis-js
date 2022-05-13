@@ -8,10 +8,10 @@ import XYZSourceMixin from "../../mixins/XYZSource";
  * 智图
  */
 export default {
-  name: "vue2ol-source-geoq",
+  name: "Vue2olSourceGeoq",
   mixins: [XYZSourceMixin],
   components: {
-    "vue2ol-source-xyz": XYZ,
+    "Vue2olSourceXyz": XYZ,
   },
   data() {
     return {

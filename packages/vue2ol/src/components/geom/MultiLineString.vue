@@ -16,7 +16,7 @@ import SimpleGeometryMixin from '../../mixins/SimpleGeometry'
  * @link https://openlayers.org/en/latest/apidoc/module-ol_geom_MultiLineString-MultiLineString.html
  */
 export default {
-  name: 'vue2ol-geom-multilinestring',
+  name: 'Vue2olGeomMultilinestring',
   mixins: [SimpleGeometryMixin],
   data() {
     return {}

@@ -15,7 +15,7 @@ import SimpleGeometryMixin from '../../mixins/SimpleGeometry'
  * @link https://openlayers.org/en/latest/apidoc/module-ol_geom_MultiPolygon-MultiPolygon.html
  */
 export default {
-  name: 'vue2ol-geom-multipolygon',
+  name: 'Vue2olGeomMultipolygon',
   mixins: [SimpleGeometryMixin],
   data() {
     return {}

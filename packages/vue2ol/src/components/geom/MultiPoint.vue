@@ -15,7 +15,7 @@ import SimpleGeometryMixin from '../../mixins/SimpleGeometry'
  * @link https://openlayers.org/en/latest/apidoc/module-ol_geom_MultiPoint-MultiPoint.html
  */
 export default {
-  name: 'vue2ol-geom-multipoint',
+  name: 'Vue2olGeomMultipoint',
   mixins: [SimpleGeometryMixin],
   data() {
     return {}

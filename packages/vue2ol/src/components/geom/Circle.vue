@@ -13,7 +13,7 @@ import SimpleGeometryMixin from '../../mixins/SimpleGeometry'
  * @link https://openlayers.org/en/latest/apidoc/module-ol_geom_Circle-Circle.html
  */
 export default {
-  name: 'vue2ol-geom-circle',
+  name: 'Vue2olGeomCircle',
   mixins: [SimpleGeometryMixin],
   data() {
     return {}

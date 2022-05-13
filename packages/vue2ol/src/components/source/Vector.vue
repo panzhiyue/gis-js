@@ -19,7 +19,7 @@ import {
  * @since v1.0.0
  */
 export default {
-  name: "vue2ol-source-vector",
+  name: "Vue2olSourceVector",
   mixins: [SourceMixin],
   data() {
     return {};

@@ -15,7 +15,7 @@ import SimpleGeometryMixin from '../../mixins/SimpleGeometry'
  * @link https://openlayers.org/en/latest/apidoc/module-ol_geom_LineString-LineString.html
  */
 export default {
-  name: 'vue2ol-geom-linestring',
+  name: 'Vue2olGeomLinestring',
   mixins: [SimpleGeometryMixin],
   data() {
     return {}

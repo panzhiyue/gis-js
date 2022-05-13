@@ -8,7 +8,7 @@ export default {
   name: "vue2ol-source-bind",
   mixins: [XYZSourceMixin],
   components: {
-    "vue2ol-source-xyz": XYZ,
+    "Vue2olSourceXyz": XYZ,
   },
   data() {
     return {};

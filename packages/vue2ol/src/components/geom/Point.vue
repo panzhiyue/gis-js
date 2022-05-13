@@ -15,7 +15,7 @@ import SimpleGeometryMixin from '../../mixins/SimpleGeometry'
  * @link https://openlayers.org/en/latest/apidoc/module-ol_geom_Point-Point.html
  */
 export default {
-  name: 'vue2ol-geom-point',
+  name: 'Vue2olGeomPoint',
   mixins: [SimpleGeometryMixin],
   data() {
     return {}

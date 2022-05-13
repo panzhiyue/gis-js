@@ -14,7 +14,7 @@ import BaseTileLayerMixin from '../../mixins/BaseTileLayer'
  * @since v1.0.0
  */
 export default {
-  name: 'vue2ol-layer-tile',
+  name: 'Vue2olLayerTile',
   mixins: [BaseTileLayerMixin],
   data() {
     return {}

@@ -2,7 +2,7 @@
   "name": "root",
   "private": true,
   "workspaces": [
-    "packages/vue2ol"
+    "packages/*"
   ],
   "scripts": {
     "build": "lerna run build",

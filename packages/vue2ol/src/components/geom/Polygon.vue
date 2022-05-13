@@ -15,7 +15,7 @@ import SimpleGeometryMixin from '../../mixins/SimpleGeometry'
  * @link https://openlayers.org/en/latest/apidoc/module-ol_geom_Polygon-Polygon.html
  */
 export default {
-  name: 'vue2ol-geom-polygon',
+  name: 'Vue2olGeomPolygon',
   mixins: [SimpleGeometryMixin],
   data() {
     return {}

@@ -12,7 +12,7 @@ import { createFromTemplates, expandUrl } from "ol/tileurlfunction";
  * @see https://blog.csdn.net/u013594477/article/details/83988055
  */
 export default {
-  name: "vue2ol-source-baidu",
+  name: "Vue2olSourceBaidu",
   mixins: [TileImageSourceMixin],
   data() {
     return {

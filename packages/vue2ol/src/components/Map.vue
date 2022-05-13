@@ -19,7 +19,7 @@ import {
  * @link https://openlayers.org/en/latest/apidoc/module-ol_Map-Map.html
  */
 export default {
-  name: "vue2ol-map",
+  name: "Vue2olMap",
   inheritAttrs: false,
   data() {
     return {

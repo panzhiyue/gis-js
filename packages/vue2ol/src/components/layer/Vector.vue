@@ -14,7 +14,7 @@ import { optionsMerger, bindListeners, propsBinder,getListeners } from '../../ut
  * @since v1.0.0
  */
 export default {
-  name: 'vue2ol-layer-vector',
+  name: 'Vue2olLayerVector',
   mixins: [BaseVectorLayerMixin],
   data() {
     return {}

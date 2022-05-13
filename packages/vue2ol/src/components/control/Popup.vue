@@ -34,10 +34,10 @@ import { findRealParent } from "../../utils/index";
  * @since v1.0.0
  */
 export default {
-  name: "vue2ol-control-popup",
+  name: "Vue2olControlPopup",
   inheritAttrs: false,
   components: {
-    "vue2ol-overlay": Overlay,
+    "Vue2olOverlay": Overlay,
   },
   props: {
     /**

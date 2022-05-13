@@ -21,7 +21,7 @@ import {
  * @link https://openlayers.org/en/latest/apidoc/module-ol_Feature-Feature.html
  */
 export default {
-  name: "vue2ol-feature",
+  name: "Vue2olFeature",
   data() {
     return {
       mapObject: null, //ol/Feature对象

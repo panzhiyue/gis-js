@@ -1,9 +1,9 @@
 <template>
-  <vue2ol-source-xyz :url="newUrl" :projection="projection" ></vue2ol-source-xyz>
+  <vue2ol-source-xyz :url="newUrl" :projection="projection"></vue2ol-source-xyz>
 </template>
 <script>
 import XYZ from "./XYZ.vue";
-import XYZSourceMixin from "../../mixins/XYZSource";
+import { XYZSourceMixin } from "vue2ol";
 export default {
   name: "vue2ol-source-tdt",
   mixins: [XYZSourceMixin],

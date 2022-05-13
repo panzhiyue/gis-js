@@ -21,7 +21,7 @@ import {
  * @link https://openlayers.org/en/latest/apidoc/module-ol_Overlay-Overlay.html
  */
 export default {
-  name: "vue2ol-overlay",
+  name: "Vue2olOverlay",
   data() {
     return {
       mapObject: null, //ol/layer/Vector对象

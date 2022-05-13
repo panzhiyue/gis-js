@@ -12,10 +12,10 @@ import { findRealParent } from "../../utils/index";
  * @since v1.0.0
  */
 export default {
-  name: "vue2ol-control-mouseinfo",
+  name: "Vue2olControlMouseinfo",
   inheritAttrs: false,
   components: {
-    "vue2ol-control-mousetips": MouseTips,
+    "Vue2olControlMousetips": MouseTips,
   },
   props: {
     /**

@@ -17,7 +17,7 @@ import {
  * @link https://openlayers.org/en/latest/apidoc/module-ol_View-View.html
  */
 export default {
-  name: "vue2ol-view",
+  name: "Vue2olView",
   data() {
     return {
       mapObject: null, //ol/source/XYZ对象

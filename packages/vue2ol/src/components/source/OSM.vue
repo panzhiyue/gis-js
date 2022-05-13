@@ -13,7 +13,7 @@ import { optionsMerger, bindListeners, propsBinder,getListeners } from '../../ut
  * @since v1.0.0
  */
 export default {
-  name: 'vue2ol-source-osm',
+  name: 'Vue2olSourceOsm',
   mixins: [XYZSourceMixin],
   data() {
     return {}

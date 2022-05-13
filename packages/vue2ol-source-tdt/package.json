@@ -1,5 +1,5 @@
 {
-  "name": "vue2ol-source-tdt",
+  "name": "@gis-js/vue2ol-source-tdt",
   "version": "1.0.0-alpha.1",
   "description": "中国天地图数据源vue组件",
   "keywords": [
@@ -18,5 +18,10 @@
   ],
   "scripts": {
     "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "dependencies": {
+    "@gis-js/vue2ol": "^1.0.0-alpha.1",
+    "ol": "^6.14.1",
+    "vue": "2.6.14"
   }
 }
