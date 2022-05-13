@@ -1,0 +1,22 @@
+{
+  "name": "vue2ol-source-tdt",
+  "version": "1.0.0-alpha.1",
+  "description": "中国天地图数据源vue组件",
+  "keywords": [
+    "vue2ol"
+  ],
+  "author": "panzhiyue <892105346@qq.com>",
+  "homepage": "",
+  "license": "ISC",
+  "main": "src/index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  }
+}
