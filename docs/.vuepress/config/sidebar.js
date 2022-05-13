@@ -2,7 +2,16 @@
 
 // 侧边栏
 module.exports = {
-  '/vue2ol/components/': [{
+  '/guide/': [{
+    title: '指南',
+    collapsable: false,
+    children:[
+      '',
+      'Quickstart'
+    ]
+    
+  }],
+  '/components/': [{
     title: '组件',
     collapsable: false, //是否可折叠，可选的，默认true
     children: [{
@@ -52,5 +61,7 @@ module.exports = {
       }
     ]
   }, ],
+
+
 
 }

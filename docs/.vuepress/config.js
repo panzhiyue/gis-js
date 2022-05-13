@@ -28,12 +28,14 @@ module.exports = {
         link: '/'
       },
       {
-        text: 'Vue2OL',
-        items: [{
-          text: '组件',
-          link: '/vue2ol/components/Map.md'
-        }]
-      }, {
+        text: '组件',
+        link: '/components/Map.md'
+      }, 
+      {
+        text: '指南',
+        link: '/guide/'
+      }, 
+      {
         text: '相关',
         items: [{
           text: 'vuepress',
@@ -48,7 +50,7 @@ module.exports = {
       }
     ],
     sidebarDepth: 3, // 侧边栏显示深度，默认1，最大2（显示到h3标题）
-    logo: 'https://cdn.jsdelivr.net/gh/xugaoyi/image_store/blog/20200409124835.png', // 导航栏logo
+    logo: '/img/favicon.ico', // 导航栏logo
 
     sidebar: sidebarData,
 

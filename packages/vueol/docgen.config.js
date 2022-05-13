@@ -2,7 +2,7 @@
 module.exports = {
     componentsRoot: './src/components/',
     components: '**/[a-z|A-Z]*.vue',
-    outDir: '../../docs/vue2ol/components',
+    outDir: '../../docs/components',
     // componentsRoot: 'src/test/',
     // components: '**/[a-z|A-Z]*.vue',
     // outDir: '../../docs/vue2ol/test/',
