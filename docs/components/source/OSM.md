@@ -1,10 +1,10 @@
 ---
 
-title: vue2ol-source-osm
+title: Vue2olSourceOsm
 
 ---
 
-# vue2ol-source-osm
+# Vue2olSourceOsm
 
 > ol/source/OSM 的 vue 组件
 

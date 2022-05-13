@@ -1,10 +1,10 @@
 ---
 
-title: vue2ol-layer-tile
+title: Vue2olLayerTile
 
 ---
 
-# vue2ol-layer-tile
+# Vue2olLayerTile
 
 > ol/layer/Tile 的 vue 组件
 

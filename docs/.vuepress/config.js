@@ -28,12 +28,16 @@ module.exports = {
         link: '/'
       },
       {
+        text: '指南',
+        link: '/guide/'
+      }, 
+      {
         text: '组件',
         link: '/components/Map.md'
       }, 
       {
-        text: '指南',
-        link: '/guide/'
+        text: '插件',
+        link: '/plugins/'
       }, 
       {
         text: '相关',
@@ -63,7 +67,7 @@ module.exports = {
     resolve: {
       alias: {
         'vue2ol': "../../packages/vue2ol",
-        '@vue2ol': "../../packages/@vue2ol",
+        'vue2ol-extend': "../../packages/vue2ol-extend",
       },
     },
   },

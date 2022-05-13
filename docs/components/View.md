@@ -1,10 +1,10 @@
 ---
 
-title: vue2ol-view
+title: Vue2olView
 
 ---
 
-# vue2ol-view
+# Vue2olView
 
 > ol/View 的 vue 组件
 

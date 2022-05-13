@@ -1,10 +1,10 @@
 ---
 
-title: vue2ol-overlay
+title: Vue2olOverlay
 
 ---
 
-# vue2ol-overlay
+# Vue2olOverlay
 
 > ol/Overlay 的 vue 组件
 

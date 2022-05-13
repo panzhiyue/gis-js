@@ -1,10 +1,10 @@
 ---
 
-title: vue2ol-geom-multipoint
+title: Vue2olGeomMultipoint
 
 ---
 
-# vue2ol-geom-multipoint
+# Vue2olGeomMultipoint
 
 > ol/geom/Point 的 vue 组件
 

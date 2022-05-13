@@ -1,10 +1,10 @@
 ---
 
-title: vue2ol-source-xyz
+title: Vue2olSourceXyz
 
 ---
 
-# vue2ol-source-xyz
+# Vue2olSourceXyz
 
 > ol/source/XYZ 的 vue 组件
 

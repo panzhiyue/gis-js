@@ -1,10 +1,10 @@
 ---
 
-title: vue2ol-source-stamen
+title: Vue2olSourceStamen
 
 ---
 
-# vue2ol-source-stamen
+# Vue2olSourceStamen
 
 > ol/source/Stamen 的 vue 组件
 

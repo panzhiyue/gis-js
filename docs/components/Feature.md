@@ -1,10 +1,10 @@
 ---
 
-title: vue2ol-feature
+title: Vue2olFeature
 
 ---
 
-# vue2ol-feature
+# Vue2olFeature
 
 > ol/Feature 的 vue 组件
 

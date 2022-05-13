@@ -1,10 +1,10 @@
 ---
 
-title: vue2ol-map
+title: Vue2olMap
 
 ---
 
-# vue2ol-map
+# Vue2olMap
 
 > ol/Map 的 vue 组件
 

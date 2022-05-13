@@ -1,10 +1,10 @@
 ---
 
-title: vue2ol-geom-polygon
+title: Vue2olGeomPolygon
 
 ---
 
-# vue2ol-geom-polygon
+# Vue2olGeomPolygon
 
 > ol/geom/Polygon 的 vue 组件
 

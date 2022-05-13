@@ -1,10 +1,10 @@
 ---
 
-title: vue2ol-geom-multilinestring
+title: Vue2olGeomMultilinestring
 
 ---
 
-# vue2ol-geom-multilinestring
+# Vue2olGeomMultilinestring
 
 > ol/geom/MultiLineString 的 vue 组件
 

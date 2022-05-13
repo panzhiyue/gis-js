@@ -1,10 +1,10 @@
 ---
 
-title: vue2ol-geom-multipolygon
+title: Vue2olGeomMultipolygon
 
 ---
 
-# vue2ol-geom-multipolygon
+# Vue2olGeomMultipolygon
 
 > ol/geom/MultiPolygon 的 vue 组件
 

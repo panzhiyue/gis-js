@@ -1,5 +1,3 @@
-import * as mixins from "./mixins/index.js"
-import * as utils from "./utils/index.js"
 import * as components from "./components/index.js"
 
 
@@ -8,7 +6,6 @@ const install = function (Vue) {
   Object.keys(components).forEach(key => {
     Vue.component(components[key].name, (components)[key]);
   });
-
 };
 
 if (typeof window !== 'undefined' && (window).Vue) {
@@ -17,8 +14,6 @@ if (typeof window !== 'undefined' && (window).Vue) {
 
 const API = {
   ...components,
-  ...mixins,
-  ...utils,
   install
 }
 

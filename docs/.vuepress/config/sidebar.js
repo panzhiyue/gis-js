@@ -21,14 +21,6 @@ module.exports = {
       ]
     },
     {
-      title: "Control",
-      children: [
-        ['control/MouseInfo', 'MouseInfo'],
-        ['control/MouseTips', 'MouseTips'],
-        ['control/Popup', 'Popup'],
-      ]
-    },
-    {
       title: "Layer",
       children: [
         ['layer/Tile', 'Tile'],

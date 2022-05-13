@@ -1,10 +1,10 @@
 ---
 
-title: vue2ol-geom-circle
+title: Vue2olGeomCircle
 
 ---
 
-# vue2ol-geom-circle
+# Vue2olGeomCircle
 
 > ol/geom/Point 的 vue 组件
 

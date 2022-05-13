@@ -1,10 +1,10 @@
 ---
 
-title: vue2ol-geom-linestring
+title: Vue2olGeomLinestring
 
 ---
 
-# vue2ol-geom-linestring
+# Vue2olGeomLinestring
 
 > ol/geom/LineString 的 vue 组件
 

@@ -5,10 +5,6 @@ export {default as Vue2olView} from "./View.vue"
 export {default as Vue2olOverlay} from "./Overlay.vue"
 export {default as Vue2olFeature} from "./Feature.vue"
 
-//control
-export {default as Vue2olControlMouseinfo} from "./control/MouseInfo.vue"
-export {default as Vue2olControlMouseTips} from "./control/MouseTips.vue"
-export {default as Vue2olControlPopup} from "./control/Popup.vue"
 
 //geom
 export {default as Vue2olGeomCircle} from "./geom/Circle.vue"

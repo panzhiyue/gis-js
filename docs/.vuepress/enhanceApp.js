@@ -1,5 +1,6 @@
 import Vue from "vue"
 import Vue2OL from "vue2ol"
+console.log(Vue2OL);
 Vue.use(Vue2OL);
 /**
  * to主题使用者：你可以去掉本文件的所有代码

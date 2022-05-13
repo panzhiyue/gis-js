@@ -1,10 +1,10 @@
 ---
 
-title: vue2ol-source-vector
+title: Vue2olSourceVector
 
 ---
 
-# vue2ol-source-vector
+# Vue2olSourceVector
 
 > ol/source/Vector 的 vue 组件
 

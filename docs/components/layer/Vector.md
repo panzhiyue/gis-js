@@ -1,10 +1,10 @@
 ---
 
-title: vue2ol-layer-vector
+title: Vue2olLayerVector
 
 ---
 
-# vue2ol-layer-vector
+# Vue2olLayerVector
 
 > ol/layer/Vector 的 vue 组件
 
