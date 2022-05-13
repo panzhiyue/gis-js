@@ -5,62 +5,58 @@ module.exports = {
   '/guide/': [{
     title: '指南',
     collapsable: false,
-    children:[
+    children: [
       '',
       'Quickstart'
     ]
-    
+
   }],
   '/components/': [{
-    title: '组件',
-    collapsable: false, //是否可折叠，可选的，默认true
-    children: [{
-        title: "Basic",
-        children: [
-          ['Feature', 'Feature'],
-          ['Map', 'Map'],
-          ['View', 'View'],
-          ['Overlay', 'Overlay'],
-        ]
-      },
-      {
-        title: "Control",
-        children: [
-          ['control/MouseInfo', 'MouseInfo'],
-          ['control/MouseTips', 'MouseTips'],
-          ['control/Popup', 'Popup'],
-        ]
-      },
-      {
-        title: "Layer",
-        children: [
-          ['layer/Tile', 'Tile'],
-          ['layer/Vector', 'Vector'],
-        ]
-      },
-      {
-        title: "Source",
-        children: [
-          ['source/OSM', 'OSM'],
-          ['source/Vector', 'Vector'],
-          ['source/XYZ', 'XYZ'],
-          ['source/Stamen', 'Stamen'],
-        ]
-      },
-      {
-        title: "Geom",
-        children: [
-          ['geom/Point', 'Point'],
-          ['geom/Circle', 'Circle'],
-          ['geom/LineString', 'LineString'],
-          ['geom/Polygon', 'Polygon'],
-          ['geom/MultiPoint', 'MultiPoint'],
-          ['geom/MultiLineString', 'MultiLineString'],
-          ['geom/MultiPolygon', 'MultiPolygon'],
-        ]
-      }
-    ]
-  }, ],
+      title: "Basic",
+      children: [
+        ['Feature', 'Feature'],
+        ['Map', 'Map'],
+        ['View', 'View'],
+        ['Overlay', 'Overlay'],
+      ]
+    },
+    {
+      title: "Control",
+      children: [
+        ['control/MouseInfo', 'MouseInfo'],
+        ['control/MouseTips', 'MouseTips'],
+        ['control/Popup', 'Popup'],
+      ]
+    },
+    {
+      title: "Layer",
+      children: [
+        ['layer/Tile', 'Tile'],
+        ['layer/Vector', 'Vector'],
+      ]
+    },
+    {
+      title: "Source",
+      children: [
+        ['source/OSM', 'OSM'],
+        ['source/Vector', 'Vector'],
+        ['source/XYZ', 'XYZ'],
+        ['source/Stamen', 'Stamen'],
+      ]
+    },
+    {
+      title: "Geom",
+      children: [
+        ['geom/Point', 'Point'],
+        ['geom/Circle', 'Circle'],
+        ['geom/LineString', 'LineString'],
+        ['geom/Polygon', 'Polygon'],
+        ['geom/MultiPoint', 'MultiPoint'],
+        ['geom/MultiLineString', 'MultiLineString'],
+        ['geom/MultiPolygon', 'MultiPolygon'],
+      ]
+    },
+  ],
 
 
 
