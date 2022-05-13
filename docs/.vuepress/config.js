@@ -46,6 +46,9 @@ module.exports = {
         }, {
           text: 'openlayers',
           link: 'https://openlayers.org/'
+        }, {
+          text: 'vue2leaflet',
+          link: 'https://vue2-leaflet.netlify.app/'
         }]
       }
     ],
