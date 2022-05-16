@@ -1169,7 +1169,7 @@ var script$d = {
   },
   props: {
     /**
-     * @typeName {ol/layer/Vector').default}
+     * @typeName {import('ol/layer/Vector').default}
      */
     parentLayer: {
       type: Object,
@@ -1269,7 +1269,7 @@ var __vue_staticRenderFns__$d = [];
   /* style */
   const __vue_inject_styles__$d = undefined;
   /* scoped */
-  const __vue_scope_id__$d = "data-v-4ba54507";
+  const __vue_scope_id__$d = "data-v-40b21723";
   /* module identifier */
   const __vue_module_identifier__$d = undefined;
   /* functional template */
