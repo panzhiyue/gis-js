@@ -62,9 +62,6 @@ map.addLayer(layer);
 export default {
   data() {
     return {
-      mapOptions:{
-        target:"map"  
-      }
       viewOptions: {
         center: [0, 0],
         projection: ol.proj.get("EPSG:4326"),
