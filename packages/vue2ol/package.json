@@ -9,7 +9,7 @@
     "lerna"
   ],
   "author": "panzhiyue <892105346@qq.com>",
-  "homepage": "",
+  "homepage": "https://panzhiyue.github.io/vue2ol/",
   "license": "ISC",
   "directories": {
     "lib": "lib",
