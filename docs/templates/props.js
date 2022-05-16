@@ -12,6 +12,9 @@ const renderTags = (tags) => {
       if (tag == "type") {
         return ''
       }
+      if (tag == "typeName") {
+        return ''
+      }
       return values.map(v => {
         return `<br/>\`@${tag}\` ${isTag(v) ? v.content : v.description}`
       }).join('')
@@ -26,7 +29,7 @@ const tmpl = (props) => {
     const p = pr.name
     let t = pr.description ?? ''
     t += renderTags(pr.tags)
-    const n = pr.type?.name ?? ''
+    const n = (pr.tags&&pr.tags.typeName&&pr.tags.typeName.length)?pr.tags.typeName[0].description : pr.type?.name ?? ''
     const v = pr.values?.map(pv => `\`${pv}\``).join(', ') ?? '-'
     const d = pr.defaultValue?.value ?? ''
 

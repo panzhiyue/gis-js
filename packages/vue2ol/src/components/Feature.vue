@@ -31,7 +31,7 @@ export default {
   },
   props: {
     /**
-     * @typeName {ol/layer/Vector').default}
+     * @typeName {import('ol/layer/Vector').default}
      */
     parentLayer: {
       type: Object,

@@ -1,4 +1,4 @@
-# Quick Start
+# 快速开始
 
 ## Hello Map!
 
@@ -64,9 +64,30 @@ pnpm install ol @gis-js/vue2ol --save
 
 
 
-### CDN
+## 用法
 
-```html
+### 在 webpack / rollup 构建系统中
 
+**全局安装**
+
+```javascript
+import Vue from 'vue'
+import Vue2ol from "@gis-js/vue2ol"
+
+Vue.use(Vue2ol);
+```
+
+**组件内安装**
+
+```vue
+import {Vue2olMap,Vue2olLayerVector,Vue2olSourceVector} from "@gis-js/vue2ol"
+export default {
+  name: 'MyAwesomeMap',
+  components: {
+    Vue2olMap,
+    Vue2olLayerVector,
+    Vue2olSourceVector,
+  },
+};
 ```
 
