@@ -2386,10 +2386,10 @@ var components = /*#__PURE__*/Object.freeze({
   Vue2olOverlay: __vue_component__$e,
   Vue2olFeature: __vue_component__$d,
   Vue2olGeomCircle: __vue_component__$c,
-  Vue2olGeomLineString: __vue_component__$b,
-  Vue2olGeomMultiLineString: __vue_component__$a,
-  Vue2olGeomMultiPoint: __vue_component__$9,
-  Vue2olGeomMultiPolygon: __vue_component__$8,
+  Vue2olGeomLinestring: __vue_component__$b,
+  Vue2olGeomMultilinestring: __vue_component__$a,
+  Vue2olGeomMultipoint: __vue_component__$9,
+  Vue2olGeomMultipolygon: __vue_component__$8,
   Vue2olGeomPoint: __vue_component__$7,
   Vue2olGeomPolygon: __vue_component__$6,
   Vue2olLayerTile: __vue_component__$5,
@@ -2428,10 +2428,10 @@ exports.TileSourceMixin = TileSourceMixin;
 exports.UrlTileSourceMixin = UrlTileSourceMixin;
 exports.Vue2olFeature = __vue_component__$d;
 exports.Vue2olGeomCircle = __vue_component__$c;
-exports.Vue2olGeomLineString = __vue_component__$b;
-exports.Vue2olGeomMultiLineString = __vue_component__$a;
-exports.Vue2olGeomMultiPoint = __vue_component__$9;
-exports.Vue2olGeomMultiPolygon = __vue_component__$8;
+exports.Vue2olGeomLinestring = __vue_component__$b;
+exports.Vue2olGeomMultilinestring = __vue_component__$a;
+exports.Vue2olGeomMultipoint = __vue_component__$9;
+exports.Vue2olGeomMultipolygon = __vue_component__$8;
 exports.Vue2olGeomPoint = __vue_component__$7;
 exports.Vue2olGeomPolygon = __vue_component__$6;
 exports.Vue2olLayerTile = __vue_component__$5;

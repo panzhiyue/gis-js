@@ -688,10 +688,6 @@ var script$1 = {
     } else if (this.layer == "satellite_annotion") {
       this.newUrl = `http://webst0{1-4}.is.autonavi.com/appmaptile?style=8&x={x}&y={y}&z={z}`;
     }
-
-    ({
-      ...(this.xyzSourceOptions || {}),
-    });
   },
 };
 
@@ -778,10 +774,6 @@ var script = {
       this.newUrl = `http://thematic.geoq.cn/arcgis/rest/services/ThematicMaps/WorldHydroMap/MapServer/tile/{z}/{y}/{x}`;
     }
    
-    ({
-      ...(this.xyzSourceOptions || {}),
-      projection: this.projection,
-    });
   },
 };
 
@@ -837,7 +829,6 @@ var components = /*#__PURE__*/Object.freeze({
 const install = function (Vue) {
   if (install.installed) return;
   Object.keys(components).forEach(key => {
-    console.log(key, components[key].name, (components)[key]);
     Vue.component(components[key].name, (components)[key]);
   });
 };

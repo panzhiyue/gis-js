@@ -2362,10 +2362,10 @@ var components = /*#__PURE__*/Object.freeze({
   Vue2olOverlay: __vue_component__$e,
   Vue2olFeature: __vue_component__$d,
   Vue2olGeomCircle: __vue_component__$c,
-  Vue2olGeomLineString: __vue_component__$b,
-  Vue2olGeomMultiLineString: __vue_component__$a,
-  Vue2olGeomMultiPoint: __vue_component__$9,
-  Vue2olGeomMultiPolygon: __vue_component__$8,
+  Vue2olGeomLinestring: __vue_component__$b,
+  Vue2olGeomMultilinestring: __vue_component__$a,
+  Vue2olGeomMultipoint: __vue_component__$9,
+  Vue2olGeomMultipolygon: __vue_component__$8,
   Vue2olGeomPoint: __vue_component__$7,
   Vue2olGeomPolygon: __vue_component__$6,
   Vue2olLayerTile: __vue_component__$5,
@@ -2391,4 +2391,4 @@ const API = {
   install
 };
 
-export { BaseLayerMixin, BaseTileLayerMixin, BaseVectorLayerMixin, GeometryMixin, LayerMixin, ObjectMixin, SimpleGeometryMixin, SourceMixin, TileImageSourceMixin, TileSourceMixin, UrlTileSourceMixin, __vue_component__$d as Vue2olFeature, __vue_component__$c as Vue2olGeomCircle, __vue_component__$b as Vue2olGeomLineString, __vue_component__$a as Vue2olGeomMultiLineString, __vue_component__$9 as Vue2olGeomMultiPoint, __vue_component__$8 as Vue2olGeomMultiPolygon, __vue_component__$7 as Vue2olGeomPoint, __vue_component__$6 as Vue2olGeomPolygon, __vue_component__$5 as Vue2olLayerTile, __vue_component__$4 as Vue2olLayerVector, __vue_component__$g as Vue2olMap, __vue_component__$e as Vue2olOverlay, __vue_component__$3 as Vue2olSourceOsm, __vue_component__$2 as Vue2olSourceStamen, __vue_component__$1 as Vue2olSourceVector, __vue_component__ as Vue2olSourceXyz, __vue_component__$f as Vue2olView, XYZSourceMixin, bindListeners, capitalizeFirstLetter, collectionCleaner, API as default, findParentMap, findRealParent, getAttrs, getListeners, install$1 as install, optionsMerger, propsBinder };
+export { BaseLayerMixin, BaseTileLayerMixin, BaseVectorLayerMixin, GeometryMixin, LayerMixin, ObjectMixin, SimpleGeometryMixin, SourceMixin, TileImageSourceMixin, TileSourceMixin, UrlTileSourceMixin, __vue_component__$d as Vue2olFeature, __vue_component__$c as Vue2olGeomCircle, __vue_component__$b as Vue2olGeomLinestring, __vue_component__$a as Vue2olGeomMultilinestring, __vue_component__$9 as Vue2olGeomMultipoint, __vue_component__$8 as Vue2olGeomMultipolygon, __vue_component__$7 as Vue2olGeomPoint, __vue_component__$6 as Vue2olGeomPolygon, __vue_component__$5 as Vue2olLayerTile, __vue_component__$4 as Vue2olLayerVector, __vue_component__$g as Vue2olMap, __vue_component__$e as Vue2olOverlay, __vue_component__$3 as Vue2olSourceOsm, __vue_component__$2 as Vue2olSourceStamen, __vue_component__$1 as Vue2olSourceVector, __vue_component__ as Vue2olSourceXyz, __vue_component__$f as Vue2olView, XYZSourceMixin, bindListeners, capitalizeFirstLetter, collectionCleaner, API as default, findParentMap, findRealParent, getAttrs, getListeners, install$1 as install, optionsMerger, propsBinder };

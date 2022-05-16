@@ -13,7 +13,7 @@
   "main": "lib/index.js",
   "module":"lib/index.mjs",
   "scripts": {
-    "build": "rimraf -rf dist && mkdir dist &&  rollup -c --environment NODE_ENV:production",
+    "build": "rimraf -rf lib && mkdir lib &&  rollup -c --environment NODE_ENV:production",
     "dev:docs": "vue-docgen -watch -c ./docgen.config.js",
     "build:docs": "vue-docgen -c ./docgen.config.js"
   },

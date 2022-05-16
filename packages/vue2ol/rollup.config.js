@@ -12,9 +12,9 @@ const plugins = [ // 顺序无严格要求，目前观察buble需要放在vue下
     }),
     nodeResolve(),
     vue(),
-    // less({
-    //     output: "lib/style.css"
-    // }),
+    less({
+        output: "lib/style.css"
+    }),
 ]
 
 // 外链 - 外部依赖的名称，放在该处的npm包不会参与打包

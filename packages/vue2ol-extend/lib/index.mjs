@@ -1,4 +1,4 @@
-import { Vue2olOverlay, findRealParent, TileImageSourceMixin, optionsMerger, bindListeners, getListeners, propsBinder, Vue2olSourceXyz, XYZSourceMixin } from '@gis-js/vue2ol';
+import { Vue2olOverlay, findRealParent, TileImageSourceMixin, optionsMerger, bindListeners, getListeners, propsBinder, XYZSourceMixin, Vue2olSourceXyz } from '@gis-js/vue2ol';
 import TileImage from 'ol/source/TileImage';
 import TileGrid from 'ol/tilegrid/TileGrid';
 
@@ -579,7 +579,6 @@ var __vue_staticRenderFns__$3 = [];
   );
 
 //
-console.log(Vue2olSourceXyz);
 var script$2 = {
   name: "vue2ol-source-bind",
   mixins: [XYZSourceMixin],
@@ -680,10 +679,6 @@ var script$1 = {
     } else if (this.layer == "satellite_annotion") {
       this.newUrl = `http://webst0{1-4}.is.autonavi.com/appmaptile?style=8&x={x}&y={y}&z={z}`;
     }
-
-    ({
-      ...(this.xyzSourceOptions || {}),
-    });
   },
 };
 
@@ -770,10 +765,6 @@ var script = {
       this.newUrl = `http://thematic.geoq.cn/arcgis/rest/services/ThematicMaps/WorldHydroMap/MapServer/tile/{z}/{y}/{x}`;
     }
    
-    ({
-      ...(this.xyzSourceOptions || {}),
-      projection: this.projection,
-    });
   },
 };
 
@@ -829,7 +820,6 @@ var components = /*#__PURE__*/Object.freeze({
 const install = function (Vue) {
   if (install.installed) return;
   Object.keys(components).forEach(key => {
-    console.log(key, components[key].name, (components)[key]);
     Vue.component(components[key].name, (components)[key]);
   });
 };
