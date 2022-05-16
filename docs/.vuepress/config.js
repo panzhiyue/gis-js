@@ -30,15 +30,15 @@ module.exports = {
       {
         text: '指南',
         link: '/guide/'
-      }, 
+      },
       {
         text: '组件',
         link: '/components/Map.md'
-      }, 
+      },
       {
         text: '插件',
-        link: '/plugins/'
-      }, 
+        link: '/plugins/vue2ol-extend/control/MouseInfo'
+      },
       {
         text: '相关',
         items: [{
@@ -64,10 +64,17 @@ module.exports = {
   },
 
   configureWebpack: {
+    module: {
+      rules: [{
+        include: /packages/,
+        test: /\.mjs$/,
+        type: 'javascript/auto'
+      }]
+    },
     resolve: {
       alias: {
-        'vue2ol': "../../packages/vue2ol",
-        'vue2ol-extend': "../../packages/vue2ol-extend",
+        'vue2ol': "../../packages/vue2ol/src",
+        'vue2ol-extend': "../../packages/vue2ol-extend/src",
       },
     },
   },

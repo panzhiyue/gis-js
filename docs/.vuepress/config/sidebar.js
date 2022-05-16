@@ -49,7 +49,20 @@ module.exports = {
       ]
     },
   ],
+  '/plugins/': [{
+      title: "vue2ol-extend",
+      children: [
+        ['/plugins/vue2ol-extend/control/MouseInfo','Vue2olControlMouseinfo'],
+        ['/plugins/vue2ol-extend/control/MouseTips', 'Vue2olControlMousetips'],
+        ['/plugins/vue2ol-extend/control/Popup', 'Vue2olControlPopup'],
+        ['/plugins/vue2ol-extend/source/BaiDu', 'Vue2olSourceBaidu'],
+        ['/plugins/vue2ol-extend/source/Bing', 'Vue2olSourceBing'],
+        ['/plugins/vue2ol-extend/source/GaoDe', 'Vue2olSourceGaode'],
+        ['/plugins/vue2ol-extend/source/GeoQ', 'Vue2olSourceGeoq'],
+      ]
+    }
 
+  ],
 
 
 }

@@ -25,14 +25,14 @@ export default [{
     // 出口
     output: [{
             format: "cjs",
-            file: "dist/index.js",
+            file: pkg.main,
             exports: "auto",
             name: 'vue2ol', // 此处修改为希望包挂在window上的名称
             sourcemap: false
         },
         {
             format: "es",
-            file: "dist/index.mjs",
+            file: pkg.module,
             name: 'vue2ol', // 此处修改为希望包挂在window上的名称
             sourcemap: false
         },

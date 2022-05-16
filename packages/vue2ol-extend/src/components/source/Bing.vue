@@ -1,5 +1,5 @@
 <template>
-  <vue2ol-source-xyz :tileUrlFunction="tileUrlFunction"></vue2ol-source-xyz>
+  <vue2ol-source-xyz :tileUrlFunction="tileUrlFunction2"></vue2ol-source-xyz>
 </template>
 <script>
 import { XYZSourceMixin, Vue2olSourceXyz } from "@gis-js/vue2ol";
@@ -12,10 +12,12 @@ export default {
   data() {
     return {};
   },
-  props: {},
+  props: {
+    
+  },
   mounted() {},
   methods: {
-    tileUrlFunction(coord, params1, params2) {
+    tileUrlFunction2(coord, params1, params2) {
       return this.getVETileUrl(
         "http://t0.dynamic.tiles.ditu.live.com/comp/ch/",
         coord[0],

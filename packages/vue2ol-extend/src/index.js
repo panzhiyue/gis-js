@@ -1,6 +1,5 @@
 import * as components from "./components/index.js"
 
-
 const install = function (Vue) {
   if (install.installed) return;
   Object.keys(components).forEach(key => {
@@ -13,8 +12,8 @@ if (typeof window !== 'undefined' && (window).Vue) {
 }
 
 const API = {
-  ...components,
   install
 }
 
 export default API;
+export * from "./components/index.js"

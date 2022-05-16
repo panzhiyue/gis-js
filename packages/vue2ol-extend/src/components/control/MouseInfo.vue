@@ -6,7 +6,6 @@
 <script>
 import MouseTips from "./MouseTips.vue";
 import { findRealParent } from "@gis-js/vue2ol";
-
 /**
  * 鼠标移动提示信息控件
  * @since v1.0.0
@@ -15,7 +14,7 @@ export default {
   name: "Vue2olControlMouseinfo",
   inheritAttrs: false,
   components: {
-    "Vue2olControlMousetips": MouseTips,
+    Vue2olControlMousetips: MouseTips,
   },
   props: {
     /**

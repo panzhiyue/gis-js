@@ -49,10 +49,6 @@ export default {
       this.newUrl = `http://thematic.geoq.cn/arcgis/rest/services/ThematicMaps/WorldHydroMap/MapServer/tile/{z}/{y}/{x}`;
     }
    
-    let options = {
-      ...(this.xyzSourceOptions || {}),
-      projection: this.projection,
-    };
   },
 };
 </script>

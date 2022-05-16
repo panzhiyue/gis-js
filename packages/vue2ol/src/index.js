@@ -8,7 +8,6 @@ const install = function (Vue) {
   Object.keys(components).forEach(key => {
     Vue.component(components[key].name, (components)[key]);
   });
-
 };
 
 if (typeof window !== 'undefined' && (window).Vue) {
@@ -16,10 +15,13 @@ if (typeof window !== 'undefined' && (window).Vue) {
 }
 
 const API = {
-  ...components,
-  ...mixins,
-  ...utils,
   install
 }
 
 export default API;
+
+export * from "./mixins/index.js"
+export * from "./utils/index.js"
+export * from "./components/index.js"
+
+

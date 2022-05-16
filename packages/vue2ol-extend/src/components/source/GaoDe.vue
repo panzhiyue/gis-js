@@ -33,10 +33,6 @@ export default {
     } else if (this.layer == "satellite_annotion") {
       this.newUrl = `http://webst0{1-4}.is.autonavi.com/appmaptile?style=8&x={x}&y={y}&z={z}`;
     }
-
-    let options = {
-      ...(this.xyzSourceOptions || {}),
-    };
   },
 };
 </script>
