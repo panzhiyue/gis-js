@@ -65,12 +65,12 @@ export default {
 
 ## Props
 
-| 名称      | 描述                                                                           | 类型    | 取值范围                           | 默认值 |
-| --------- | ------------------------------------------------------------------------------ | ------- | ---------------------------------- | ------ |
-| parentMap | 地图,如果为 null 则从 parent 中获取<br/>`@typeName` {import('ol/Map').default} | object  | -                                  |        |
-| direction | 弹框显示位置                                                                   | string  | `"left"\|"right"\|"top"\|"bottom"` | "top"  |
-| position  | 弹框位置<br/>`@typeName` {import('ol/coordinate').Coordinate}                  | array   | -                                  |        |
-| showClose | 是否显示关闭按钮                                                               | boolean | -                                  | true   |
+| 名称      | 描述                                | 类型                                 | 取值范围                           | 默认值 |
+| --------- | ----------------------------------- | ------------------------------------ | ---------------------------------- | ------ |
+| parentMap | 地图,如果为 null 则从 parent 中获取 | {import('ol/Map').default}           | -                                  |        |
+| direction | 弹框显示位置                        | string                               | `"left"\|"right"\|"top"\|"bottom"` | "top"  |
+| position  | 弹框位置                            | {import('ol/coordinate').Coordinate} | -                                  |        |
+| showClose | 是否显示关闭按钮                    | boolean                              | -                                  | true   |
 
 ## Slots
 

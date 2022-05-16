@@ -6,7 +6,7 @@
   ],
   "scripts": {
     "build": "lerna run build",
-    "build:docs": "lerna run build:docs",
+    "build:docs": "concurrently \"lerna run build:docs\" \" vuepress build docs \"",
     "dev:docs": "concurrently \"lerna run dev:docs\" \" vuepress dev docs \""
   },
   "devDependencies": {
