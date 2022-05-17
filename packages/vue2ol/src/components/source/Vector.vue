@@ -7,7 +7,7 @@
 </template>
 <script>
 import Vector from "ol/source/Vector";
-import SourceMixin from "../../mixins/Source";
+import VectorSourceMixin from "../../mixins/VectorSource";
 import {
   optionsMerger,
   bindListeners,
@@ -20,25 +20,11 @@ import {
  */
 export default {
   name: "Vue2olSourceVector",
-  mixins: [SourceMixin],
+  mixins: [VectorSourceMixin],
   data() {
     return {};
   },
   props: {
-    /**
-     * 新加载器。下一个渲染周期将使用新的加载器
-     * @typeName {import('ol/featureloader').FeatureLoader}
-     */
-    loader: {
-      type: Object,
-    },
-
-    /**
-     * 新的 url。下一个渲染周期将使用新的 url。
-     */
-    url: {
-      type: String,
-    },
     /**
      * @typeName {Array<import('ol/Feature').default>}
      */
@@ -65,10 +51,7 @@ export default {
   mounted() {
     let options = optionsMerger(
       {
-        ...(this.sourceOptions || {}),
-        attributes: this.attributes,
-        loader: this.loader,
-        url: this.url,
+        ...(this.vectorSourceOptions || {}),
         features: this.features,
       },
       this
