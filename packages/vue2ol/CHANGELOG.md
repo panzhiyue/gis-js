@@ -5,4 +5,4 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 # 1.0.0-alpha.2 (2022-05-17)
 
-**Note:** Version bump only for package @gis-js/vue2ol
+**Note:** 根据olv6.14.1修改代码，更新属性列表

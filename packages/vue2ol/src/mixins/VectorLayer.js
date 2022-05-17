@@ -5,7 +5,7 @@ export default {
     props: {},
     mounted() {
         this.vectorLayerOptions = {
-            ...(this.baseVectorLayerOptions || {})
+            ...(this.baseVectorLayerOptions || {}) 
         }
     }
 }
