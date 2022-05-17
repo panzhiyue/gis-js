@@ -50,6 +50,8 @@ export default {
 
 | 名称                | 描述                                                                                                                                                                                           | 类型                                 | 取值范围 | 默认值 |
 | ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------ | -------- | ------ |
+| properties          | 属性                                                                                                                                                                                           | object                               | -        |        |
+| options             | 对应 openlayers 对象的实例化参数选项,其他没有在 props 中列举的参数，如果有传入 props 并且与默认值不同，则以 props 中的值为准，否则使用 options 中的值                                          | object                               | -        |        |
 | parentMap           | 地图,如果为 null 则从 parent 中获取                                                                                                                                                            | {import('ol/Map').default}           | -        |        |
 | center              | 地图中心点                                                                                                                                                                                     | {import('ol/coordinate').Coordinate} | -        |        |
 | constrainResolution | 如果为 true，则视图将始终在交互后动画到最接近的缩放级别；false 表示允许中间缩放级别                                                                                                            | boolean                              | -        |        |
@@ -58,7 +60,6 @@ export default {
 | resolution          | 视图的初始分辨率。单位是 projection 每像素的单位（例如，每像素米）。设置它的另一种方法是设置 zoom。如果 this 也未定义，则不会获取层源 zoom，但可以稍后使用#setZoom 或#setResolution 设置它们。 | number                               | -        |        |
 | rotation            | 视图的初始旋转以弧度为单位（顺时针正旋转，0 表示北）。                                                                                                                                         | number                               | -        |        |
 | zoom                | 仅在 resolution 未定义时使用。用于计算视图初始分辨率的缩放级别。                                                                                                                               | number                               | -        |        |
-| options             |                                                                                                                                                                                                | object                               | -        | {}     |
 
 ## Events
 

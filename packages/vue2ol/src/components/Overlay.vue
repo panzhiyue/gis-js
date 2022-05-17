@@ -15,6 +15,8 @@ import {
   propsBinder,
   getListeners,
 } from "../utils/index";
+import ObjectMixin from "../mixins/Object";
+import OptionsMixin from "../mixins/Options";
 /**
  * ol/Overlay的vue组件
  * @since v1.0.0
@@ -22,6 +24,8 @@ import {
  */
 export default {
   name: "Vue2olOverlay",
+  mixins: [ObjectMixin,OptionsMixin],
+  emits: ["init", "append", "ready"],
   data() {
     return {
       mapObject: null, //ol/layer/Vector对象
@@ -62,13 +66,6 @@ export default {
     positioning: {
       type: String,
     },
-
-    /**
-     * ol/Overlay 实例化参数选项,其他没有在props中列举的参数，如果有传入props并且与默认值不同，则以props中的值为准，否则使用options中的值
-     */
-    options: {
-      type: Object,
-    },
   },
   mounted() {
     if (this.parentMap) {
@@ -88,19 +85,36 @@ export default {
     );
 
     this.mapObject = new Overlay(options);
+    this.properties && this.mapObject.setProperties(this.properties);
 
     //绑定事件
     bindListeners(this.mapObject, getListeners(this));
     //监听props属性
     propsBinder(this, this.mapObject, this.$options.props);
+
+    /**
+     * 地图元素初始化完时触发
+     * @type {object}
+     * @property {import('ol/Overlay').default} mapObject
+     */
+    this.$emit("init", this.mapObject);
+
     // 将overlayer层添加到map当中
     this.parent.addOverlay(this.mapObject);
+
+    /**
+     * 地图元素添加到地图时触发
+     * @type {object}
+     * @property {import('ol/Overlay').default} mapObject
+     */
+    this.$emit("append", this.mapObject);
+
     this.ready = true;
     this.$nextTick(() => {
       /**
        * 组件就绪时触发
        * @type {object}
-       * @property {import('ol/Overlay').default} mapObject -
+       * @property {import('ol/Overlay').default} mapObject
        */
       this.$emit("ready", this.mapObject);
     });

@@ -11,6 +11,8 @@ import {
   propsBinder,
   getListeners,
 } from "../utils/index";
+import ObjectMixin from "../mixins/Object";
+import OptionsMixin from "../mixins/Options";
 /**
  * ol/View的vue组件
  * @since v1.0.0
@@ -18,6 +20,7 @@ import {
  */
 export default {
   name: "Vue2olView",
+  mixins: [ObjectMixin,OptionsMixin],
   data() {
     return {
       mapObject: null, //ol/source/XYZ对象
@@ -85,14 +88,6 @@ export default {
     zoom: {
       type: Number,
       //default: 1,
-    },
-
-    //ol/View 实例化参数选项,其他没有在props中列举的参数，如果有传入props并且与默认值不同，则以props中的值为准，否则使用options中的值
-    options: {
-      type: Object,
-      default: () => {
-        return {};
-      },
     },
   },
   mounted() {

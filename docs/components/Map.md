@@ -188,12 +188,12 @@ export default {
 
 | 名称       | 描述                                                                                                                                                             | 类型                                                                                                          | 取值范围 | 默认值 |
 | ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | -------- | ------ |
+| properties | 属性                                                                                                                                                             | object                                                                                                        | -        |        |
+| options    | 对应 openlayers 对象的实例化参数选项,其他没有在 props 中列举的参数，如果有传入 props 并且与默认值不同，则以 props 中的值为准，否则使用 options 中的值            | object                                                                                                        | -        |        |
 | layerGroup | 地图的图层组                                                                                                                                                     | {import('ol/layer/Group').LayerGroup}                                                                         | -        |        |
 | layers     | 图层数组。如果未定义，则将渲染没有图层的地图。请注意，图层是按照提供的顺序呈现的，因此，例如，如果您希望矢量图层出现在切片图层的顶部，则它必须位于切片图层之后。 | {Array<import('ol/layer/Base').BaseLayer> \| import('ol/Collection').Collection<import('ol/Base').BaseLayer>} | -        |        |
-| properties |                                                                                                                                                                  | object                                                                                                        | -        |        |
 | size       | 地图的大小                                                                                                                                                       | {import('ol/size').Size}                                                                                      | -        |        |
 | view       |                                                                                                                                                                  | {import('ol/View').default}                                                                                   | -        |        |
-| options    | ol/Map 实例化参数选项,其他没有在 props 中列举的参数，如果有传入 props 并且与默认值不同，则以 props 中的值为准，否则使用 options 中的值                           | object                                                                                                        | -        | {}     |
 
 ## Events
 

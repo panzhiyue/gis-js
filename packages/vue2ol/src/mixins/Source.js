@@ -1,4 +1,5 @@
 import ObjectMixin from './Object'
+import OptionsMixin from './Options'
 import {
   findRealParent
 } from '../utils/index'
@@ -12,7 +13,7 @@ export default {
       parent: null, //openlayers父对象
     }
   },
-  mixins: [ObjectMixin],
+  mixins: [ObjectMixin,OptionsMixin],
   props: {
     /**
      * 图层,如果为null则从parent中获取

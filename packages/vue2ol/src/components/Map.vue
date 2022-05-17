@@ -13,6 +13,8 @@ import {
   getListeners,
   getAttrs,
 } from "../utils/index";
+import ObjectMixin from "../mixins/Object";
+import OptionsMixin from "../mixins/Options";
 /**
  * ol/Map的vue组件
  * @since v1.0.0
@@ -21,7 +23,8 @@ import {
 export default {
   name: "Vue2olMap",
   inheritAttrs: false,
-  emits:["init","ready"],
+  mixins: [ObjectMixin,OptionsMixin],
+  emits: ["init", "ready"],
   data() {
     return {
       mapObject: null,
@@ -46,9 +49,6 @@ export default {
       type: Array,
     },
 
-    properties: {
-      type: Object,
-    },
     /**
      * 地图的大小
      * @typeName {import('ol/size').Size}
@@ -62,16 +62,6 @@ export default {
      */
     view: {
       type: Object,
-    },
-
-    /**
-     * ol/Map 实例化参数选项,其他没有在props中列举的参数，如果有传入props并且与默认值不同，则以props中的值为准，否则使用options中的值
-     */
-    options: {
-      type: Object,
-      default: () => {
-        return {};
-      },
     },
   },
   beforeMount() {

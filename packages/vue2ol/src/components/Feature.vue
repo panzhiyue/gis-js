@@ -15,6 +15,9 @@ import {
   getListeners,
 } from "../utils/index";
 
+import ObjectMixin from "../mixins/Object";
+import OptionsMixin from "../mixins/Options";
+
 /**
  * ol/Feature的vue组件
  * @since v1.0.0
@@ -22,6 +25,7 @@ import {
  */
 export default {
   name: "Vue2olFeature",
+  mixins: [ObjectMixin, OptionsMixin],
   data() {
     return {
       mapObject: null, //ol/Feature对象
@@ -62,13 +66,6 @@ export default {
     },
 
     /**
-     * 属性
-     */
-    properties: {
-      type: Object,
-    },
-
-    /**
      * 特征的样式。
      * 因为style是保留属性，因此改名为styleObj
      * @typeName {import('ol/style/Style').StyleLike}
@@ -76,13 +73,6 @@ export default {
     styleObj: {
       type: Object,
       custom: true,
-    },
-
-    /**
-     * ol/Feature 实例化参数选项,其他没有在props中列举的参数，如果有传入props并且与默认值不同，则以props中的值为准，否则使用options中的值
-     */
-    options: {
-      type: Object,
     },
   },
   methods: {
