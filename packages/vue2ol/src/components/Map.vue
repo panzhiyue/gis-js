@@ -45,12 +45,22 @@ export default {
       type: Array,
     },
 
+    properties: {
+      type: Object,
+    },
     /**
      * 地图的大小
      * @typeName {import('ol/size').Size}
      */
     size: {
       type: Array,
+    },
+
+    /**
+     * @typeName {import('ol/View').default}
+     */
+    view: {
+      type: Object,
     },
 
     /**
@@ -69,8 +79,8 @@ export default {
   mounted() {
     let options = optionsMerger(
       {
-        controls: [],
         layers: this.layers,
+        view: this.view,
         target: this.$el,
       },
       this
@@ -78,7 +88,9 @@ export default {
     //初始化view对象
     this.mapObject = new Map(options);
     this.layerGroup && this.mapObject.setLayerGroup(this.layerGroup);
+    this.properties && this.mapObject.setProperties(this.properties);
     this.size && this.mapObject.setSize(this.size);
+
     //绑定事件
     bindListeners(this.mapObject, getListeners(this));
     //监听props属性

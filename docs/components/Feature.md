@@ -63,7 +63,7 @@ export default {
 
 :::
 
-## 监听值变化
+## 监听属性
 
 ::: demo
 

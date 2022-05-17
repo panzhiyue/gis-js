@@ -1,4 +1,5 @@
 import Vue from "vue"
+import "ol/ol.css"
 import Vue2OL from "vue2ol"
 Vue.use(Vue2OL);
 
