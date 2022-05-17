@@ -98,6 +98,7 @@ export default {
 | opacity                | 图层的不透明度，允许值范围从 0 到 1。                                                                                                                 | number                     | -        |        |
 | visible                | 图层可见性                                                                                                                                            | boolean                    | -        | true   |
 | zIndex                 | 图层层级，值越大显示在上层                                                                                                                            | number                     | -        |        |
+| source                 |                                                                                                                                                       | object                     | -        |        |
 | preload                | 将预加载瓦片的数量。                                                                                                                                  | number                     | -        |        |
 | useInterimTilesOnError | 错误时使用临时瓷砖。                                                                                                                                  | boolean                    | -        |        |
 
