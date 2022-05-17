@@ -7,7 +7,7 @@
 </template>
 <script>
 import Vector from 'ol/layer/Vector'
-import BaseVectorLayerMixin from '../../mixins/BaseVectorLayer'
+import VectorLayerMixin from '../../mixins/VectorLayer'
 import { optionsMerger, bindListeners, propsBinder,getListeners } from '../../utils/index'
 /**
  * ol/layer/Vector的vue组件
@@ -15,7 +15,7 @@ import { optionsMerger, bindListeners, propsBinder,getListeners } from '../../ut
  */
 export default {
   name: 'Vue2olLayerVector',
-  mixins: [BaseVectorLayerMixin],
+  mixins: [VectorLayerMixin],
   data() {
     return {}
   },
@@ -24,7 +24,7 @@ export default {
   mounted() {
     let options = optionsMerger(
       {
-        ...(this.baseVectorLayerOptions || {}),
+        ...(this.vectorLayerOptions || {}),
       },
       this
     )
