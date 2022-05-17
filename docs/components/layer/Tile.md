@@ -103,9 +103,11 @@ export default {
 
 ## Events
 
-| 名称  | 属性                                                                 | 描述           |
-| ----- | -------------------------------------------------------------------- | -------------- |
-| ready | **mapObject** `import('ol/layer/Tile').default` - openlayer 瓦片图层 | 组件就绪时触发 |
+| 名称   | 属性                                                       | 描述                     |
+| ------ | ---------------------------------------------------------- | ------------------------ |
+| init   | **mapObject** `import('ol/layer/Tile').default` - 地图元素 | 地图元素初始化完时触发   |
+| append | **mapObject** `import('ol/layer/Tile').default` - 地图元素 | 地图元素添加到地图时触发 |
+| ready  | **mapObject** `import('ol/layer/Tile').default` - 地图元素 | 组件就绪时触发           |
 
 ## Slots
 

@@ -83,7 +83,21 @@ export default {
     //监听props属性
     propsBinder(this, this.mapObject, this.$options.props);
 
+    /**
+     * 地图元素初始化完时触发
+     * @type {object}
+     * @property {import('ol/source/Vector').default} mapObject 地图元素
+     */
+    this.$emit("init", this.mapObject);
+
     this.parent.setSource(this.mapObject);
+
+    /**
+     * 地图元素添加到地图时触发
+     * @type {object}
+     * @property {import('ol/source/Vector').default} mapObject 地图元素
+     */
+    this.$emit("append", this.mapObject);
 
     this.ready = true;
     this.$nextTick(() => {

@@ -62,13 +62,15 @@ export default {
 | url              |                                                                                                                                                       | string                                                  | -                                                                                                                                                                            |           |
 | urls             |                                                                                                                                                       | {string[]}                                              | -                                                                                                                                                                            |           |
 | tileUrlFunction  |                                                                                                                                                       | {import('ol/Tile').UrlFunction\|undefined}              | -                                                                                                                                                                            |           |
-| layer            | 图层名称                                                                                                                                              | string                                                  | `'terrain'\|'terrain-background'\|'terrain-labels'\|'terrain-lines'\|'toner-background'\|'toner'\|'toner-hybrid'\|'toner-labels'\|'toner-lines'\|'toner-lite'\|'watercolor'` | 'terrain' |
+| layer            | 图层名称                                                                                                                                              | string                                                  | `'terrain'\|'terrain-background'\|'terrain-labels'\|'terrain-lines'\|'toner-background'\|'toner'\|'toner-hybrid'\|'toner-labels'\|'toner-lines'\|'toner-lite'\|'watercolor'` | "terrain" |
 
 ## Events
 
-| 名称  | 属性                                                           | 描述           |
-| ----- | -------------------------------------------------------------- | -------------- |
-| ready | **mapObject** `import('ol/source/Stamen').default` - undefined | 组件就绪时触发 |
+| 名称   | 属性                                                           | 描述                     |
+| ------ | -------------------------------------------------------------- | ------------------------ |
+| init   | **mapObject** `import('ol/source/Stamen').default` - 地图元素  | 地图元素初始化完时触发   |
+| append | **mapObject** `import('ol/source/Stamen').default` - 地图元素  | 地图元素添加到地图时触发 |
+| ready  | **mapObject** `import('ol/source/Stamen').default` - undefined | 组件就绪时触发           |
 
 ## Slots
 

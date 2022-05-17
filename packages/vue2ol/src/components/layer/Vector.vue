@@ -38,13 +38,28 @@ export default {
     //监听props属性
     propsBinder(this, this.mapObject, this.$options.props)
 
-    this.parent.addLayer(this.mapObject)
+    /**
+     * 地图元素初始化完时触发
+     * @type {object}
+     * @property {import('ol/layer/Vector').default} mapObject  地图元素
+     */
+    this.$emit("init", this.mapObject);
+
+    this.parent.addLayer(this.mapObject);
+
+    /**
+     * 地图元素添加到地图时触发
+     * @type {object}
+     * @property {import('ol/layer/Vector').default} mapObject  地图元素
+     */
+    this.$emit("append", this.mapObject);
+
     this.ready = true
     this.$nextTick(() => {
       /**
        * 组件就绪时触发
        * @type {object}
-       * @property {import('ol/layer/Vector').default} mapObject - openlayer瓦片图层
+       * @property {import('ol/layer/Vector').default} mapObject  地图元素
        */
       this.$emit('ready', this.mapObject)
     })

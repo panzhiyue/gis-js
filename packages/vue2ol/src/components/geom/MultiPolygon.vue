@@ -17,6 +17,7 @@ import SimpleGeometryMixin from '../../mixins/SimpleGeometry'
 export default {
   name: 'Vue2olGeomMultipolygon',
   mixins: [SimpleGeometryMixin],
+  emits:["init","append","ready"],
   data() {
     return {}
   },
@@ -39,14 +40,28 @@ export default {
     bindListeners(this.mapObject, getListeners(this))
     //监听props属性
     propsBinder(this, this.mapObject, this.$options.props)
+    /**
+     * 地图元素初始化完时触发
+     * @type {object}
+     * @property {import('ol/geom/MultiPoint').default} mapObject 地图元素
+     */
+    this.$emit("init", this.mapObject);
+
     // 将feature层添加到layer当中
-    this.parent.setGeometry(this.mapObject)
+    this.parent.setGeometry(this.mapObject);
+
+    /**
+     * 地图元素添加到地图时触发
+     * @type {object}
+     * @property {import('ol/geom/MultiPoint').default} mapObject 地图元素
+     */
+    this.$emit("append", this.mapObject);
     this.ready = true
     this.$nextTick(() => {
       /**
        * 组件就绪时触发
        * @type {object}
-       * @property {import('ol/geom/MultiPolygon').default} mapObject -
+       * @property {import('ol/geom/MultiPolygon').default} mapObject 地图元素
        */
       this.$emit('ready', this.mapObject)
     })
