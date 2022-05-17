@@ -51,14 +51,35 @@ var ObjectMixin = {
   },
   props: {
     /**
-     * 对应openlayers对象的实例化参数选项,其他没有在props中列举的参数，如果有传入props并且与默认值不同，则以props中的值为准，否则使用options中的值
+     * 属性
      */
-    options: {
+    properties: {
       type: Object,
-      default: () => ({})
-    }
+    },
+    // /**
+    //  * 对应openlayers对象的实例化参数选项,其他没有在props中列举的参数，如果有传入props并且与默认值不同，则以props中的值为准，否则使用options中的值
+    //  */
+    // options: {
+    //   type: Object,
+    //   default: () => ({})
+    // }
   }
 
+};
+
+var OptionsMixin = {
+    data() {
+        return {}
+    },
+    props: {
+        /**
+         * 对应openlayers对象的实例化参数选项,其他没有在props中列举的参数，如果有传入props并且与默认值不同，则以props中的值为准，否则使用options中的值
+         */
+        options: {
+            type: Object,
+            default: () => ({})
+        }
+    }
 };
 
 /**
@@ -97,7 +118,7 @@ const propsBinder = (vueElement, openlayersElement, props) => {
     //   props[key].type === Object ||
     //   props[key].type === Array ||
     //   Array.isArray(props[key].type);
-    const deepValue=false;
+    const deepValue = false;
     if (props[key].custom && vueElement[setMethodName]) {
       vueElement.$watch(
         key,
@@ -280,7 +301,7 @@ var BaseLayerMixin = {
       parent: null, //openlayers父对象
     }
   },
-  mixins: [ObjectMixin],
+  mixins: [ObjectMixin,OptionsMixin],
   props: {
     /**
      * 地图,如果为null则从parent中获取
@@ -380,8 +401,19 @@ var BaseLayerMixin = {
 
 var LayerMixin = {
   mixins: [BaseLayerMixin],
+  props: {
+    /**
+     * 
+     */
+    source: {
+      type: Object,
+    },
+  },
   mounted() {
-    this.layerOptions = this.baseLayerOptions;
+    this.layerOptions = {
+      ...(this.baseLayerOptions || {}),
+      source: this.source,
+    };
   }
 };
 
@@ -445,7 +477,7 @@ var GeometryMixin = {
       parent: null, //openlayers父对象
     }
   },
-  mixins: [ObjectMixin],
+  mixins: [ObjectMixin,OptionsMixin],
   props: {
     /**
      * 要素，如果为null则从parent中获取
@@ -490,7 +522,7 @@ var SourceMixin = {
       parent: null, //openlayers父对象
     }
   },
-  mixins: [ObjectMixin],
+  mixins: [ObjectMixin,OptionsMixin],
   props: {
     /**
      * 图层,如果为null则从parent中获取
@@ -549,6 +581,13 @@ var UrlTileSourceMixin = {
       type: Function,
     },
 
+    /**
+     * @typeName {import('ol/Tile').UrlFunction|undefined}
+     */
+    tileUrlFunction: {
+      type: Function,
+    },
+
     url: {
       type: String,
     },
@@ -564,6 +603,7 @@ var UrlTileSourceMixin = {
     this.urlTileSourceOptions = {
       ...(this.tileSourceOptions || {}),
       tileLoadFunction: this.tileLoadFunction,
+      tileUrlFunction: this.tileUrlFunction,
       url: this.url,
       urls: this.urls,
     };
@@ -573,17 +613,10 @@ var UrlTileSourceMixin = {
 var TileImageSourceMixin = {
   mixins: [UrlTileSourceMixin],
   props: {
-    /**
-     * @typeName {import('ol/Tile').UrlFunction|undefined}
-     */
-    tileUrlFunction: {
-      type: Function,
-    },
   },
   mounted() {
     this.tileImageSourceOptions = {
-      ...(this.urlTileSourceOptions || {}),
-      tileUrlFunction: this.tileUrlFunction,
+      ...(this.urlTileSourceOptions || {})
     };
 
   }
@@ -605,6 +638,8 @@ var XYZSourceMixin = {
 var script$g = {
   name: "Vue2olMap",
   inheritAttrs: false,
+  mixins: [ObjectMixin, OptionsMixin],
+  emits: ["init", "ready"],
   data() {
     return {
       mapObject: null,
@@ -638,13 +673,10 @@ var script$g = {
     },
 
     /**
-     * ol/Map 实例化参数选项,其他没有在props中列举的参数，如果有传入props并且与默认值不同，则以props中的值为准，否则使用options中的值
+     * @typeName {import('ol/View').default}
      */
-    options: {
+    view: {
       type: Object,
-      default: () => {
-        return {};
-      },
     },
   },
   beforeMount() {
@@ -653,8 +685,8 @@ var script$g = {
   mounted() {
     let options = optionsMerger(
       {
-        controls: [],
         layers: this.layers,
+        view: this.view,
         target: this.$el,
       },
       this
@@ -662,11 +694,19 @@ var script$g = {
     //初始化view对象
     this.mapObject = new Map__default["default"](options);
     this.layerGroup && this.mapObject.setLayerGroup(this.layerGroup);
+    this.properties && this.mapObject.setProperties(this.properties);
     this.size && this.mapObject.setSize(this.size);
+
     //绑定事件
     bindListeners(this.mapObject, getListeners(this));
     //监听props属性
     propsBinder(this, this.mapObject, this.$options.props);
+
+    /**
+     * 地图元素初始化完时触发
+     * @type {Object}
+     * @property {import('ol/Map')} mapObject 地图元素
+     */
     this.$emit("init", this.mapObject);
 
     this.ready = true;
@@ -674,7 +714,7 @@ var script$g = {
       /**
        * 组件就绪时触发
        * @type {Object}
-       * @property {import('ol/Map')} mapObject -
+       * @property {import('ol/Map')} mapObject 地图元素
        */
       this.$emit("ready", this.mapObject);
     });
@@ -823,11 +863,11 @@ var __vue_staticRenderFns__$g = [];
   /* style */
   const __vue_inject_styles__$g = function (inject) {
     if (!inject) return
-    inject("data-v-2f7c8e52_0", { source: ".vue2ol-map[data-v-2f7c8e52]{width:100%;height:100%;margin:0;padding:0}", map: undefined, media: undefined });
+    inject("data-v-0e1da05e_0", { source: ".vue2ol-map[data-v-0e1da05e]{width:100%;height:100%;margin:0;padding:0}", map: undefined, media: undefined });
 
   };
   /* scoped */
-  const __vue_scope_id__$g = "data-v-2f7c8e52";
+  const __vue_scope_id__$g = "data-v-0e1da05e";
   /* module identifier */
   const __vue_module_identifier__$g = undefined;
   /* functional template */
@@ -859,9 +899,11 @@ var __vue_staticRenderFns__$g = [];
  */
 var script$f = {
   name: "Vue2olView",
+  mixins: [ObjectMixin, OptionsMixin],
+  emits:["init","append","ready"],
   data() {
     return {
-      mapObject: null, //ol/source/XYZ对象
+      mapObject: null, //ol/View对象
       ready: false, //是否加载完毕
       parent: null, //openlayers父对象
     };
@@ -890,13 +932,6 @@ var script$f = {
     constrainResolution: {
       type: Boolean,
     },
-    /**
-     * 用于确定分辨率约束的最小缩放级别。它与maxZoom(or minResolution) 和zoomFactor一起使用。请注意，如果还提供了maxResolution，它的优先级高于minZoom.
-     */
-    minZoom: {
-      type: Number,
-      //default: 1,
-    },
 
     /**
      * 用于确定分辨率约束的最大缩放级别。它与minZoom(or maxResolution) 和zoomFactor一起使用。请注意，如果还提供了minResolution，它的优先级高于maxZoom.
@@ -904,6 +939,14 @@ var script$f = {
     maxZoom: {
       type: Number,
       //default: 20,
+    },
+
+    /**
+     * 用于确定分辨率约束的最小缩放级别。它与maxZoom(or minResolution) 和zoomFactor一起使用。请注意，如果还提供了maxResolution，它的优先级高于minZoom.
+     */
+    minZoom: {
+      type: Number,
+      //default: 1,
     },
 
     /**
@@ -926,14 +969,6 @@ var script$f = {
     zoom: {
       type: Number,
       //default: 1,
-    },
-
-    //ol/View 实例化参数选项,其他没有在props中列举的参数，如果有传入props并且与默认值不同，则以props中的值为准，否则使用options中的值
-    options: {
-      type: Object,
-      default: () => {
-        return {};
-      },
     },
   },
   mounted() {
@@ -958,13 +993,27 @@ var script$f = {
 
     //初始化view对象
     this.mapObject = new View__default["default"](options);
+    this.properties && this.mapObject.setProperties(this.properties);
 
     //绑定事件
     bindListeners(this.mapObject, getListeners(this));
     //监听props属性
     propsBinder(this, this.mapObject, this.$options.props);
+    /**
+     * 地图元素初始化完时触发
+     * @type {object}
+     * @property {import('ol/View').default} mapObject - openlayer瓦片图层
+     */
+    this.$emit("ready", this.mapObject);
 
     this.parent.setView(this.mapObject);
+
+    /**
+     * 地图元素添加到地图时触发
+     * @type {object}
+     * @property {import('ol/Overlay').default} mapObject
+     */
+    this.$emit("append", this.mapObject);
 
     this.ready = true;
     this.$nextTick(() => {
@@ -992,7 +1041,7 @@ var __vue_staticRenderFns__$f = [];
   /* style */
   const __vue_inject_styles__$f = undefined;
   /* scoped */
-  const __vue_scope_id__$f = "data-v-7ea40d44";
+  const __vue_scope_id__$f = "data-v-5eadbb96";
   /* module identifier */
   const __vue_module_identifier__$f = undefined;
   /* functional template */
@@ -1026,9 +1075,11 @@ var __vue_staticRenderFns__$f = [];
  */
 var script$e = {
   name: "Vue2olOverlay",
+  mixins: [ObjectMixin,OptionsMixin],
+  emits: ["init", "append", "ready"],
   data() {
     return {
-      mapObject: null, //ol/layer/Vector对象
+      mapObject: null, //ol/Overlay对象
       ready: false, //是否加载完毕
       parent: null, //openlayers父对象
     };
@@ -1066,13 +1117,6 @@ var script$e = {
     positioning: {
       type: String,
     },
-
-    /**
-     * ol/Overlay 实例化参数选项,其他没有在props中列举的参数，如果有传入props并且与默认值不同，则以props中的值为准，否则使用options中的值
-     */
-    options: {
-      type: Object,
-    },
   },
   mounted() {
     if (this.parentMap) {
@@ -1092,19 +1136,36 @@ var script$e = {
     );
 
     this.mapObject = new Overlay__default["default"](options);
+    this.properties && this.mapObject.setProperties(this.properties);
 
     //绑定事件
     bindListeners(this.mapObject, getListeners(this));
     //监听props属性
     propsBinder(this, this.mapObject, this.$options.props);
+
+    /**
+     * 地图元素初始化完时触发
+     * @type {object}
+     * @property {import('ol/Overlay').default} mapObject
+     */
+    this.$emit("init", this.mapObject);
+
     // 将overlayer层添加到map当中
     this.parent.addOverlay(this.mapObject);
+
+    /**
+     * 地图元素添加到地图时触发
+     * @type {object}
+     * @property {import('ol/Overlay').default} mapObject
+     */
+    this.$emit("append", this.mapObject);
+
     this.ready = true;
     this.$nextTick(() => {
       /**
        * 组件就绪时触发
        * @type {object}
-       * @property {import('ol/Overlay').default} mapObject -
+       * @property {import('ol/Overlay').default} mapObject
        */
       this.$emit("ready", this.mapObject);
     });
@@ -1125,7 +1186,7 @@ var __vue_staticRenderFns__$e = [];
   /* style */
   const __vue_inject_styles__$e = undefined;
   /* scoped */
-  const __vue_scope_id__$e = "data-v-4f0b7d06";
+  const __vue_scope_id__$e = "data-v-30814da3";
   /* module identifier */
   const __vue_module_identifier__$e = undefined;
   /* functional template */
@@ -1160,6 +1221,7 @@ var __vue_staticRenderFns__$e = [];
  */
 var script$d = {
   name: "Vue2olFeature",
+  mixins: [ObjectMixin, OptionsMixin],
   data() {
     return {
       mapObject: null, //ol/Feature对象
@@ -1167,6 +1229,7 @@ var script$d = {
       parent: null, //openlayers父对象
     };
   },
+  emits: ["init", "append", "ready"],
   props: {
     /**
      * @typeName {import('ol/layer/Vector').default}
@@ -1188,6 +1251,7 @@ var script$d = {
      */
     geometryName: {
       type: String,
+      custom: true,
     },
 
     /**
@@ -1206,17 +1270,23 @@ var script$d = {
       type: Object,
       custom: true,
     },
-
-    /**
-     * ol/Feature 实例化参数选项,其他没有在props中列举的参数，如果有传入props并且与默认值不同，则以props中的值为准，否则使用options中的值
-     */
-    options: {
-      type: Object,
-    },
   },
   methods: {
+    /**
+     * 设置几何样式(替代setStyle方法，因为在vue中,style是保留属性)
+     * @param {Object|function} value 样式
+     */
     setStyleObj(value) {
       this.mapObject.setStyle(value);
+    },
+    /**
+     * 设置几何名称方法(覆盖openlayers原生方法，解决设置几何名称之后几何图形没有赋值的Bug)
+     * @param {string} name 几何名称
+     */
+    setGeometryName(name) {
+      let geometry = this.mapObject.getGeometry();
+      this.mapObject.setGeometryName(name);
+      this.mapObject.setGeometry(geometry);
     },
   },
   mounted() {
@@ -1232,29 +1302,42 @@ var script$d = {
       this
     );
     this.mapObject = new Feature__default["default"](options);
-    this.geometryName && this.mapObject.setGeometryName(this.geometryName);
+    this.geometryName && this.setGeometryName(this.geometryName);
     this.id && this.mapObject.setId(this.id);
     this.styleObj && this.mapObject.setStyle(this.styleObj);
-
+    this.properties && this.mapObject.setProperties(this.properties);
     //绑定事件
     bindListeners(this.mapObject, getListeners(this));
     //监听props属性
     propsBinder(this, this.mapObject, this.$options.props);
+    /**
+     * 地图元素初始化完时触发
+     * @type {object}
+     * @property {import('ol/Feature').default} mapObject 地图元素
+     */
+    this.$emit("init", this.mapObject);
     // 将feature层添加到layer当中
     this.parent.addFeature(this.mapObject);
+
+    /**
+     * 地图元素添加到地图时触发
+     * @type {object}
+     * @property {import('ol/Feature').default} mapObject 地图元素
+     */
+    this.$emit("append", this.mapObject);
+
     this.ready = true;
     this.$nextTick(() => {
       /**
        * 组件就绪时触发
        * @type {object}
-       * @property {import('ol/Feature').default} mapObject -
+       * @property {import('ol/Feature').default} mapObject 地图元素
        */
       this.$emit("ready", this.mapObject);
     });
   },
   destroyed() {
     this.parent.removeFeature(this.mapObject);
-    console.log(1331);
     this.mapObject = null;
   },
 };
@@ -1269,7 +1352,7 @@ var __vue_staticRenderFns__$d = [];
   /* style */
   const __vue_inject_styles__$d = undefined;
   /* scoped */
-  const __vue_scope_id__$d = "data-v-40b21723";
+  const __vue_scope_id__$d = "data-v-9ef97130";
   /* module identifier */
   const __vue_module_identifier__$d = undefined;
   /* functional template */
@@ -1302,10 +1385,11 @@ var __vue_staticRenderFns__$d = [];
  * @link https://openlayers.org/en/latest/apidoc/module-ol_geom_Circle-Circle.html
  */
 var script$c = {
-  name: 'Vue2olGeomCircle',
+  name: "Vue2olGeomCircle",
   mixins: [SimpleGeometryMixin],
+  emits:["init","append","ready"],
   data() {
-    return {}
+    return {};
   },
   props: {
     /**
@@ -1327,21 +1411,38 @@ var script$c = {
   watch: {},
   mounted() {
     this.mapObject = new Circle__default["default"](this.center, this.radius, this.opt_layout);
+    this.properties && this.mapObject.setProperties(this.properties);
 
     //绑定事件
     bindListeners(this.mapObject, getListeners(this));
     //监听props属性
     propsBinder(this, this.mapObject, this.$options.props);
+
+    /**
+     * 地图元素初始化完时触发
+     * @type {object}
+     * @property {import('ol/geom/Circle').default} mapObject 地图元素
+     */
+    this.$emit("init", this.mapObject);
+
     // 将feature层添加到layer当中
     this.parent.setGeometry(this.mapObject);
+
+    /**
+     * 地图元素添加到地图时触发
+     * @type {object}
+     * @property {import('ol/geom/Circle').default} mapObject 地图元素
+     */
+    this.$emit("append", this.mapObject);
+
     this.ready = true;
     this.$nextTick(() => {
       /**
        * 组件就绪时触发
        * @type {object}
-       * @property {import('ol/geom/Circle').default} mapObject -
+       * @property {import('ol/geom/Circle').default} mapObject 地图元素
        */
-      this.$emit('ready', this.mapObject);
+      this.$emit("ready", this.mapObject);
     });
   },
 };
@@ -1356,7 +1457,7 @@ var __vue_staticRenderFns__$c = [];
   /* style */
   const __vue_inject_styles__$c = undefined;
   /* scoped */
-  const __vue_scope_id__$c = "data-v-1a657fac";
+  const __vue_scope_id__$c = "data-v-3ccdba1a";
   /* module identifier */
   const __vue_module_identifier__$c = undefined;
   /* functional template */
@@ -1389,10 +1490,11 @@ var __vue_staticRenderFns__$c = [];
  * @link https://openlayers.org/en/latest/apidoc/module-ol_geom_LineString-LineString.html
  */
 var script$b = {
-  name: 'Vue2olGeomLinestring',
+  name: "Vue2olGeomLinestring",
   mixins: [SimpleGeometryMixin],
+  emits: ["init", "append", "ready"],
   data() {
-    return {}
+    return {};
   },
   props: {
     /**
@@ -1407,21 +1509,37 @@ var script$b = {
   watch: {},
   mounted() {
     this.mapObject = new LineString__default["default"](this.coordinates, this.opt_layout);
+    this.properties && this.mapObject.setProperties(this.properties);
 
     //绑定事件
     bindListeners(this.mapObject, getListeners(this));
     //监听props属性
     propsBinder(this, this.mapObject, this.$options.props);
+
+    /**
+     * 地图元素初始化完时触发
+     * @type {object}
+     * @property {import('ol/geom/LineString').default} mapObject 地图元素
+     */
+    this.$emit("init", this.mapObject);
+
     // 将feature层添加到layer当中
     this.parent.setGeometry(this.mapObject);
+
+    /**
+     * 地图元素添加到地图时触发
+     * @type {object}
+     * @property {import('ol/geom/LineString').default} mapObject 地图元素
+     */
+    this.$emit("append", this.mapObject);
     this.ready = true;
     this.$nextTick(() => {
       /**
        * 组件就绪时触发
        * @type {object}
-       * @property {import('ol/geom/LineString').default} mapObject -
+       * @property {import('ol/geom/LineString').default} mapObject 地图元素
        */
-      this.$emit('ready', this.mapObject);
+      this.$emit("ready", this.mapObject);
     });
   },
 };
@@ -1436,7 +1554,7 @@ var __vue_staticRenderFns__$b = [];
   /* style */
   const __vue_inject_styles__$b = undefined;
   /* scoped */
-  const __vue_scope_id__$b = "data-v-0569edc0";
+  const __vue_scope_id__$b = "data-v-463be97a";
   /* module identifier */
   const __vue_module_identifier__$b = undefined;
   /* functional template */
@@ -1472,6 +1590,7 @@ var __vue_staticRenderFns__$b = [];
 var script$a = {
   name: 'Vue2olGeomMultilinestring',
   mixins: [SimpleGeometryMixin],
+  emits:["init","append","ready"],
   data() {
     return {}
   },
@@ -1488,13 +1607,28 @@ var script$a = {
   watch: {},
   mounted() {
     this.mapObject = new MultiLineString__default["default"](this.coordinates, this.opt_layout);
+    this.properties && this.mapObject.setProperties(this.properties);
 
     //绑定事件
     bindListeners(this.mapObject, getListeners(this));
     //监听props属性
     propsBinder(this, this.mapObject, this.$options.props);
+    /**
+     * 地图元素初始化完时触发
+     * @type {object}
+     * @property {import('ol/geom/MultiLineString').default} mapObject 地图元素
+     */
+    this.$emit("init", this.mapObject);
+
     // 将feature层添加到layer当中
     this.parent.setGeometry(this.mapObject);
+
+    /**
+     * 地图元素添加到地图时触发
+     * @type {object}
+     * @property {import('ol/geom/MultiLineString').default} mapObject 地图元素
+     */
+    this.$emit("append", this.mapObject);
     this.ready = true;
     this.$nextTick(() => {
       /**
@@ -1517,7 +1651,7 @@ var __vue_staticRenderFns__$a = [];
   /* style */
   const __vue_inject_styles__$a = undefined;
   /* scoped */
-  const __vue_scope_id__$a = "data-v-a178be9a";
+  const __vue_scope_id__$a = "data-v-84de5888";
   /* module identifier */
   const __vue_module_identifier__$a = undefined;
   /* functional template */
@@ -1552,6 +1686,7 @@ var __vue_staticRenderFns__$a = [];
 var script$9 = {
   name: 'Vue2olGeomMultipoint',
   mixins: [SimpleGeometryMixin],
+  emits:["init","append","ready"],
   data() {
     return {}
   },
@@ -1568,19 +1703,34 @@ var script$9 = {
   watch: {},
   mounted() {
     this.mapObject = new MultiPoint__default["default"](this.coordinates, this.opt_layout);
+    this.properties && this.mapObject.setProperties(this.properties);
 
     //绑定事件
     bindListeners(this.mapObject, getListeners(this));
     //监听props属性
     propsBinder(this, this.mapObject, this.$options.props);
+    /**
+     * 地图元素初始化完时触发
+     * @type {object}
+     * @property {import('ol/geom/MultiPoint').default} mapObject 地图元素
+     */
+    this.$emit("init", this.mapObject);
+
     // 将feature层添加到layer当中
     this.parent.setGeometry(this.mapObject);
+
+    /**
+     * 地图元素添加到地图时触发
+     * @type {object}
+     * @property {import('ol/geom/MultiPoint').default} mapObject 地图元素
+     */
+    this.$emit("append", this.mapObject);
     this.ready = true;
     this.$nextTick(() => {
       /**
        * 组件就绪时触发
        * @type {object}
-       * @property {import('ol/geom/MultiPoint').default} mapObject -
+       * @property {import('ol/geom/MultiPoint').default} mapObject 地图元素
        */
       this.$emit('ready', this.mapObject);
     });
@@ -1597,7 +1747,7 @@ var __vue_staticRenderFns__$9 = [];
   /* style */
   const __vue_inject_styles__$9 = undefined;
   /* scoped */
-  const __vue_scope_id__$9 = "data-v-1f902fb6";
+  const __vue_scope_id__$9 = "data-v-01a36f3b";
   /* module identifier */
   const __vue_module_identifier__$9 = undefined;
   /* functional template */
@@ -1632,6 +1782,7 @@ var __vue_staticRenderFns__$9 = [];
 var script$8 = {
   name: 'Vue2olGeomMultipolygon',
   mixins: [SimpleGeometryMixin],
+  emits:["init","append","ready"],
   data() {
     return {}
   },
@@ -1648,19 +1799,34 @@ var script$8 = {
   watch: {},
   mounted() {
     this.mapObject = new MultiPolygon__default["default"](this.coordinates, this.opt_layout);
+    this.properties && this.mapObject.setProperties(this.properties);
 
     //绑定事件
     bindListeners(this.mapObject, getListeners(this));
     //监听props属性
     propsBinder(this, this.mapObject, this.$options.props);
+    /**
+     * 地图元素初始化完时触发
+     * @type {object}
+     * @property {import('ol/geom/MultiPoint').default} mapObject 地图元素
+     */
+    this.$emit("init", this.mapObject);
+
     // 将feature层添加到layer当中
     this.parent.setGeometry(this.mapObject);
+
+    /**
+     * 地图元素添加到地图时触发
+     * @type {object}
+     * @property {import('ol/geom/MultiPoint').default} mapObject 地图元素
+     */
+    this.$emit("append", this.mapObject);
     this.ready = true;
     this.$nextTick(() => {
       /**
        * 组件就绪时触发
        * @type {object}
-       * @property {import('ol/geom/MultiPolygon').default} mapObject -
+       * @property {import('ol/geom/MultiPolygon').default} mapObject 地图元素
        */
       this.$emit('ready', this.mapObject);
     });
@@ -1677,7 +1843,7 @@ var __vue_staticRenderFns__$8 = [];
   /* style */
   const __vue_inject_styles__$8 = undefined;
   /* scoped */
-  const __vue_scope_id__$8 = "data-v-95225f3a";
+  const __vue_scope_id__$8 = "data-v-12a96208";
   /* module identifier */
   const __vue_module_identifier__$8 = undefined;
   /* functional template */
@@ -1712,6 +1878,7 @@ var __vue_staticRenderFns__$8 = [];
 var script$7 = {
   name: 'Vue2olGeomPoint',
   mixins: [SimpleGeometryMixin],
+  emits:["init","append","ready"],
   data() {
     return {}
   },
@@ -1728,19 +1895,34 @@ var script$7 = {
   watch: {},
   mounted() {
     this.mapObject = new Point__default["default"](this.coordinates, this.opt_layout);
+    this.properties && this.mapObject.setProperties(this.properties);
 
     //绑定事件
     bindListeners(this.mapObject, getListeners(this));
     //监听props属性
     propsBinder(this, this.mapObject, this.$options.props);
+    /**
+     * 地图元素初始化完时触发
+     * @type {object}
+     * @property {import('ol/geom/Point').default} mapObject 地图元素
+     */
+    this.$emit("init", this.mapObject);
+
     // 将feature层添加到layer当中
     this.parent.setGeometry(this.mapObject);
+
+    /**
+     * 地图元素添加到地图时触发
+     * @type {object}
+     * @property {import('ol/geom/Point').default} mapObject 地图元素
+     */
+    this.$emit("append", this.mapObject);
     this.ready = true;
     this.$nextTick(() => {
       /**
        * 组件就绪时触发
        * @type {object}
-       * @property {import('ol/geom/Point').default} mapObject -
+       * @property {import('ol/geom/Point').default} mapObject 地图元素
        */
       this.$emit('ready', this.mapObject);
     });
@@ -1757,7 +1939,7 @@ var __vue_staticRenderFns__$7 = [];
   /* style */
   const __vue_inject_styles__$7 = undefined;
   /* scoped */
-  const __vue_scope_id__$7 = "data-v-24832165";
+  const __vue_scope_id__$7 = "data-v-64803f32";
   /* module identifier */
   const __vue_module_identifier__$7 = undefined;
   /* functional template */
@@ -1792,6 +1974,7 @@ var __vue_staticRenderFns__$7 = [];
 var script$6 = {
   name: 'Vue2olGeomPolygon',
   mixins: [SimpleGeometryMixin],
+  emits:["init","append","ready"],
   data() {
     return {}
   },
@@ -1808,19 +1991,34 @@ var script$6 = {
   watch: {},
   mounted() {
     this.mapObject = new Polygon__default["default"](this.coordinates, this.opt_layout);
+    this.properties && this.mapObject.setProperties(this.properties);
 
     //绑定事件
     bindListeners(this.mapObject, getListeners(this));
     //监听props属性
     propsBinder(this, this.mapObject, this.$options.props);
+    /**
+     * 地图元素初始化完时触发
+     * @type {object}
+     * @property {import('ol/geom/Polygon').default} mapObject 地图元素
+     */
+    this.$emit("init", this.mapObject);
+
     // 将feature层添加到layer当中
     this.parent.setGeometry(this.mapObject);
+
+    /**
+     * 地图元素添加到地图时触发
+     * @type {object}
+     * @property {import('ol/geom/Polygon').default} mapObject 地图元素
+     */
+    this.$emit("append", this.mapObject);
     this.ready = true;
     this.$nextTick(() => {
       /**
        * 组件就绪时触发
        * @type {object}
-       * @property {import('ol/geom/Polygon').default} mapObject -
+       * @property {import('ol/geom/Polygon').default} mapObject 地图元素
        */
       this.$emit('ready', this.mapObject);
     });
@@ -1837,7 +2035,7 @@ var __vue_staticRenderFns__$6 = [];
   /* style */
   const __vue_inject_styles__$6 = undefined;
   /* scoped */
-  const __vue_scope_id__$6 = "data-v-c3a7adfe";
+  const __vue_scope_id__$6 = "data-v-c12bfc14";
   /* module identifier */
   const __vue_module_identifier__$6 = undefined;
   /* functional template */
@@ -1870,10 +2068,11 @@ var __vue_staticRenderFns__$6 = [];
  * @since v1.0.0
  */
 var script$5 = {
-  name: 'Vue2olLayerTile',
+  name: "Vue2olLayerTile",
   mixins: [BaseTileLayerMixin],
+  emits:["init","append","ready"],
   data() {
-    return {}
+    return {};
   },
   props: {},
   mounted() {
@@ -1884,21 +2083,36 @@ var script$5 = {
       this
     );
     this.mapObject = new Tile__default["default"](options);
+    this.properties && this.mapObject.setProperties(this.properties);
 
     //绑定事件
     bindListeners(this.mapObject, getListeners(this));
     //监听props属性
     propsBinder(this, this.mapObject, this.$options.props);
 
+    /**
+     * 地图元素初始化完时触发
+     * @type {object}
+     * @property {import('ol/layer/Tile').default} mapObject  地图元素
+     */
+    this.$emit("init", this.mapObject);
+
     this.parent.addLayer(this.mapObject);
+
+    /**
+     * 地图元素添加到地图时触发
+     * @type {object}
+     * @property {import('ol/layer/Tile').default} mapObject  地图元素
+     */
+    this.$emit("append", this.mapObject);
     this.ready = true;
     this.$nextTick(() => {
       /**
        * 组件就绪时触发
        * @type {object}
-       * @property {import('ol/layer/Tile').default} mapObject - openlayer瓦片图层
+       * @property {import('ol/layer/Tile').default} mapObject  地图元素
        */
-      this.$emit('ready', this.mapObject);
+      this.$emit("ready", this.mapObject);
     });
   },
 };
@@ -1913,7 +2127,7 @@ var __vue_staticRenderFns__$5 = [];
   /* style */
   const __vue_inject_styles__$5 = undefined;
   /* scoped */
-  const __vue_scope_id__$5 = "data-v-d820da6a";
+  const __vue_scope_id__$5 = "data-v-29d543ca";
   /* module identifier */
   const __vue_module_identifier__$5 = undefined;
   /* functional template */
@@ -1939,6 +2153,16 @@ var __vue_staticRenderFns__$5 = [];
     undefined
   );
 
+var VectorLayerMixin = {
+    mixins: [BaseVectorLayerMixin],
+    props: {},
+    mounted() {
+        this.vectorLayerOptions = {
+            ...(this.baseVectorLayerOptions || {})
+        };
+    }
+};
+
 //
 /**
  * ol/layer/Vector的vue组件
@@ -1946,7 +2170,7 @@ var __vue_staticRenderFns__$5 = [];
  */
 var script$4 = {
   name: 'Vue2olLayerVector',
-  mixins: [BaseVectorLayerMixin],
+  mixins: [VectorLayerMixin],
   data() {
     return {}
   },
@@ -1955,26 +2179,42 @@ var script$4 = {
   mounted() {
     let options = optionsMerger(
       {
-        ...(this.baseVectorLayerOptions || {}),
+        ...(this.vectorLayerOptions || {}),
       },
       this
     );
 
     options.style = options.styleObj;
     this.mapObject = new Vector__default["default"](options);
+    this.properties && this.mapObject.setProperties(this.properties);
 
     //绑定事件
     bindListeners(this.mapObject, getListeners(this));
     //监听props属性
     propsBinder(this, this.mapObject, this.$options.props);
 
+    /**
+     * 地图元素初始化完时触发
+     * @type {object}
+     * @property {import('ol/layer/Vector').default} mapObject  地图元素
+     */
+    this.$emit("init", this.mapObject);
+
     this.parent.addLayer(this.mapObject);
+
+    /**
+     * 地图元素添加到地图时触发
+     * @type {object}
+     * @property {import('ol/layer/Vector').default} mapObject  地图元素
+     */
+    this.$emit("append", this.mapObject);
+
     this.ready = true;
     this.$nextTick(() => {
       /**
        * 组件就绪时触发
        * @type {object}
-       * @property {import('ol/layer/Vector').default} mapObject - openlayer瓦片图层
+       * @property {import('ol/layer/Vector').default} mapObject  地图元素
        */
       this.$emit('ready', this.mapObject);
     });
@@ -1995,7 +2235,7 @@ var __vue_staticRenderFns__$4 = [];
   /* style */
   const __vue_inject_styles__$4 = undefined;
   /* scoped */
-  const __vue_scope_id__$4 = "data-v-494b9793";
+  const __vue_scope_id__$4 = "data-v-3f6ed64f";
   /* module identifier */
   const __vue_module_identifier__$4 = undefined;
   /* functional template */
@@ -2027,10 +2267,11 @@ var __vue_staticRenderFns__$4 = [];
  * @since v1.0.0
  */
 var script$3 = {
-  name: 'Vue2olSourceOsm',
+  name: "Vue2olSourceOsm",
   mixins: [XYZSourceMixin],
+  emits:["init","append","ready"],
   data() {
-    return {}
+    return {};
   },
   props: {},
   methods: {},
@@ -2043,22 +2284,37 @@ var script$3 = {
     );
     //初始化view对象
     this.mapObject = new OSM__default["default"](options);
+    this.properties && this.mapObject.setProperties(this.properties);
 
     //绑定事件
     bindListeners(this.mapObject, getListeners(this));
     //监听props属性
     propsBinder(this, this.mapObject, this.$options.props);
 
+    /**
+     * 地图元素初始化完时触发
+     * @type {object}
+     * @property {import('ol/source/OSM').default} mapObject 地图元素
+     */
+    this.$emit("init", this.mapObject);
+
     this.parent.setSource(this.mapObject);
+
+    /**
+     * 地图元素添加到地图时触发
+     * @type {object}
+     * @property {import('ol/source/OSM').default} mapObject 地图元素
+     */
+    this.$emit("append", this.mapObject);
 
     this.ready = true;
     this.$nextTick(() => {
       /**
        * 组件就绪时触发
        * @type {object}
-       * @property {import('ol/source/OSM').default} mapObject
+       * @property {import('ol/source/OSM').default} mapObject 地图元素
        */
-      this.$emit('ready', this.mapObject);
+      this.$emit("ready", this.mapObject);
     });
   },
 };
@@ -2073,7 +2329,7 @@ var __vue_staticRenderFns__$3 = [];
   /* style */
   const __vue_inject_styles__$3 = undefined;
   /* scoped */
-  const __vue_scope_id__$3 = "data-v-99d4a9b6";
+  const __vue_scope_id__$3 = "data-v-0ff93e6c";
   /* module identifier */
   const __vue_module_identifier__$3 = undefined;
   /* functional template */
@@ -2105,10 +2361,10 @@ var __vue_staticRenderFns__$3 = [];
  * @since v1.0.0
  */
 var script$2 = {
-  name: 'Vue2olSourceStamen',
+  name: "Vue2olSourceStamen",
   mixins: [XYZSourceMixin],
   data() {
-    return {}
+    return {};
   },
   props: {
     /**
@@ -2117,7 +2373,7 @@ var script$2 = {
      */
     layer: {
       type: String,
-      default: 'terrain',
+      default: "terrain",
     },
   },
   methods: {},
@@ -2131,13 +2387,28 @@ var script$2 = {
     );
     //初始化view对象
     this.mapObject = new Stamen__default["default"](options);
+    this.properties && this.mapObject.setProperties(this.properties);
 
     //绑定事件
     bindListeners(this.mapObject, getListeners(this));
     //监听props属性
     propsBinder(this, this.mapObject, this.$options.props);
 
+    /**
+     * 地图元素初始化完时触发
+     * @type {object}
+     * @property {import('ol/source/Stamen').default} mapObject 地图元素
+     */
+    this.$emit("init", this.mapObject);
+
     this.parent.setSource(this.mapObject);
+
+    /**
+     * 地图元素添加到地图时触发
+     * @type {object}
+     * @property {import('ol/source/Stamen').default} mapObject 地图元素
+     */
+    this.$emit("append", this.mapObject);
 
     this.ready = true;
     this.$nextTick(() => {
@@ -2146,7 +2417,7 @@ var script$2 = {
        * @type {object}
        * @property {import('ol/source/Stamen').default} mapObject
        */
-      this.$emit('ready', this.mapObject);
+      this.$emit("ready", this.mapObject);
     });
   },
 };
@@ -2161,7 +2432,7 @@ var __vue_staticRenderFns__$2 = [];
   /* style */
   const __vue_inject_styles__$2 = undefined;
   /* scoped */
-  const __vue_scope_id__$2 = "data-v-c01bc738";
+  const __vue_scope_id__$2 = "data-v-29a1a596";
   /* module identifier */
   const __vue_module_identifier__$2 = undefined;
   /* functional template */
@@ -2187,6 +2458,33 @@ var __vue_staticRenderFns__$2 = [];
     undefined
   );
 
+var VectorSourceMixin = {
+    mixins: [SourceMixin],
+    props: {
+        /**
+         * 新加载器。下一个渲染周期将使用新的加载器
+         * @typeName {import('ol/featureloader').FeatureLoader}
+         */
+        loader: {
+            type: Object,
+        },
+
+        /**
+         * 新的 url。下一个渲染周期将使用新的 url。
+         */
+        url: {
+            type: String,
+        },
+    },
+    mounted() {
+        this.vectorSourceOptions = {
+            ...(this.sourceOptions || {}),
+            loader: this.loader,
+            url: this.url,
+        };
+    }
+};
+
 //
 /**
  * ol/source/Vector的vue组件
@@ -2194,25 +2492,11 @@ var __vue_staticRenderFns__$2 = [];
  */
 var script$1 = {
   name: "Vue2olSourceVector",
-  mixins: [SourceMixin],
+  mixins: [VectorSourceMixin],
   data() {
     return {};
   },
   props: {
-    /**
-     * 新加载器。下一个渲染周期将使用新的加载器
-     * @typeName {import('ol/featureloader').FeatureLoader}
-     */
-    loader: {
-      type: Object,
-    },
-
-    /**
-     * 新的 url。下一个渲染周期将使用新的 url。
-     */
-    url: {
-      type: String,
-    },
     /**
      * @typeName {Array<import('ol/Feature').default>}
      */
@@ -2239,10 +2523,7 @@ var script$1 = {
   mounted() {
     let options = optionsMerger(
       {
-        ...(this.sourceOptions || {}),
-        attributes: this.attributes,
-        loader: this.loader,
-        url: this.url,
+        ...(this.vectorSourceOptions || {}),
         features: this.features,
       },
       this
@@ -2250,13 +2531,28 @@ var script$1 = {
 
     //初始化view对象
     this.mapObject = new Vector__default$1["default"](options);
+    this.properties && this.mapObject.setProperties(this.properties);
 
     //绑定事件
     bindListeners(this.mapObject, getListeners(this));
     //监听props属性
     propsBinder(this, this.mapObject, this.$options.props);
 
+    /**
+     * 地图元素初始化完时触发
+     * @type {object}
+     * @property {import('ol/source/Vector').default} mapObject 地图元素
+     */
+    this.$emit("init", this.mapObject);
+
     this.parent.setSource(this.mapObject);
+
+    /**
+     * 地图元素添加到地图时触发
+     * @type {object}
+     * @property {import('ol/source/Vector').default} mapObject 地图元素
+     */
+    this.$emit("append", this.mapObject);
 
     this.ready = true;
     this.$nextTick(() => {
@@ -2280,7 +2576,7 @@ var __vue_staticRenderFns__$1 = [];
   /* style */
   const __vue_inject_styles__$1 = undefined;
   /* scoped */
-  const __vue_scope_id__$1 = "data-v-609a2022";
+  const __vue_scope_id__$1 = "data-v-6720377d";
   /* module identifier */
   const __vue_module_identifier__$1 = undefined;
   /* functional template */
@@ -2312,10 +2608,11 @@ var __vue_staticRenderFns__$1 = [];
  * @since v1.0.0
  */
 var script = {
-  name: 'Vue2olSourceXyz',
+  name: "Vue2olSourceXyz",
   mixins: [XYZSourceMixin],
+  emits: ["init", "append", "ready"],
   data() {
-    return {}
+    return {};
   },
   props: {},
   methods: {},
@@ -2323,13 +2620,28 @@ var script = {
     let options = optionsMerger(this.xyzSourceOptions, this);
     //初始化view对象
     this.mapObject = new XYZ__default["default"](options);
+    this.properties && this.mapObject.setProperties(this.properties);
 
     //绑定事件
     bindListeners(this.mapObject, getListeners(this));
     //监听props属性
     propsBinder(this, this.mapObject, this.$options.props);
 
+    /**
+     * 地图元素初始化完时触发
+     * @type {object}
+     * @property {import('ol/source/XYZ').default} mapObject 地图元素
+     */
+    this.$emit("init", this.mapObject);
+
     this.parent.setSource(this.mapObject);
+
+    /**
+     * 地图元素添加到地图时触发
+     * @type {object}
+     * @property {import('ol/source/XYZ').default} mapObject 地图元素
+     */
+    this.$emit("append", this.mapObject);
 
     this.ready = true;
     this.$nextTick(() => {
@@ -2338,7 +2650,7 @@ var script = {
        * @type {object}
        * @property {import('ol/source/XYZ').default} mapObject
        */
-      this.$emit('ready', this.mapObject);
+      this.$emit("ready", this.mapObject);
     });
   },
 };
@@ -2353,7 +2665,7 @@ var __vue_staticRenderFns__ = [];
   /* style */
   const __vue_inject_styles__ = undefined;
   /* scoped */
-  const __vue_scope_id__ = "data-v-8dd383c4";
+  const __vue_scope_id__ = "data-v-30beef60";
   /* module identifier */
   const __vue_module_identifier__ = undefined;
   /* functional template */
@@ -2421,6 +2733,7 @@ exports.BaseVectorLayerMixin = BaseVectorLayerMixin;
 exports.GeometryMixin = GeometryMixin;
 exports.LayerMixin = LayerMixin;
 exports.ObjectMixin = ObjectMixin;
+exports.OptionsMixin = ObjectMixin;
 exports.SimpleGeometryMixin = SimpleGeometryMixin;
 exports.SourceMixin = SourceMixin;
 exports.TileImageSourceMixin = TileImageSourceMixin;
