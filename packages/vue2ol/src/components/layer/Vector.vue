@@ -31,6 +31,7 @@ export default {
 
     options.style = options.styleObj
     this.mapObject = new Vector(options)
+    this.properties && this.mapObject.setProperties(this.properties);
 
     //绑定事件
     bindListeners(this.mapObject, getListeners(this))

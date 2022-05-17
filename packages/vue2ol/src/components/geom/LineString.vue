@@ -33,6 +33,7 @@ export default {
   watch: {},
   mounted() {
     this.mapObject = new LineString(this.coordinates, this.opt_layout)
+    this.properties && this.mapObject.setProperties(this.properties);
 
     //绑定事件
     bindListeners(this.mapObject, getListeners(this))

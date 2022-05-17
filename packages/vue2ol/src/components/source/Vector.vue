@@ -76,6 +76,7 @@ export default {
 
     //初始化view对象
     this.mapObject = new Vector(options);
+    this.properties && this.mapObject.setProperties(this.properties);
 
     //绑定事件
     bindListeners(this.mapObject, getListeners(this));

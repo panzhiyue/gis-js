@@ -28,6 +28,7 @@ export default {
       this
     )
     this.mapObject = new Tile(options)
+    this.properties && this.mapObject.setProperties(this.properties);
 
     //绑定事件
     bindListeners(this.mapObject, getListeners(this))
