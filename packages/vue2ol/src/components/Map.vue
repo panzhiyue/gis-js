@@ -21,6 +21,7 @@ import {
 export default {
   name: "Vue2olMap",
   inheritAttrs: false,
+  emits:["init","ready"],
   data() {
     return {
       mapObject: null,
