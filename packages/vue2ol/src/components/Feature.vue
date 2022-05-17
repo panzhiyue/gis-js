@@ -29,6 +29,7 @@ export default {
       parent: null, //openlayers父对象
     };
   },
+  emits: ["init", "append", "ready"],
   props: {
     /**
      * @typeName {import('ol/layer/Vector').default}
@@ -50,6 +51,7 @@ export default {
      */
     geometryName: {
       type: String,
+      custom: true,
     },
 
     /**
@@ -57,6 +59,13 @@ export default {
      */
     id: {
       type: [Number, String],
+    },
+
+    /**
+     * 属性
+     */
+    properties: {
+      type: Object,
     },
 
     /**
@@ -77,8 +86,21 @@ export default {
     },
   },
   methods: {
+    /**
+     * 设置几何样式(替代setStyle方法，因为在vue中,style是保留属性)
+     * @param {Object|function} value 样式
+     */
     setStyleObj(value) {
       this.mapObject.setStyle(value);
+    },
+    /**
+     * 设置几何名称方法(覆盖openlayers原生方法，解决设置几何名称之后几何图形没有赋值的Bug)
+     * @param {string} name 几何名称
+     */
+    setGeometryName(name) {
+      let geometry = this.mapObject.getGeometry();
+      this.mapObject.setGeometryName(name);
+      this.mapObject.setGeometry(geometry);
     },
   },
   mounted() {
@@ -94,16 +116,30 @@ export default {
       this
     );
     this.mapObject = new Feature(options);
-    this.geometryName && this.mapObject.setGeometryName(this.geometryName);
+    this.geometryName && this.setGeometryName(this.geometryName);
     this.id && this.mapObject.setId(this.id);
     this.styleObj && this.mapObject.setStyle(this.styleObj);
-
+    this.properties && this.mapObject.setProperties(this.properties);
     //绑定事件
     bindListeners(this.mapObject, getListeners(this));
     //监听props属性
     propsBinder(this, this.mapObject, this.$options.props);
+    /**
+     * 地图元素初始化完时触发
+     * @type {object}
+     * @property {import('ol/Feature').default} mapObject -
+     */
+    this.$emit("init", this.mapObject);
     // 将feature层添加到layer当中
     this.parent.addFeature(this.mapObject);
+
+    /**
+     * 地图元素添加到地图时触发
+     * @type {object}
+     * @property {import('ol/Feature').default} mapObject -
+     */
+    this.$emit("append", this.mapObject);
+
     this.ready = true;
     this.$nextTick(() => {
       /**
@@ -116,7 +152,6 @@ export default {
   },
   destroyed() {
     this.parent.removeFeature(this.mapObject);
-    console.log(1331);
     this.mapObject = null;
   },
 };

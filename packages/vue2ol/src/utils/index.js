@@ -36,7 +36,7 @@ export const propsBinder = (vueElement, openlayersElement, props) => {
     //   props[key].type === Object ||
     //   props[key].type === Array ||
     //   Array.isArray(props[key].type);
-    const deepValue=false;
+    const deepValue = false;
     if (props[key].custom && vueElement[setMethodName]) {
       vueElement.$watch(
         key,
