@@ -23,7 +23,7 @@ import OptionsMixin from "../mixins/Options";
 export default {
   name: "Vue2olMap",
   inheritAttrs: false,
-  mixins: [ObjectMixin,OptionsMixin],
+  mixins: [ObjectMixin, OptionsMixin],
   emits: ["init", "ready"],
   data() {
     return {
@@ -86,6 +86,12 @@ export default {
     bindListeners(this.mapObject, getListeners(this));
     //监听props属性
     propsBinder(this, this.mapObject, this.$options.props);
+
+    /**
+     * 地图元素初始化完时触发
+     * @type {Object}
+     * @property {import('ol/Map')} mapObject 地图元素
+     */
     this.$emit("init", this.mapObject);
 
     this.ready = true;
@@ -93,7 +99,7 @@ export default {
       /**
        * 组件就绪时触发
        * @type {Object}
-       * @property {import('ol/Map')} mapObject -
+       * @property {import('ol/Map')} mapObject 地图元素
        */
       this.$emit("ready", this.mapObject);
     });

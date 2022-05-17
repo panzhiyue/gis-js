@@ -117,7 +117,7 @@ export default {
     /**
      * 地图元素初始化完时触发
      * @type {object}
-     * @property {import('ol/Feature').default} mapObject -
+     * @property {import('ol/Feature').default} mapObject 地图元素
      */
     this.$emit("init", this.mapObject);
     // 将feature层添加到layer当中
@@ -126,7 +126,7 @@ export default {
     /**
      * 地图元素添加到地图时触发
      * @type {object}
-     * @property {import('ol/Feature').default} mapObject -
+     * @property {import('ol/Feature').default} mapObject 地图元素
      */
     this.$emit("append", this.mapObject);
 
@@ -135,7 +135,7 @@ export default {
       /**
        * 组件就绪时触发
        * @type {object}
-       * @property {import('ol/Feature').default} mapObject -
+       * @property {import('ol/Feature').default} mapObject 地图元素
        */
       this.$emit("ready", this.mapObject);
     });

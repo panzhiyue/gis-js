@@ -505,11 +505,11 @@ export default {
 
 ## Events
 
-| 名称   | 属性                                                     | 描述                     |
-| ------ | -------------------------------------------------------- | ------------------------ |
-| init   | **mapObject** `import('ol/Feature').default` - undefined | 地图元素初始化完时触发   |
-| append | **mapObject** `import('ol/Feature').default` - undefined | 地图元素添加到地图时触发 |
-| ready  | **mapObject** `import('ol/Feature').default` - undefined | 组件就绪时触发           |
+| 名称   | 属性                                                    | 描述                     |
+| ------ | ------------------------------------------------------- | ------------------------ |
+| init   | **mapObject** `import('ol/Feature').default` - 地图元素 | 地图元素初始化完时触发   |
+| append | **mapObject** `import('ol/Feature').default` - 地图元素 | 地图元素添加到地图时触发 |
+| ready  | **mapObject** `import('ol/Feature').default` - 地图元素 | 组件就绪时触发           |
 
 ## Slots
 
