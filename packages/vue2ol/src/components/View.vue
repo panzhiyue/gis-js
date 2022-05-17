@@ -20,10 +20,11 @@ import OptionsMixin from "../mixins/Options";
  */
 export default {
   name: "Vue2olView",
-  mixins: [ObjectMixin,OptionsMixin],
+  mixins: [ObjectMixin, OptionsMixin],
+  emits:["init","append","ready"],
   data() {
     return {
-      mapObject: null, //ol/source/XYZ对象
+      mapObject: null, //ol/View对象
       ready: false, //是否加载完毕
       parent: null, //openlayers父对象
     };
@@ -52,13 +53,6 @@ export default {
     constrainResolution: {
       type: Boolean,
     },
-    /**
-     * 用于确定分辨率约束的最小缩放级别。它与maxZoom(or minResolution) 和zoomFactor一起使用。请注意，如果还提供了maxResolution，它的优先级高于minZoom.
-     */
-    minZoom: {
-      type: Number,
-      //default: 1,
-    },
 
     /**
      * 用于确定分辨率约束的最大缩放级别。它与minZoom(or maxResolution) 和zoomFactor一起使用。请注意，如果还提供了minResolution，它的优先级高于maxZoom.
@@ -66,6 +60,14 @@ export default {
     maxZoom: {
       type: Number,
       //default: 20,
+    },
+
+    /**
+     * 用于确定分辨率约束的最小缩放级别。它与maxZoom(or minResolution) 和zoomFactor一起使用。请注意，如果还提供了maxResolution，它的优先级高于minZoom.
+     */
+    minZoom: {
+      type: Number,
+      //default: 1,
     },
 
     /**
@@ -112,13 +114,27 @@ export default {
 
     //初始化view对象
     this.mapObject = new View(options);
+    this.properties && this.mapObject.setProperties(this.properties);
 
     //绑定事件
     bindListeners(this.mapObject, getListeners(this));
     //监听props属性
     propsBinder(this, this.mapObject, this.$options.props);
+    /**
+     * 地图元素初始化完时触发
+     * @type {object}
+     * @property {import('ol/View').default} mapObject - openlayer瓦片图层
+     */
+    this.$emit("ready", this.mapObject);
 
     this.parent.setView(this.mapObject);
+
+    /**
+     * 地图元素添加到地图时触发
+     * @type {object}
+     * @property {import('ol/Overlay').default} mapObject
+     */
+    this.$emit("append", this.mapObject);
 
     this.ready = true;
     this.$nextTick(() => {

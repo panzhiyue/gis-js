@@ -28,7 +28,7 @@ export default {
   emits: ["init", "append", "ready"],
   data() {
     return {
-      mapObject: null, //ol/layer/Vector对象
+      mapObject: null, //ol/Overlay对象
       ready: false, //是否加载完毕
       parent: null, //openlayers父对象
     };
