@@ -9,7 +9,7 @@
     "build:docs": "concurrently \"lerna run build:docs\" \" vuepress build docs \"",
     "dev:docs": "concurrently \"lerna run dev:docs\" \" vuepress dev docs \"",
     "version":"lerna version",
-    "publish":"lerna run publish"
+    "publish":"lerna publish"
   },
   "devDependencies": {
     "concurrently": "^7.0.0",
