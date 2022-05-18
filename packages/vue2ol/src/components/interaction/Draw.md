@@ -5,6 +5,7 @@
 <template>
 <div>
   <select v-model="type" style="width:200px;">
+    <option value=""></option>
     <option value="Point">点</option>
     <option value="LineString">线</option>
     <option value="Polygon">面</option>
@@ -19,7 +20,7 @@
   </vue2ol-layer-tile>
   <vue2ol-layer-vector :zIndex="10">
     <vue2ol-source-vector >
-        <vue2ol-interaction-draw :type="type" :active="true"></vue2ol-interaction-draw>
+        <vue2ol-interaction-draw v-if="type" :type="type" :active="true"></vue2ol-interaction-draw>
     </vue2ol-source-vector>
   </vue2ol-layer-vector>
 </vue2ol-map>
