@@ -33,6 +33,7 @@
   },
   "dependencies": {
     "@gis-js/vue2ol": "1.0.0-alpha.2",
+    "@panzhiyue/utilsol": "^1.1.0",
     "ol": "^6.14.1",
     "vue": "2.6.14"
   },

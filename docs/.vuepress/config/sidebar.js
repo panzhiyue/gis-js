@@ -52,6 +52,16 @@ module.exports = {
   '/plugins/': [{
       title: "vue2ol-extend",
       children: [{
+          title: "animation",
+          children: [
+            '/plugins/vue2ol-extend/animation/ArrowLine',
+            '/plugins/vue2ol-extend/animation/DynamicLine',
+            '/plugins/vue2ol-extend/animation/Flight',
+            '/plugins/vue2ol-extend/animation/Radar',
+            '/plugins/vue2ol-extend/animation/Scatter',
+            '/plugins/vue2ol-extend/animation/Track',
+          ]
+        }, {
           title: "control",
           children: [
             '/plugins/vue2ol-extend/control/MouseInfo',
