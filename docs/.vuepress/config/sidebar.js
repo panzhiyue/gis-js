@@ -53,6 +53,8 @@ module.exports = {
       children: [
         'interaction/Draw',
         'interaction/Modify',
+        'interaction/Select',
+        'interaction/DragPan',
       ]
     },
   ],

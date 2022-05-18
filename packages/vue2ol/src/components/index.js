@@ -27,3 +27,5 @@ export {default as Vue2olSourceXyz} from "./source/XYZ.vue"
 //interaction
 export {default as Vue2olInteractionDraw} from "./interaction/Draw.vue"
 export {default as Vue2olInteractionModify} from "./interaction/Modify.vue"
+export {default as Vue2olInteractionSelect} from "./interaction/Select.vue"
+export {default as Vue2olInteractionDragpan} from "./interaction/DragPan.vue"
