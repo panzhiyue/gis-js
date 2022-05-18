@@ -83,6 +83,11 @@ module.exports = {
           children: [
             '/plugins/vue2ol-extend/renderer/CanvasClip',
           ]
+        }, {
+          title: "interaction",
+          children: [
+            '/plugins/vue2ol-extend/interaction/PlotDraw',
+          ]
         },
       ]
     }

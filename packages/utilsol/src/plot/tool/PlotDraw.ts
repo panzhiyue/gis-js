@@ -104,14 +104,14 @@ export default class PlotDraw extends Observable {
 
     /**
      * 构造函数
-     * @param map 地图对象
+     * @param {Object} opt_options 构造参数
+     * @param {Object} [opt_options.map] 地图对象
+     * @param {Object} [opt_options.style] 样式
      */
-    constructor(map: Map) {
+    constructor(opt_options) {
         super();
-
-        var stroke = new Stroke({ color: '#000000', width: 1.25 });
-        var fill = new Fill({ color: 'rgba(0,0,0,0.4)' });
-        this.style = new Style({ fill: fill, stroke: stroke });
+        let options = Object.assign({ map: null, style: new Style({ fill: new Fill({ color: 'rgba(0,0,0,0.4)' }), stroke: new Stroke({ color: '#000000', width: 1.25 }) }) }, opt_options)
+        this.style = options.style;
 
         this.drawSource = new VectorSource();
 
@@ -119,7 +119,7 @@ export default class PlotDraw extends Observable {
             source: this.drawSource
         });
         this.drawLayer.setStyle(this.style);
-        this.setMap(map);
+        this.setMap(options.map);
     }
 
     /**
@@ -315,5 +315,10 @@ export default class PlotDraw extends Observable {
         if (this.dblClickZoomInteraction != null) {
             this.dblClickZoomInteraction.setActive(true);
         }
+    }
+    
+    setStyle(style) {
+        this.style = style;
+        this.drawLayer.setStyle(this.style);
     }
 }

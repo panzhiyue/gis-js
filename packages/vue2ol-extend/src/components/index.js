@@ -19,3 +19,6 @@ export {default as Vue2olSourceGeoQ} from "./source/GeoQ.vue"
 
 //renderer
 export {default as Vue2olRendererCanvasclip} from "./renderer/CanvasClip.vue"
+
+//interaction
+export {default as Vue2olInteractionPlotdraw} from "./interaction/PlotDraw.vue"
