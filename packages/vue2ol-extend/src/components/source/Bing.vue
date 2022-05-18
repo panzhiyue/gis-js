@@ -4,7 +4,7 @@
 <script>
 import { XYZSourceMixin, Vue2olSourceXyz } from "@gis-js/vue2ol";
 export default {
-  name: "vue2ol-source-bind",
+  name: "Vue2olSourceBind",
   mixins: [XYZSourceMixin],
   components: {
     Vue2olSourceXyz,
