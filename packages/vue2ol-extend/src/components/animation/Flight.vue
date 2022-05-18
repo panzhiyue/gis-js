@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import * as utilsol from "@panzhiyue/utilsol"
+import * as utilsol from "@gis-js/utilsol"
 import { optionsMerger, findRealParent, bindListeners, propsBinder ,getListeners} from '@gis-js/vue2ol'
 import OptionsMixin from '@gis-js/vue2ol'
 /**

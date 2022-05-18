@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import * as utilsol from "@panzhiyue/utilsol"
+import * as utilsol from "@gis-js/utilsol"
 import {
   optionsMerger,
   findRealParent,

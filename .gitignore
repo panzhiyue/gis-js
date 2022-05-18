@@ -2,3 +2,5 @@
 /docs/.vuepress/dist
 /packages/vue2ol/lib
 /packages/vue2ol-extend/lib
+/packages/utilsol/node_modules
+/packages/utilsol/lib

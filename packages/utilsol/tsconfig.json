@@ -1,0 +1,49 @@
+{
+    "compilerOptions": {
+      "target": "es2015",
+      "module": "esnext",
+      "lib": ["esnext", "dom"],
+  
+      "allowJs": true,
+      "checkJs": false,
+      "removeComments": false,
+      "noEmit": false,
+      "noEmitOnError": false,
+      "sourceMap": true,
+      "strict": false,
+      "alwaysStrict": false,
+      "noImplicitAny": false,
+      "noImplicitThis": false,
+      "strictNullChecks": false,
+      "strictBindCallApply": false,
+      "strictFunctionTypes": false,
+      "strictPropertyInitialization": false,
+      "noFallthroughCasesInSwitch": false,
+      "noImplicitReturns": false,
+      "noUnusedLocals": false,
+      "noUnusedParameters": false,
+      "allowUnreachableCode": true,
+      "skipLibCheck": true, //忽略所有的声明文件（ *.d.ts）的类型检查。
+  
+  
+      "allowSyntheticDefaultImports": true, //允许从没有设置默认导出的模块中默认导入。这并不影响代码的输出，仅为了类型检查。
+      "esModuleInterop": true,
+      "useDefineForClassFields": true,
+      "jsx": "preserve",
+      "moduleResolution": "node",
+  
+      // "declaration": true,
+      // "declarationMap": false,
+      // "emitDeclarationOnly": false,
+      // "declarationDir": "dist",
+  
+      "baseUrl": ".",
+      // "outDir": "dist",
+      // "resolveJsonModule": true,
+      // "experimentalDecorators": true,
+      "typeRoots": [
+        "types", "./node_modules/@types",
+      ],
+    },
+    "include": ["src/*.ts","src/**/*.ts", "types/*.d.ts", "__tests__/*.ts"]
+  }

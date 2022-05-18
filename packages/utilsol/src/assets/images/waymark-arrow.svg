@@ -1,0 +1,20 @@
+<svg width="14" height="24" xmlns="http://www.w3.org/2000/svg">
+ <title>切片</title>
+
+ <g>
+  <title>background</title>
+  <rect x="-1" y="-1" width="16" height="26" id="canvas_background" fill="none"/>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <g fill-rule="evenodd" fill="none" id="页面-1" transform="translate(14,24)rotate(180)">
+   <g fill="#FFFFFF" id="风险预警（风险区详情）地图详情">
+    <g id="编组">
+     <g id="icon/路标箭头备份-7" >
+      <polygon points="7.855979919433594,6.407499313354492e-7 13.5625,6.407499313354492e-7 6.144020080566406,11.875000953674316 13.5625,23.75 7.855979919433594,23.75 0.4375,11.875000953674316 " id="矩形"/>
+     </g>
+    </g>
+   </g>
+  </g>
+ </g>
+</svg>
