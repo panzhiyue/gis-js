@@ -2,7 +2,7 @@
   <div></div>
 </template>
 <script>
-import { Draw } from "ol/interaction";
+import { Modify } from "ol/interaction";
 import { OptionsMixin, ObjectMixin } from "../../mixins";
 import {
   findRealParent,
@@ -13,7 +13,7 @@ import {
   findParentMap,
 } from "../../utils";
 export default {
-  name: "Vue2olInteractionDraw",
+  name: "Vue2olInteractionModify",
   mixins: [OptionsMixin, ObjectMixin],
   data() {
     return {
@@ -42,13 +42,6 @@ export default {
     active: {
       type: Boolean,
     },
-    /**
-     * 几何类型
-     */
-    type: {
-      type: String,
-      custom: true,
-    },
   },
   mounted() {
     if (this.parentSource) {
@@ -69,10 +62,8 @@ export default {
     this.map.removeInteraction(this.mapObject);
   },
   methods: {
-    setType() {
-      this.initInteraction();
-    },
     initInteraction() {
+      this.ready = false;
       if (this.mapObject) {
         this.mapObject.setActive(false);
         this.map.removeInteraction(this.mapObject);
@@ -81,11 +72,10 @@ export default {
       let options = optionsMerger(
         {
           source: this.parent,
-          type: this.type,
         },
         this
       );
-      this.mapObject = new Draw(options);
+      this.mapObject = new Modify(options);
       this.mapObject.setActive(this.active);
       this.properties && this.mapObject.setProperties(this.properties);
 
@@ -97,16 +87,16 @@ export default {
       /**
        * 地图元素初始化完时触发
        * @type {object}
-       * @property {import('ol/interaction/Draw').default} mapObject  地图元素
+       * @property {import('ol/interaction/Modify').default} mapObject  地图元素
        */
       this.$emit("init", this.mapObject);
-      
+
       this.map.addInteraction(this.mapObject);
 
       /**
        * 地图元素初始化完时触发
        * @type {object}
-       * @property {import('ol/interaction/Draw').default} mapObject  地图元素
+       * @property {import('ol/interaction/Modify').default} mapObject  地图元素
        */
       this.$emit("ready", this.mapObject);
 
@@ -115,7 +105,7 @@ export default {
         /**
          * 地图元素初始化完时触发
          * @type {object}
-         * @property {import('ol/interaction/Draw').default} mapObject  地图元素
+         * @property {import('ol/interaction/Modify').default} mapObject  地图元素
          */
         this.$emit("ready", this.mapObject);
       });

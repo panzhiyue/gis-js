@@ -52,6 +52,7 @@ module.exports = {
       title: "interaction",
       children: [
         'interaction/Draw',
+        'interaction/Modify',
       ]
     },
   ],
