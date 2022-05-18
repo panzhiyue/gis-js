@@ -10,4 +10,6 @@ export { default as SourceMixin } from './Source';
 export { default as TileImageSourceMixin } from './TileImageSource';
 export { default as TileSourceMixin } from './TileSource';
 export { default as UrlTileSourceMixin } from './UrlTileSource';
+export { default as VectorLayerMixin } from './VectorLayer';
+export { default as VectorSourceMixin } from './VectorSource';
 export { default as XYZSourceMixin } from './XYZSource';
