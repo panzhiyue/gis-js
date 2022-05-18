@@ -1,2 +1,4 @@
 /node_modules
 /docs/.vuepress/dist
+/packages/vue2ol/lib
+/packages/vue2ol-extend/lib
