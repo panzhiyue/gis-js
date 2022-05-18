@@ -62,7 +62,7 @@ export default {
     } else {
       this.map = findParentMap(this.$parent).mapObject;
     }
-    this.initDraw();
+    this.initInteraction();
   },
   destroyed() {
     this.mapObject.setActive(false);
@@ -70,9 +70,9 @@ export default {
   },
   methods: {
     setType() {
-      this.initDraw();
+      this.initInteraction();
     },
-    initDraw() {
+    initInteraction() {
       if (this.mapObject) {
         this.mapObject.setActive(false);
         this.map.removeInteraction(this.mapObject);
