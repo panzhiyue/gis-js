@@ -14,51 +14,60 @@ module.exports = {
   '/components/': [{
       title: "Basic",
       children: [
-        ['Feature', 'Feature'],
-        ['Map', 'Map'],
-        ['View', 'View'],
-        ['Overlay', 'Overlay'],
+        'Feature',
+        'Map',
+        'View',
+        'Overlay',
       ]
     },
     {
       title: "Layer",
       children: [
-        ['layer/Tile', 'Tile'],
-        ['layer/Vector', 'Vector'],
+        'layer/Tile',
+        'layer/Vector',
       ]
     },
     {
       title: "Source",
       children: [
-        ['source/OSM', 'OSM'],
-        ['source/Vector', 'Vector'],
-        ['source/XYZ', 'XYZ'],
-        ['source/Stamen', 'Stamen'],
+        'source/OSM',
+        'source/Vector',
+        'source/XYZ',
+        'source/Stamen',
       ]
     },
     {
       title: "Geom",
       children: [
-        ['geom/Point', 'Point'],
-        ['geom/Circle', 'Circle'],
-        ['geom/LineString', 'LineString'],
-        ['geom/Polygon', 'Polygon'],
-        ['geom/MultiPoint', 'MultiPoint'],
-        ['geom/MultiLineString', 'MultiLineString'],
-        ['geom/MultiPolygon', 'MultiPolygon'],
+        'geom/Point',
+        'geom/Circle',
+        'geom/LineString',
+        'geom/Polygon',
+        'geom/MultiPoint',
+        'geom/MultiLineString',
+        'geom/MultiPolygon',
       ]
     },
   ],
   '/plugins/': [{
       title: "vue2ol-extend",
-      children: [
-        ['/plugins/vue2ol-extend/control/MouseInfo','Vue2olControlMouseinfo'],
-        ['/plugins/vue2ol-extend/control/MouseTips', 'Vue2olControlMousetips'],
-        ['/plugins/vue2ol-extend/control/Popup', 'Vue2olControlPopup'],
-        ['/plugins/vue2ol-extend/source/BaiDu', 'Vue2olSourceBaidu'],
-        ['/plugins/vue2ol-extend/source/Bing', 'Vue2olSourceBing'],
-        ['/plugins/vue2ol-extend/source/GaoDe', 'Vue2olSourceGaode'],
-        ['/plugins/vue2ol-extend/source/GeoQ', 'Vue2olSourceGeoq'],
+      children: [{
+          title: "control",
+          children: [
+            '/plugins/vue2ol-extend/control/MouseInfo',
+            '/plugins/vue2ol-extend/control/MouseTips',
+            '/plugins/vue2ol-extend/control/Popup',
+          ]
+        },
+        {
+          title: "source",
+          children: [
+            '/plugins/vue2ol-extend/source/BaiDu',
+            '/plugins/vue2ol-extend/source/Bing',
+            '/plugins/vue2ol-extend/source/GaoDe',
+            '/plugins/vue2ol-extend/source/GeoQ',
+          ]
+        },
       ]
     }
 

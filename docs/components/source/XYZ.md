@@ -60,9 +60,9 @@ export default {
 | attributes       | 属性                                                                                                                                                  | {import('ol/source/Source').AttributionLike\|undefined} | -        |        |
 | projection       |                                                                                                                                                       | string\|object                                          | -        |        |
 | tileLoadFunction |                                                                                                                                                       | {import('ol/Tile').LoadFunction\|undefined}             | -        |        |
+| tileUrlFunction  |                                                                                                                                                       | {import('ol/Tile').UrlFunction\|undefined}              | -        |        |
 | url              |                                                                                                                                                       | string                                                  | -        |        |
 | urls             |                                                                                                                                                       | {string[]}                                              | -        |        |
-| tileUrlFunction  |                                                                                                                                                       | {import('ol/Tile').UrlFunction\|undefined}              | -        |        |
 
 ## Events
 
