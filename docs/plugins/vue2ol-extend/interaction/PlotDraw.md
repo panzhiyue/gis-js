@@ -71,14 +71,7 @@ export default {
       type: "arc"
     };
   },
-  mounted() {
-    for (let i = 0; i < 10; i++) {
-      let feature = new Feature({
-        geometry: new Point([120 + i * 0.01, 28 + i * 0.01])
-      });
-      this.features.push(feature);
-    }
-  }
+  mounted() {}
 };
 </script>
 ```

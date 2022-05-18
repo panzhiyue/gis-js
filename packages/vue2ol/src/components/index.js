@@ -23,3 +23,6 @@ export {default as Vue2olSourceOsm} from "./source/OSM.vue"
 export {default as Vue2olSourceStamen} from "./source/Stamen.vue"
 export {default as Vue2olSourceVector} from "./source/Vector.vue"
 export {default as Vue2olSourceXyz} from "./source/XYZ.vue"
+
+//interaction
+export {default as Vue2olInteractionDraw} from "./interaction/Draw.vue"

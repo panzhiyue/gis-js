@@ -12,7 +12,7 @@ module.exports = {
 
   }],
   '/components/': [{
-      title: "Basic",
+      title: "basic",
       children: [
         'Feature',
         'Map',
@@ -21,14 +21,14 @@ module.exports = {
       ]
     },
     {
-      title: "Layer",
+      title: "layer",
       children: [
         'layer/Tile',
         'layer/Vector',
       ]
     },
     {
-      title: "Source",
+      title: "source",
       children: [
         'source/OSM',
         'source/Vector',
@@ -37,7 +37,7 @@ module.exports = {
       ]
     },
     {
-      title: "Geom",
+      title: "geom",
       children: [
         'geom/Point',
         'geom/Circle',
@@ -46,6 +46,12 @@ module.exports = {
         'geom/MultiPoint',
         'geom/MultiLineString',
         'geom/MultiPolygon',
+      ]
+    },
+    {
+      title: "interaction",
+      children: [
+        'interaction/Draw',
       ]
     },
   ],
