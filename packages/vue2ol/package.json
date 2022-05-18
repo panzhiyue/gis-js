@@ -20,8 +20,8 @@
   ],
   "scripts": {
     "build": "rimraf -rf lib && mkdir lib &&  rollup -c --environment NODE_ENV:production",
-    "dev:docs": "vue-docgen -watch -c ./docgen.config.js",
-    "build:docs": "vue-docgen -c ./docgen.config.js"
+    "dev:docs": "concurrently \"vue-docgen -watch -c ./docgen.config.js\"",
+    "build:docs": "concurrently \"vue-docgen -c ./docgen.config.js\""
   },
   "main": "lib/index.js",
   "module": "lib/index.mjs",

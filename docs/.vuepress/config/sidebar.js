@@ -78,6 +78,12 @@ module.exports = {
             '/plugins/vue2ol-extend/source/GeoQ',
           ]
         },
+        {
+          title: "renderer",
+          children: [
+            '/plugins/vue2ol-extend/renderer/CanvasClip',
+          ]
+        },
       ]
     }
 
