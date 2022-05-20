@@ -8,7 +8,7 @@
     "vue"
   ],
   "author": "panzhiyue <892105346@qq.com>",
-  "homepage": "https://panzhiyue.github.io/vue2ol/",
+  "homepage": "https://panzhiyue.github.io/gis-js/",
   "license": "ISC",
   "main": "lib/index.js",
   "module": "lib/index.mjs",
@@ -26,10 +26,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/panzhiyue/vue2ol.git"
+    "url": "git+https://github.com/panzhiyue/gis-js.git"
   },
   "bugs": {
-    "url": "https://github.com/panzhiyue/vue2ol/issues"
+    "url": "https://github.com/panzhiyue/gis-js/issues"
   },
   "dependencies": {
     "@gis-js/utilsol": "1.0.0-alpha.3",

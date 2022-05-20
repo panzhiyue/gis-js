@@ -6,7 +6,7 @@
     "openlayers"
   ],
   "author": "panzhiyue <30484534+panzhiyue@users.noreply.github.com>",
-  "homepage": "https://github.com/panzhiyue/vue2ol#readme",
+  "homepage": "https://github.com/panzhiyue/gis-js#readme",
   "license": "ISC",
   "main": "lib/index.js",
   "module": "lib/index.mjs",
@@ -20,14 +20,14 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/panzhiyue/vue2ol.git"
+    "url": "git+https://github.com/panzhiyue/gis-js.git"
   },
   "scripts": {
     "build:docs": "typedoc --options ./typedoc.config.json",
     "build": "rimraf -rf lib && mkdir lib &&  rollup -c --environment NODE_ENV:production"
   },
   "bugs": {
-    "url": "https://github.com/panzhiyue/vue2ol/issues"
+    "url": "https://github.com/panzhiyue/gis-js/issues"
   },
   "dependencies": {
     "@turf/turf": "^6.5.0",

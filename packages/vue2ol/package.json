@@ -9,7 +9,7 @@
     "lerna"
   ],
   "author": "panzhiyue <892105346@qq.com>",
-  "homepage": "https://panzhiyue.github.io/vue2ol/",
+  "homepage": "https://panzhiyue.github.io/gis-js/",
   "license": "ISC",
   "directories": {
     "lib": "lib",
@@ -18,6 +18,13 @@
   "files": [
     "lib"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/panzhiyue/gis-js.git"
+  },
+  "bugs": {
+    "url": "https://github.com/panzhiyue/gis-js/issues"
+  },
   "scripts": {
     "build": "rimraf -rf lib && mkdir lib &&  rollup -c --environment NODE_ENV:production",
     "dev:docs": "concurrently \"vue-docgen -watch -c ./docgen.config.js\"",
