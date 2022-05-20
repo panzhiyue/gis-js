@@ -5,20 +5,4 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 # [1.0.0-alpha.3](https://github.com/panzhiyue/vue2ol/compare/v1.0.0-alpha.2...v1.0.0-alpha.3) (2022-05-20)
 
-**Note:** Version bump only for package @gis-js/vue2ol-extend
-
-
-
-
-
-
-
-**Note:** Version bump only for package @gis-js/vue2ol-extend
-
-
-
-
-
-# 1.0.0-alpha.2 (2022-05-17)
-
-**Note:** Version bump only for package @gis-js/vue2ol-extend
+**Note:** Version bump only for package @gis-js/utilsol

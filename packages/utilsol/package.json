@@ -1,6 +1,6 @@
 {
   "name": "@gis-js/utilsol",
-  "version": "1.0.0-alpha.2",
+  "version": "1.0.0-alpha.3",
   "description": "openlayers帮助类",
   "keywords": [
     "openlayers"
@@ -24,13 +24,11 @@
   },
   "scripts": {
     "build:docs": "typedoc --options ./typedoc.config.json",
-
     "build": "rimraf -rf lib && mkdir lib &&  rollup -c --environment NODE_ENV:production"
   },
   "bugs": {
     "url": "https://github.com/panzhiyue/vue2ol/issues"
   },
-
   "dependencies": {
     "@turf/turf": "^6.5.0",
     "dom-to-image": "^2.6.0",
