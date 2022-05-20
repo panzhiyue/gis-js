@@ -23,7 +23,8 @@
     "url": "git+https://github.com/panzhiyue/gis-js.git"
   },
   "scripts": {
-    "build:docs": "typedoc --options ./typedoc.config.json",
+    "dev:docs": "typedoc --options ./typedoc.config.json && vuepress dev docs",
+    "build:docs": "concurrently \"typedoc --options ./typedoc.config.json\" \" vuepress build docs \"",
     "build": "rimraf -rf lib && mkdir lib &&  rollup -c --environment NODE_ENV:production"
   },
   "bugs": {

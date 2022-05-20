@@ -1,11 +1,3 @@
-import Vue from "vue"
-import "ol/ol.css"
-import Vue2OL from "vue2ol"
-Vue.use(Vue2OL);
-
-import Vue2OLExtend from "vue2ol-extend"
-Vue.use(Vue2OLExtend);
-
 
 /**
  * to主题使用者：你可以去掉本文件的所有代码

@@ -3,9 +3,11 @@ const path = require('path')
 module.exports = {
 
   // theme: 'vdoing', // 使用依赖包主题
-  title: "vue2ol",
+  port:"9010",
+  title: "gis-js",
   description: 'openlayers的vue组件',
-   base: '/vue2ol/', // 默认'/'。如果你想将你的网站部署到如 https://foo.github.io/bar/，那么 base 应该被设置成 "/bar/",（否则页面将失去样式等文件）
+  base: '/gis-js/', // 默认'/'。如果你想将你的网站部署到如 https://foo.github.io/bar/，那么 base 应该被设置成 "/bar/",（否则页面将失去样式等文件）
+  dest: 'dist',
   head: [ // 注入到页面<head> 中的标签，格式[tagName, { attrName: attrValue }, innerHTML?]
     ['link', {
       rel: 'icon',
@@ -28,16 +30,21 @@ module.exports = {
         link: '/'
       },
       {
-        text: '指南',
-        link: '/guide/'
-      },
-      {
-        text: '组件',
-        link: '/components/Map.md'
-      },
-      {
-        text: '插件',
-        link: '/plugins/vue2ol-extend/control/MouseInfo'
+        text: '生态系统',
+        items:[
+          {
+            text:"utilsol",
+            link:"/utilsol"
+          },
+          {
+            text:"vue2ol",
+            link:"/vue2ol"
+          },
+          {
+            text:"vue2ol-extend",
+            link:"/vue2ol-extend"
+          }
+        ],
       },
       {
         text: '相关',
@@ -59,7 +66,7 @@ module.exports = {
     sidebarDepth: 3, // 侧边栏显示深度，默认1，最大2（显示到h3标题）
     logo: '/img/favicon.ico', // 导航栏logo
 
-    sidebar: sidebarData,
+    // sidebar: sidebarData,
 
   },
 

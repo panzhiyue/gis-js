@@ -6,13 +6,14 @@
   ],
   "scripts": {
     "build": "lerna run build",
-    "build:docs": "concurrently \"lerna run build:docs\" \" vuepress build docs \"",
-    "dev:docs": "concurrently \"cd packages/vue2ol && npm run dev:docs\" \"cd packages/vue2ol-extend && npm run dev:docs\" \" vuepress dev docs \"",
-    "version":"lerna version",
-    "publish":"lerna publish"
+    "build:docs": " vuepress build docs && lerna run build:docs",
+    "dev:docs": "lerna run dev:docs  ",
+    "version": "lerna version",
+    "publish": "lerna publish"
   },
   "devDependencies": {
     "concurrently": "^7.0.0",
+    "directory-tree": "^3.2.2",
     "lerna": "^4.0.0",
     "rollup": "^2.58.0",
     "rollup-plugin-less": "^1.1.3",
