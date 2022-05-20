@@ -2,6 +2,5 @@
   "entryPoints": "./src",
   "out": "./docs/api",
   "excludeExternals": true,
-  "disableSources": true,
-  "gitRevision": "master"
+  "disableSources": true
 }

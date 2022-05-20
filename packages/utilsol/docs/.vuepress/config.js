@@ -3,11 +3,12 @@ const path = require('path')
 module.exports = {
 
   // theme: 'vdoing', // 使用依赖包主题
-  port:"9011",
+  port:"9099",
   title: "utilsol",
   description: 'openlayers的js库',
   base: '/gis-js/utilsol/', // 默认'/'。如果你想将你的网站部署到如 https://foo.github.io/bar/，那么 base 应该被设置成 "/bar/",（否则页面将失去样式等文件）
   dest:"../../dist/utilsol",
+  cache:false,
   head: [ // 注入到页面<head> 中的标签，格式[tagName, { attrName: attrValue }, innerHTML?]
     ['link', {
       rel: 'icon',

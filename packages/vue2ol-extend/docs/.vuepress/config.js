@@ -8,6 +8,7 @@ module.exports = {
   description: 'vue2ol的扩展部分',
   base: '/gis-js/vue2ol-extend/', // 默认'/'。如果你想将你的网站部署到如 https://foo.github.io/bar/，那么 base 应该被设置成 "/bar/",（否则页面将失去样式等文件）
   dest:"../../dist/vue2ol-extend",
+  cache:false,
   head: [ // 注入到页面<head> 中的标签，格式[tagName, { attrName: attrValue }, innerHTML?]
     ['link', {
       rel: 'icon',

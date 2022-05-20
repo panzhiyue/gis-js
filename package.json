@@ -5,8 +5,10 @@
     "packages/*"
   ],
   "scripts": {
-    "build": "lerna run build",
-    "build:docs": " vuepress build docs && lerna run build:docs",
+    "build:package": "lerna run build:package",
+    "build:md": "lerna run build:md",
+    "build:docs": " lerna run build:docs",
+    "build":"npm run build:package && npm run build:md && npm run build:docs",
     "dev:docs": "lerna run dev:docs  ",
     "version": "lerna version",
     "publish": "lerna publish"

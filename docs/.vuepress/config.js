@@ -34,15 +34,15 @@ module.exports = {
         items:[
           {
             text:"utilsol",
-            link:"/utilsol"
+            link:"/utilsol/"
           },
           {
             text:"vue2ol",
-            link:"/vue2ol"
+            link:"/vue2ol/"
           },
           {
             text:"vue2ol-extend",
-            link:"/vue2ol-extend"
+            link:"/vue2ol-extend/"
           }
         ],
       },
@@ -80,8 +80,6 @@ module.exports = {
     },
     resolve: {
       alias: {
-        'vue2ol': "../../packages/vue2ol/src",
-        'vue2ol-extend': "../../packages/vue2ol-extend/src",
       },
     },
   },
