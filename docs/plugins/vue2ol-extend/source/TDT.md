@@ -1,10 +1,10 @@
 ---
 
-title: vue2ol-source-tdt
+title: Vue2olSourceTdt
 
 ---
 
-# vue2ol-source-tdt
+# Vue2olSourceTdt
 
 ---
 

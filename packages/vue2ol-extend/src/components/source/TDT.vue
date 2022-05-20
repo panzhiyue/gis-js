@@ -4,7 +4,7 @@
 <script>
 import {Vue2olSourceXyz,XYZSourceMixin} from "@gis-js/vue2ol";
 export default {
-  name: "vue2ol-source-tdt",
+  name: "Vue2olSourceTdt",
   mixins: [XYZSourceMixin],
   components: {
     Vue2olSourceXyz,

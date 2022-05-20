@@ -64,7 +64,7 @@ export default {
 
 ## Events
 
-| 名称  | 属性                                                                   | 描述                   |
-| ----- | ---------------------------------------------------------------------- | ---------------------- |
-| init  | **mapObject** `import('ol/interaction/DragRotate').default` - 地图元素 | 地图元素初始化完时触发 |
-| ready | **mapObject** `import('ol/interaction/DragRotate').default` - 地图元素 | 地图元素初始化完时触发 |
+| 名称  | 属性                                                                          | 描述                   |
+| ----- | ----------------------------------------------------------------------------- | ---------------------- |
+| init  | **mapObject** `import('ol/interaction/DragRotateAndZoom').default` - 地图元素 | 地图元素初始化完时触发 |
+| ready | **mapObject** `import('ol/interaction/DragRotateAndZoom').default` - 地图元素 | 地图元素初始化完时触发 |
