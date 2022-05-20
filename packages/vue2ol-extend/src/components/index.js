@@ -16,6 +16,7 @@ export {default as Vue2olSourceBaidu} from "./source/BaiDu.vue"
 export {default as Vue2olSourceBing} from "./source/Bing.vue"
 export {default as Vue2olSourceGaoDe} from "./source/GaoDe.vue"
 export {default as Vue2olSourceGeoQ} from "./source/GeoQ.vue"
+export {default as Vue2olSourceTdt} from "./source/TDT.vue"
 
 //renderer
 export {default as Vue2olRendererCanvasclip} from "./renderer/CanvasClip.vue"

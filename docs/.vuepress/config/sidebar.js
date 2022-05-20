@@ -93,6 +93,7 @@ module.exports = {
             '/plugins/vue2ol-extend/source/Bing',
             '/plugins/vue2ol-extend/source/GaoDe',
             '/plugins/vue2ol-extend/source/GeoQ',
+            '/plugins/vue2ol-extend/source/TDT',
           ]
         },
         {
