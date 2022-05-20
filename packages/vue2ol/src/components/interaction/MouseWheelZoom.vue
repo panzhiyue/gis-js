@@ -2,7 +2,7 @@
   <div></div>
 </template>
 <script>
-import { DragPan } from "ol/interaction";
+import { MouseWheelZoom } from "ol/interaction";
 import { OptionsMixin, ObjectMixin } from "../../mixins";
 import {
   findRealParent,
@@ -13,7 +13,7 @@ import {
   findParentMap,
 } from "../../utils";
 export default {
-  name: "Vue2olInteractionDragpan",
+  name: "Vue2olInteractionMousewheelzoom",
   mixins: [OptionsMixin, ObjectMixin],
   data() {
     return {
@@ -35,6 +35,12 @@ export default {
     active: {
       type: Boolean,
     },
+    /**
+     * useAnchor
+     */
+    mouseAnchor:{
+      type:Boolean
+    }
   },
   mounted() {
     if (this.parentMap) {
@@ -58,11 +64,11 @@ export default {
       }
       let options = optionsMerger(
         {
-          hitTolerance: this.hitTolerance,
+          useAnchor: this.mouseAnchor,
         },
         this
       );
-      this.mapObject = new DragPan(options);
+      this.mapObject = new MouseWheelZoom(options);
       this.mapObject.setActive(this.active);
       this.properties && this.mapObject.setProperties(this.properties);
       //绑定事件
@@ -73,7 +79,7 @@ export default {
       /**
        * 地图元素初始化完时触发
        * @type {object}
-       * @property {import('ol/interaction/DragPan').default} mapObject  地图元素
+       * @property {import('ol/interaction/MouseWheelZoom').default} mapObject  地图元素
        */
       this.$emit("init", this.mapObject);
 
@@ -81,7 +87,7 @@ export default {
       /**
        * 地图元素初始化完时触发
        * @type {object}
-       * @property {import('ol/interaction/DragPan').default} mapObject  地图元素
+       * @property {import('ol/interaction/MouseWheelZoom').default} mapObject  地图元素
        */
       this.$emit("ready", this.mapObject);
 
@@ -90,7 +96,7 @@ export default {
         /**
          * 地图元素初始化完时触发
          * @type {object}
-         * @property {import('ol/interaction/DragPan').default} mapObject  地图元素
+         * @property {import('ol/interaction/MouseWheelZoom').default} mapObject  地图元素
          */
         this.$emit("ready", this.mapObject);
       });

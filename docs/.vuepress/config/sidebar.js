@@ -55,6 +55,14 @@ module.exports = {
         'interaction/Modify',
         'interaction/Select',
         'interaction/DragPan',
+        'interaction/DragZoom',
+        'interaction/DragRotate',
+        'interaction/MouseWheelZoom',
+        'interaction/Extent',
+        'interaction/DoubleClickZoom',
+        'interaction/DragRotateAndZoom',
+        
+        
       ]
     },
   ],
