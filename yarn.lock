@@ -4715,6 +4715,11 @@ base@^0.11.1:
     mixin-deep "^1.2.0"
     pascalcase "^0.1.1"
 
+bash@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/bash/-/bash-0.0.1.tgz#9ee0e7a752bc5eef168bc48719556a74548aae0c"
+  integrity sha512-5hOttlJ2LXV7XmahX/cYwoezrqEGMdy5Uie4dj4yvw4scR0WrJmlQfufqPf24Mt6Bk6SbE9j87k02yBMfoQqVQ==
+
 batch@0.6.1:
   version "0.6.1"
   resolved "https://registry.yarnpkg.com/batch/-/batch-0.6.1.tgz#dc34314f4e679318093fc760272525f94bf25c16"

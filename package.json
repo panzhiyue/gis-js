@@ -7,15 +7,15 @@
   "scripts": {
     "build:package": "lerna run build:package",
     "build:md": "lerna run build:md",
-
     "build:docs": "yarn workspaces run build:docs ",
-    "build":"npm run build:package && npm run build:md && npm run build:docs",
+    "build": "npm run build:package && npm run build:md && npm run build:docs",
     "dev:docs": "lerna run dev:docs  ",
     "version": "lerna version",
-    "publish": "lerna publish",
-    "deploy:docs":"bin/deploy.sh"
+    "publish": "./bin/publish.sh",
+    "deploy:docs": "bin/deploy.sh"
   },
   "devDependencies": {
+    "bash": "^0.0.1",
     "concurrently": "^7.0.0",
     "directory-tree": "^3.2.2",
     "lerna": "^4.0.0",
