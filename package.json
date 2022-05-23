@@ -11,7 +11,6 @@
     "build": "npm run build:package && npm run build:md && npm run build:docs",
     "dev:docs": "lerna run dev:docs  ",
     "version": "lerna version",
-    "publish": "node ./scripts/publish.js",
     "deploy:docs": "node ./scripts/deploy.js"
   },
   "devDependencies": {
