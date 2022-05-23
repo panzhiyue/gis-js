@@ -1,6 +1,6 @@
 # @gis-js/utilsol
 
-@gis-js/utilsol是openlayers的扩展库
+[@gis-js/utilsol](https://www.npmjs.com/package/@gis-js/utilsol)是[openlayers](https://openlayers.org/)的扩展库
 
 ## 安装
 

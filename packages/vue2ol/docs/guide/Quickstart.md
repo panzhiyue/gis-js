@@ -2,7 +2,7 @@
 
 ## Hello Map!
 
-vue2ol为[Openlayers](https://openlayers.org/)提供了vue映射组件，允许以简单地声明式映射构造。
+[@gis-js/vue2ol](https://www.npmjs.com/package/@gis-js/vue2ol-extend)为[Openlayers](https://openlayers.org/)提供了[vue](https://cn.vuejs.org/index.html)映射组件，允许以简单地声明式映射构造。
 
 ::: demo
 
