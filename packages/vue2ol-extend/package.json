@@ -16,7 +16,7 @@
     "build:package": "rimraf -rf lib && mkdir lib &&  rollup -c --environment NODE_ENV:production",
     "dev:docs": "concurrently \"vue-docgen -watch -c ./docgen.config.js\" \" vuepress dev docs \"",
     "build:md":"vue-docgen -c ./docgen.config.js",
-    "build:docs": " vuepress build docs "
+    "build:docs": "vuepress build docs"
   },
   "directories": {
     "lib": "lib",
