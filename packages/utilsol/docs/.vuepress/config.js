@@ -31,12 +31,12 @@ module.exports = {
         link: '/'
       },
       {
-        text: '指南',
-        link: '/guide/'
-      },
-      {
         text: 'API',
         link: '/api/modules'
+      },
+      {
+        text: '示例',
+        link: '/examples/'
       },
       {
         text: '相关',

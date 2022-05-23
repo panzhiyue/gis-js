@@ -2,7 +2,9 @@
 
 ## Hello Map!
 
-vue2ol为[Openlayers](https://openlayers.org/)提供了vue映射组件，允许以简单地声明式映射构造。
+vue2ol-extend 是vue2ol的扩展库。
+
+封装了openlayers除基础模块之外的其他模块的vue组件
 
 ::: demo
 
@@ -14,6 +16,7 @@ vue2ol为[Openlayers](https://openlayers.org/)提供了vue映射组件，允许�
         <vue2ol-layer-tile>
             <vue2ol-source-osm></vue2ol-source-osm>
         </vue2ol-layer-tile>
+        <vue2ol-control-mouseinfo></vue2ol-control-mouseinfo>
     </vue2ol-map>
 </template>
 
@@ -43,7 +46,7 @@ export default{
 ### Npm
 
 ```sh
-npm install ol @gis-js/vue2ol --save
+npm install ol @gis-js/vue2ol @gis-js/vue2ol-extend --save
 ```
 
 
@@ -51,7 +54,7 @@ npm install ol @gis-js/vue2ol --save
 ### Yarn
 
 ```sh
-yarn add ol @gis-js/vue2ol
+yarn add ol @gis-js/vue2ol @gis-js/vue2ol-extend
 ```
 
 
@@ -59,7 +62,7 @@ yarn add ol @gis-js/vue2ol
 ### Pnpm
 
 ```sh
-pnpm install ol @gis-js/vue2ol --save
+pnpm install ol @gis-js/vue2ol @gis-js/vue2ol-extend --save
 ```
 
 
@@ -73,20 +76,20 @@ pnpm install ol @gis-js/vue2ol --save
 ```javascript
 import Vue from 'vue'
 import Vue2ol from "@gis-js/vue2ol"
+import Vue2olExtend from "@gis-js/vue2ol-extend"
 
 Vue.use(Vue2ol);
+Vue.use(Vue2olExtend);
 ```
 
 **组件内安装**
 
 ```vue
-import {Vue2olMap,Vue2olLayerVector,Vue2olSourceVector} from "@gis-js/vue2ol"
+import {Vue2olControlMouseinfo} from "@gis-js/vue2ol-extend"
 export default {
   name: 'MyAwesomeMap',
   components: {
-    Vue2olMap,
-    Vue2olLayerVector,
-    Vue2olSourceVector,
+	Vue2olControlMouseinfo
   },
 };
 ```

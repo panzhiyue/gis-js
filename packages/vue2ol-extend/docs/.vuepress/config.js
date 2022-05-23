@@ -56,6 +56,9 @@ module.exports = {
         }, {
           text: 'vue2leaflet',
           link: 'https://vue2-leaflet.netlify.app/'
+        }, {
+          text: 'vue2ol',
+          link: 'https://panzhiyue.github.io/gis-js/vue2ol/'
         }]
       }
     ],

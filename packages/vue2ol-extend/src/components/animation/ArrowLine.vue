@@ -13,8 +13,9 @@ import {
 } from "@gis-js/vue2ol";
 import OptionsMixin from "@gis-js/vue2ol";
 /**
- * utilsol/animation/ArrowLine的vue组件
+ * @gis-js/utilsol/animation/ArrowLine的vue组件
  * @since v1.0.0
+ * @see https://panzhiyue.github.io/gis-js/utilsol/
  */
 export default {
   name: "Vue2olAnimationArrowline",

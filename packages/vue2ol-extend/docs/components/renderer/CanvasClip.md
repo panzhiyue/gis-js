@@ -6,7 +6,7 @@ title: Vue2olRendererCanvasclip
 
 # Vue2olRendererCanvasclip
 
-> Canvas 裁切(可能多个图层共用一个渲染器，不要重复加载)
+> Canvas 裁切(根据传入的面几何裁切地图)
 
 ---
 

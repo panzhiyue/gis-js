@@ -9,7 +9,7 @@
     "build:md": "lerna run build:md",
     "build:docs": "yarn workspaces run build:docs ",
     "build": "npm run build:package && npm run build:md && npm run build:docs",
-    "dev:docs": "lerna run dev:docs  ",
+    "dev:docs": "yarn workspaces run dev:docs  ",
     "version": "lerna version",
     "deploy:docs": "node ./scripts/deploy.js"
   },

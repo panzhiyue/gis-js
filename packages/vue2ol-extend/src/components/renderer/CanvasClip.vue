@@ -4,7 +4,7 @@
 <script>
 import { findRealParent, findParentMap } from "@gis-js/vue2ol";
 /**
- * Canvas裁切(可能多个图层共用一个渲染器，不要重复加载)
+ * Canvas裁切(根据传入的面几何裁切地图)
  */
 export default {
   name: "Vue2olRendererCanvasclip",
