@@ -1,6 +1,6 @@
 {
   "name": "@gis-js/vue2ol",
-  "version": "1.0.0-alpha.4",
+  "version": "1.0.0-alpha.5",
   "description": "openlayers的vue组件",
   "keywords": [
     "openlayers",
@@ -28,7 +28,7 @@
   "scripts": {
     "build:package": "rimraf -rf lib && mkdir lib &&  rollup -c --environment NODE_ENV:production",
     "dev:docs": "concurrently \"vue-docgen -watch -c ./docgen.config.js\" \" vuepress dev docs \"",
-    "build:md":"vue-docgen -c ./docgen.config.js",
+    "build:md": "vue-docgen -c ./docgen.config.js",
     "build:docs": "vuepress build docs"
   },
   "main": "lib/index.js",
