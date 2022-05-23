@@ -1,44 +1,8 @@
 # @gis-js/vue2ol-extend
 
-## Hello Map!
-
 [@gis-js/vue2ol-extend](https://www.npmjs.com/package/@gis-js/vue2ol-extend) 是[@gis-js/vue2ol](https://www.npmjs.com/package/@gis-js/vue2ol)的扩展库。
 
 封装了[openlayers](https://openlayers.org/)除基础模块之外的其他模块的[vue](https://cn.vuejs.org/index.html)组件
-
-::: demo
-
-``` vue 
-<template>
-    <vue2ol-map style="height:400px;">
-        <vue2ol-view :zoom="zoom" :center="center" :options="viewOptions">
-        </vue2ol-view>
-        <vue2ol-layer-tile>
-            <vue2ol-source-osm></vue2ol-source-osm>
-        </vue2ol-layer-tile>
-        <vue2ol-control-mouseinfo></vue2ol-control-mouseinfo>
-    </vue2ol-map>
-</template>
-
-<script>
-export default{
-  data(){
-    return {
-      zoom:10,  //级别
-      center:[120,28],  //中心点
-      viewOptions:{
-        projection:"EPSG:4326"  //坐标系
-      }
-    }
-  }
-}
-</script>
-```
-
-:::
-
-
-
 
 
 ## 安装
@@ -84,7 +48,7 @@ Vue.use(Vue2olExtend);
 
 **组件内安装**
 
-```vue
+``` javascript
 import {Vue2olControlMouseinfo} from "@gis-js/vue2ol-extend"
 export default {
   name: 'MyAwesomeMap',
