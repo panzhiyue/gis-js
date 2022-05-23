@@ -3,6 +3,9 @@
 # 确保脚本抛出遇到的错误
 set -e
 
+rimraf -rf dist
+mkdir dist
+
 # 生成静态文件
 npm run build:docs
 
@@ -21,6 +24,9 @@ git remote add origin https://github.com/panzhiyue/gis-js.git
 # git push -f git@github.com:<USERNAME>/<USERNAME>.github.io.git master
 
 # 如果发布到 https://<USERNAME>.github.io/<REPO>
- git push -f https://github.com/panzhiyue/gis-js.git gh-pages
+git checkout -b gh-pages
+git push -f origin gh-pages
 
 cd -
+
+&

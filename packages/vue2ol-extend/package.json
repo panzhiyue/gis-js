@@ -8,7 +8,7 @@
     "vue"
   ],
   "author": "panzhiyue <892105346@qq.com>",
-  "homepage": "https://panzhiyue.github.io/gis-js/",
+  "homepage": "https://panzhiyue.github.io/gis-js/vue2ol-extend/",
   "license": "ISC",
   "main": "lib/index.js",
   "module": "lib/index.mjs",

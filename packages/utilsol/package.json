@@ -6,7 +6,7 @@
     "openlayers"
   ],
   "author": "panzhiyue <30484534+panzhiyue@users.noreply.github.com>",
-  "homepage": "https://github.com/panzhiyue/gis-js#readme",
+  "homepage": "https://github.com/panzhiyue/gis-js/utilsol",
   "license": "ISC",
   "main": "lib/index.js",
   "module": "lib/index.mjs",
