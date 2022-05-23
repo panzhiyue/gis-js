@@ -58,3 +58,6 @@ export default {
 };
 ```
 
+## 文档
+
+[去这里](https://panzhiyue.github.io/gis-js/vue2ol-extend/index.html)查看实时示例和文档
