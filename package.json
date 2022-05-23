@@ -12,10 +12,9 @@
     "dev:docs": "lerna run dev:docs  ",
     "version": "lerna version",
     "publish": "./bin/publish.sh",
-    "deploy:docs": "bin/deploy.sh"
+    "deploy:docs": "node ./scripts/deploy.js"
   },
   "devDependencies": {
-    "bash": "^0.0.1",
     "concurrently": "^7.0.0",
     "directory-tree": "^3.2.2",
     "lerna": "^4.0.0",
@@ -24,6 +23,7 @@
     "rollup-plugin-node-externals": "^4.0.0",
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-vue": "^5.1.9",
+    "shelljs": "^0.8.5",
     "vue-docgen-cli": "^4.45.0",
     "vue-template-compiler": "2.6.14",
     "vuepress": "^1.8.2",

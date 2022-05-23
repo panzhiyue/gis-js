@@ -14,3 +14,4 @@ npm publish --access=public
 cd ../vue2ol-extend
 npm run build:package
 npm publish --access=public
+
