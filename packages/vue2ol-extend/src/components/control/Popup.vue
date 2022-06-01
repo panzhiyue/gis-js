@@ -3,6 +3,7 @@
     class="vue2ol-control-popup"
     :class="['vue2ol-control-popup-' + direction]"
     v-bind="$attrs"
+    :parentMap="parentMap"
     :position="position"
     :positioning="positioning"
     :offset="offset"
