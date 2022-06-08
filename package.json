@@ -11,7 +11,8 @@
     "build": "npm run build:package && npm run build:md && npm run build:docs",
     "dev:docs": "yarn workspaces run dev:docs  ",
     "version": "lerna version",
-    "deploy:docs": "node ./scripts/deploy.js"
+    "deploy:docs": "node ./scripts/deploy.js",
+    "pub":"yarn workspaces run pub"
   },
   "devDependencies": {
     "concurrently": "^7.0.0",
@@ -29,5 +30,6 @@
     "vuepress-plugin-demo-container-v2": "^2.3.4",
     "vuepress-plugin-one-click-copy": "^1.0.2",
     "vuepress-theme-vdoing": "^1.9.5"
-  }
+  },
+  "version": "1.0.0-alpha.6"
 }

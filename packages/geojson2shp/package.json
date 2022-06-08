@@ -1,0 +1,35 @@
+{
+  "name": "@gis-js/geojson2shp",
+  "version": "1.0.0-alpha.6",
+  "description": "geojson转为shp",
+  "keywords": [
+    "map",
+    "geojson",
+    "shp"
+  ],
+  "author": "panzhiyue <30484534+panzhiyue@users.noreply.github.com>",
+  "homepage": "https://github.com/panzhiyue/gis-js/geojson2shp",
+  "license": "ISC",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/panzhiyue/gis-js.git"
+  },
+  "scripts": {
+    "dev:docs": " vuepress dev docs",
+    "build:docs": "vuepress build docs",
+    "build:package": "rimraf -rf lib && mkdir lib &&  rollup -c --environment NODE_ENV:production",
+    "pub":"npm publish --access=public"
+  },
+  "bugs": {
+    "url": "https://github.com/panzhiyue/gis-js/issues"
+  },
+  "main": "lib/index.js",
+  "module": "lib/index.mjs"
+}
