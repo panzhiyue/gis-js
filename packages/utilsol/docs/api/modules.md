@@ -11,3 +11,7 @@
 - [plot](modules/plot.md)
 - [style](modules/style.md)
 - [utils](modules/utils.md)
+
+### Classes
+
+- [EShapeFile](classes/EShapeFile.md)

@@ -38,8 +38,8 @@ module.exports = {
         children: [
           'plot/drawplot',
         ]
-      }
-
+      },
+      'EShapeFile','EShapeFile'
     ]
 
   }],
