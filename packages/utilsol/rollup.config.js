@@ -14,7 +14,9 @@ const extensions = [".ts", ".mjs", ".js", ".json"];
 
 
 const external = Object.keys(pkg.dependencies || {});
-console.log(external);
+// let index = external.indexOf("@turf/turf")
+// external.splice(index, 1)
+// const external = ["ol"];
 export default [
   // Bundle
   {
@@ -27,7 +29,7 @@ export default [
       {
         format: "es",
         file: pkg.module,
-      },
+      }
 
     ],
     external,
@@ -68,8 +70,12 @@ export default [
       typescript(),
       commonjs(),
 
-      babel({ babelHelpers: "bundled", extensions }),
+      babel({
+        babelHelpers: "bundled",
+        extensions
+      }),
 
     ],
   },
+
 ];

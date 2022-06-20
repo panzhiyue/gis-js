@@ -12,11 +12,12 @@
     "dev:docs": "yarn workspaces run dev:docs  ",
     "version": "lerna version",
     "deploy:docs": "node ./scripts/deploy.js",
-    "pub":"yarn workspaces run pub"
+    "pub": "yarn workspaces run pub"
   },
   "devDependencies": {
     "concurrently": "^7.0.0",
     "directory-tree": "^3.2.2",
+    "fs-extra": "^10.1.0",
     "lerna": "^4.0.0",
     "rollup": "^2.58.0",
     "rollup-plugin-less": "^1.1.3",
@@ -31,5 +32,5 @@
     "vuepress-plugin-one-click-copy": "^1.0.2",
     "vuepress-theme-vdoing": "^1.9.5"
   },
-  "version": "1.0.0-alpha.7"
+  "version": "1.0.0-alpha.17"
 }

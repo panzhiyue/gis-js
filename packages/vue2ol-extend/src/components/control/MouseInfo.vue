@@ -55,7 +55,7 @@ export default {
   },
 };
 </script>
-<style lang="less" scoped>
+<style scoped>
 .vue2ol-mousetips {
   background: #363636;
   background: rgba(0, 0, 0, 0.5);

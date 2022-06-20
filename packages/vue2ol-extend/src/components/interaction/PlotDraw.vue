@@ -57,7 +57,7 @@ export default {
      * 样式
      */
     styleObj: {
-      type: Object,
+      type: [Object,Function],
       custom: true,
     },
   },

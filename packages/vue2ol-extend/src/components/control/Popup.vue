@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import { findRealParent,Vue2olOverlay } from "@gis-js/vue2ol";
+import { findRealParent, Vue2olOverlay } from "@gis-js/vue2ol";
 
 /**
  * 弹框
@@ -37,7 +37,7 @@ export default {
   name: "Vue2olControlPopup",
   inheritAttrs: false,
   components: {
-    Vue2olOverlay
+    Vue2olOverlay,
   },
   props: {
     /**
@@ -119,101 +119,110 @@ export default {
   },
 };
 </script>
-<style lang="less" scoped>
+<style scoped>
 .vue2ol-control-popup {
-  .vue2ol-control-popup-content-wrapper {
-    background: white;
-    color: #333;
-    box-shadow: 0 3px 14px rgb(0,0,0);
-    padding: 1px;
-    text-align: left;
-    border-radius: 12px;
-    .vue2ol-control-popup-content {
-      margin: 13px 19px;
-      line-height: 1.4;
-      min-width: 100px;
-      min-height: 20px;
-    }
-  }
+}
+.vue2ol-control-popup-content-wrapper {
+  background: white;
+  color: #333;
+  box-shadow: 0 3px 14px rgb(0, 0, 0);
+  padding: 1px;
+  text-align: left;
+  border-radius: 12px;
+}
 
-  .vue2ol-control-popup-tip-container {
-    width: 40px;
-    height: 10px;
-    position: absolute;
-    left: 50%;
-    margin-left: -20px;
-    overflow: hidden;
-    pointer-events: none;
+.vue2ol-control-popup-content {
+  margin: 13px 19px;
+  line-height: 1.4;
+  min-width: 100px;
+  min-height: 20px;
+}
 
-    .vue2ol-control-popup-tip {
-      background: white;
-      color: #333;
-      width: 17px;
-      height: 17px;
-      padding: 1px;
-      margin: -10px auto 0;
-      -webkit-transform: rotate(45deg);
-      -moz-transform: rotate(45deg);
-      -ms-transform: rotate(45deg);
-      transform: rotate(45deg);
-    }
-  }
+.vue2ol-control-popup-tip-container {
+  width: 40px;
+  height: 10px;
+  position: absolute;
+  left: 50%;
+  margin-left: -20px;
+  overflow: hidden;
+  pointer-events: none;
+}
 
-  .vue2ol-control-popup-close-button {
-    position: absolute;
-    top: 0;
-    right: 0;
-    padding: 4px 4px 0 0;
-    border: none;
-    text-align: center;
-    width: 18px;
-    height: 14px;
-    font: 16px/14px Tahoma, Verdana, sans-serif;
-    color: #c3c3c3;
-    text-decoration: none;
-    font-weight: bold;
-    background: transparent;
-    cursor: pointer;
-  }
+.vue2ol-control-popup-tip {
+  background: white;
+  color: #333;
+  width: 17px;
+  height: 17px;
+  padding: 1px;
+  margin: -10px auto 0;
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.vue2ol-control-popup-close-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 4px 4px 0 0;
+  border: none;
+  text-align: center;
+  width: 18px;
+  height: 14px;
+  font: 16px/14px Tahoma, Verdana, sans-serif;
+  color: #c3c3c3;
+  text-decoration: none;
+  font-weight: bold;
+  background: transparent;
+  cursor: pointer;
 }
 
 .vue2ol-control-popup-bottom {
-  .vue2ol-control-popup-tip-container {
-    top: -10px;
-
-    .vue2ol-control-popup-tip {
-      margin-top: 1px;
-    }
-  }
+}
+.vue2ol-control-popup-bottom .vue2ol-control-popup-tip-container {
+  top: -10px;
+}
+.vue2ol-control-popup-bottom
+  .vue2ol-control-popup-tip-container
+  .vue2ol-control-popup-tip {
+  margin-top: 1px;
+}
+.vue2ol-control-popup-left {
 }
 
-.vue2ol-control-popup-left {
-  .vue2ol-control-popup-tip-container {
-    width: 10px;
-    height: 40px;
-    left: 100%;
-    top: 50%;
-    margin-left: -0px;
-    margin-top: -20px;
-    .vue2ol-control-popup-tip {
-      margin-top: 10px;
-      margin-left: -10px;
-    }
-  }
+.vue2ol-control-popup-left .vue2ol-control-popup-tip-container {
+  width: 10px;
+  height: 40px;
+  left: 100%;
+  top: 50%;
+  margin-left: -0px;
+  margin-top: -20px;
+}
+
+.vue2ol-control-popup-left
+  .vue2ol-control-popup-tip-container
+  .vue2ol-control-popup-tip {
+  margin-top: 10px;
+  margin-left: -10px;
 }
 
 .vue2ol-control-popup-right {
-  .vue2ol-control-popup-tip-container {
-    width: 10px;
-    height: 40px;
-    left: -10px;
-    top: 50%;
-    margin-left: -0px;
-    margin-top: -20px;
-    .vue2ol-control-popup-tip {
-      margin-top: 10px;
-      margin-left: 3px;
-    }
-  }
+}
+
+.vue2ol-control-popup-right .vue2ol-control-popup-tip-container {
+  width: 10px;
+  height: 40px;
+  left: -10px;
+  top: 50%;
+  margin-left: -0px;
+  margin-top: -20px;
+}
+
+.vue2ol-control-popup-right
+  .vue2ol-control-popup-tip-container
+  .vue2ol-control-popup-tip {
+  margin-top: 10px;
+  margin-left: 3px;
 }
 </style>

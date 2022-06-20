@@ -60,7 +60,7 @@ export default {
   },
 }
 </script>
-<style lang="less" scoped>
+<style scoped>
 .vue2ol-control-mousetips {
   background: #363636;
   background: rgba(0, 0, 0, 0.5);

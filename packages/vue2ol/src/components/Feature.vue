@@ -71,7 +71,7 @@ export default {
      * @typeName {import('ol/style/Style').StyleLike}
      */
     styleObj: {
-      type: Object,
+      type: [Object,Function],
       custom: true,
     },
   },
