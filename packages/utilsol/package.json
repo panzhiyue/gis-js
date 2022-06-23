@@ -1,6 +1,6 @@
 {
   "name": "@gis-js/utilsol",
-  "version": "1.0.0-alpha.17",
+  "version": "1.0.0-alpha.18",
   "description": "openlayers帮助类",
   "keywords": [
     "openlayers"
@@ -33,6 +33,7 @@
     "url": "https://github.com/panzhiyue/gis-js/issues"
   },
   "dependencies": {
+    "@turf/turf": "6.5.0",
     "dom-to-image": "^2.6.0",
     "file-saver": "^2.0.5",
     "jszip": "^3.8.0",

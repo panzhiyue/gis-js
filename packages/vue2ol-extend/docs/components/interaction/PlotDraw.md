@@ -169,7 +169,7 @@ export default {
 | parentSource |                                     | {import('ol/source/Vector').default} | -        |        |
 | type         | 激活绘标类型                        | string                               |          |        |
 | params       | 绘标参数                            | object                               | -        |        |
-| styleObj     | 样式                                | object                               | -        |        |
+| styleObj     | 样式                                | object\|func                         | -        |        |
 
 ## Events
 
