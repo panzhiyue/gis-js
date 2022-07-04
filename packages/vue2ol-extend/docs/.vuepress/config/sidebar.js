@@ -46,6 +46,7 @@ module.exports = {
       title: "interaction",
       children: [
         '/components/interaction/PlotDraw',
+        '/components/interaction/Pickup',
       ]
     },
   ],

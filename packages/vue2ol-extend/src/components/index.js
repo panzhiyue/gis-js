@@ -23,3 +23,4 @@ export {default as Vue2olRendererCanvasclip} from "./renderer/CanvasClip.vue"
 
 //interaction
 export {default as Vue2olInteractionPlotdraw} from "./interaction/PlotDraw.vue"
+export {default as Vue2olInteractionPickup} from "./interaction/Pickup.vue"

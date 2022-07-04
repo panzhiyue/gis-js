@@ -1,5 +1,6 @@
 const sidebarData = require("./config/sidebar");
 const path = require('path')
+
 module.exports = {
 
   // theme: 'vdoing', // 使用依赖包主题
@@ -77,12 +78,12 @@ module.exports = {
         type: 'javascript/auto'
       }]
     },
-    resolve: {
-      alias: {
-        'vue2ol': "../../../vue2ol/src/index.js",
-        'vue2ol-extend': "../../src",
-      },
-    },
+    // resolve: {
+    //   alias: {
+    //     'vue2ol': "../../../vue2ol/src/index.js",
+    //     'vue2ol-extend': "../../src",
+    //   },
+    // },
   },
   markdown: {
     toc: {

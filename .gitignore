@@ -7,3 +7,4 @@
 /dist
 /packages/vue2ol/node_modules
 /packages/vue2ol-extend/node_modules
+/packages/geojson2shp/node_modules

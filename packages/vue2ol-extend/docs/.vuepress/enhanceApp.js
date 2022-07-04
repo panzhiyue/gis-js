@@ -1,13 +1,12 @@
-import Vue from "vue"
-console.log(window);
-(window)['global'] = window;
+// import Vue from "vue"
+
 import "ol/ol.css"
 
-import Vue2OL from "vue2ol"
-Vue.use(Vue2OL);
+// import Vue2OL from "@gis-js/vue2ol"
+// Vue.use(Vue2OL);
 
-import Vue2olExtend from "vue2ol-extend"
-Vue.use(Vue2olExtend);
+// import Vue2olExtend from "@gis-js/vue2ol-extend"
+// Vue.use(Vue2olExtend);
 
 /**
  * to主题使用者：你可以去掉本文件的所有代码
@@ -21,16 +20,13 @@ export default ({
 }) => {
   // 用于监控在路由变化时检查广告拦截器 (to主题使用者：你可以去掉本文件的所有代码)
   if (!isServer) {
-    // // console.log(9999);
     (window)['global'] = window;
 
-    // import('vue2ol' /* webpackChunkName: "notification" */).then((module) => {
-    //   console.log(222);
-    //   console.log(module);
-    //   Vue.use(module.default)
-    // })
-    // import('vue2ol-extend' /* webpackChunkName: "notification" */).then((module) => {
-    //   Vue.use(module.default)
-    // })
+    import('@gis-js/vue2ol' /* webpackChunkName: "notification" */ ).then((module) => {
+      Vue.use(module.default)
+    })
+    import('@gis-js/vue2ol-extend' /* webpackChunkName: "notification" */ ).then((module) => {
+      Vue.use(module.default)
+    })
   }
 }

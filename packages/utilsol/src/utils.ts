@@ -1,6 +1,6 @@
 import { Coordinate } from "ol/coordinate";
-// import * as turf from "@turf/turf"
-import { lineString as turf_lineString, along as turf_along, Feature as turf_Feature, Point as turf_Point,Units as turf_Unints ,length as turf_Length,point as turf_point,multiLineString as turf_multiLineString,nearestPointOnLine as turf_nearestPointOnLine,lineSlice as turf_lineSlice} from '@turf/turf'
+import * as turf from "@turf/turf"
+
 
 
 export const Constants = {
@@ -28,7 +28,7 @@ export const factorial = (num: number): number => {
  * @param number
  * @return
  */
-export const parseDecimal = (number: number): number => {
+ export const parseDecimal = (number: number): number => {
     return parseFloat(number.toFixed(12))
 }
 
@@ -38,7 +38,7 @@ export const parseDecimal = (number: number): number => {
  * @param coordinate2 坐标2
  * @return
  */
-export const equal = (coordinate1: Coordinate, coordinate2: Coordinate): boolean => {
+ export const equal = (coordinate1: Coordinate, coordinate2: Coordinate): boolean => {
     if (coordinate1 === coordinate2) return true
     const [x1, y1] = coordinate1
     const [x2, y2] = coordinate2
@@ -199,10 +199,10 @@ export function getThirdPoint(startPnt: Coordinate, endPnt: Coordinate, angle: n
  * @param options
  * @return 坐标点
  */
-export const getCoordinateByDistance = (coordinates: Array<Coordinate>, distance: number, options: { units?: turf_Unints } = { units: "degrees" }): Coordinate => {
-    var line = turf_lineString(coordinates);
+export const getCoordinateByDistance = (coordinates: Array<Coordinate>, distance: number, options: { units?: turf.Units } = { units: "degrees" }): Coordinate => {
+    var line = turf.lineString(coordinates);
 
-    var along: turf_Feature<turf_Point> = turf_along(line, distance, options);
+    var along: turf.Feature<turf.Point> = turf.along(line, distance, options);
     return along.geometry.coordinates as Coordinate;
 }
 
@@ -213,9 +213,9 @@ export const getCoordinateByDistance = (coordinates: Array<Coordinate>, distance
  * @param options
  * @return 坐标点
  */
-export const getCoordinateByScale = (coordinates: Array<Coordinate>, scale: number, options: { units?: turf_Unints } = { units: "degrees" }): Coordinate => {
-    let line = turf_lineString(coordinates);
-    let length = turf_Length(line, options);
+export const getCoordinateByScale = (coordinates: Array<Coordinate>, scale: number, options: { units?: turf.Units } = { units: "degrees" }): Coordinate => {
+    let line = turf.lineString(coordinates);
+    let length = turf.length(line, options);
     let distance = length * scale;
 
     return getCoordinateByDistance(coordinates, distance);
@@ -229,7 +229,7 @@ export const getCoordinateByScale = (coordinates: Array<Coordinate>, scale: numb
  */
 export const getCoordinateByPoint = (coordinates: Array<Coordinate> | Array<Array<Coordinate>>, coordinate: Coordinate): Coordinate => {
 
-    let options: { units?: turf_Unints } = { units: "degrees" }
+    let options: { units?: turf.Units } = { units: "degrees" }
 
     let cs: Array<Array<Coordinate>>;
     if (coordinate[0][0] instanceof Array) {
@@ -237,10 +237,10 @@ export const getCoordinateByPoint = (coordinates: Array<Coordinate> | Array<Arra
     } else {
         cs = [coordinates] as Array<Array<Coordinate>>;
     }
-    let line = turf_multiLineString(cs);
-    let pt = turf_point(coordinate);
+    let line = turf.multiLineString(cs);
+    let pt = turf.point(coordinate);
 
-    var nearestPoint = turf_nearestPointOnLine(line, pt, options);
+    var nearestPoint = turf.nearestPointOnLine(line, pt, options);
     return nearestPoint.geometry.coordinates as Coordinate;
 }
 
@@ -252,10 +252,10 @@ export const getCoordinateByPoint = (coordinates: Array<Coordinate> | Array<Arra
  * @return 
  */
 export const sliceByPoint = (coordinates: Array<Coordinate>, startPt: Coordinate, stopPt: Coordinate): Array<Coordinate> => {
-    let line = turf_lineString(coordinates);
-    let start = turf_point(startPt);
-    let stop = turf_point(stopPt);
-    let sliced = turf_lineSlice(start, stop, line);
+    let line = turf.lineString(coordinates);
+    let start = turf.point(startPt);
+    let stop = turf.point(stopPt);
+    let sliced = turf.lineSlice(start, stop, line);
     return sliced.geometry.coordinates as Array<Coordinate>;
 }
 
@@ -267,7 +267,7 @@ export const sliceByPoint = (coordinates: Array<Coordinate>, startPt: Coordinate
  * @param options 
  * @return 
  */
-export const sliceByDistance = (coordinates: Array<Coordinate>, startDist: number, stopDist: number, options: { units?: turf_Unints } = { units: "degrees" }): Array<Coordinate> => {
+export const sliceByDistance = (coordinates: Array<Coordinate>, startDist: number, stopDist: number, options: { units?: turf.Units } = { units: "degrees" }): Array<Coordinate> => {
     let start = getCoordinateByDistance(coordinates, startDist, options);
     let stop = getCoordinateByDistance(coordinates, stopDist, options);
     return sliceByPoint(coordinates, start, stop);
@@ -281,7 +281,7 @@ export const sliceByDistance = (coordinates: Array<Coordinate>, startDist: numbe
  * @param options 
  * @return 
  */
-export const sliceByScale = (coordinates: Array<Coordinate>, startScale: number, stopScale: number, options: { units?: turf_Unints } = { units: "degrees" }): Array<Coordinate> => {
+export const sliceByScale = (coordinates: Array<Coordinate>, startScale: number, stopScale: number, options: { units?: turf.Units } = { units: "degrees" }): Array<Coordinate> => {
     let start = getCoordinateByScale(coordinates, startScale, options);
     let stop = getCoordinateByScale(coordinates, stopScale, options);
     return sliceByPoint(coordinates, start, stop);
