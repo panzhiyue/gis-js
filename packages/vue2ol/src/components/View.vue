@@ -125,7 +125,7 @@ export default {
      * @type {object}
      * @property {import('ol/View').default} mapObject - openlayer瓦片图层
      */
-    this.$emit("ready", this.mapObject);
+    this.$emit("init", this.mapObject);
 
     this.parent.setView(this.mapObject);
 

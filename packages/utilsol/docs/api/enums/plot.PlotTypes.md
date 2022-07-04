@@ -6,7 +6,7 @@
 
 ## Table of contents
 
-### Enumeration members
+### Enumeration Members
 
 - [ARC](plot.PlotTypes.md#arc)
 - [ASSAULT\_DIRECTION](plot.PlotTypes.md#assault_direction)
@@ -35,158 +35,158 @@
 - [TAILED\_SQUAD\_COMBAT](plot.PlotTypes.md#tailed_squad_combat)
 - [TRIANGLE](plot.PlotTypes.md#triangle)
 
-## Enumeration members
+## Enumeration Members
 
 ### ARC
 
-• **ARC** = `"arc"`
+• **ARC**
 
 ___
 
 ### ASSAULT\_DIRECTION
 
-• **ASSAULT\_DIRECTION** = `"assaultdirection"`
+• **ASSAULT\_DIRECTION**
 
 ___
 
 ### ATTACK\_ARROW
 
-• **ATTACK\_ARROW** = `"attackarrow"`
+• **ATTACK\_ARROW**
 
 ___
 
 ### CIRCLE
 
-• **CIRCLE** = `"circle"`
+• **CIRCLE**
 
 ___
 
 ### CLOSED\_CURVE
 
-• **CLOSED\_CURVE** = `"closedcurve"`
+• **CLOSED\_CURVE**
 
 ___
 
 ### CURVE
 
-• **CURVE** = `"curve"`
+• **CURVE**
 
 ___
 
 ### DIAMOND
 
-• **DIAMOND** = `"diamond"`
+• **DIAMOND**
 
 ___
 
 ### DOUBLE\_ARROW
 
-• **DOUBLE\_ARROW** = `"doublearrow"`
+• **DOUBLE\_ARROW**
 
 ___
 
 ### ELLIPSE
 
-• **ELLIPSE** = `"ellipse"`
+• **ELLIPSE**
 
 ___
 
 ### FINE\_ARROW
 
-• **FINE\_ARROW** = `"finearrow"`
+• **FINE\_ARROW**
 
 ___
 
 ### FREEHAND\_LINE
 
-• **FREEHAND\_LINE** = `"freehandline"`
+• **FREEHAND\_LINE**
 
 ___
 
 ### FREEHAND\_POLYGON
 
-• **FREEHAND\_POLYGON** = `"freehandpolygon"`
+• **FREEHAND\_POLYGON**
 
 ___
 
 ### GATHERING\_PLACE
 
-• **GATHERING\_PLACE** = `"gatheringplace"`
+• **GATHERING\_PLACE**
 
 ___
 
 ### LUNE
 
-• **LUNE** = `"lune"`
+• **LUNE**
 
 ___
 
 ### POINT
 
-• **POINT** = `"point"`
+• **POINT**
 
 ___
 
 ### POLYGON
 
-• **POLYGON** = `"polygon"`
+• **POLYGON**
 
 ___
 
 ### POLYLINE
 
-• **POLYLINE** = `"polyline"`
+• **POLYLINE**
 
 ___
 
 ### RECTANGLE
 
-• **RECTANGLE** = `"rectangle"`
+• **RECTANGLE**
 
 ___
 
 ### REGULARPOLYGON
 
-• **REGULARPOLYGON** = `"regularpolygon"`
+• **REGULARPOLYGON**
 
 ___
 
 ### SECTOR
 
-• **SECTOR** = `"sector"`
+• **SECTOR**
 
 ___
 
 ### SQUAD\_COMBAT
 
-• **SQUAD\_COMBAT** = `"squadcombat"`
+• **SQUAD\_COMBAT**
 
 ___
 
 ### STAR
 
-• **STAR** = `"star"`
+• **STAR**
 
 ___
 
 ### STRAIGHT\_ARROW
 
-• **STRAIGHT\_ARROW** = `"straightarrow"`
+• **STRAIGHT\_ARROW**
 
 ___
 
 ### TAILED\_ATTACK\_ARROW
 
-• **TAILED\_ATTACK\_ARROW** = `"tailedattackarrow"`
+• **TAILED\_ATTACK\_ARROW**
 
 ___
 
 ### TAILED\_SQUAD\_COMBAT
 
-• **TAILED\_SQUAD\_COMBAT** = `"tailedsquadcombat"`
+• **TAILED\_SQUAD\_COMBAT**
 
 ___
 
 ### TRIANGLE
 
-• **TRIANGLE** = `"triangle"`
+• **TRIANGLE**

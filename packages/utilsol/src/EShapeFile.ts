@@ -9,7 +9,7 @@ import OLObject from "ol/Object";
 import Projection from "ol/proj/Projection";
 import proj4 from "proj4";
 import { GeoJson2Shp } from "@gis-js/geojson2shp"
-import { saveAs } from 'file-saver';
+import { saveAs } from 'file-saver-es';
 import JSZip from "jszip";
 import BaseEvent from "ol/events/Event"
 import EShapeFileEventType from "./EShapeFileEventType";
