@@ -13,7 +13,12 @@ export default {
       parent: null, //openlayers父对象
     }
   },
-  mixins: [ObjectMixin,OptionsMixin],
+  provide() {
+    return {
+      source: this.mapObject,
+    };
+  },
+  mixins: [ObjectMixin, OptionsMixin],
   props: {
     /**
      * 图层,如果为null则从parent中获取

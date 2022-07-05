@@ -15,6 +15,11 @@ import {
 export default {
   name: "Vue2olInteractionDraw",
   mixins: [OptionsMixin, ObjectMixin],
+  provide() {
+    return {
+      interaction: this.mapObject,
+    };
+  },
   data() {
     return {
       mapObject: null,
@@ -100,7 +105,7 @@ export default {
        * @property {import('ol/interaction/Draw').default} mapObject  地图元素
        */
       this.$emit("init", this.mapObject);
-      
+
       this.map.addInteraction(this.mapObject);
 
       /**

@@ -24,8 +24,13 @@ import OptionsMixin from "../mixins/Options";
  */
 export default {
   name: "Vue2olOverlay",
-  mixins: [ObjectMixin,OptionsMixin],
+  mixins: [ObjectMixin, OptionsMixin],
   emits: ["init", "append", "ready"],
+  provide() {
+    return {
+      overlay: this.mapObject,
+    };
+  },
   data() {
     return {
       mapObject: null, //ol/Overlay对象

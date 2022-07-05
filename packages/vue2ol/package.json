@@ -1,6 +1,6 @@
 {
   "name": "@gis-js/vue2ol",
-  "version": "1.0.0-alpha.24",
+  "version": "1.0.0-alpha.25",
   "description": "openlayers的vue组件",
   "keywords": [
     "openlayers",

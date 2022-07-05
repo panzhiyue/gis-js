@@ -25,6 +25,11 @@ export default {
   inheritAttrs: false,
   mixins: [ObjectMixin, OptionsMixin],
   emits: ["init", "ready"],
+  provide() {
+    return {
+      map: this.mapObject,
+    };
+  },
   data() {
     return {
       mapObject: null,

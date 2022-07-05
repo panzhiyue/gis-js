@@ -21,7 +21,12 @@ import OptionsMixin from "../mixins/Options";
 export default {
   name: "Vue2olView",
   mixins: [ObjectMixin, OptionsMixin],
-  emits:["init","append","ready"],
+  emits: ["init", "append", "ready"],
+  provide() {
+    return {
+      view: this.mapObject,
+    };
+  },
   data() {
     return {
       mapObject: null, //ol/View对象

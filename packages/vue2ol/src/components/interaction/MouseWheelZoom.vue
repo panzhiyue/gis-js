@@ -15,6 +15,11 @@ import {
 export default {
   name: "Vue2olInteractionMousewheelzoom",
   mixins: [OptionsMixin, ObjectMixin],
+  provide() {
+    return {
+      interaction: this.mapObject,
+    };
+  },
   data() {
     return {
       mapObject: null,
@@ -38,9 +43,9 @@ export default {
     /**
      * useAnchor
      */
-    mouseAnchor:{
-      type:Boolean
-    }
+    mouseAnchor: {
+      type: Boolean,
+    },
   },
   mounted() {
     if (this.parentMap) {

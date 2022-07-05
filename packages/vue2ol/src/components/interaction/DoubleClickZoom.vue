@@ -15,6 +15,11 @@ import {
 export default {
   name: "Vue2olInteractionDoubleclickzoom",
   mixins: [OptionsMixin, ObjectMixin],
+  provide() {
+    return {
+      interaction: this.mapObject,
+    };
+  },
   data() {
     return {
       mapObject: null,
@@ -22,6 +27,7 @@ export default {
       ready: false,
     };
   },
+
   props: {
     /**
      * 父地图
@@ -56,11 +62,7 @@ export default {
         this.parent.removeInteraction(this.mapObject);
         this.mapObject = null;
       }
-      let options = optionsMerger(
-        {
-        },
-        this
-      );
+      let options = optionsMerger({}, this);
       this.mapObject = new DoubleClickZoom(options);
       this.mapObject.setActive(this.active);
       this.properties && this.mapObject.setProperties(this.properties);

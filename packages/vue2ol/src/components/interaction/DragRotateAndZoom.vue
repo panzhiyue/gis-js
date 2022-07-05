@@ -15,6 +15,11 @@ import {
 export default {
   name: "Vue2olInteractionDragrotateandzoom",
   mixins: [OptionsMixin, ObjectMixin],
+  provide() {
+    return {
+      interaction: this.mapObject,
+    };
+  },
   data() {
     return {
       mapObject: null,

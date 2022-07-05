@@ -15,6 +15,11 @@ import {
 export default {
   name: "Vue2olInteractionExtent",
   mixins: [OptionsMixin, ObjectMixin],
+  provide() {
+    return {
+      interaction: this.mapObject,
+    };
+  },
   data() {
     return {
       mapObject: null,
@@ -36,9 +41,9 @@ export default {
       type: Boolean,
     },
 
-    extent:{
-      type:Boolean
-    }
+    extent: {
+      type: Boolean,
+    },
   },
   mounted() {
     if (this.parentMap) {

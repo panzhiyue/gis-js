@@ -12,7 +12,12 @@ export default {
       parent: null, //openlayers父对象
     }
   },
-  mixins: [ObjectMixin,OptionsMixin],
+  provide() {
+    return {
+      layer: this.mapObject,
+    };
+  },
+  mixins: [ObjectMixin, OptionsMixin],
   props: {
     /**
      * 地图,如果为null则从parent中获取

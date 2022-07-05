@@ -26,6 +26,11 @@ import OptionsMixin from "../mixins/Options";
 export default {
   name: "Vue2olFeature",
   mixins: [ObjectMixin, OptionsMixin],
+  provide() {
+    return {
+      feature: this.mapObject,
+    };
+  },
   data() {
     return {
       mapObject: null, //ol/Feature对象
@@ -71,7 +76,7 @@ export default {
      * @typeName {import('ol/style/Style').StyleLike}
      */
     styleObj: {
-      type: [Object,Function],
+      type: [Object, Function],
       custom: true,
     },
   },

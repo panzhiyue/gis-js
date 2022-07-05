@@ -15,6 +15,11 @@ import {
 export default {
   name: "Vue2olInteractionSelect",
   mixins: [OptionsMixin, ObjectMixin],
+  provide() {
+    return {
+      interaction: this.mapObject,
+    };
+  },
   data() {
     return {
       mapObject: null,
@@ -75,7 +80,7 @@ export default {
       let options = optionsMerger(
         {
           layers: this.parent,
-          hitTolerance:this.hitTolerance
+          hitTolerance: this.hitTolerance,
         },
         this
       );
