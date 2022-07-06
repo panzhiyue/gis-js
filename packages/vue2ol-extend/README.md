@@ -61,3 +61,23 @@ export default {
 ## 文档
 
 [去这里](https://panzhiyue.github.io/gis-js/vue2ol-extend/index.html)查看实时示例和文档
+
+## 常见问题
+1.在vite中
+```
+npm install @originjs/vite-plugin-commonjs --save-dev
+```
+
+```
+import { viteCommonjs } from '@originjs/vite-plugin-commonjs'
+
+export default {
+    plugins: [
+        viteCommonjs()
+    ]
+}
+```
+
+## 计划
+1.解决CanvasClip在缩放浏览器时与部分电脑错乱的问题
+
