@@ -17,7 +17,7 @@ export default {
   mixins: [OptionsMixin, ObjectMixin],
   provide() {
     return {
-      interaction: this.mapObject,
+      interaction: this,
     };
   },
   data() {

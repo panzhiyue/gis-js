@@ -39,6 +39,11 @@ export default {
   components: {
     Vue2olOverlay,
   },
+  provide() {
+    return {
+      control: this,
+    };
+  },
   props: {
     /**
      * 地图,如果为null则从parent中获取

@@ -28,7 +28,7 @@ export default {
   mixins: [ObjectMixin, OptionsMixin],
   provide() {
     return {
-      feature: this.mapObject,
+      feature: this,
     };
   },
   data() {

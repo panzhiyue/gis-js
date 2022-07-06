@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import * as utilsol from "@gis-js/utilsol"
+import * as utilsol from "@gis-js/utilsol";
 import {
   optionsMerger,
   findRealParent,
@@ -20,6 +20,11 @@ export default {
   name: "Vue2olAnimationTrack",
   components: {},
   mixins: [OptionsMixin],
+  provide() {
+    return {
+      animation: this,
+    };
+  },
   props: {
     /**
      * 数据源,如果为null则从parent中获取
@@ -90,7 +95,6 @@ export default {
       this
     );
 
-  
     //初始化view对象
     this.mapObject = new utilsol.animation.Track(options);
 

@@ -28,7 +28,7 @@ export default {
   emits: ["init", "append", "ready"],
   provide() {
     return {
-      overlay: this.mapObject,
+      overlay: this,
     };
   },
   data() {

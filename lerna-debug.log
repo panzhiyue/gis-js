@@ -5,7 +5,7 @@
 0 silly argv }
 1 notice cli v4.0.0
 2 verbose rootPath I:\vue2ol
-3 info current version 1.0.0-alpha.25
+3 info current version 1.0.0-alpha.26
 4 silly isAnythingCommitted
 5 verbose isAnythingCommitted 1
 6 silly getCurrentBranch

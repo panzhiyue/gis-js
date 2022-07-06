@@ -5,7 +5,7 @@
 ## 安装
 
 ```bash
-npm install @gis-js/geojson --save
+npm install @gis-js/geojson2shp --save
 ```
 
 ## 使用

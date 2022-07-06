@@ -16,6 +16,11 @@ export default {
   components: {
     Vue2olControlMousetips: MouseTips,
   },
+  provide() {
+    return {
+      control: this,
+    };
+  },
   props: {
     /**
      * 字段模板

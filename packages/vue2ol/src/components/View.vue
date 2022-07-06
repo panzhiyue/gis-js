@@ -24,7 +24,7 @@ export default {
   emits: ["init", "append", "ready"],
   provide() {
     return {
-      view: this.mapObject,
+      view: this,
     };
   },
   data() {

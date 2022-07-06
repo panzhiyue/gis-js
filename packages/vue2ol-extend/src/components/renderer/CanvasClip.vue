@@ -8,6 +8,11 @@ import { findRealParent, findParentMap } from "@gis-js/vue2ol";
  */
 export default {
   name: "Vue2olRendererCanvasclip",
+  provide() {
+    return {
+      renderer: this,
+    };
+  },
   props: {
     /**
      * 父亲地图

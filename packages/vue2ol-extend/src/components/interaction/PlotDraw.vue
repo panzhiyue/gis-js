@@ -14,6 +14,11 @@ import * as utilsol from "@gis-js/utilsol";
 
 export default {
   name: "Vue2olInteractionPlotdraw",
+  provide() {
+    return {
+      interaction: this,
+    };
+  },
   data() {
     return {
       mapObject: null, //utilsol/plot/tool/PlotDraw对象
@@ -57,7 +62,7 @@ export default {
      * 样式
      */
     styleObj: {
-      type: [Object,Function],
+      type: [Object, Function],
       custom: true,
     },
   },

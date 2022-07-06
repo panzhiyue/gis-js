@@ -18,6 +18,11 @@ import * as Extent from "ol/extent";
 export default {
   name: "Vue2olInteractionPickup",
   components: {},
+  provide() {
+    return {
+      interaction: this,
+    };
+  },
   props: {
     /**
      * 地图,如果为null则从parent中获取

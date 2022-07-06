@@ -14,7 +14,7 @@ export default {
   },
   provide() {
     return {
-      geometry: this.mapObject,
+      geometry: this,
     };
   },
   mixins: [ObjectMixin, OptionsMixin],

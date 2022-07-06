@@ -1,21 +1,30 @@
 <template>
-  <vue2ol-overlay class="vue2ol-control-mousetips" v-bind="$attrs" :position="position">
+  <vue2ol-overlay
+    class="vue2ol-control-mousetips"
+    v-bind="$attrs"
+    :position="position"
+  >
     {{ message }}
   </vue2ol-overlay>
 </template>
 
 <script>
-import { findRealParent,Vue2olOverlay } from "@gis-js/vue2ol";
+import { findRealParent, Vue2olOverlay } from "@gis-js/vue2ol";
 
 /**
  * 鼠标移动提示信息控件
  * @since v1.0.0
  */
 export default {
-  name: 'Vue2olControlMousetips',
+  name: "Vue2olControlMousetips",
   inheritAttrs: false,
   components: {
     Vue2olOverlay,
+  },
+  provide() {
+    return {
+      control: this,
+    };
   },
   props: {
     /**
@@ -37,28 +46,28 @@ export default {
     return {
       parent: null,
       position: undefined,
-    }
+    };
   },
   mounted() {
     if (this.parentMap) {
-      this.parent = this.parentMap
+      this.parent = this.parentMap;
     } else {
-      this.parent = findRealParent(this.$parent).mapObject
+      this.parent = findRealParent(this.$parent).mapObject;
     }
-    this.parent.on('pointermove', this.onPointerMove)
+    this.parent.on("pointermove", this.onPointerMove);
   },
   destory() {
-    this.parent.un('pointermove', this.onPointerMove)
+    this.parent.un("pointermove", this.onPointerMove);
   },
   methods: {
     onPointerMove(event) {
       this.position = this.parent.getCoordinateFromPixel([
         event.originalEvent.layerX,
         event.originalEvent.layerY,
-      ])
+      ]);
     },
   },
-}
+};
 </script>
 <style scoped>
 .vue2ol-control-mousetips {
@@ -68,7 +77,7 @@ export default {
   -webkit-border-radius: 4px;
   border-radius: 4px;
   color: #fff;
-  font: 12px/18px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  font: 12px/18px "Helvetica Neue", Arial, Helvetica, sans-serif;
   margin-left: 20px;
   margin-top: -15px;
   padding: 4px 8px;
@@ -84,7 +93,7 @@ export default {
   border-right-color: rgba(0, 0, 0, 0.5);
   border-top: 6px solid transparent;
   border-bottom: 6px solid transparent;
-  content: '';
+  content: "";
   position: absolute;
   top: 50%;
   margin-top: -6px;

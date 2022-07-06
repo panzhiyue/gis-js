@@ -3,13 +3,13 @@
 </template>
 
 <script>
-import * as utilsol from "@gis-js/utilsol"
+import * as utilsol from "@gis-js/utilsol";
 import {
   optionsMerger,
   findRealParent,
   bindListeners,
   propsBinder,
-  getListeners
+  getListeners,
 } from "@gis-js/vue2ol";
 import OptionsMixin from "@gis-js/vue2ol";
 /**
@@ -21,6 +21,11 @@ export default {
   name: "Vue2olAnimationArrowline",
   components: {},
   mixins: [OptionsMixin],
+  provide() {
+    return {
+      animation: this,
+    };
+  },
   props: {
     /**
      * 数据源,如果为null则从parent中获取

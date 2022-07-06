@@ -14,7 +14,7 @@ export default {
   },
   provide() {
     return {
-      layer: this.mapObject,
+      layer: this,
     };
   },
   mixins: [ObjectMixin, OptionsMixin],
