@@ -6,7 +6,7 @@ title: Vue2olGeomCircle
 
 # Vue2olGeomCircle
 
-> ol/geom/Point 的 vue 组件
+> ol/geom/Circle 的 vue 组件
 
 Since: v1.0.0
 

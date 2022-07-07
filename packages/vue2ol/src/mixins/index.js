@@ -16,3 +16,5 @@ export { default as VectorSourceMixin } from './VectorSource';
 export { default as VectorTileSourceMixin } from './VectorTileSource';
 export { default as VectorTileLayerMixin } from './VectorTileLayer';
 export { default as XYZSourceMixin } from './XYZSource';
+export { default as ControlMixin } from './Control';
+export { default as ZoomControlMixin } from './ZoomControl';

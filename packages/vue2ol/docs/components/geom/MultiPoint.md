@@ -6,7 +6,7 @@ title: Vue2olGeomMultipoint
 
 # Vue2olGeomMultipoint
 
-> ol/geom/Point 的 vue 组件
+> ol/geom/MultiPoint 的 vue 组件
 
 Since: v1.0.0
 

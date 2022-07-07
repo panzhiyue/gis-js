@@ -193,6 +193,7 @@ export default {
 | layerGroup | 地图的图层组                                                                                                                                                     | {import('ol/layer/Group').LayerGroup}                                                                         | -        |        |
 | layers     | 图层数组。如果未定义，则将渲染没有图层的地图。请注意，图层是按照提供的顺序呈现的，因此，例如，如果您希望矢量图层出现在切片图层的顶部，则它必须位于切片图层之后。 | {Array<import('ol/layer/Base').BaseLayer> \| import('ol/Collection').Collection<import('ol/Base').BaseLayer>} | -        |        |
 | size       | 地图的大小                                                                                                                                                       | {import('ol/size').Size}                                                                                      | -        |        |
+| controls   | 最初添加到地图的控件。                                                                                                                                           | array                                                                                                         | -        | []     |
 | view       |                                                                                                                                                                  | {import('ol/View').default}                                                                                   | -        |        |
 
 ## Events

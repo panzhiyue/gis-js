@@ -38,3 +38,6 @@ export {default as Vue2olInteractionDragrotateandzoom} from "./interaction/DragR
 export {default as Vue2olInteractionMousewheelzoom} from "./interaction/MouseWheelZoom.vue"
 export {default as Vue2olInteractionExtent} from "./interaction/Extent.vue"
 export {default as Vue2olInteractionDoubleclickzoom} from "./interaction/DoubleClickZoom.vue"
+
+//control
+export {default as Vue2olControlZoom} from "./control/Zoom.vue"

@@ -64,8 +64,12 @@ module.exports = {
         'interaction/Extent',
         'interaction/DoubleClickZoom',
         'interaction/DragRotateAndZoom',
-
-
+      ]
+    },
+    {
+      title: "control",
+      children: [
+        'control/Zoom',
       ]
     },
   ],

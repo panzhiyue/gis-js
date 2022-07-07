@@ -61,6 +61,13 @@ export default {
     size: {
       type: Array,
     },
+    /**
+     * 最初添加到地图的控件。
+     */
+    controls: {
+      type: Array,
+      default: () => [],
+    },
 
     /**
      * @typeName {import('ol/View').default}
@@ -75,6 +82,7 @@ export default {
   mounted() {
     let options = optionsMerger(
       {
+        controls: this.controls,
         layers: this.layers,
         view: this.view,
         target: this.$el,

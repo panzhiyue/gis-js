@@ -8,7 +8,7 @@ import Circle from "ol/geom/Circle";
 import { bindListeners, propsBinder, getListeners } from "../../utils/index";
 import SimpleGeometryMixin from "../../mixins/SimpleGeometry";
 /**
- * ol/geom/Point的vue组件
+ * ol/geom/Circle的vue组件
  * @since v1.0.0
  * @link https://openlayers.org/en/latest/apidoc/module-ol_geom_Circle-Circle.html
  */
