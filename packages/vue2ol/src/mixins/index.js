@@ -13,4 +13,6 @@ export { default as UrlTileSourceMixin } from './UrlTileSource';
 export { default as VectorLayerMixin } from './VectorLayer';
 export { default as VectorImageLayerMixin } from './VectorImageLayer';
 export { default as VectorSourceMixin } from './VectorSource';
+export { default as VectorTileSourceMixin } from './VectorTileSource';
+export { default as VectorTileLayerMixin } from './VectorTileLayer';
 export { default as XYZSourceMixin } from './XYZSource';

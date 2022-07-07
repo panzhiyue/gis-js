@@ -26,6 +26,7 @@ module.exports = {
         'layer/Tile',
         'layer/Vector',
         'layer/VectorImage',
+        'layer/VectorTile',
       ]
     },
     {
@@ -35,6 +36,7 @@ module.exports = {
         'source/Vector',
         'source/XYZ',
         'source/Stamen',
+        'source/VectorTile',
       ]
     },
     {

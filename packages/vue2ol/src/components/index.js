@@ -17,12 +17,14 @@ export {default as Vue2olGeomPolygon} from "./geom/Polygon.vue"
 //layer
 export {default as Vue2olLayerTile} from "./layer/Tile.vue"
 export {default as Vue2olLayerVector} from "./layer/Vector.vue"
+export {default as Vue2olLayerVectortile} from "./layer/VectorTile.vue"
 export {default as Vue2olLayerVectorimage} from "./layer/VectorImage.vue"
 
 //source
 export {default as Vue2olSourceOsm} from "./source/OSM.vue"
 export {default as Vue2olSourceStamen} from "./source/Stamen.vue"
 export {default as Vue2olSourceVector} from "./source/Vector.vue"
+export {default as Vue2olSourceVectortile} from "./source/VectorTile.vue"
 export {default as Vue2olSourceXyz} from "./source/XYZ.vue"
 
 //interaction
