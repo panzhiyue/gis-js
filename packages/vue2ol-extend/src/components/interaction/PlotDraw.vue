@@ -21,7 +21,7 @@ export default {
   },
   data() {
     return {
-      mapObject: null, //utilsol/plot/tool/PlotDraw对象
+      // mapObject: null, //utilsol/plot/tool/PlotDraw对象
       ready: false, //是否加载完毕
       parent: null, //openlayers父对象
       map: null,

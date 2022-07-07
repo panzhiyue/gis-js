@@ -32,7 +32,7 @@ export default {
   },
   data() {
     return {
-      mapObject: null,
+      // mapObject: null,
       ready: false, //是否加载完毕
       attrs: null,
     };

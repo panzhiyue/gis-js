@@ -33,7 +33,7 @@ export default {
   },
   data() {
     return {
-      mapObject: null, //ol/Feature对象
+      // mapObject: null, //ol/Feature对象
       ready: false, //是否加载完毕
       parent: null, //openlayers父对象
     };

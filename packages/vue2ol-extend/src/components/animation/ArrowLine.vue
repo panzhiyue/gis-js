@@ -76,7 +76,7 @@ export default {
   data() {
     return {
       parent: null,
-      mapObject: null,
+      // mapObject: null,
     };
   },
   mounted() {

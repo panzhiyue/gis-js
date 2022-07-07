@@ -8,7 +8,7 @@ import {
 export default {
   data() {
     return {
-      mapObject: null, //对应的openlayers对象
+      // mapObject: null, //对应的openlayers对象
       ready: false, //是否加载完毕
       parent: null, //openlayers父对象
     }

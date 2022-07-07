@@ -22,10 +22,10 @@ export default {
   },
   data() {
     return {
-      mapObject: null,
+      // mapObject: null,
       parent: null,
       ready: false,
-      map: null,
+      // map: null,
     };
   },
   props: {
