@@ -87,17 +87,19 @@ export default {
         projection: "EPSG:4326" //坐标系
       },
       geom: "POINT(120 30)",
-      styleObj: new Style({
+      styleObj: null
+    };
+  },
+  watch: {},
+  mounted() {
+    this.styleObj=new Style({
         image: new Icon({
           anchor: [0.5, 1],
           scale: 1,
           src: "../../img/marker.png"
         })
       })
-    };
-  },
-  watch: {},
-  mounted() {}
+  }
 };
 </script>
 <style lang="less" scoped>

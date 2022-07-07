@@ -67,6 +67,7 @@ export default {
 
 <script>
 import {Style,Circle,Stroke,Fill,Icon} from "ol/style"
+import icon from "../../img/marker.png"
 export default {
   data() {
     return {
@@ -76,19 +77,19 @@ export default {
         projection: "EPSG:4326", //坐标系
       },
       geom:'POINT(120 30)',
-      styleObj:new Style({
-        image:new Icon({
-          anchor: [0.5, 1],
-          scale: 1,
-          src: "../../img/marker.png",
-        })
-      })
+      styleObj:null
     };
   },
   watch: {
   },
   mounted(){
-    
+    this.styleObj=new Style({
+      image: new Icon({
+        anchor: [0.5, 1],
+        scale: 1,
+        src: "../../img/marker.png"
+      })
+    })
   }
 };
 </script>
