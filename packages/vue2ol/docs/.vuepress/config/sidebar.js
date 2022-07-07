@@ -72,6 +72,8 @@ module.exports = {
         'control/Zoom',
         'control/Rotate',
         'control/ScaleLine',
+        'control/FullScreen',
+        'control/ZoomSlider',
       ]
     },
   ],
