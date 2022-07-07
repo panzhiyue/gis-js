@@ -3,13 +3,13 @@
 ::: demo
 ```vue
 <template>
-<vue2ol-map style="height:400px;">
+<vue2ol-map style="height:400px;" >
   <vue2ol-view :zoom="zoom" :center="center" :options="viewOptions">
   </vue2ol-view>
   <vue2ol-layer-tile>
     <vue2ol-source-osm></vue2ol-source-osm>
   </vue2ol-layer-tile>
-  <vue2ol-control-zoom></vue2ol-control-zoom>
+  <vue2ol-control-scaleline></vue2ol-control-scaleline>
 </vue2ol-map>
 </template>
 
@@ -20,9 +20,9 @@ export default{
       zoom:10,  //级别
       center:[120,28],  //中心点
       viewOptions:{
-        projection:"EPSG:4326"  //坐标系
+        projection:"EPSG:4326",  //坐标系
       },
-      radius:0.1
+      radius:0.1,
     }
   }
 }

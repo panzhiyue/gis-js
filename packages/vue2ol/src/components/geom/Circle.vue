@@ -53,7 +53,6 @@ export default {
      */
     this.$emit("init", this.mapObject);
 
-    // 将feature层添加到layer当中
     this.parent.setGeometry(this.mapObject);
 
     /**

@@ -41,3 +41,5 @@ export {default as Vue2olInteractionDoubleclickzoom} from "./interaction/DoubleC
 
 //control
 export {default as Vue2olControlZoom} from "./control/Zoom.vue"
+export {default as Vue2olControlRotate} from "./control/Rotate.vue"
+export {default as Vue2olControlScaleline} from "./control/ScaleLine.vue"

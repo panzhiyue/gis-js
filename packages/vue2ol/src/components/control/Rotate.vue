@@ -1,26 +1,26 @@
-<!-- ol/control/Zoom -->
+<!-- ol/control/Rotate -->
 <template>
   <div>
     <slot v-if="ready"></slot>
   </div>
 </template>
 <script>
-import Zoom from "ol/control/Zoom";
+import Rotate from "ol/control/Rotate";
 import {
   bindListeners,
   propsBinder,
   getListeners,
   optionsMerger,
 } from "../../utils/index";
-import ZoomControlMixin from "../../mixins/ZoomControl";
+import RotateControlMixin from "../../mixins/RotateControl";
 /**
- * ol/control/Zoom的vue组件
+ * ol/control/Rotate的vue组件
  * @since v1.0.0
- * @link https://openlayers.org/en/latest/apidoc/module-ol_control_Zoom-Zoom.html
+ * @link https://openlayers.org/en/latest/apidoc/module-ol_control_Rotate-Rotate.html
  */
 export default {
-  name: "Vue2olControlZoom",
-  mixins: [ZoomControlMixin],
+  name: "Vue2olControlRotate",
+  mixins: [RotateControlMixin],
   emits: ["init", "append", "ready"],
   data() {
     return {};
@@ -30,11 +30,11 @@ export default {
   mounted() {
     let options = optionsMerger(
       {
-        ...(this.zoomControlOptions || {}),
+        ...(this.rotateControlOptions || {}),
       },
       this
     );
-    this.mapObject = new Zoom(options);
+    this.mapObject = new Rotate(options);
     this.properties && this.mapObject.setProperties(this.properties);
 
     //绑定事件
@@ -44,7 +44,7 @@ export default {
     /**
      * 地图元素初始化完时触发
      * @type {object}
-     * @property {import('ol/control/Zoom').default} mapObject 地图元素
+     * @property {import('ol/control/Rotate').default} mapObject 地图元素
      */
     this.$emit("init", this.mapObject);
 
@@ -53,7 +53,7 @@ export default {
     /**
      * 地图元素添加到地图时触发
      * @type {object}
-     * @property {import('ol/control/Zoom').default} mapObject 地图元素
+     * @property {import('ol/control/Rotate').default} mapObject 地图元素
      */
     this.$emit("append", this.mapObject);
 
@@ -62,7 +62,7 @@ export default {
       /**
        * 组件就绪时触发
        * @type {object}
-       * @property {import('ol/control/Zoom').default} mapObject 地图元素
+       * @property {import('ol/control/Rotate').default} mapObject 地图元素
        */
       this.$emit("ready", this.mapObject);
     });

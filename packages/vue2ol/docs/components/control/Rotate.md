@@ -1,16 +1,16 @@
 ---
 
-title: Vue2olControlZoom
+title: Vue2olControlRotate
 
 ---
 
-# Vue2olControlZoom
+# Vue2olControlRotate
 
-> ol/control/Zoom 的 vue 组件
+> ol/control/Rotate 的 vue 组件
 
 Since: v1.0.0
 
-[See](https://openlayers.org/en/latest/apidoc/module-ol_control_Zoom-Zoom.html)
+[See](https://openlayers.org/en/latest/apidoc/module-ol_control_Rotate-Rotate.html)
 
 ---
 
@@ -26,7 +26,7 @@ Since: v1.0.0
     <vue2ol-layer-tile>
       <vue2ol-source-osm></vue2ol-source-osm>
     </vue2ol-layer-tile>
-    <vue2ol-control-zoom></vue2ol-control-zoom>
+    <vue2ol-control-rotate></vue2ol-control-rotate>
   </vue2ol-map>
 </template>
 
@@ -37,7 +37,8 @@ export default {
       zoom: 10, //级别
       center: [120, 28], //中心点
       viewOptions: {
-        projection: "EPSG:4326" //坐标系
+        projection: "EPSG:4326", //坐标系
+        rotation: 1
       },
       radius: 0.1
     };
@@ -67,11 +68,11 @@ export default {
 
 ## Events
 
-| 名称   | 属性                                                         | 描述                     |
-| ------ | ------------------------------------------------------------ | ------------------------ |
-| init   | **mapObject** `import('ol/control/Zoom').default` - 地图元素 | 地图元素初始化完时触发   |
-| append | **mapObject** `import('ol/control/Zoom').default` - 地图元素 | 地图元素添加到地图时触发 |
-| ready  | **mapObject** `import('ol/control/Zoom').default` - 地图元素 | 组件就绪时触发           |
+| 名称   | 属性                                                           | 描述                     |
+| ------ | -------------------------------------------------------------- | ------------------------ |
+| init   | **mapObject** `import('ol/control/Rotate').default` - 地图元素 | 地图元素初始化完时触发   |
+| append | **mapObject** `import('ol/control/Rotate').default` - 地图元素 | 地图元素添加到地图时触发 |
+| ready  | **mapObject** `import('ol/control/Rotate').default` - 地图元素 | 组件就绪时触发           |
 
 ## Slots
 

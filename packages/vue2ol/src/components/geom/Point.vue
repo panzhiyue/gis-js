@@ -9,6 +9,7 @@
 import Point from 'ol/geom/Point'
 import { bindListeners, propsBinder,getListeners } from '../../utils/index'
 import SimpleGeometryMixin from '../../mixins/SimpleGeometry'
+
 /**
  * ol/geom/Point的vue组件
  * @since v1.0.0
@@ -38,8 +39,10 @@ export default {
 
     //绑定事件
     bindListeners(this.mapObject, getListeners(this))
+
     //监听props属性
     propsBinder(this, this.mapObject, this.$options.props)
+
     /**
      * 地图元素初始化完时触发
      * @type {object}
@@ -47,7 +50,6 @@ export default {
      */
     this.$emit("init", this.mapObject);
 
-    // 将feature层添加到layer当中
     this.parent.setGeometry(this.mapObject);
 
     /**

@@ -70,6 +70,8 @@ module.exports = {
       title: "control",
       children: [
         'control/Zoom',
+        'control/Rotate',
+        'control/ScaleLine',
       ]
     },
   ],

@@ -18,3 +18,5 @@ export { default as VectorTileLayerMixin } from './VectorTileLayer';
 export { default as XYZSourceMixin } from './XYZSource';
 export { default as ControlMixin } from './Control';
 export { default as ZoomControlMixin } from './ZoomControl';
+export { default as RotateControlMixin } from './RotateControl';
+export { default as ScaleLineControlMixin } from './ScaleLineControl';

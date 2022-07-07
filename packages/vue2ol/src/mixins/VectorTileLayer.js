@@ -7,7 +7,7 @@ export default {
          * 图层的背景颜色。如果未指定，则不会呈现背景。
          * @typeName {import('ol/layer/Base').BackgroundColor|false|undefined}
          */
-        background:{},
+        background: {},
         /**
          * 预加载。将低分辨率图块加载到preload关卡。0 意味着没有预加载。
          */
@@ -24,10 +24,10 @@ export default {
     },
     mounted() {
         this.vectorTileLayerOptions = {
+            ...(this.baseVectorLayerOptions || {}),
             background: this.background,
             preload: this.preload,
             useInterimTilesOnError: this.useInterimTilesOnError,
-            ...(this.baseVectorLayerOptions || {})
         }
     }
 }
