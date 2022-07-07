@@ -76,6 +76,7 @@ module.exports = {
         'control/ZoomSlider',
         'control/Attribution',
         'control/OverviewMap',
+        'control/ZoomToExtent',
       ]
     },
   ],
