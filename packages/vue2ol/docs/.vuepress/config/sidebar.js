@@ -75,6 +75,7 @@ module.exports = {
         'control/FullScreen',
         'control/ZoomSlider',
         'control/Attribution',
+        'control/OverviewMap',
       ]
     },
   ],

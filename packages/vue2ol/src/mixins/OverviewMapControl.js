@@ -16,12 +16,20 @@ export default {
     collapsible: {
       type: Boolean | undefined
     },
+
+    /**
+     * 控制视图是否应与主地图视图一起旋转。
+     */
+    rotateWithView: {
+      type: Boolean | undefined
+    }
   },
   mounted() {
-    this.attributionControlOptions = {
+    this.overviewMapControlOptions = {
       ...(this.controlOptions || {}),
       collapsed: this.collapsed,
-      collapsible: this.collapsible
+      collapsible: this.collapsible,
+      rotateWithView: this.rotateWithView
     }
   }
 }
