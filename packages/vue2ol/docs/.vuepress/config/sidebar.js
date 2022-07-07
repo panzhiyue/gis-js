@@ -77,6 +77,7 @@ module.exports = {
         'control/Attribution',
         'control/OverviewMap',
         'control/ZoomToExtent',
+        'control/MousePosition',
       ]
     },
   ],

@@ -24,3 +24,4 @@ export { default as FullScreenControlMixin } from './FullScreenControl';
 export { default as ZoomSliderControlMixin } from './ZoomSliderControl';
 export { default as AttributionControlMixin } from './AttributionControl';
 export { default as OverviewMapControlMixin } from './OverviewMapControl';
+export { default as MousePositionControlMixin } from './MousePositionControl';
