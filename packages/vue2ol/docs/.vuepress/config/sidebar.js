@@ -25,6 +25,7 @@ module.exports = {
       children: [
         'layer/Tile',
         'layer/Vector',
+        'layer/VectorImage',
       ]
     },
     {
