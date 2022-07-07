@@ -74,6 +74,7 @@ module.exports = {
         'control/ScaleLine',
         'control/FullScreen',
         'control/ZoomSlider',
+        'control/Attribution',
       ]
     },
   ],

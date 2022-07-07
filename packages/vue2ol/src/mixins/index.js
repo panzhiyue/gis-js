@@ -22,3 +22,4 @@ export { default as RotateControlMixin } from './RotateControl';
 export { default as ScaleLineControlMixin } from './ScaleLineControl';
 export { default as FullScreenControlMixin } from './FullScreenControl';
 export { default as ZoomSliderControlMixin } from './ZoomSliderControl';
+export { default as AttributionControlMixin } from './AttributionControl';
