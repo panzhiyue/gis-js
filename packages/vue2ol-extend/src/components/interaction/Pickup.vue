@@ -56,9 +56,9 @@ export default {
   },
   data() {
     return {
-      parent: null,
+      // parent: null,
       drawTool: null, //ol/interaction/Draw 对象
-      layer: null, //矢量图层
+      // layer: null, //矢量图层
     };
   },
   watch: {

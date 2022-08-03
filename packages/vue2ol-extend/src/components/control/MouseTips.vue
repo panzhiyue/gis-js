@@ -44,7 +44,7 @@ export default {
   },
   data() {
     return {
-      parent: null,
+      // parent: null,
       position: undefined,
     };
   },

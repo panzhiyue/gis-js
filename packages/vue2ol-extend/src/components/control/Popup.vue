@@ -77,7 +77,7 @@ export default {
   },
   data() {
     return {
-      parent: null,
+      // parent: null,
       visible: false,
     };
   },

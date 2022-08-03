@@ -35,7 +35,7 @@ export default {
     return {
       // mapObject: null, //ol/Feature对象
       ready: false, //是否加载完毕
-      parent: null, //openlayers父对象
+      // parent: null, //openlayers父对象
     };
   },
   emits: ["init", "append", "ready"],
@@ -146,6 +146,10 @@ export default {
     });
   },
   destroyed() {
+    this.parent.removeFeature(this.mapObject);
+    this.mapObject = null;
+  },
+  unmounted() {
     this.parent.removeFeature(this.mapObject);
     this.mapObject = null;
   },

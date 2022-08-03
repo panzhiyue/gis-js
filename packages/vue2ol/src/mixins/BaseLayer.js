@@ -9,7 +9,7 @@ export default {
     return {
       // mapObject: null, //对应的openlayers对象
       ready: false, //是否加载完毕
-      parent: null, //openlayers父对象
+      // parent: null, //openlayers父对象
     }
   },
   provide() {
@@ -110,6 +110,10 @@ export default {
     }
   },
   destroyed() {
+    this.parent.removeLayer(this.mapObject)
+    this.mapObject = null
+  },
+  unmounted() {
     this.parent.removeLayer(this.mapObject)
     this.mapObject = null
   },

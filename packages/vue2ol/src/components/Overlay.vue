@@ -35,7 +35,7 @@ export default {
     return {
       // mapObject: null, //ol/Overlay对象
       ready: false, //是否加载完毕
-      parent: null, //openlayers父对象
+      // parent: null, //openlayers父对象
     };
   },
   props: {
@@ -125,6 +125,10 @@ export default {
     });
   },
   destroyed() {
+    this.parent.removeOverlay(this.mapObject);
+    this.mapObject = null;
+  },
+  unmounted() {
     this.parent.removeOverlay(this.mapObject);
     this.mapObject = null;
   },

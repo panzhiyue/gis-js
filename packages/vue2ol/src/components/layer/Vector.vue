@@ -6,18 +6,23 @@
   </div>
 </template>
 <script>
-import Vector from 'ol/layer/Vector'
-import VectorLayerMixin from '../../mixins/VectorLayer'
-import { optionsMerger, bindListeners, propsBinder,getListeners } from '../../utils/index'
+import Vector from "ol/layer/Vector";
+import VectorLayerMixin from "../../mixins/VectorLayer";
+import {
+  optionsMerger,
+  bindListeners,
+  propsBinder,
+  getListeners,
+} from "../../utils/index";
 /**
  * ol/layer/Vector的vue组件
  * @since v1.0.0
  */
 export default {
-  name: 'Vue2olLayerVector',
+  name: "Vue2olLayerVector",
   mixins: [VectorLayerMixin],
   data() {
-    return {}
+    return {};
   },
   props: {},
   watch: {},
@@ -27,16 +32,16 @@ export default {
         ...(this.vectorLayerOptions || {}),
       },
       this
-    )
+    );
 
-    options.style = options.styleObj
-    this.mapObject = new Vector(options)
+    options.style = options.styleObj;
+    this.mapObject = new Vector(options);
     this.properties && this.mapObject.setProperties(this.properties);
 
     //绑定事件
-    bindListeners(this.mapObject, getListeners(this))
+    bindListeners(this.mapObject, getListeners(this));
     //监听props属性
-    propsBinder(this, this.mapObject, this.$options.props)
+    propsBinder(this, this.mapObject, this.$options.props);
 
     /**
      * 地图元素初始化完时触发
@@ -54,20 +59,24 @@ export default {
      */
     this.$emit("append", this.mapObject);
 
-    this.ready = true
+    this.ready = true;
     this.$nextTick(() => {
       /**
        * 组件就绪时触发
        * @type {object}
        * @property {import('ol/layer/Vector').default} mapObject  地图元素
        */
-      this.$emit('ready', this.mapObject)
-    })
+      this.$emit("ready", this.mapObject);
+    });
   },
   destroyed() {
-    this.parent.removeLayer(this.mapObject)
-    this.mapObject = null
+    this.parent.removeLayer(this.mapObject);
+    this.mapObject = null;
   },
-}
+  unmounted() {
+    this.parent.removeLayer(this.mapObject);
+    this.mapObject = null;
+  },
+};
 </script>
 <style scoped></style>

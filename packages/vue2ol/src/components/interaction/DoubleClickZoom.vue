@@ -23,7 +23,7 @@ export default {
   data() {
     return {
       // mapObject: null,
-      parent: null,
+      // parent: null,
       ready: false,
     };
   },
@@ -51,6 +51,10 @@ export default {
     this.initInteraction();
   },
   destroyed() {
+    this.mapObject.setActive(false);
+    this.parent.removeInteraction(this.mapObject);
+  },
+  unmounted() {
     this.mapObject.setActive(false);
     this.parent.removeInteraction(this.mapObject);
   },

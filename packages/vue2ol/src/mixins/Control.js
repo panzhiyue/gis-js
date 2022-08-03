@@ -10,7 +10,7 @@ export default {
     return {
       // mapObject: null, //对应的openlayers对象
       ready: false, //是否加载完毕
-      parent: null, //openlayers父对象
+      // parent: null, //openlayers父对象
     }
   },
   provide() {
@@ -38,6 +38,10 @@ export default {
     this.controlOptions = {}
   },
   destroyed() {
+    this.parent.removeControl(null)
+    this.mapObject = null
+  },
+  unmounted() {
     this.parent.removeControl(null)
     this.mapObject = null
   },

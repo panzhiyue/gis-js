@@ -101,7 +101,7 @@ export default {
   },
   data() {
     return {
-      parent: null,
+      // parent: null,
       // mapObject: null,
     };
   },
@@ -147,6 +147,9 @@ export default {
     });
   },
   destroyed() {
+    this.mapObject.dispose();
+  },
+  unmounted() {
     this.mapObject.dispose();
   },
   methods: {

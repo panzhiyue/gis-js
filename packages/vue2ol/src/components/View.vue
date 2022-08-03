@@ -31,7 +31,7 @@ export default {
     return {
       // mapObject: null, //ol/View对象
       ready: false, //是否加载完毕
-      parent: null, //openlayers父对象
+      // parent: null, //openlayers父对象
     };
   },
   props: {
@@ -152,6 +152,10 @@ export default {
     });
   },
   destroyed() {
+    this.parent.setView(null);
+    this.mapObject = null;
+  },
+  unmounted() {
     this.parent.setView(null);
     this.mapObject = null;
   },

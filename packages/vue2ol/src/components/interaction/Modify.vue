@@ -23,9 +23,9 @@ export default {
   data() {
     return {
       // mapObject: null,
-      parent: null,
+      // parent: null,
       ready: false,
-      map: null,
+      // map: null,
     };
   },
   props: {
@@ -63,6 +63,10 @@ export default {
     this.initInteraction();
   },
   destroyed() {
+    this.mapObject.setActive(false);
+    this.map.removeInteraction(this.mapObject);
+  },
+  unmounted() {
     this.mapObject.setActive(false);
     this.map.removeInteraction(this.mapObject);
   },

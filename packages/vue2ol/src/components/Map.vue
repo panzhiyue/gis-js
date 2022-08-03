@@ -121,6 +121,10 @@ export default {
     this.mapObject.dispose();
     this.mapObject = null;
   },
+  unmounted() {
+    this.mapObject.dispose();
+    this.mapObject = null;
+  },
 };
 </script>
 <style scoped>
