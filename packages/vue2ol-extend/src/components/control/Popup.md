@@ -9,7 +9,7 @@
     <vue2ol-layer-tile :name="'osm'">
       <vue2ol-source-osm></vue2ol-source-osm>
     </vue2ol-layer-tile>
-    <vue2ol-control-popup :position="position" direction="bottom">
+    <vue2ol-control-popup :position="position" direction="bottom" >
       <div>I'm a bullet box</div>
     </vue2ol-control-popup>
   </vue2ol-map>

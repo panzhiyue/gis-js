@@ -71,6 +71,7 @@ export default {
 | direction | 弹框显示位置                        | string                               | `"left"\|"right"\|"top"\|"bottom"` | "top"  |
 | position  | 弹框位置                            | {import('ol/coordinate').Coordinate} | -                                  |        |
 | showClose | 是否显示关闭按钮                    | boolean                              | -                                  | true   |
+| offset    | 是否显示关闭按钮                    | boolean                              | -                                  | true   |
 
 ## Slots
 

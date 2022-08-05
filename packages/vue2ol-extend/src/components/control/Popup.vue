@@ -7,7 +7,6 @@
     :position="position"
     :positioning="positioning"
     :offset="offset"
-    v-show="visible"
   >
     <div class="vue2ol-control-popup-content-wrapper">
       <div class="vue2ol-control-popup-content">
@@ -77,14 +76,9 @@ export default {
   },
   data() {
     return {
-      // parent: null,
-      visible: false,
     };
   },
   watch: {
-    position() {
-      this.visible = true;
-    },
   },
   computed: {
     positioning() {
@@ -119,7 +113,7 @@ export default {
   },
   methods: {
     close() {
-      this.visible = false;
+      this.$emit("close")
     },
   },
 };
