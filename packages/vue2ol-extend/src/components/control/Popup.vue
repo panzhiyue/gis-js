@@ -145,12 +145,13 @@ export default {
 
 .vue2ol-control-popup-tip-container {
   width: 40px;
-  height: 10px;
+  height: 13px;
   position: absolute;
   left: 50%;
   margin-left: -20px;
   overflow: hidden;
   pointer-events: none;
+  margin-top: -1px;
 }
 
 .vue2ol-control-popup-tip {
@@ -191,17 +192,17 @@ export default {
 .vue2ol-control-popup-bottom
   .vue2ol-control-popup-tip-container
   .vue2ol-control-popup-tip {
-  margin-top: 1px;
+  margin-top: 3px;
 }
 .vue2ol-control-popup-left {
 }
 
 .vue2ol-control-popup-left .vue2ol-control-popup-tip-container {
-  width: 10px;
+  width: 13px;
   height: 40px;
   left: 100%;
   top: 50%;
-  margin-left: -0px;
+  margin-left: -1px;
   margin-top: -20px;
 }
 
@@ -216,7 +217,7 @@ export default {
 }
 
 .vue2ol-control-popup-right .vue2ol-control-popup-tip-container {
-  width: 10px;
+  width: 13px;
   height: 40px;
   left: -10px;
   top: 50%;

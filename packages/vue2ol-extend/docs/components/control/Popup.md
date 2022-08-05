@@ -24,7 +24,7 @@ Since: v1.0.0
     <vue2ol-layer-tile :name="'osm'">
       <vue2ol-source-osm></vue2ol-source-osm>
     </vue2ol-layer-tile>
-    <vue2ol-control-popup :position="position" direction="top">
+    <vue2ol-control-popup :position="position" direction="bottom">
       <div>I'm a bullet box</div>
     </vue2ol-control-popup>
   </vue2ol-map>
