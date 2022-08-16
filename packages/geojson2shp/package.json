@@ -1,6 +1,6 @@
 {
   "name": "@gis-js/geojson2shp",
-  "version": "1.0.0-alpha.30",
+  "version": "1.0.0-alpha.31",
   "description": "geojson转为shp",
   "keywords": [
     "map",
@@ -24,8 +24,7 @@
   "scripts": {
     "dev:docs": " vuepress dev docs",
     "build:docs": "vuepress build docs",
-    "build:package": "rimraf -rf lib && mkdir lib &&  rollup -c --environment NODE_ENV:production",
-    "pub":"npm publish --access=public"
+    "build:package": "rimraf -rf lib && mkdir lib &&  rollup -c --environment NODE_ENV:production"
   },
   "bugs": {
     "url": "https://github.com/panzhiyue/gis-js/issues"

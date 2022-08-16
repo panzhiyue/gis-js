@@ -1,5 +1,5 @@
 declare module 'shapefile'
-declare module 'file-saver'
+declare module 'file-saver-es'
 declare module 'jszip'
 declare module 'proj4'
 

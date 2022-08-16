@@ -33,8 +33,8 @@
     "url": "https://github.com/panzhiyue/gis-js/issues"
   },
   "dependencies": {
-    "@gis-js/utilsol": "1.0.0-alpha.30",
-    "@gis-js/vue2ol": "1.0.0-alpha.30",
+    "@gis-js/utilsol": "workspace:*",
+    "@gis-js/vue2ol": "workspace:*",
     "ol": "^6.14.1"
   },
   "devDependencies": {

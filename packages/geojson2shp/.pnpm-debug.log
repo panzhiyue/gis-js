@@ -1,0 +1,16 @@
+{
+  "0 debug pnpm:scope": {
+    "selected": 1,
+    "workspacePrefix": "I:\\vue2ol"
+  },
+  "1 error pnpm": {
+    "code": "ERR_PNPM_NO_SCRIPT",
+    "hint": "But build is present in the root of the workspace,\nso you may run \"pnpm -w run build\"",
+    "err": {
+      "name": "pnpm",
+      "message": "Missing script: build",
+      "code": "ERR_PNPM_NO_SCRIPT",
+      "stack": "pnpm: Missing script: build\n    at Object.handler (C:\\Users\\Admin\\AppData\\Roaming\\nvm\\v16.15.0\\node_modules\\pnpm\\dist\\pnpm.cjs:171741:19)\n    at async C:\\Users\\Admin\\AppData\\Roaming\\nvm\\v16.15.0\\node_modules\\pnpm\\dist\\pnpm.cjs:176187:21\n    at async run (C:\\Users\\Admin\\AppData\\Roaming\\nvm\\v16.15.0\\node_modules\\pnpm\\dist\\pnpm.cjs:176161:34)\n    at async runPnpm (C:\\Users\\Admin\\AppData\\Roaming\\nvm\\v16.15.0\\node_modules\\pnpm\\dist\\pnpm.cjs:176379:5)\n    at async C:\\Users\\Admin\\AppData\\Roaming\\nvm\\v16.15.0\\node_modules\\pnpm\\dist\\pnpm.cjs:176371:7"
+    }
+  }
+}

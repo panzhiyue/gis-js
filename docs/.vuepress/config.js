@@ -15,7 +15,7 @@ module.exports = {
     }], //favicons，资源放在public文件夹
     ['meta', {
       name: 'keywords',
-      content: 'vuepress,gis,vdoing'
+      content: 'vuepress,gis'
     }],
     ['meta', {
       name: 'theme-color',

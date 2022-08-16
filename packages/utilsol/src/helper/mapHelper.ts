@@ -1,6 +1,6 @@
 import Map from "ol/Map"
 import domtoimage from 'dom-to-image';
-import { saveAs } from 'file-saver';
+import { saveAs } from 'file-saver-es';
 /**
  * 下载地图为png图片
  */
