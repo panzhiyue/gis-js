@@ -4,8 +4,6 @@
 
 [animation](../modules/animation.md).DynamicLine
 
-动态线
-
 ## Table of contents
 
 ### Constructors
@@ -47,21 +45,17 @@
 
 • **new DynamicLine**(`opt_options`)
 
-构造函数
-
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `opt_options` | `DynamicLineOptions` | 构造参数 |
+| `opt_options` | `DynamicLineOptions` |  |
 
 ## Properties
 
 ### coordinates\_
 
 • **coordinates\_**: `Coordinate`[]
-
-轨迹点
 
 ___
 
@@ -117,8 +111,6 @@ ___
 
 • **timer\_**: `any`
 
-计时器
-
 ## Methods
 
 ### dispose
@@ -134,8 +126,6 @@ ___
 ### end
 
 ▸ **end**(): `void`
-
-结束动画
 
 #### Returns
 
@@ -173,13 +163,11 @@ ___
 
 ▸ **setCoordinates**(`coordinates`): `void`
 
-设置轨迹坐标
-
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `coordinates` | `any` |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `coordinates` | `any` |  |
 
 #### Returns
 
@@ -287,13 +275,11 @@ ___
 
 ▸ **setSource**(`source`): `void`
 
-设置矢量图层
-
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `source` | `any` |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `source` | `any` |  |
 
 #### Returns
 
@@ -304,8 +290,6 @@ ___
 ### start
 
 ▸ **start**(): `void`
-
-开始动画
 
 #### Returns
 

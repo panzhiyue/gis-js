@@ -4,10 +4,6 @@
 
 [plot](../modules/plot.md).[tool](../modules/plot.tool.md).PlotEdit
 
-绘标编辑类
-
-**`api`**
-
 ## Hierarchy
 
 - `Observable`
@@ -67,13 +63,11 @@
 
 • **new PlotEdit**(`map`)
 
-构造函数
-
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `map` | `Map` | 地图对象 |
+| `map` | `Map` |  |
 
 #### Overrides
 
@@ -84,8 +78,6 @@ Observable.constructor
 ### Constants
 
 • **Constants**: `Object`
-
-常数对象
 
 #### Type declaration
 
@@ -100,15 +92,11 @@ ___
 
 • **activeControlPointId**: `number` = `null`
 
-激活的控制点的节点id
-
 ___
 
 ### activePlot
 
 • **activePlot**: `any` = `null`
-
-激活的会标图形
 
 ___
 
@@ -116,15 +104,11 @@ ___
 
 • **controlPointMouseMoveHandlerKey**: `EventsKey` = `null`
 
-控制点鼠标移动事件key
-
 ___
 
 ### controlPointMouseUpHandlerKey
 
 • **controlPointMouseUpHandlerKey**: `EventsKey` = `null`
-
-控制点鼠标抬起事件key
 
 ___
 
@@ -150,15 +134,11 @@ ___
 
 • **mapDragPan**: `DragPan` = `null`
 
-地图拖动交互对象
-
 ___
 
 ### map\_
 
 • **map\_**: `Map` = `null`
-
-地图对象
 
 ___
 
@@ -166,15 +146,11 @@ ___
 
 • **mouseOver**: `boolean` = `false`
 
-鼠标是否悬浮在图形上
-
 ___
 
 ### plotMouseDownHandlerKey
 
 • **plotMouseDownHandlerKey**: `EventsKey` = `null`
-
-绘标图形鼠标按下事件
 
 ___
 
@@ -182,15 +158,11 @@ ___
 
 • **plotMouseMoveHandlerKey**: `EventsKey` = `null`
 
-绘标图形鼠标移动事件
-
 ___
 
 ### plotMouseOverOutHandlerKey
 
 • **plotMouseOverOutHandlerKey**: `EventsKey` = `null`
-
-绘标图形鼠标移除事件
 
 ___
 
@@ -198,15 +170,11 @@ ___
 
 • **plotMouseUpHandlerKey**: `EventsKey` = `null`
 
-绘标图形鼠标抬起事件
-
 ___
 
 ### startPoint
 
 • **startPoint**: `Coordinate` = `null`
-
-开始点位,也就是鼠标按下时的经纬度坐标
 
 ## Methods
 
@@ -214,13 +182,11 @@ ___
 
 ▸ **activate**(`plot`): `void`
 
-激活
-
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `plot` | `any` | 激活编辑的要素 |
+| `plot` | `any` |  |
 
 #### Returns
 
@@ -232,13 +198,11 @@ ___
 
 ▸ **controlPointMouseDownHandler**(`e`): `void`
 
-控制点鼠标按下事件
-
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `e` | `any` |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `e` | `any` |  |
 
 #### Returns
 
@@ -250,13 +214,11 @@ ___
 
 ▸ **controlPointMouseMoveHandler**(`e`): `void`
 
-控制点移动事件
-
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `e` | `any` |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `e` | `any` |  |
 
 #### Returns
 
@@ -268,13 +230,11 @@ ___
 
 ▸ **controlPointMouseMoveHandler2**(`e`): `void`
 
-控制节点移动
-
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `e` | `any` |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `e` | `any` |  |
 
 #### Returns
 
@@ -286,13 +246,11 @@ ___
 
 ▸ **controlPointMouseUpHandler**(`e`): `void`
 
-控制点鼠标弹起事件
-
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `e` | `any` |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `e` | `any` |  |
 
 #### Returns
 
@@ -304,8 +262,6 @@ ___
 
 ▸ **deactivate**(): `void`
 
-注销激活事件
-
 #### Returns
 
 `void`
@@ -315,8 +271,6 @@ ___
 ### destroyHelperDom
 
 ▸ **destroyHelperDom**(): `void`
-
-销毁element
 
 #### Returns
 
@@ -328,8 +282,6 @@ ___
 
 ▸ **disableMapDragPan**(): `void`
 
-不允许地图拖拽
-
 #### Returns
 
 `void`
@@ -339,8 +291,6 @@ ___
 ### disconnectEventHandlers
 
 ▸ **disconnectEventHandlers**(): `void`
-
-注销事件
 
 #### Returns
 
@@ -352,8 +302,6 @@ ___
 
 ▸ **enableMapDragPan**(): `void`
 
-允许地图拖拽
-
 #### Returns
 
 `void`
@@ -363,8 +311,6 @@ ___
 ### getControlPoints
 
 ▸ **getControlPoints**(): `any`
-
-获取控制点
 
 #### Returns
 
@@ -376,8 +322,6 @@ ___
 
 ▸ **getMapParentElement**(): `ParentNode`
 
-获取地图容器父节点
-
 #### Returns
 
 `ParentNode`
@@ -387,8 +331,6 @@ ___
 ### initControlPoints
 
 ▸ **initControlPoints**(): `void`
-
-初始化控制点
 
 #### Returns
 
@@ -400,8 +342,6 @@ ___
 
 ▸ **initHelperDom**(): `void`
 
-初始化节点
-
 #### Returns
 
 `void`
@@ -412,13 +352,11 @@ ___
 
 ▸ **plotMouseDownHandler**(`e`): `void`
 
-编辑要素鼠标按下事件
-
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `e` | `any` |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `e` | `any` |  |
 
 #### Returns
 
@@ -430,13 +368,11 @@ ___
 
 ▸ **plotMouseMoveHandler**(`e`): `void`
 
-编辑要素鼠标移动事件
-
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `e` | `any` |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `e` | `any` |  |
 
 #### Returns
 
@@ -448,13 +384,11 @@ ___
 
 ▸ **plotMouseOverOutHandler**(`e`): `void`
 
-鼠标移入移出控制要素事件
-
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `e` | `any` |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `e` | `any` |  |
 
 #### Returns
 
@@ -466,13 +400,11 @@ ___
 
 ▸ **plotMouseUpHandler**(`e`): `void`
 
-编辑要素鼠标弹起事件
-
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `e` | `any` |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `e` | `any` |  |
 
 #### Returns
 
@@ -484,13 +416,11 @@ ___
 
 ▸ **setMap**(`map`): `void`
 
-绑定地图对象
-
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `map` | `Map` | 地图对象 |
+| `map` | `Map` |  |
 
 #### Returns
 

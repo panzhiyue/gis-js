@@ -67,7 +67,6 @@ export default {
 
 <script>
 import {Style,Circle,Stroke,Fill,Icon} from "ol/style"
-import icon from "../../img/marker.png"
 export default {
   data() {
     return {

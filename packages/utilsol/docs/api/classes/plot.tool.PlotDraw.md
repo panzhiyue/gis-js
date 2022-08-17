@@ -4,8 +4,6 @@
 
 [plot](../modules/plot.md).[tool](../modules/plot.tool.md).PlotDraw
 
-绘标绘制类
-
 ## Hierarchy
 
 - `Observable`
@@ -57,13 +55,11 @@
 
 • **new PlotDraw**(`opt_options`)
 
-构造函数
-
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `opt_options` | `any` | 构造参数 |
+| `opt_options` | `any` |  |
 
 #### Overrides
 
@@ -75,15 +71,11 @@ Observable.constructor
 
 • **dblClickZoomInteraction**: `DoubleClickZoom` = `null`
 
-地图双击工具备份
-
 ___
 
 ### drawLayer
 
 • **drawLayer**: `VectorLayer`<`any`\> = `null`
-
-绘标图层
 
 ___
 
@@ -91,15 +83,11 @@ ___
 
 • **drawSource**: `VectorSource`<`any`\> = `null`
 
-绘标数据源
-
 ___
 
 ### feature
 
 • **feature**: `Feature`<`any`\> = `null`
-
-要素
 
 ___
 
@@ -107,15 +95,11 @@ ___
 
 • **mapDoubleClickHandlerKey**: `EventsKey` = `null`
 
-鼠标双击事件key值
-
 ___
 
 ### mapFirstClickHandlerKey
 
 • **mapFirstClickHandlerKey**: `EventsKey` = `null`
-
-鼠标第一次点击事件key值
 
 ___
 
@@ -123,15 +107,11 @@ ___
 
 • **mapMouseMoveHandlerKey**: `EventsKey` = `null`
 
-鼠标移动事件key值
-
 ___
 
 ### mapNextClickHandlerKey
 
 • **mapNextClickHandlerKey**: `EventsKey` = `null`
-
-第一次之后的点击事件key值
 
 ___
 
@@ -139,15 +119,11 @@ ___
 
 • **map\_**: `Map` = `null`
 
-地图对象
-
 ___
 
 ### plot
 
 • **plot**: `Geometry` = `null`
-
-绘标图形
 
 ___
 
@@ -155,15 +131,11 @@ ___
 
 • **plotParams**: `Object` = `null`
 
-绘标参数
-
 ___
 
 ### plotType
 
 • **plotType**: [`PlotTypes`](../enums/plot.PlotTypes.md) = `null`
-
-绘标类型
 
 ___
 
@@ -171,15 +143,11 @@ ___
 
 • **points**: `Coordinate`[] = `null`
 
-点集合
-
 ___
 
 ### style
 
 • **style**: `Style` = `null`
-
-绘标样式
 
 ## Methods
 
@@ -187,14 +155,12 @@ ___
 
 ▸ **activate**(`type`, `params`): `void`
 
-激活绘标
-
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `type` | [`PlotTypes`](../enums/plot.PlotTypes.md) | 绘标类型 |
-| `params` | `Object` | 绘标参数 |
+| `type` | [`PlotTypes`](../enums/plot.PlotTypes.md) |  |
+| `params` | `Object` |  |
 
 #### Returns
 
@@ -206,8 +172,6 @@ ___
 
 ▸ **activateMapTools**(): `void`
 
-激活地图双击工具(结束绘制时激活)
-
 #### Returns
 
 `void`
@@ -217,8 +181,6 @@ ___
 ### deactivate
 
 ▸ **deactivate**(): `void`
-
-注销绘标
 
 #### Returns
 
@@ -230,8 +192,6 @@ ___
 
 ▸ **deactivateMapTools**(): `void`
 
-注销地图双击工具,并备份(开始绘制时注销)
-
 #### Returns
 
 `void`
@@ -241,8 +201,6 @@ ___
 ### disconnectEventHandlers
 
 ▸ **disconnectEventHandlers**(): `void`
-
-解除绑定的事件
 
 #### Returns
 
@@ -254,8 +212,6 @@ ___
 
 ▸ **drawEnd**(): `void`
 
-绘制结束
-
 #### Returns
 
 `void`
@@ -266,13 +222,9 @@ ___
 
 ▸ **isDrawing**(): `boolean`
 
-是否正在绘制
-
 #### Returns
 
 `boolean`
-
-ture:正在绘制,false:不在绘制
 
 ___
 
@@ -280,13 +232,11 @@ ___
 
 ▸ **mapDoubleClickHandler**(`e`): `void`
 
-鼠标双击完成绘制
-
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `e` | `any` |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `e` | `any` |  |
 
 #### Returns
 
@@ -298,13 +248,11 @@ ___
 
 ▸ **mapFirstClickHandler**(`e`): `void`
 
-鼠标首次点击事件
-
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `e` | `MapBrowserEvent`<`any`\> |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `e` | `MapBrowserEvent`<`any`\> |  |
 
 #### Returns
 
@@ -316,13 +264,11 @@ ___
 
 ▸ **mapMouseMoveHandler**(`e`): `void`
 
-鼠标移动事件
-
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `e` | `any` |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `e` | `any` |  |
 
 #### Returns
 
@@ -334,13 +280,11 @@ ___
 
 ▸ **mapNextClickHandler**(`e`): `void`
 
-第一次之后的点击事件
-
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `e` | `any` |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `e` | `any` |  |
 
 #### Returns
 
@@ -352,13 +296,11 @@ ___
 
 ▸ **setMap**(`map`): `void`
 
-绑定地图对象
-
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `map` | `Map` | 地图对象 |
+| `map` | `Map` |  |
 
 #### Returns
 

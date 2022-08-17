@@ -2,8 +2,6 @@
 
 # Class: EShapeFile
 
-shapefile文件操作类
-
 ## Hierarchy
 
 - `BaseObject`
@@ -36,8 +34,6 @@ shapefile文件操作类
 ### constructor
 
 • **new EShapeFile**(`opt_options`)
-
-构造函数
 
 #### Parameters
 
@@ -73,24 +69,11 @@ ___
 
 ▸ **downLoadZip**(`options`): `void`
 
-下载为ZIP文件
-
-**`example`**
-var options = {
-    folder: 'myshapes',
-    types: {
-        point: 'mypoints',
-        polygon: 'mypolygons',
-        line: 'mylines'
-    }
-}
-downLoadZip(options);
-
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `options` | `any` | 压缩包参数 |
+| `options` | `any` |  |
 
 #### Returns
 
@@ -102,13 +85,9 @@ ___
 
 ▸ **getFeatures**(): `any`[]
 
-获取要素数组
-
 #### Returns
 
 `any`[]
-
-要素集合
 
 ___
 
@@ -116,13 +95,9 @@ ___
 
 ▸ **getProjectionWKT**(): ``"GEOGCS[\"GCS_China_Geodetic_Coordinate_System_2000\",DATUM[\"D_China_2000\",SPHEROID[\"CGCS2000\",6378137.0,298.257222101]],PRIMEM[\"Greenwich\",0.0],UNIT[\"Degree\",0.0174532925199433]]"`` \| ``"GEOGCS[\"GCS_WGS_1984\",DATUM[\"D_WGS_1984\",SPHEROID[\"WGS_1984\",6378137.0,298.257223563]],PRIMEM[\"Greenwich\",0.0],UNIT[\"Degree\",0.0174532925199433],AUTHORITY[\"EPSG\",4326]]"``
 
-获取坐标系wkt格式字符串
-
 #### Returns
 
 ``"GEOGCS[\"GCS_China_Geodetic_Coordinate_System_2000\",DATUM[\"D_China_2000\",SPHEROID[\"CGCS2000\",6378137.0,298.257222101]],PRIMEM[\"Greenwich\",0.0],UNIT[\"Degree\",0.0174532925199433]]"`` \| ``"GEOGCS[\"GCS_WGS_1984\",DATUM[\"D_WGS_1984\",SPHEROID[\"WGS_1984\",6378137.0,298.257223563]],PRIMEM[\"Greenwich\",0.0],UNIT[\"Degree\",0.0174532925199433],AUTHORITY[\"EPSG\",4326]]"``
-
-坐标系wkt格式字符串
 
 ___
 
@@ -130,13 +105,11 @@ ___
 
 ▸ **readFile**(`files`): `void`
 
-读取文件
-
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `files` | `any` | file控件上传的文件列表 |
+| `files` | `any` |  |
 
 #### Returns
 
@@ -148,13 +121,11 @@ ___
 
 ▸ **readVector**(`vector`): `void`
 
-读取矢量图层
-
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `vector` | `any` | 矢量图层 |
+| `vector` | `any` |  |
 
 #### Returns
 
@@ -166,13 +137,11 @@ ___
 
 ▸ **setFeatures**(`features`): `void`
 
-获取设置数组
-
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `features` | `any` | 要素集合 |
+| `features` | `any` |  |
 
 #### Returns
 

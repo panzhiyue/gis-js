@@ -4,12 +4,6 @@
 
 [animation](../modules/animation.md).Track
 
-航线
-
-**`author`** 潘知悦
-
-**`since`** v1.1.0
-
 ## Hierarchy
 
 - `BaseObject`
@@ -70,8 +64,6 @@
 
 • **new Track**(`opt_options`)
 
-构造函数
-
 #### Parameters
 
 | Name | Type |
@@ -88,15 +80,11 @@ OLObject.constructor
 
 • `Private` **aId\_**: `any`
 
-动画id
-
 ___
 
 ### coordinates\_
 
 • `Private` **coordinates\_**: `Coordinate`[]
-
-起点坐标
 
 ___
 
@@ -104,15 +92,11 @@ ___
 
 • `Private` **feature\_**: `Feature`<`any`\> = `null`
 
-航线要素
-
 ___
 
 ### fraction\_
 
 • `Private` **fraction\_**: `number` = `0`
-
-动画索引号
 
 ___
 
@@ -120,15 +104,11 @@ ___
 
 • `Private` **lineAnimationFeature\_**: `Feature`<`any`\> = `null`
 
-动画线要素
-
 ___
 
 ### lineAnimationStyle\_
 
 • `Private` **lineAnimationStyle\_**: `Style`[] \| `StyleFunction`
-
-动画线样式
 
 ___
 
@@ -136,15 +116,11 @@ ___
 
 • `Private` **lineStyle\_**: `Style`[] \| `StyleFunction`
 
-固定航线线样式
-
 ___
 
 ### loop\_
 
 • `Private` **loop\_**: `boolean`
-
-动画循环
 
 ___
 
@@ -152,15 +128,11 @@ ___
 
 • `Private` **pointAnimationFeature\_**: `Feature`<`any`\> = `null`
 
-动画点要素
-
 ___
 
 ### pointAnimationStyle\_
 
 • `Private` **pointAnimationStyle\_**: `Style`[] \| `StyleFunction`
-
-动画点样式
 
 ___
 
@@ -168,15 +140,11 @@ ___
 
 • `Private` **source\_**: `VectorSource`<`any`\>
 
-矢量图层
-
 ## Methods
 
 ### animation\_
 
 ▸ `Private` **animation_**(): `void`
-
-渲染
 
 #### Returns
 
@@ -188,8 +156,6 @@ ___
 
 ▸ `Private` **createPoints_**(): `Coordinate`[]
 
-创建航线路线点集
-
 #### Returns
 
 `Coordinate`[]
@@ -199,8 +165,6 @@ ___
 ### end
 
 ▸ **end**(): `void`
-
-结束
 
 #### Returns
 
@@ -212,21 +176,15 @@ ___
 
 ▸ **getCoordinate**(): `Coordinate`[]
 
-获取坐标集合
-
 #### Returns
 
 `Coordinate`[]
-
-[[x,y]...[x,y]]
 
 ___
 
 ### getFeature
 
 ▸ **getFeature**(): `Feature`<`any`\>
-
-获取默认线要素
 
 #### Returns
 
@@ -238,8 +196,6 @@ ___
 
 ▸ **getFraction_**(): `number`
 
-获取动画执行部分
-
 #### Returns
 
 `number`
@@ -249,8 +205,6 @@ ___
 ### getLineAnimationFeature
 
 ▸ **getLineAnimationFeature**(): `Feature`<`any`\>
-
-获取动画线要素
 
 #### Returns
 
@@ -262,8 +216,6 @@ ___
 
 ▸ **getLineAnimationStyle**(): `Style`[] \| `StyleFunction`
 
-获取动画线样式
-
 #### Returns
 
 `Style`[] \| `StyleFunction`
@@ -273,8 +225,6 @@ ___
 ### getLineStyle
 
 ▸ **getLineStyle**(): `Style`[] \| `StyleFunction`
-
-获取默认线样式
 
 #### Returns
 
@@ -286,21 +236,15 @@ ___
 
 ▸ **getLoop**(): `boolean`
 
-获取是否循环
-
 #### Returns
 
 `boolean`
-
-布尔值
 
 ___
 
 ### getPointAnimationFeature
 
 ▸ **getPointAnimationFeature**(): `Feature`<`any`\>
-
-获取动画点要素
 
 #### Returns
 
@@ -312,8 +256,6 @@ ___
 
 ▸ **getPointAnimationStyle**(): `Style`[] \| `StyleFunction`
 
-获取动画点样式
-
 #### Returns
 
 `Style`[] \| `StyleFunction`
@@ -323,8 +265,6 @@ ___
 ### getSource
 
 ▸ **getSource**(): `VectorSource`<`any`\>
-
-获取矢量图层
 
 #### Returns
 
@@ -336,8 +276,6 @@ ___
 
 ▸ `Private` **init_**(): `void`
 
-初始化
-
 #### Returns
 
 `void`
@@ -348,14 +286,12 @@ ___
 
 ▸ `Private` **renderLine_**(`coordinates`, `fraction`, `angle`): `void`
 
-线
-
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `coordinates` | `Coordinate`[] | 航线坐标点集 |
-| `fraction` | `number` | 索引号 |
+| `coordinates` | `Coordinate`[] |  |
+| `fraction` | `number` |  |
 | `angle` | `number` | - |
 
 #### Returns
@@ -368,14 +304,12 @@ ___
 
 ▸ `Private` **renderPoint_**(`coordinates`, `fraction`, `angle`): `void`
 
-渲染点
-
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `coordinates` | `Coordinate`[] | 航线坐标点集 |
-| `fraction` | `number` | 索引号 |
+| `coordinates` | `Coordinate`[] |  |
+| `fraction` | `number` |  |
 | `angle` | `number` | - |
 
 #### Returns
@@ -388,13 +322,11 @@ ___
 
 ▸ **setCoordinates**(`coordinates`): `void`
 
-设置点集
-
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `coordinates` | `Coordinate`[] | [[x,y]...[x,y]] |
+| `coordinates` | `Coordinate`[] |  |
 
 #### Returns
 
@@ -406,13 +338,11 @@ ___
 
 ▸ **setFraction**(`fraction`): `void`
 
-设置动画进程
-
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `fraction` | `number` |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `fraction` | `number` |  |
 
 #### Returns
 
@@ -424,13 +354,11 @@ ___
 
 ▸ **setLineAnimationStyle**(`style`): `void`
 
-设置动画轨迹样式
-
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `style` | `Object` \| `Style` \| `Style`[] \| `StyleFunction` | 样式 |
+| `style` | `Object` \| `Style` \| `Style`[] \| `StyleFunction` |  |
 
 #### Returns
 
@@ -442,13 +370,11 @@ ___
 
 ▸ **setLineStyle**(`style`): `void`
 
-设置默认轨迹样式
-
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `style` | `Object` \| `Style` \| `Style`[] \| `StyleFunction` | 样式 |
+| `style` | `Object` \| `Style` \| `Style`[] \| `StyleFunction` |  |
 
 #### Returns
 
@@ -460,13 +386,11 @@ ___
 
 ▸ **setLoop**(`loop`): `void`
 
-设置是否循环
-
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `loop` | `boolean` |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `loop` | `boolean` |  |
 
 #### Returns
 
@@ -478,13 +402,11 @@ ___
 
 ▸ **setPointAnimationStyle**(`style`): `void`
 
-设置动画点样式
-
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `style` | `Object` \| `Style` \| `Style`[] \| `StyleFunction` | 样式 |
+| `style` | `Object` \| `Style` \| `Style`[] \| `StyleFunction` |  |
 
 #### Returns
 
@@ -496,13 +418,11 @@ ___
 
 ▸ **setSource**(`source`): `void`
 
-设置矢量图层
-
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `source` | `VectorSource`<`any`\> |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `source` | `VectorSource`<`any`\> |  |
 
 #### Returns
 
@@ -514,8 +434,6 @@ ___
 
 ▸ **start**(): `void`
 
-开始
-
 #### Returns
 
 `void`
@@ -525,8 +443,6 @@ ___
 ### stop
 
 ▸ **stop**(): `void`
-
-暂停
 
 #### Returns
 

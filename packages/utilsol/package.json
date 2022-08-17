@@ -23,16 +23,16 @@
     "url": "git+https://github.com/panzhiyue/gis-js.git"
   },
   "scripts": {
-    "dev:docs": "typedoc --options ./typedoc.config.json && vuepress dev docs",
+    "docs:dev": "typedoc --options ./typedoc.config.json && vuepress dev docs",
     "build:md": "typedoc --options ./typedoc.config.json",
-    "build:docs": "vuepress build docs",
+    "docs:build": "vuepress build docs",
     "build:package": "rimraf -rf lib && mkdir lib &&  rollup -c --environment NODE_ENV:production"
   },
   "bugs": {
     "url": "https://github.com/panzhiyue/gis-js/issues"
   },
   "dependencies": {
-    "@gis-js/geojson2shp": "workspace:geojson2shp@*",
+    "@gis-js/geojson2shp": "workspace:*",
     "@turf/turf": "6.5.0",
     "dom-to-image": "^2.6.0",
     "file-saver-es": "^2.0.5",

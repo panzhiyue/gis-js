@@ -2,6 +2,7 @@
 
 import "ol/ol.css"
 
+// (window)['global'] = window;
 // import Vue2OL from "@gis-js/vue2ol"
 // Vue.use(Vue2OL);
 
@@ -11,7 +12,7 @@ import "ol/ol.css"
 /**
  * to主题使用者：你可以去掉本文件的所有代码
  */
-export default ({
+export default async ({
   Vue, // VuePress 正在使用的 Vue 构造函数
   options, // 附加到根实例的一些选项
   router, // 当前应用的路由实例
@@ -22,10 +23,10 @@ export default ({
   if (!isServer) {
     (window)['global'] = window;
 
-    import('@gis-js/vue2ol' /* webpackChunkName: "notification" */ ).then((module) => {
+    await import('@gis-js/vue2ol' /* webpackChunkName: "notification" */).then((module) => {
       Vue.use(module.default)
     })
-    import('@gis-js/vue2ol-extend' /* webpackChunkName: "notification" */ ).then((module) => {
+    await import('@gis-js/vue2ol-extend' /* webpackChunkName: "notification" */).then((module) => {
       Vue.use(module.default)
     })
   }

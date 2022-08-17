@@ -4,8 +4,6 @@
 
 [style](style.md).parseJSON
 
-样式构造工具函数
-
 ## Table of contents
 
 ### Functions
@@ -18,13 +16,11 @@
 
 ▸ **default**(`settings`, `StyleModel?`): `any`
 
-构建样式
-
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `settings` | `any` | 配置 { text, stroke, circle, fill, icon, image} |
+| `settings` | `any` |  |
 | `StyleModel?` | `any` | - |
 
 #### Returns

@@ -20,15 +20,13 @@
 
 ▸ **createArrow**(`start`, `end`, `opts?`): `Style`
 
-构造箭头样式
-
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `start` | `Coordinate` | 起点经纬度 |
-| `end` | `Coordinate` | 终点经纬度 |
-| `opts` | `String` \| `Boolean` \| [`ArrowOptions`](../interfaces/style.arrow.ArrowOptions.md) | 箭头Icon配置项 |
+| `start` | `Coordinate` |  |
+| `end` | `Coordinate` |  |
+| `opts` | `String` \| `Boolean` \| [`ArrowOptions`](../interfaces/style.arrow.ArrowOptions.md) |  |
 
 #### Returns
 

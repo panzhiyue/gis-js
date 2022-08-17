@@ -39,154 +39,154 @@
 
 ### ARC
 
-• **ARC**
+• **ARC** = ``"arc"``
 
 ___
 
 ### ASSAULT\_DIRECTION
 
-• **ASSAULT\_DIRECTION**
+• **ASSAULT\_DIRECTION** = ``"assaultdirection"``
 
 ___
 
 ### ATTACK\_ARROW
 
-• **ATTACK\_ARROW**
+• **ATTACK\_ARROW** = ``"attackarrow"``
 
 ___
 
 ### CIRCLE
 
-• **CIRCLE**
+• **CIRCLE** = ``"circle"``
 
 ___
 
 ### CLOSED\_CURVE
 
-• **CLOSED\_CURVE**
+• **CLOSED\_CURVE** = ``"closedcurve"``
 
 ___
 
 ### CURVE
 
-• **CURVE**
+• **CURVE** = ``"curve"``
 
 ___
 
 ### DIAMOND
 
-• **DIAMOND**
+• **DIAMOND** = ``"diamond"``
 
 ___
 
 ### DOUBLE\_ARROW
 
-• **DOUBLE\_ARROW**
+• **DOUBLE\_ARROW** = ``"doublearrow"``
 
 ___
 
 ### ELLIPSE
 
-• **ELLIPSE**
+• **ELLIPSE** = ``"ellipse"``
 
 ___
 
 ### FINE\_ARROW
 
-• **FINE\_ARROW**
+• **FINE\_ARROW** = ``"finearrow"``
 
 ___
 
 ### FREEHAND\_LINE
 
-• **FREEHAND\_LINE**
+• **FREEHAND\_LINE** = ``"freehandline"``
 
 ___
 
 ### FREEHAND\_POLYGON
 
-• **FREEHAND\_POLYGON**
+• **FREEHAND\_POLYGON** = ``"freehandpolygon"``
 
 ___
 
 ### GATHERING\_PLACE
 
-• **GATHERING\_PLACE**
+• **GATHERING\_PLACE** = ``"gatheringplace"``
 
 ___
 
 ### LUNE
 
-• **LUNE**
+• **LUNE** = ``"lune"``
 
 ___
 
 ### POINT
 
-• **POINT**
+• **POINT** = ``"point"``
 
 ___
 
 ### POLYGON
 
-• **POLYGON**
+• **POLYGON** = ``"polygon"``
 
 ___
 
 ### POLYLINE
 
-• **POLYLINE**
+• **POLYLINE** = ``"polyline"``
 
 ___
 
 ### RECTANGLE
 
-• **RECTANGLE**
+• **RECTANGLE** = ``"rectangle"``
 
 ___
 
 ### REGULARPOLYGON
 
-• **REGULARPOLYGON**
+• **REGULARPOLYGON** = ``"regularpolygon"``
 
 ___
 
 ### SECTOR
 
-• **SECTOR**
+• **SECTOR** = ``"sector"``
 
 ___
 
 ### SQUAD\_COMBAT
 
-• **SQUAD\_COMBAT**
+• **SQUAD\_COMBAT** = ``"squadcombat"``
 
 ___
 
 ### STAR
 
-• **STAR**
+• **STAR** = ``"star"``
 
 ___
 
 ### STRAIGHT\_ARROW
 
-• **STRAIGHT\_ARROW**
+• **STRAIGHT\_ARROW** = ``"straightarrow"``
 
 ___
 
 ### TAILED\_ATTACK\_ARROW
 
-• **TAILED\_ATTACK\_ARROW**
+• **TAILED\_ATTACK\_ARROW** = ``"tailedattackarrow"``
 
 ___
 
 ### TAILED\_SQUAD\_COMBAT
 
-• **TAILED\_SQUAD\_COMBAT**
+• **TAILED\_SQUAD\_COMBAT** = ``"tailedsquadcombat"``
 
 ___
 
 ### TRIANGLE
 
-• **TRIANGLE**
+• **TRIANGLE** = ``"triangle"``

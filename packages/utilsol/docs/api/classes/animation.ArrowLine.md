@@ -4,8 +4,6 @@
 
 [animation](../modules/animation.md).ArrowLine
 
-动态线
-
 ## Table of contents
 
 ### Constructors
@@ -46,13 +44,11 @@
 
 • **new ArrowLine**(`opt_options`)
 
-构造函数
-
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `opt_options` | `ArrowLineOptions` | 构造参数 |
+| `opt_options` | `ArrowLineOptions` |  |
 
 ## Properties
 
@@ -66,8 +62,6 @@ ___
 
 • **coordinates\_**: `Coordinate`[]
 
-轨迹点
-
 ___
 
 ### feature\_
@@ -79,8 +73,6 @@ ___
 ### fraction
 
 • **fraction**: `number` = `0`
-
-动画循环参数(0-10)
 
 ___
 
@@ -100,8 +92,6 @@ ___
 
 • `Private` **ready**: `boolean` = `false`
 
-是否初始化
-
 ___
 
 ### source\_
@@ -114,15 +104,11 @@ ___
 
 • **speed**: `number` = `1`
 
-速度倍率(默认速度的多少倍)
-
 ___
 
 ### timer\_
 
 • **timer\_**: `any`
-
-计时器
 
 ## Methods
 
@@ -140,8 +126,6 @@ ___
 
 ▸ **end**(): `void`
 
-结束动画
-
 #### Returns
 
 `void`
@@ -152,8 +136,6 @@ ___
 
 ▸ **getInterval**(): `number`
 
-获取箭头间隔(像素)
-
 #### Returns
 
 `number`
@@ -163,8 +145,6 @@ ___
 ### getLineStyle
 
 ▸ **getLineStyle**(): `Object` \| `Style` \| `StyleFunction`
-
-获取默认轨迹样式
 
 #### Returns
 
@@ -215,13 +195,11 @@ ___
 
 ▸ **setArrowStyle**(`arrow`): `void`
 
-设置动画箭头
-
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `arrow` | `Function` \| [`ArrowOptions`](../interfaces/style.arrow.ArrowOptions.md) |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `arrow` | `Function` \| [`ArrowOptions`](../interfaces/style.arrow.ArrowOptions.md) |  |
 
 #### Returns
 
@@ -233,13 +211,11 @@ ___
 
 ▸ **setCoordinates**(`coordinates`): `void`
 
-设置轨迹坐标
-
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `coordinates` | `any` |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `coordinates` | `any` |  |
 
 #### Returns
 
@@ -251,13 +227,11 @@ ___
 
 ▸ **setInterval**(`interval`): `void`
 
-设置箭头间隔(像素)
-
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `interval` | `number` |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `interval` | `number` |  |
 
 #### Returns
 
@@ -269,13 +243,11 @@ ___
 
 ▸ **setLineStyle**(`style`): `void`
 
-设置默认轨迹样式
-
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `style` | `Object` \| `Style` \| `Style`[] \| `StyleFunction` | 样式 |
+| `style` | `Object` \| `Style` \| `Style`[] \| `StyleFunction` |  |
 
 #### Returns
 
@@ -287,13 +259,11 @@ ___
 
 ▸ **setSource**(`source`): `void`
 
-设置矢量图层
-
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `source` | `any` |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `source` | `any` |  |
 
 #### Returns
 
@@ -304,8 +274,6 @@ ___
 ### start
 
 ▸ **start**(): `void`
-
-开始动画
 
 #### Returns
 

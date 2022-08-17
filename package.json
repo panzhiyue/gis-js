@@ -2,16 +2,19 @@
   "name": "root",
   "private": true,
   "scripts": {
-    "build:package": "lerna run build:package",
-    "build:md": "lerna run build:md",
-    "build:docs": "yarn workspaces run build:docs ",
-    "build": "npm run build:package && npm run build:md && npm run build:docs",
-    "dev:docs": "yarn workspaces run dev:docs  ",
-    "version": "lerna version",
-    "deploy:docs": "node ./scripts/deploy.js",
-    "pub": "yarn workspaces run pub"
+    "build:package": "pnpm -r build:package",
+    "build:md": "pnpm  -r build:md ",
+    "build:docs": "pnpm  -r build:docs ",
+    "build": "pnpm  build:package && pnpm  build:md && pnpm  build:docs",
+    "dev:docs": "pnpm -r  dev:docs  ",
+    "deploy:docs": "node ./scripts/deploy.js"
   },
   "devDependencies": {
+    "@gis-js/geojson2shp": "workspace:*",
+    "@gis-js/utilsol": "workspace:*",
+    "@gis-js/vue2ol": "workspace:*",
+    "@gis-js/vue2ol-extend": "workspace:*",
+    "@panzhiyue/vuepress-plugin-demo-container-v2": "^1.0.3",
     "concurrently": "^7.0.0",
     "directory-tree": "^3.2.2",
     "fs-extra": "^10.1.0",
@@ -23,11 +26,12 @@
     "rollup-plugin-vue": "^5.1.9",
     "shelljs": "^0.8.5",
     "vue-docgen-cli": "^4.45.0",
-    "vue-template-compiler": "2.6.14",
-    "vuepress": "^1.8.2",
-    "vuepress-plugin-demo-container-v2": "^2.3.4",
-    "vuepress-plugin-one-click-copy": "^1.0.2"
+    "vue-template-compiler": "2.7.8",
+    "vuepress": "1.9.7",
+    "vuepress-plugin-one-click-copy": "^1.0.2",
+    "vuepress-theme-vdoing": "^1.9.5"
   },
   "dependencies": {
+    "file-saver": "^2.0.5"
   }
 }

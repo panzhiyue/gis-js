@@ -65,14 +65,14 @@ module.exports = {
       }]
     },
     resolve: {
-      alias: {
-        'vue2ol': "../../src",
-      },
+      // alias: {
+      //   "@gis-js/geojson2shp":"../../../geojson2shp"
+      // },
     },
   },
   markdown: {
     toc: {
-      includeLevel: [1,,2, 3, 4]
+      includeLevel: [1,2, 3, 4]
     }
   },
   // 插件
@@ -83,6 +83,6 @@ module.exports = {
       duration: 1000, // prompt message display time.
       showInMobile: false // whether to display on the mobile side, default: false.
     }],
-    ['demo-container-v2'],
+    [require('@panzhiyue/vuepress-plugin-demo-container-v2')],
   ],
 }

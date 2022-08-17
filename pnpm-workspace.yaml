@@ -1,2 +1,5 @@
 packages:
-  - packages/*
+  - packages/geojson2shp
+  - packages/utilsol
+  - packages/vue2ol
+  - packages/vue2ol-extend

@@ -93,6 +93,6 @@ module.exports = {
       duration: 1000, // prompt message display time.
       showInMobile: false // whether to display on the mobile side, default: false.
     }],
-    ['demo-container-v2'],
+    [require('@panzhiyue/vuepress-plugin-demo-container-v2')],
   ],
 }
