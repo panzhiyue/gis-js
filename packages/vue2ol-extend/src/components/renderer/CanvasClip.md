@@ -1,3 +1,6 @@
+
+## 注意
+ol/source/Tile 需要传入参数`devicePixelRatio:window.devicePixelRatio`
 ## 基础用法
 
 ::: demo
@@ -7,9 +10,16 @@
         <vue2ol-view :zoom="zoom" :center="center" :options="viewOptions">
         </vue2ol-view>
         <vue2ol-layer-tile>
-            <vue2ol-source-osm>
-            </vue2ol-source-osm>
+            <vue2ol-source-tdt :options="{devicePixelRatio:devicePixelRatio}">
+            </vue2ol-source-tdt>
         </vue2ol-layer-tile>
+        <vue2ol-layer-vector>
+          <vue2ol-source-vector>
+            <vue2ol-feature :geometry="polygon">
+
+            </vue2ol-feature>
+          </vue2ol-source-vector>
+        </vue2ol-layer-vector>
         <vue2ol-renderer-canvasclip :geometry="polygon">
         </vue2ol-renderer-canvasclip>
     </vue2ol-map>
@@ -21,15 +31,16 @@ export default{
   data(){
     return {
       zoom:8,  //级别
-      center:[123.5,27.5],  //中心点
+      center:[119.5,27.5],  //中心点
       viewOptions:{
         projection:"EPSG:4326"  //坐标系
       },
-      polygon:null
+      polygon:null,
+      devicePixelRatio:global.devicePixelRatio
     }
   },
   mounted(){
-       this.polygon=new Polygon([[[122,28],[124,28],[124,27],[123,27],[122,28]]]);
+       this.polygon=new Polygon([[[118,28],[120,28],[120,27],[119,27],[118,28]]]);
   }
 }
 </script>
