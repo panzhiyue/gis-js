@@ -1,16 +1,15 @@
 <template>
-  <vue2ol-source-xyz :url="newUrl"></vue2ol-source-xyz>
+  <vue2ol-source-xyz :url="newUrl" :options="options"></vue2ol-source-xyz>
 </template>
 <script>
-import { XYZSourceMixin, Vue2olSourceXyz } from "@gis-js/vue2ol";
+import { Vue2olSourceXyz } from "@gis-js/vue2ol";
 /**
  * 智图
  */
 export default {
   name: "Vue2olSourceGeoq",
-  mixins: [XYZSourceMixin],
   components: {
-    Vue2olSourceXyz
+    Vue2olSourceXyz,
   },
   data() {
     return {
@@ -35,6 +34,12 @@ export default {
       type: [String, Object],
       default: "EPSG:3857",
     },
+    /**
+     * ol/source/XYZ对应的实例化参数
+     */
+    options: {
+      type: Object,
+    },
   },
   mounted() {
     if (this.layer == "normal_map") {
@@ -48,7 +53,6 @@ export default {
     } else if (this.layer == "theme_hydro") {
       this.newUrl = `http://thematic.geoq.cn/arcgis/rest/services/ThematicMaps/WorldHydroMap/MapServer/tile/{z}/{y}/{x}`;
     }
-   
   },
 };
 </script>

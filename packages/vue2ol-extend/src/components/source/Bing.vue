@@ -1,11 +1,10 @@
 <template>
-  <vue2ol-source-xyz :tileUrlFunction="tileUrlFunction2"></vue2ol-source-xyz>
+  <vue2ol-source-xyz :tileUrlFunction="tileUrlFunction2" :options="options"></vue2ol-source-xyz>
 </template>
 <script>
-import { XYZSourceMixin, Vue2olSourceXyz } from "@gis-js/vue2ol";
+import {  Vue2olSourceXyz } from "@gis-js/vue2ol";
 export default {
   name: "Vue2olSourceBind",
-  mixins: [XYZSourceMixin],
   components: {
     Vue2olSourceXyz,
   },
@@ -13,7 +12,12 @@ export default {
     return {};
   },
   props: {
-    
+    /**
+     * ol/source/XYZ对应的实例化参数
+     */
+    options: {
+      type: Object,
+    },
   },
   mounted() {},
   methods: {

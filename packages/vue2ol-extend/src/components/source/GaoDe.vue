@@ -1,13 +1,12 @@
 <template>
-  <vue2ol-source-xyz :url="newUrl"></vue2ol-source-xyz>
+  <vue2ol-source-xyz :url="newUrl" :options="options"></vue2ol-source-xyz>
 </template>
 <script>
-import { XYZSourceMixin, Vue2olSourceXyz } from "@gis-js/vue2ol";
+import {  Vue2olSourceXyz } from "@gis-js/vue2ol";
 export default {
   name: "Vue2olSourceGaode",
-  mixins: [XYZSourceMixin],
   components: {
-    Vue2olSourceXyz
+    Vue2olSourceXyz,
   },
   data() {
     return {
@@ -23,6 +22,12 @@ export default {
     layer: {
       type: String,
       default: "normal_map",
+    },
+    /**
+     * ol/source/XYZ对应的实例化参数
+     */
+    options: {
+      type: Object,
     },
   },
   mounted() {

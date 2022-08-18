@@ -1,11 +1,11 @@
 <template>
-  <vue2ol-source-xyz :url="newUrl" :projection="projection" ></vue2ol-source-xyz>
+  <vue2ol-source-xyz :url="newUrl" :projection="projection" :options="options" ></vue2ol-source-xyz>
 </template>
 <script>
-import {Vue2olSourceXyz,XYZSourceMixin} from "@gis-js/vue2ol";
+import {Vue2olSourceXyz} from "@gis-js/vue2ol";
 export default {
   name: "Vue2olSourceTdt",
-  mixins: [XYZSourceMixin],
+  // mixins: [XYZSourceMixin],
   components: {
     Vue2olSourceXyz,
   },
@@ -38,6 +38,12 @@ export default {
       type: [String, Object],
       default: "EPSG:4326",
     },
+    /**
+     * ol/source/XYZ对应的实例化参数
+     */
+    options:{
+      type:Object
+    }
   },
   mounted() {
     this.newUrl = `http://t{0-3}.tianditu.gov.cn/${this.layer}_c/wmts?layer=${this.layer}&style=default&tilematrixset=c&Service=WMTS&Request=GetTile&Version=1.0.0&Format=tiles&TileMatrix={z}&TileCol={x}&TileRow={y}&tk=${this.tk}`;
