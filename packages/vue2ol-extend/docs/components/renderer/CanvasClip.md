@@ -12,7 +12,7 @@ title: Vue2olRendererCanvasclip
 
 ## 注意
 
-ol/source/Tile 需要传入参数`devicePixelRatio:window.devicePixelRatio`
+ol/source/Tile 需要传入参数`tilePixelRatio:window.devicePixelRatio`
 
 ## 基础用法
 
