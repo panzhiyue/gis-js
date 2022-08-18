@@ -48,6 +48,11 @@ module.exports = {
         '/components/interaction/PlotDraw',
         '/components/interaction/Pickup',
       ]
+    }, {
+      title: "event",
+      children: [
+        '/components/event/Vector',
+      ]
     },
   ],
 }
