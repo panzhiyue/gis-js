@@ -1,4 +1,3 @@
-import Map from "ol/Map"
 
 /**
  * 绑定事件
@@ -83,7 +82,7 @@ export const findRealParent = (firstVueParent) => {
  */
 export const findParentMap = (firstVueParent) => {
   while (firstVueParent) {
-    if (firstVueParent.mapObject !== undefined && firstVueParent.mapObject !== null && firstVueParent.mapObject instanceof Map) {
+    if (firstVueParent.mapObject !== undefined && firstVueParent.mapObject !== null && firstVueParent.name=="vue2ol-map") {
       return firstVueParent;
     } else {
       firstVueParent = firstVueParent.$parent;
