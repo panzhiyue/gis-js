@@ -1,10 +1,10 @@
 ---
 
-title: vue2ol-event-vector
+title: Vue2olEventVector
 
 ---
 
-# vue2ol-event-vector
+# Vue2olEventVector
 
 ---
 

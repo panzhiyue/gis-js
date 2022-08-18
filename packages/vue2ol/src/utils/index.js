@@ -82,7 +82,7 @@ export const findRealParent = (firstVueParent) => {
  */
 export const findParentMap = (firstVueParent) => {
   while (firstVueParent) {
-    if (firstVueParent.mapObject !== undefined && firstVueParent.mapObject !== null && firstVueParent.name=="vue2ol-map") {
+    if (firstVueParent.mapObject !== undefined && firstVueParent.mapObject !== null && firstVueParent.$options.name=="Vue2olMap") {
       return firstVueParent;
     } else {
       firstVueParent = firstVueParent.$parent;

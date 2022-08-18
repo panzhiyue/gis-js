@@ -4,7 +4,7 @@
 <script>
 import { findRealParent, findParentMap } from "@gis-js/vue2ol";
 export default {
-  name: "vue2ol-event-vector",
+  name: "Vue2olEventVector",
   data() {
     return {
     //   parent: null,

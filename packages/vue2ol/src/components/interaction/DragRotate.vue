@@ -83,7 +83,6 @@ export default {
       this.$emit("init", this.mapObject);
 
       this.parent.addInteraction(this.mapObject);
-      console.log(this.parent.getInteractions());
       /**
        * 地图元素初始化完时触发
        * @type {object}
