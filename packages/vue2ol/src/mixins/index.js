@@ -4,7 +4,7 @@ export { default as BaseVectorLayerMixin } from './BaseVectorLayer';
 export { default as GeometryMixin } from './Geometry';
 export { default as LayerMixin } from './Layer';
 export { default as ObjectMixin } from './Object';
-export { default as OptionsMixin } from './Object';
+export { default as OptionsMixin } from './Options';
 export { default as SimpleGeometryMixin } from './SimpleGeometry';
 export { default as SourceMixin } from './Source';
 export { default as TileImageSourceMixin } from './TileImageSource';
