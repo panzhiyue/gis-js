@@ -38,11 +38,11 @@ export default {
     this.controlOptions = {}
   },
   destroyed() {
-    this.parent.removeControl(null)
+    this.parent.removeControl(this.mapObject)
     this.mapObject = null
   },
   unmounted() {
-    this.parent.removeControl(null)
+    this.parent.removeControl(this.mapObject)
     this.mapObject = null
   },
 }

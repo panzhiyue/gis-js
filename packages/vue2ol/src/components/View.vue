@@ -152,11 +152,11 @@ export default {
     });
   },
   destroyed() {
-    this.parent.setView(null);
+    // this.parent.setView(null);
     this.mapObject = null;
   },
   unmounted() {
-    this.parent.setView(null);
+    // this.parent.setView(null);
     this.mapObject = null;
   },
 };
