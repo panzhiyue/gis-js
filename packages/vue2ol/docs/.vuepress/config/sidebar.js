@@ -65,6 +65,7 @@ module.exports = {
         'interaction/DoubleClickZoom',
         'interaction/DragRotateAndZoom',
         'interaction/DragAndDrop',
+        'interaction/KeyboardPan',
       ]
     },
     {
