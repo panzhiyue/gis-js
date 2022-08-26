@@ -1,10 +1,10 @@
 ---
 
-title: Vue2olInteractionDragpan
+title: Vue2olInteractionPinchzoom
 
 ---
 
-# Vue2olInteractionDragpan
+# Vue2olInteractionPinchzoom
 
 ---
 
@@ -26,9 +26,9 @@ title: Vue2olInteractionDragpan
     <vue2ol-layer-tile>
       <vue2ol-source-osm></vue2ol-source-osm>
     </vue2ol-layer-tile>
-    <vue2ol-interaction-dragpan
+    <vue2ol-interaction-pinchzoom
       :active="active == '1'"
-    ></vue2ol-interaction-dragpan>
+    ></vue2ol-interaction-pinchzoom>
   </vue2ol-map>
 </template>
 
@@ -67,7 +67,7 @@ export default {
 
 ## Events
 
-| 名称  | 属性                                                                | 描述                   |
-| ----- | ------------------------------------------------------------------- | ---------------------- |
-| init  | **mapObject** `import('ol/interaction/DragPan').default` - 地图元素 | 地图元素初始化完时触发 |
-| ready | **mapObject** `import('ol/interaction/DragPan').default` - 地图元素 | 地图元素初始化完时触发 |
+| 名称  | 属性                                                                  | 描述                   |
+| ----- | --------------------------------------------------------------------- | ---------------------- |
+| init  | **mapObject** `import('ol/interaction/PinchZoom').default` - 地图元素 | 地图元素初始化完时触发 |
+| ready | **mapObject** `import('ol/interaction/PinchZoom').default` - 地图元素 | 地图元素初始化完时触发 |

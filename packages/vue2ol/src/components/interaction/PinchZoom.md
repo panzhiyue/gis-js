@@ -15,7 +15,7 @@
   <vue2ol-layer-tile>
     <vue2ol-source-osm></vue2ol-source-osm>
   </vue2ol-layer-tile>
-  <vue2ol-interaction-dragpan  :active="active=='1'"></vue2ol-interaction-dragpan>
+  <vue2ol-interaction-pinchzoom  :active="active=='1'"></vue2ol-interaction-pinchzoom>
 </vue2ol-map>
 </template>
 

@@ -12,78 +12,79 @@ module.exports = {
 
   }],
   '/components/': [{
-      title: "basic",
-      children: [
-        'Feature',
-        'Map',
-        'View',
-        'Overlay',
-      ]
-    },
-    {
-      title: "layer",
-      children: [
-        'layer/Tile',
-        'layer/Vector',
-        'layer/VectorImage',
-        'layer/VectorTile',
-      ]
-    },
-    {
-      title: "source",
-      children: [
-        'source/OSM',
-        'source/Vector',
-        'source/XYZ',
-        'source/Stamen',
-        'source/VectorTile',
-      ]
-    },
-    {
-      title: "geom",
-      children: [
-        'geom/Point',
-        'geom/Circle',
-        'geom/LineString',
-        'geom/Polygon',
-        'geom/MultiPoint',
-        'geom/MultiLineString',
-        'geom/MultiPolygon',
-      ]
-    },
-    {
-      title: "interaction",
-      children: [
-        'interaction/Draw',
-        'interaction/Modify',
-        'interaction/Select',
-        'interaction/DragPan',
-        'interaction/DragZoom',
-        'interaction/DragRotate',
-        'interaction/MouseWheelZoom',
-        'interaction/Extent',
-        'interaction/DoubleClickZoom',
-        'interaction/DragRotateAndZoom',
-        'interaction/DragAndDrop',
-        'interaction/KeyboardPan',
-        'interaction/KeyboardZoom',
-        'interaction/DragBox',
-      ]
-    },
-    {
-      title: "control",
-      children: [
-        'control/Zoom',
-        'control/Rotate',
-        'control/ScaleLine',
-        'control/FullScreen',
-        'control/ZoomSlider',
-        'control/Attribution',
-        'control/OverviewMap',
-        'control/ZoomToExtent',
-        'control/MousePosition',
-      ]
-    },
+    title: "basic",
+    children: [
+      'Feature',
+      'Map',
+      'View',
+      'Overlay',
+    ]
+  },
+  {
+    title: "layer",
+    children: [
+      'layer/Tile',
+      'layer/Vector',
+      'layer/VectorImage',
+      'layer/VectorTile',
+    ]
+  },
+  {
+    title: "source",
+    children: [
+      'source/OSM',
+      'source/Vector',
+      'source/XYZ',
+      'source/Stamen',
+      'source/VectorTile',
+    ]
+  },
+  {
+    title: "geom",
+    children: [
+      'geom/Point',
+      'geom/Circle',
+      'geom/LineString',
+      'geom/Polygon',
+      'geom/MultiPoint',
+      'geom/MultiLineString',
+      'geom/MultiPolygon',
+    ]
+  },
+  {
+    title: "interaction",
+    children: [
+      'interaction/Draw',
+      'interaction/Modify',
+      'interaction/Select',
+      'interaction/DragPan',
+      'interaction/DragZoom',
+      'interaction/DragRotate',
+      'interaction/MouseWheelZoom',
+      'interaction/Extent',
+      'interaction/DoubleClickZoom',
+      'interaction/DragRotateAndZoom',
+      'interaction/DragAndDrop',
+      'interaction/KeyboardPan',
+      'interaction/KeyboardZoom',
+      'interaction/DragBox',
+      'interaction/PinchZoom',
+    ]
+  },
+  {
+    title: "control",
+    children: [
+      'control/Zoom',
+      'control/Rotate',
+      'control/ScaleLine',
+      'control/FullScreen',
+      'control/ZoomSlider',
+      'control/Attribution',
+      'control/OverviewMap',
+      'control/ZoomToExtent',
+      'control/MousePosition',
+    ]
+  },
   ],
   '/plugins/': [''],
 
