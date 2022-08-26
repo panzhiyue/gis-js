@@ -43,6 +43,7 @@ export {default as Vue2olInteractionKeyboardpan} from "./interaction/KeyboardPan
 export {default as Vue2olInteractionKeyboardzoom} from "./interaction/KeyboardZoom.vue"
 export {default as Vue2olInteractionDragbox} from "./interaction/DragBox.vue"
 export {default as Vue2olInteractionPinchzoom} from "./interaction/PinchZoom.vue"
+export {default as Vue2olInteractionSnap} from "./interaction/Snap.vue"
 //control
 export {default as Vue2olControlZoom} from "./control/Zoom.vue"
 export {default as Vue2olControlRotate} from "./control/Rotate.vue"

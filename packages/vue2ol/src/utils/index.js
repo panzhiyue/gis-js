@@ -42,8 +42,8 @@ export const propsBinder = (vueElement, openlayersElement, props) => {
         (newVal, oldVal) => {
           vueElement[setMethodName](newVal, oldVal);
         }, {
-          deep: deepValue,
-        }
+        deep: deepValue,
+      }
       );
     } else if (openlayersElement[setMethodName]) {
       vueElement.$watch(
@@ -51,8 +51,8 @@ export const propsBinder = (vueElement, openlayersElement, props) => {
         (newVal, oldVal) => {
           openlayersElement[setMethodName](newVal);
         }, {
-          deep: deepValue,
-        }
+        deep: deepValue,
+      }
       );
     }
   }
@@ -81,13 +81,23 @@ export const findRealParent = (firstVueParent) => {
  * 一直往上找，直到父对象有mapObject对象并且是ol/Map
  */
 export const findParentMap = (firstVueParent) => {
-  while (firstVueParent) {
-    if (firstVueParent.mapObject !== undefined && firstVueParent.mapObject !== null && firstVueParent.$options.name=="Vue2olMap") {
-      return firstVueParent;
+  return findParent(firstVueParent, "Vue2olMap")
+};
+
+/**
+ * 找到指定的组件
+ * 一直往上找，直到父对象有mapObject对象名称是name
+ */
+export const findParent = (firstVueParent, name) => {
+  let found = false;
+  while (firstVueParent && !found) {
+    if (firstVueParent.mapObject !== undefined && firstVueParent.mapObject !== null && firstVueParent.$options.name == name) {
+      found = true;
     } else {
       firstVueParent = firstVueParent.$parent;
     }
   }
+  return firstVueParent;
 };
 
 
@@ -141,7 +151,7 @@ export const optionsMerger = (props, instance) => {
   //   instance.options : {};
   const options =
     instance.options ?
-    instance.options : {};
+      instance.options : {};
   const result = collectionCleaner(options);
   //手动构建的的options
   props = props && props.constructor === Object ? props : {};
@@ -154,9 +164,9 @@ export const optionsMerger = (props, instance) => {
     //props中对应项的默认值
     const def = defaultProps[key] ?
       defaultProps[key].default &&
-      typeof defaultProps[key].default === 'function' ?
-      defaultProps[key].default.call() :
-      defaultProps[key].default :
+        typeof defaultProps[key].default === 'function' ?
+        defaultProps[key].default.call() :
+        defaultProps[key].default :
       Symbol('unique');
     //props与手动构建对象的值是否相同
     let isEqual = false;

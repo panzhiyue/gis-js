@@ -69,6 +69,7 @@ module.exports = {
       'interaction/KeyboardZoom',
       'interaction/DragBox',
       'interaction/PinchZoom',
+      'interaction/Snap',
     ]
   },
   {
