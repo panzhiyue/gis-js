@@ -40,6 +40,7 @@ export {default as Vue2olInteractionExtent} from "./interaction/Extent.vue"
 export {default as Vue2olInteractionDoubleclickzoom} from "./interaction/DoubleClickZoom.vue"
 export {default as Vue2olInteractionDraganddrop} from "./interaction/DragAndDrop.vue"
 export {default as Vue2olInteractionKeyboardpan} from "./interaction/KeyboardPan.vue"
+export {default as Vue2olInteractionKeyboardzoom} from "./interaction/KeyboardZoom.vue"
 //control
 export {default as Vue2olControlZoom} from "./control/Zoom.vue"
 export {default as Vue2olControlRotate} from "./control/Rotate.vue"
