@@ -70,6 +70,7 @@ module.exports = {
       'interaction/DragBox',
       'interaction/PinchZoom',
       'interaction/Snap',
+      'interaction/Translate',
     ]
   },
   {
