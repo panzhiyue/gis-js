@@ -64,6 +64,7 @@ module.exports = {
         'interaction/Extent',
         'interaction/DoubleClickZoom',
         'interaction/DragRotateAndZoom',
+        'interaction/DragAndDrop',
       ]
     },
     {
