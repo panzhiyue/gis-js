@@ -3,7 +3,7 @@
 </template>
 <script>
 import { Modify } from "ol/interaction";
-import { OptionsMixin, ObjectMixin } from "../../mixins";
+import { PointerInteractionMixin } from "../../mixins";
 import {
   findRealParent,
   optionsMerger,
@@ -14,73 +14,41 @@ import {
 } from "../../utils";
 export default {
   name: "Vue2olInteractionModify",
-  mixins: [OptionsMixin, ObjectMixin],
-  provide() {
-    return {
-      interaction: this,
-    };
-  },
-  data() {
-    return {
-      // mapObject: null,
-      // parent: null,
-      ready: false,
-      // map: null,
-    };
-  },
+  mixins: [PointerInteractionMixin],
+
   props: {
-    /**
-     * 父地图
-     */
-    parentMap: {
-      type: Object,
-    },
     /**
      * 父数据源
      */
     parentSource: {
       type: Object,
     },
-    /**
-     * 是否激活
-     */
-    active: {
-      type: Boolean,
-    },
   },
   mounted() {
     if (this.parentSource) {
-      this.parent = this.parentSource;
+      this.source = this.parentSource;
     } else {
-      this.parent = findRealParent(this.$parent).mapObject;
+      this.source = findRealParent(this.$parent).mapObject;
     }
 
     if (this.parentMap) {
-      this.map = this.parentMap;
+      this.parent = this.parentMap;
     } else {
-      this.map = findParentMap(this.$parent).mapObject;
+      this.parent = findParentMap(this.$parent).mapObject;
     }
     this.initInteraction();
-  },
-  destroyed() {
-    this.mapObject.setActive(false);
-    this.map.removeInteraction(this.mapObject);
-  },
-  unmounted() {
-    this.mapObject.setActive(false);
-    this.map.removeInteraction(this.mapObject);
   },
   methods: {
     initInteraction() {
       this.ready = false;
       if (this.mapObject) {
         this.mapObject.setActive(false);
-        this.map.removeInteraction(this.mapObject);
+        this.parent.removeInteraction(this.mapObject);
         this.mapObject = null;
       }
       let options = optionsMerger(
         {
-          source: this.parent,
+          source: this.source,
         },
         this
       );
@@ -100,7 +68,7 @@ export default {
        */
       this.$emit("init", this.mapObject);
 
-      this.map.addInteraction(this.mapObject);
+      this.parent.addInteraction(this.mapObject);
 
       /**
        * 地图元素初始化完时触发

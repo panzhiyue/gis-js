@@ -28,6 +28,7 @@ export default {
   methods: {},
   mounted() {
     let options = optionsMerger(this.xyzSourceOptions, this);
+        console.log(this.options)
     //初始化view对象
     this.mapObject = new XYZ(options);
     this.properties && this.mapObject.setProperties(this.properties);

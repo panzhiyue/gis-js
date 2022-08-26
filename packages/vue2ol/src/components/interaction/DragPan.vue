@@ -3,7 +3,7 @@
 </template>
 <script>
 import { DragPan } from "ol/interaction";
-import { OptionsMixin, ObjectMixin } from "../../mixins";
+import { PointerInteractionMixin } from "../../mixins";
 import {
   findRealParent,
   optionsMerger,
@@ -14,50 +14,17 @@ import {
 } from "../../utils";
 export default {
   name: "Vue2olInteractionDragpan",
-  mixins: [OptionsMixin, ObjectMixin],
-  provide() {
-    return {
-      interaction: this,
-    };
-  },
-  data() {
-    return {
-      // mapObject: null,
-      // parent: null,
-      ready: false,
-    };
-  },
-  props: {
-    /**
-     * 父地图
-     */
-    parentMap: {
-      type: Object,
+  mixins: [PointerInteractionMixin],
+    mounted() {
+      if (this.parentMap) {
+        this.parent = this.parentMap;
+      } else {
+        this.parent = findParentMap(this.$parent).mapObject;
+      }
+      this.initInteraction();
     },
-    /**
-     * 是否激活
-     */
-    active: {
-      type: Boolean,
-    },
-  },
-  mounted() {
-    if (this.parentMap) {
-      this.parent = this.parentMap;
-    } else {
-      this.parent = findParentMap(this.$parent).mapObject;
-    }
-    this.initInteraction();
-  },
-  destroyed() {
-    this.mapObject.setActive(false);
-    this.parent.removeInteraction(this.mapObject);
-  },
-  unmounted() {
-    this.mapObject.setActive(false);
-    this.parent.removeInteraction(this.mapObject);
-  },
   methods: {
+
     initInteraction() {
       this.ready = false;
       if (this.mapObject) {

@@ -25,3 +25,5 @@ export { default as ZoomSliderControlMixin } from './ZoomSliderControl';
 export { default as AttributionControlMixin } from './AttributionControl';
 export { default as OverviewMapControlMixin } from './OverviewMapControl';
 export { default as MousePositionControlMixin } from './MousePositionControl';
+export { default as InteractionMixin } from './Interaction';
+export { default as PointerInteractionMixin } from './PointerInteraction';

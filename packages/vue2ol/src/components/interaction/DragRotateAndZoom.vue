@@ -3,7 +3,7 @@
 </template>
 <script>
 import { DragRotateAndZoom } from "ol/interaction";
-import { OptionsMixin, ObjectMixin } from "../../mixins";
+import { PointerInteractionMixin } from "../../mixins";
 import {
   findRealParent,
   optionsMerger,
@@ -14,33 +14,7 @@ import {
 } from "../../utils";
 export default {
   name: "Vue2olInteractionDragrotateandzoom",
-  mixins: [OptionsMixin, ObjectMixin],
-  provide() {
-    return {
-      interaction: this,
-    };
-  },
-  data() {
-    return {
-      // mapObject: null,
-      // parent: null,
-      ready: false,
-    };
-  },
-  props: {
-    /**
-     * 父地图
-     */
-    parentMap: {
-      type: Object,
-    },
-    /**
-     * 是否激活
-     */
-    active: {
-      type: Boolean,
-    },
-  },
+  mixins: [PointerInteractionMixin],
   mounted() {
     if (this.parentMap) {
       this.parent = this.parentMap;
@@ -48,14 +22,6 @@ export default {
       this.parent = findParentMap(this.$parent).mapObject;
     }
     this.initInteraction();
-  },
-  destroyed() {
-    this.mapObject.setActive(false);
-    this.parent.removeInteraction(this.mapObject);
-  },
-  unmounted() {
-    this.mapObject.setActive(false);
-    this.parent.removeInteraction(this.mapObject);
   },
   methods: {
     initInteraction() {
@@ -68,6 +34,7 @@ export default {
       let options = optionsMerger({}, this);
 
       this.mapObject = new DragRotateAndZoom(options);
+
       this.mapObject.setActive(this.active);
       this.properties && this.mapObject.setProperties(this.properties);
       //绑定事件

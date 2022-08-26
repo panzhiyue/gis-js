@@ -3,7 +3,7 @@
 </template>
 <script>
 import { DoubleClickZoom } from "ol/interaction";
-import { OptionsMixin, ObjectMixin } from "../../mixins";
+import { InteractionMixin } from "../../mixins";
 import {
   findRealParent,
   optionsMerger,
@@ -14,34 +14,7 @@ import {
 } from "../../utils";
 export default {
   name: "Vue2olInteractionDoubleclickzoom",
-  mixins: [OptionsMixin, ObjectMixin],
-  provide() {
-    return {
-      interaction: this,
-    };
-  },
-  data() {
-    return {
-      // mapObject: null,
-      // parent: null,
-      ready: false,
-    };
-  },
-
-  props: {
-    /**
-     * 父地图
-     */
-    parentMap: {
-      type: Object,
-    },
-    /**
-     * 是否激活
-     */
-    active: {
-      type: Boolean,
-    },
-  },
+  mixins: [InteractionMixin],
   mounted() {
     if (this.parentMap) {
       this.parent = this.parentMap;
@@ -49,14 +22,6 @@ export default {
       this.parent = findParentMap(this.$parent).mapObject;
     }
     this.initInteraction();
-  },
-  destroyed() {
-    this.mapObject.setActive(false);
-    this.parent.removeInteraction(this.mapObject);
-  },
-  unmounted() {
-    this.mapObject.setActive(false);
-    this.parent.removeInteraction(this.mapObject);
   },
   methods: {
     initInteraction() {
