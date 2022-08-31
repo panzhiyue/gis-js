@@ -1,12 +1,12 @@
-<!-- ol/source/OSM -->
+<!-- ol/source/ImageStatic -->
 <template>
   <div>
     <slot v-if="ready"></slot>
   </div>
 </template>
-<script>
-import OSM from "ol/source/OSM";
-import XYZSourceMixin from "../../mixins/XYZSource";
+    <script>
+import ImageStatic from "ol/source/ImageStatic";
+import ImageSourceMixin from "../../mixins/ImageSource";
 import {
   optionsMerger,
   bindListeners,
@@ -14,27 +14,28 @@ import {
   getListeners,
 } from "../../utils/index";
 /**
- * ol/source/OSM的vue组件
+ * ol/source/ImageStatic
  * @since v1.0.0
  */
 export default {
-  name: "Vue2olSourceOsm",
-  mixins: [XYZSourceMixin],
-  emits:["init","append","ready"],
+  name: "Vue2olSourceImagestatic",
+  mixins: [ImageSourceMixin],
+  emits: ["init", "append", "ready"],
   data() {
     return {};
   },
-  props: {},
+  props: {
+  },
   methods: {},
   mounted() {
     let options = optionsMerger(
       {
-        ...(this.xyzSourceOptions || {}),
+        ...(this.imageSourceOptions || {})
       },
       this
     );
     //初始化view对象
-    this.mapObject = new OSM(options);
+    this.mapObject = new ImageStatic(options);
     this.properties && this.mapObject.setProperties(this.properties);
 
     //绑定事件
@@ -45,7 +46,7 @@ export default {
     /**
      * 地图元素初始化完时触发
      * @type {object}
-     * @property {import('ol/source/OSM').default} mapObject 地图元素
+     * @property {import('ol/source/ImageStatic').default} mapObject 地图元素
      */
     this.$emit("init", this.mapObject);
 
@@ -54,7 +55,7 @@ export default {
     /**
      * 地图元素添加到地图时触发
      * @type {object}
-     * @property {import('ol/source/OSM').default} mapObject 地图元素
+     * @property {import('ol/source/ImageStatic').default} mapObject 地图元素
      */
     this.$emit("append", this.mapObject);
 
@@ -63,11 +64,12 @@ export default {
       /**
        * 组件就绪时触发
        * @type {object}
-       * @property {import('ol/source/OSM').default} mapObject 地图元素
+       * @property {import('ol/source/ImageStatic').default} mapObject 地图元素
        */
       this.$emit("ready", this.mapObject);
     });
   },
 };
 </script>
-<style scoped></style>
+    <style scoped></style>
+    

@@ -19,13 +19,19 @@ export {default as Vue2olLayerTile} from "./layer/Tile.vue"
 export {default as Vue2olLayerVector} from "./layer/Vector.vue"
 export {default as Vue2olLayerVectortile} from "./layer/VectorTile.vue"
 export {default as Vue2olLayerVectorimage} from "./layer/VectorImage.vue"
-
+export {default as Vue2olLayerImage} from "./layer/Image.vue"
 //source
 export {default as Vue2olSourceOsm} from "./source/OSM.vue"
 export {default as Vue2olSourceStamen} from "./source/Stamen.vue"
 export {default as Vue2olSourceVector} from "./source/Vector.vue"
 export {default as Vue2olSourceVectortile} from "./source/VectorTile.vue"
 export {default as Vue2olSourceXyz} from "./source/XYZ.vue"
+export {default as Vue2olSourceImagearcgisrest} from "./source/ImageArcGISRest.vue"
+export {default as Vue2olSourceImagecanvas} from "./source/ImageCanvas.vue"
+export {default as Vue2olSourceImagemapguide} from "./source/ImageMapGuide.vue"
+export {default as Vue2olSourceImagestatic} from "./source/ImageStatic.vue"
+export {default as Vue2olSourceImagewms} from "./source/ImageWMS.vue"
+export {default as Vue2olSourceRaster} from "./source/Raster.vue"
 
 //interaction
 export {default as Vue2olInteractionDraw} from "./interaction/Draw.vue"

@@ -27,6 +27,7 @@ module.exports = {
       'layer/Vector',
       'layer/VectorImage',
       'layer/VectorTile',
+      'layer/Image',
     ]
   },
   {
@@ -37,6 +38,11 @@ module.exports = {
       'source/XYZ',
       'source/Stamen',
       'source/VectorTile',
+      'source/ImageArcGISRest',
+      'source/ImageStatic',
+      'source/ImageWMS',
+      'source/Raster',
+      'source/ImageMapGuide',
     ]
   },
   {

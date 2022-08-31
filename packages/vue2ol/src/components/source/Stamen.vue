@@ -37,7 +37,7 @@ export default {
   mounted() {
     let options = optionsMerger(
       {
-        ...(this.XYZSourceMixin || {}),
+        ...(this.xyzSourceOptions || {}),
         layer: this.layer,
       },
       this
