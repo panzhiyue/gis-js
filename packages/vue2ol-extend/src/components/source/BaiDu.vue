@@ -4,7 +4,14 @@
 <script>
 import TileImage from "ol/source/TileImage";
 import TileGrid from "ol/tilegrid/TileGrid";
-import { optionsMerger, bindListeners, propsBinder,getListeners,TileImageSourceMixin } from "@gis-js/vue2ol";
+import {
+  optionsMerger,
+  bindListeners,
+  propsBinder,
+  getListeners,
+  TileImageSourceMixin,
+  ObjectMixin,
+} from "@gis-js/vue2ol";
 /**
  * 百度地图
  * @see https://blog.csdn.net/u013594477/article/details/83988055
@@ -12,6 +19,7 @@ import { optionsMerger, bindListeners, propsBinder,getListeners,TileImageSourceM
 export default {
   name: "Vue2olSourceBaidu",
   mixins: [TileImageSourceMixin],
+  mixins: [ObjectMixin],
   data() {
     return {
       newUrl: "",

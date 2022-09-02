@@ -56,6 +56,7 @@ export default {
 
 | 名称       | 描述                                                                                              | 类型                               | 取值范围                                                                               | 默认值       |
 | ---------- | ------------------------------------------------------------------------------------------------- | ---------------------------------- | -------------------------------------------------------------------------------------- | ------------ |
+| properties | 属性                                                                                              | object                             | -                                                                                      |              |
 | layer      | 矢量地图:normal_map,午夜蓝:normal_purplishblue,灰色:normal_gray,暖色:normal_warm,水系:theme_hydro | string                             | `"normal_map" \| "normal_purplishblue" \| "normal_gray"\|"normal_warm"\|"theme_hydro"` | "normal_map" |
 | projection | 坐标系                                                                                            | {import('ol/proj').ProjectionLike} | -                                                                                      | "EPSG:3857"  |
 | options    | ol/source/XYZ 对应的实例化参数                                                                    | object                             | -                                                                                      |              |

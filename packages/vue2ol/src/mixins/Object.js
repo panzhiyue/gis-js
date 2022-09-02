@@ -1,3 +1,4 @@
+import { getListeners, getAttrs } from "../utils/index";
 export default {
   data() {
     return {
@@ -5,7 +6,9 @@ export default {
       // ready: false, //是否加载完毕
       // parent: null, //openlayers父对象
       // parentContainer: null //父组件
-    }
+      listeners_: null,
+      attrs_: null,
+    };
   },
   props: {
     /**
@@ -21,6 +24,9 @@ export default {
     //   type: Object,
     //   default: () => ({})
     // }
-  }
-
-}
+  },
+  beforeMount() {
+    this.listeners_ = getListeners(this);
+    this.attrs_ = getAttrs(this);
+  },
+};
