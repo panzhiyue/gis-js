@@ -52,7 +52,6 @@ export default {
     },
   },
   mounted() {
-    console.log(this.listeners_);
     this.newUrl = `http://t{0-3}.tianditu.gov.cn/${this.layer}_c/wmts?layer=${this.layer}&style=default&tilematrixset=c&Service=WMTS&Request=GetTile&Version=1.0.0&Format=tiles&TileMatrix={z}&TileCol={x}&TileRow={y}&tk=${this.tk}`;
   },
 };
