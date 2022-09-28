@@ -19,7 +19,6 @@ import {
 export default {
   name: "Vue2olSourceBaidu",
   mixins: [TileImageSourceMixin],
-  mixins: [ObjectMixin],
   data() {
     return {
       newUrl: "",
