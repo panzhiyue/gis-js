@@ -62,7 +62,7 @@ export default {
      * 样式
      */
     styleObj: {
-      type: [Object, Function],
+      type: [Object, Function, Array],
       custom: true,
     },
   },

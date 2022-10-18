@@ -1,5 +1,3 @@
-
-
 <template>
   <div>
     <slot v-if="ready"></slot>
@@ -76,7 +74,7 @@ export default {
      * @typeName {import('ol/style/Style').StyleLike}
      */
     styleObj: {
-      type: [Object, Function],
+      type: [Object, Function, Array],
       custom: true,
     },
   },

@@ -42,7 +42,7 @@ export default {
      * @type {import('ol/style/Style').default}
      */
     styleObj: {
-      type: [Object, Function],
+      type: [Object,Function,Array],
     },
     /**
      * 格式
