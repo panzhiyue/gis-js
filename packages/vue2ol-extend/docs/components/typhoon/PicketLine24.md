@@ -22,11 +22,11 @@ title: Vue2olTyphoonPicketline24
     <vue2ol-layer-tile>
       <vue2ol-source-osm></vue2ol-source-osm>
     </vue2ol-layer-tile>
-    <!-- <vue2ol-layer-vector>
+    <vue2ol-layer-vector>
       <vue2ol-source-vector>
         <vue2ol-typhoon-picketline24></vue2ol-typhoon-picketline24>
       </vue2ol-source-vector>
-    </vue2ol-layer-vector> -->
+    </vue2ol-layer-vector>
   </vue2ol-map>
 </template>
 
@@ -98,8 +98,8 @@ export default {
 
 ## Props
 
-| 名称        | 描述     | 类型                          | 取值范围 | 默认值                                                                                      |
-| ----------- | -------- | ----------------------------- | -------- | ------------------------------------------------------------------------------------------- |
-| properties  | 属性     | object                        | -        |                                                                                             |
-| coordinates | 台风位置 | Array<ol/Coordinate> 坐标集合 | -        | [<br/> [127, 34],<br/> [127, 21],<br/> [110, 15],<br/>]                                     |
-| styleObj    | 样式     | {ol/style/Style}              | -        | new Style({<br/> stroke: new Stroke({<br/> color: "#ff0000",<br/> width: 1,<br/> }),<br/>}) |
+| 名称        | 描述           | 类型                          | 取值范围 | 默认值                                                                                      |
+| ----------- | -------------- | ----------------------------- | -------- | ------------------------------------------------------------------------------------------- |
+| properties  | 属性           | object                        | -        |                                                                                             |
+| coordinates | 警戒线坐标集合 | Array<ol/Coordinate> 坐标集合 | -        | [<br/> [127, 34],<br/> [127, 21],<br/> [110, 15],<br/>]                                     |
+| styleObj    | 样式           | {ol/style/Style}              | -        | new Style({<br/> stroke: new Stroke({<br/> color: "#ff0000",<br/> width: 1,<br/> }),<br/>}) |

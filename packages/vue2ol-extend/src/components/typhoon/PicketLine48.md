@@ -12,7 +12,7 @@
     </vue2ol-layer-tile>
     <vue2ol-layer-vector>
       <vue2ol-source-vector>
-        <vue2ol-typhoon-picketline24></vue2ol-typhoon-picketline24>
+        <vue2ol-typhoon-picketline48></vue2ol-typhoon-picketline48>
       </vue2ol-source-vector>
     </vue2ol-layer-vector>
   </vue2ol-map>
@@ -51,9 +51,9 @@ export default {
     </vue2ol-layer-tile>
     <vue2ol-layer-vector>
       <vue2ol-source-vector>
-        <vue2ol-typhoon-picketline24
+        <vue2ol-typhoon-picketline48
           :style-obj="style"
-        ></vue2ol-typhoon-picketline24>
+        ></vue2ol-typhoon-picketline48>
       </vue2ol-source-vector>
     </vue2ol-layer-vector>
   </vue2ol-map>

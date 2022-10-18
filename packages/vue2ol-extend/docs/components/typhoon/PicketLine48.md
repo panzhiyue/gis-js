@@ -1,3 +1,15 @@
+---
+
+title: Vue2olTyphoonPicketline48
+
+---
+
+# Vue2olTyphoonPicketline48
+
+> 48 小时警戒线
+
+---
+
 ## 基础用法
 
 ::: demo
@@ -12,7 +24,7 @@
     </vue2ol-layer-tile>
     <vue2ol-layer-vector>
       <vue2ol-source-vector>
-        <vue2ol-typhoon-picketline24></vue2ol-typhoon-picketline24>
+        <vue2ol-typhoon-picketline48></vue2ol-typhoon-picketline48>
       </vue2ol-source-vector>
     </vue2ol-layer-vector>
   </vue2ol-map>
@@ -25,12 +37,12 @@ export default {
       zoom: 4, //级别
       center: [124.7, 26.6], //中心点
       viewOptions: {
-        projection: "EPSG:4326", //坐标系
-      },
+        projection: "EPSG:4326" //坐标系
+      }
     };
   },
   computed: {},
-  mounted() {},
+  mounted() {}
 };
 </script>
 ```
@@ -51,9 +63,9 @@ export default {
     </vue2ol-layer-tile>
     <vue2ol-layer-vector>
       <vue2ol-source-vector>
-        <vue2ol-typhoon-picketline24
+        <vue2ol-typhoon-picketline48
           :style-obj="style"
-        ></vue2ol-typhoon-picketline24>
+        ></vue2ol-typhoon-picketline48>
       </vue2ol-source-vector>
     </vue2ol-layer-vector>
   </vue2ol-map>
@@ -68,19 +80,26 @@ export default {
       zoom: 4, //级别
       center: [124.7, 26.6], //中心点
       viewOptions: {
-        projection: "EPSG:4326", //坐标系
+        projection: "EPSG:4326" //坐标系
       },
       style: new Style({
         stroke: new Stroke({
           color: "#ffff00",
-          width: 1,
-        }),
-      }),
+          width: 1
+        })
+      })
     };
-  },
-
+  }
 };
 </script>
 ```
 
 :::
+
+## Props
+
+| 名称        | 描述           | 类型                          | 取值范围 | 默认值                                                                                      |
+| ----------- | -------------- | ----------------------------- | -------- | ------------------------------------------------------------------------------------------- |
+| properties  | 属性           | object                        | -        |                                                                                             |
+| coordinates | 警戒线坐标集合 | Array<ol/Coordinate> 坐标集合 | -        | [<br/> [132, 34],<br/> [132, 15],<br/> [105, 0],<br/>]                                      |
+| styleObj    | 样式           | {ol/style/Style}              | -        | new Style({<br/> stroke: new Stroke({<br/> color: "#ffff99",<br/> width: 1,<br/> }),<br/>}) |

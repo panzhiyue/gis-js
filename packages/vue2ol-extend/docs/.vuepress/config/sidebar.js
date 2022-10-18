@@ -60,6 +60,7 @@ module.exports = {
         '/components/typhoon/Name',
         '/components/typhoon/Marker',
         '/components/typhoon/PicketLine24',
+        '/components/typhoon/PicketLine48',
       ]
     },
   ],

@@ -33,3 +33,4 @@ export { default as Vue2olTyphoonWindcircle } from "./typhoon/WindCircle.vue";
 export { default as Vue2olTyphoonName } from "./typhoon/Name.vue";
 export { default as Vue2olTyphoonMarker } from "./typhoon/Marker.vue";
 export { default as Vue2olTyphoonPicketline24 } from "./typhoon/PicketLine24.vue";
+export { default as Vue2olTyphoonPicketline48 } from "./typhoon/PicketLine48.vue";

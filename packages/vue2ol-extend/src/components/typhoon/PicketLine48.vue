@@ -10,18 +10,17 @@ import { ObjectMixin } from "@gis-js/vue2ol";
 import { Vue2olFeature, Vue2olGeomLinestring } from "@gis-js/vue2ol";
 
 /**
- * 24小时警戒线
+ * 48小时警戒线
  */
 export default {
-  name: "Vue2olTyphoonPicketline24",
+  name: "Vue2olTyphoonPicketline48",
   mixins: [ObjectMixin],
   components: {
     Vue2olFeature,
     Vue2olGeomLinestring,
   },
   data() {
-    return {
-    };
+    return {};
   },
   props: {
     /**
@@ -32,9 +31,9 @@ export default {
       type: Array,
       default: () => {
         return [
-          [127, 34],
-          [127, 21],
-          [110, 15],
+          [132, 34],
+          [132, 15],
+          [105, 0],
         ];
       },
     },
@@ -47,7 +46,7 @@ export default {
       default: () => {
         return new Style({
           stroke: new Stroke({
-            color: "#ff0000",
+            color: "#ffff99",
             width: 1,
           }),
         });
