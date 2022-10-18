@@ -34,3 +34,11 @@ export { default as Vue2olTyphoonName } from "./typhoon/Name.vue";
 export { default as Vue2olTyphoonMarker } from "./typhoon/Marker.vue";
 export { default as Vue2olTyphoonPicketline24 } from "./typhoon/PicketLine24.vue";
 export { default as Vue2olTyphoonPicketline48 } from "./typhoon/PicketLine48.vue";
+export { default as Vue2olTyphoonRealpath } from "./typhoon/RealPath.vue";
+export { default as Vue2olTyphoonRealpoint } from "./typhoon/RealPoint.vue";
+export { default as Vue2olTyphoonForecastpath } from "./typhoon/ForecastPath.vue";
+export { default as Vue2olTyphoonForecastpoint } from "./typhoon/ForecastPoint.vue";
+export { default as Vue2olTyphoonCurrentinfo } from "./typhoon/CurrentInfo.vue";
+
+
+

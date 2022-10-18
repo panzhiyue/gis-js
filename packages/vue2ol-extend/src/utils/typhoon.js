@@ -54,12 +54,12 @@ export function getTyphoonLevel(windSpeed) {
 
 //台风等级颜色表
 export const colorTable = {
-  TD: "#02FF02",
-  TS: "#0264FF",
-  STS: "#FFFB05",
-  TY: "#FFAC05",
-  STY: "#F171F9",
-  SuperTY: "#FE0202",
+  TD: "#EED139",
+  TS: "#0000FF",
+  STS: "#0f8000",
+  TY: "#FE9C45",
+  STY: "#FE00FE",
+  SuperTY: "#FE0000",
 };
 
 export const findRadiusBySpeed = (speed) => {
