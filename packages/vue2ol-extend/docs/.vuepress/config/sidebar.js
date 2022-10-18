@@ -53,6 +53,13 @@ module.exports = {
       children: [
         '/components/event/Vector',
       ]
+    }, {
+      title: "typhoon",
+      children: [
+        '/components/typhoon/WindCircle',
+        '/components/typhoon/Name',
+        '/components/typhoon/Marker',
+      ]
     },
   ],
 }

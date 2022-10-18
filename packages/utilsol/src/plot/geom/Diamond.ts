@@ -46,13 +46,13 @@ class Diamond extends Polygon {
             var pnt1 = this.points[0];
             var pnt2 = this.points[1];
             //线长度
-            var distance = distance(pnt1, pnt2);
+            var d = distance(pnt1, pnt2);
             var angle1 = Math.PI / this.sideCount;
             // var angle1 = (this.sideCount - 4) * Math.PI / this.sideCount;
             //var angle2 = Math.PI - (Math.PI - angle1) / 2;
 
             //底边长度
-            var len = distance * Math.cos(Math.PI / 10) + (distance * Math.sin(angle1 / 2)) / Math.tan(angle1);
+            var len = d * Math.cos(Math.PI / 10) + (d * Math.sin(angle1 / 2)) / Math.tan(angle1);
 
             var coordinates = [pnt1];
             coordinates.push(getThirdPoint(pnt2, pnt1, angle1 / 2, len, false));

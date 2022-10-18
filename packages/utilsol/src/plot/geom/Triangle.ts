@@ -49,9 +49,9 @@ class Triangle extends Polygon {
             var pnt1 = this.points[0];
             var pnt2 = this.points[1];
             //线长度
-            var distance = distance(pnt1, pnt2);
+            var d = distance(pnt1, pnt2);
             //底边长度
-            var len = distance / this.lengthScale;
+            var len = d / this.lengthScale;
 
             //左侧点
             var leftPnt = getThirdPoint(pnt1, pnt2, Math.PI / 2, len / 2, false);
