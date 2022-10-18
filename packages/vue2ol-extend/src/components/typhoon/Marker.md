@@ -13,6 +13,7 @@
     <vue2ol-layer-vector>
       <vue2ol-source-vector>
         <vue2ol-typhoon-marker
+          v-if="show"
           :position="position"
           :duration="duration"
           :clockwise="false"
@@ -52,6 +53,7 @@ export default {
         projection: "EPSG:4326", //坐标系
       },
       duration: 4000,
+      show: true,
     };
   },
   computed: {

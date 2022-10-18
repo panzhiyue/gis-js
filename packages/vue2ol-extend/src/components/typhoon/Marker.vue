@@ -23,6 +23,7 @@ export default {
   data() {
     return {
       rotation: 0,
+      animationId: null,
     };
   },
   computed: {
@@ -58,23 +59,30 @@ export default {
     },
   },
   mounted() {
-    console.log(this.duration);
     if (this.duration) {
-      // let id = window.requestAnimationFrame((diffTime) => {
-      //   console.log(diffTime);
-      // });
       this.animation();
     }
   },
   methods: {
     animation() {
-      window.requestAnimationFrame((diffTime) => {
+      this.animationId = window.requestAnimationFrame((diffTime) => {
         let t = diffTime % this.duration;
         this.rotation =
           (this.clockwise ? 1 : -1) * (t / this.duration) * Math.PI * 2;
         this.animation();
       });
     },
+    dispose() {
+      if (this.animationId) {
+        window.cancelAnimationFrame(this.animationId);
+      }
+    },
+  },
+  unmounted() {
+    this.dispose();
+  },
+  destroyed() {
+    this.dispose();
   },
 };
 </script>

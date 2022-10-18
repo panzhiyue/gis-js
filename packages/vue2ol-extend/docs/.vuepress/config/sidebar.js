@@ -59,6 +59,7 @@ module.exports = {
         '/components/typhoon/WindCircle',
         '/components/typhoon/Name',
         '/components/typhoon/Marker',
+        '/components/typhoon/PicketLine24',
       ]
     },
   ],
