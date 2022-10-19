@@ -4,8 +4,11 @@
     v-bind="attrs_"
     v-on="listeners_"
     :position="position"
+    positioning="center-right"
+    :offset="[-10, 0]"
+    :options="{stopEvent:true}"
   >
-    {{ message }}333
+    {{ message }}
   </vue2ol-overlay>
 </template>
 
@@ -24,8 +27,7 @@ export default {
     Vue2olOverlay,
   },
   data() {
-    return {
-    };
+    return {};
   },
   props: {
     /**
@@ -38,43 +40,42 @@ export default {
     /**
      * 信息
      */
-     message: {
+    message: {
       type: String,
     },
   },
-  computed: {
-  },
+  computed: {},
 };
 </script>
 
 <style scoped>
 .vue2ol-typhoon-currentinfo {
   background: #363636;
-  background: rgba(255, 255, 255, 1);
+  background: rgba(255, 255, 255, 0.5);
   border: 1px solid transparent;
   -webkit-border-radius: 4px;
   border-radius: 4px;
   color: black;
-  font: 12px/18px 'Helvetica Neue', Arial, Helvetica, sans-serif;
-  margin-left: 20px;
-  margin-top: -15px;
+  font: 12px/18px "Helvetica Neue", Arial, Helvetica, sans-serif;
+  /* margin-left: 20px; */
+  /* margin-top: -15px; */
   padding: 4px 8px;
-  position: absolute;
+  /* position: absolute; */
   visibility: inherit;
   white-space: nowrap;
   z-index: 200;
-  min-height: 20px;
+  /* min-height: 20px; */
 }
 
 .vue2ol-typhoon-currentinfo:before {
-  border-right: 6px solid black;
-  border-right-color: rgba(255, 255, 255, 1);
+  border-left: 6px solid black;
+  border-left-color: rgba(255, 255, 255, 0.5);
   border-top: 6px solid transparent;
   border-bottom: 6px solid transparent;
-  content: '';
+  content: "";
   position: absolute;
   top: 50%;
   margin-top: -6px;
-  left: -7px;
+  right: -5px;
 }
 </style>

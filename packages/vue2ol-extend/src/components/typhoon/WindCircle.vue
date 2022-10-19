@@ -36,14 +36,14 @@ export default {
   props: {
     /**
      * 台风位置
-     * @typeName [x,y]坐标
+     * @typeName ol/Coordinate
      */
     position: {
       type: Array,
     },
     /**
      * 台风四象限半径
-     * @typeName {es:Number,ne:Number,wn:Number,ws:Number}
+     * @typeName [WndRadius](./Main.html#wndraiuds)
      */
     wndRadius: {
       type: Object,

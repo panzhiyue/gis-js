@@ -1,3 +1,15 @@
+---
+
+title: Vue2olTyphoonForecastpointinfo
+
+---
+
+# Vue2olTyphoonForecastpointinfo
+
+> 预报节点信息
+
+---
+
 ## 基础用法
 
 ::: demo
@@ -10,13 +22,10 @@
     <vue2ol-layer-tile>
       <vue2ol-source-osm></vue2ol-source-osm>
     </vue2ol-layer-tile>
-    <vue2ol-layer-vector>
-      <vue2ol-source-vector>
-        <vue2ol-typhoon-forecastpath
-          :data="forecastPathData"
-        ></vue2ol-typhoon-forecastpath>
-      </vue2ol-source-vector>
-    </vue2ol-layer-vector>
+    <vue2ol-typhoon-forecastpointinfo
+      v-if="forecastPathData.length"
+      :data="forecastPathData[0]"
+    ></vue2ol-typhoon-forecastpointinfo>
   </vue2ol-map>
 </template>
 
@@ -29,16 +38,16 @@ export default {
       zoom: 4, //级别
       center: [124.7, 26.6], //中心点
       viewOptions: {
-        projection: "EPSG:4326", //坐标系
+        projection: "EPSG:4326" //坐标系
       },
-      typhoonData: null,
+      typhoonData: null
     };
   },
   computed: {
     forecastPathData() {
       if (this.typhoonData) {
         let data = this.typhoonData;
-        return data[8][0][11].BABJ.map((tempItem) => {
+        return data[8][0][11].BABJ.map(tempItem => {
           return {
             title: `${data[3]} ${data[2]}`,
             oragn: typhoonUtil.organTable["BABJ"],
@@ -47,21 +56,28 @@ export default {
             latitude: tempItem[3],
             pres: tempItem[4],
             speed: tempItem[5],
-            level: tempItem[7],
+            level: tempItem[7]
           };
         });
       } else {
         return [];
       }
-    },
+    }
   },
   async mounted() {
     const response = await fetch("../../data/typhoon.json");
     const body = await response.json();
     this.typhoonData = body.typhoon;
-  },
+  }
 };
 </script>
 ```
 
 :::
+
+## Props
+
+| 名称       | 描述         | 类型   | 取值范围 | 默认值 |
+| ---------- | ------------ | ------ | -------- | ------ |
+| properties | 属性         | object | -        |        |
+| data       | 预报节点数据 | object | -        |        |

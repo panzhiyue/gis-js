@@ -82,9 +82,9 @@ export default {
 
 ## Props
 
-| 名称       | 描述           | 类型      | 取值范围 | 默认值 |
-| ---------- | -------------- | --------- | -------- | ------ |
-| properties | 属性           | object    | -        |        |
-| position   | 台风位置       | [x,y]坐标 | -        |        |
-| duration   | 动画周期(毫秒) | number    | -        |        |
-| clockwise  | 是否顺时针     | boolean   | -        | true   |
+| 名称       | 描述           | 类型          | 取值范围 | 默认值 |
+| ---------- | -------------- | ------------- | -------- | ------ |
+| properties | 属性           | object        | -        |        |
+| position   | 台风位置       | ol/Coordinate | -        |        |
+| duration   | 动画周期(毫秒) | number        | -        |        |
+| clockwise  | 是否顺时针     | boolean       | -        | true   |

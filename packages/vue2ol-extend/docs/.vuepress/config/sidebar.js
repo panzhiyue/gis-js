@@ -67,6 +67,11 @@ module.exports = {
         "/components/typhoon/ForecastPath",
         "/components/typhoon/ForecastPoint",
         "/components/typhoon/CurrentInfo",
+        "/components/typhoon/LevelName",
+        "/components/typhoon/ForecastPointInfo",
+        "/components/typhoon/RealPointInfo",
+        "/components/typhoon/Main",
+ 
       ],
     },
   ],

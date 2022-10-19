@@ -26,7 +26,7 @@ export default {
   props: {
     /**
      * 警戒线坐标集合
-     * @typeName Array<ol/Coordinate> 坐标集合
+     * @typeName Array<ol/Coordinate>
      */
     coordinates: {
       type: Array,

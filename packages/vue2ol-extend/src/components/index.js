@@ -39,6 +39,9 @@ export { default as Vue2olTyphoonRealpoint } from "./typhoon/RealPoint.vue";
 export { default as Vue2olTyphoonForecastpath } from "./typhoon/ForecastPath.vue";
 export { default as Vue2olTyphoonForecastpoint } from "./typhoon/ForecastPoint.vue";
 export { default as Vue2olTyphoonCurrentinfo } from "./typhoon/CurrentInfo.vue";
-
+export { default as Vue2olTyphoonRealpointinfo } from "./typhoon/RealPointInfo.vue";
+export { default as Vue2olTyphoonForecastpointinfo } from "./typhoon/ForecastPointInfo.vue";
+export { default as Vue2olTyphoonLevelname } from "./typhoon/LevelName.vue";
+export { default as Vue2olTyphoonMain } from "./typhoon/Main.vue";
 
 

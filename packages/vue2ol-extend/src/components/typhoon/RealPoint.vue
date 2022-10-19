@@ -1,6 +1,8 @@
 <template>
   <vue2ol-feature :style-obj="style" v-bind="attrs_" v-on="listeners_">
-    <vue2ol-geom-point :coordinates="position"></vue2ol-geom-point>
+    <vue2ol-geom-point
+      :coordinates="[data.longitude, data.latitude]"
+    ></vue2ol-geom-point>
   </vue2ol-feature>
 </template>
 
@@ -8,14 +10,10 @@
 import { Style, Circle, Fill } from "ol/style";
 import { ObjectMixin } from "@gis-js/vue2ol";
 import { Vue2olFeature, Vue2olGeomLinestring } from "@gis-js/vue2ol";
-import {
-  getTyphoonLevel,
-  colorTable,
-  findRadiusBySpeed,
-} from "../../utils/typhoon";
+import { colorTable } from "../../utils/typhoon";
 
 /**
- * 真实路线坐标
+ * 实际路线节点
  */
 export default {
   name: "Vue2olTyphoonRealpoint",
@@ -29,17 +27,11 @@ export default {
   },
   props: {
     /**
-     * 坐标
-     * @typeName ol/Coordinate
+     * 节点数据
+     * @typeName [PathData](./Main.html#pathdata)
      */
-    position: {
-      type: Array,
-    },
-    /**
-     * 风速
-     */
-    speed: {
-      type: Number,
+    data: {
+      type: Object,
     },
   },
   computed: {
@@ -47,9 +39,9 @@ export default {
       return new Style({
         image: new Circle({
           fill: new Fill({
-            color: colorTable[getTyphoonLevel(this.speed)],
+            color: colorTable[this.data.level],
           }),
-          radius: findRadiusBySpeed(this.speed).radius,
+          radius: 4,
         }),
       });
     },

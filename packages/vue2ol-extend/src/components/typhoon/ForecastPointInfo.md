@@ -10,13 +10,9 @@
     <vue2ol-layer-tile>
       <vue2ol-source-osm></vue2ol-source-osm>
     </vue2ol-layer-tile>
-    <vue2ol-layer-vector>
-      <vue2ol-source-vector>
-        <vue2ol-typhoon-forecastpath
-          :data="forecastPathData"
-        ></vue2ol-typhoon-forecastpath>
-      </vue2ol-source-vector>
-    </vue2ol-layer-vector>
+    <vue2ol-typhoon-forecastpointinfo v-if="forecastPathData.length"
+      :data="forecastPathData[0]"
+    ></vue2ol-typhoon-forecastpointinfo>
   </vue2ol-map>
 </template>
 

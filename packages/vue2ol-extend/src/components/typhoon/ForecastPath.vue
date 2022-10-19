@@ -35,7 +35,7 @@ export default {
         let properties = feature.getProperties();
         return new Style({
           stroke: new Stroke({
-            color: colorTable[getTyphoonLevel(properties.speed)],
+            color: "#ff0000",
             width: 1,
             lineDash: [5, 5],
           }),
@@ -45,8 +45,8 @@ export default {
   },
   props: {
     /**
-     * 警戒线坐标集合
-     * @typeName Array 坐标集合
+     * 预报路径信息
+     * @typeName Array<[ForecastPathData](./Main.html#forecastdata)>
      */
     data: {
       type: Array,
@@ -62,8 +62,8 @@ export default {
           let item2 = this.data[i];
           ls.push({
             coordinates: [
-              [item1.lng, item1.lat],
-              [item2.lng, item2.lat],
+              [item1.longitude, item1.latitude],
+              [item2.longitude, item2.latitude],
             ],
             ...item2,
           });

@@ -39,7 +39,7 @@ export default {
   props: {
     /**
      * 台风位置
-     * @typeName [x,y]坐标
+     * @typeName ol/Coordinate
      */
     position: {
       type: Array,

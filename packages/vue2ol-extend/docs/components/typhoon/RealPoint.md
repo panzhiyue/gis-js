@@ -6,7 +6,7 @@ title: Vue2olTyphoonRealpoint
 
 # Vue2olTyphoonRealpoint
 
-> 真实路线坐标
+> 实际路线节点
 
 ---
 
@@ -26,8 +26,7 @@ title: Vue2olTyphoonRealpoint
       <vue2ol-source-vector>
         <vue2ol-typhoon-realpoint
           v-for="(item, index) in realPathData"
-          :position="[item.lng, item.lat]"
-          :speed="item.speed"
+          :data="item"
         ></vue2ol-typhoon-realpoint>
       </vue2ol-source-vector>
     </vue2ol-layer-vector>
@@ -35,6 +34,8 @@ title: Vue2olTyphoonRealpoint
 </template>
 
 <script>
+import dayjs from "dayjs";
+import { typhoonUtil } from "@gis-js/vue2ol-extend";
 export default {
   data() {
     return {
@@ -49,11 +50,48 @@ export default {
   computed: {
     realPathData() {
       if (this.typhoonData) {
-        return this.typhoonData[8].map(item => {
+        let data = this.typhoonData;
+        return data[8].map(item => {
           return {
-            lng: item[4],
-            lat: item[5],
-            speed: item[7]
+            title: `${data[3]} ${data[2]}`,
+            dateTime: dayjs(item[2]).format("MM月DD日hh时"),
+            longitude: item[4],
+            latitude: item[5],
+            pres: item[6],
+            moveSpeed: item[9],
+            dir: item[8]
+              .split("")
+              .map(item => {
+                return typhoonUtil.dirTable[item];
+              })
+              .join(""),
+            speed: item[7],
+            wndRadius: item[10].map(tempItem => {
+              return {
+                speed: tempItem[0],
+                ne: tempItem[1],
+                es: tempItem[2],
+                ws: tempItem[3],
+                wn: tempItem[4]
+              };
+            }),
+            forecastPath: [
+              item[11].BABJ.map(tempItem => {
+                return {
+                  title: `${data[3]} ${data[2]}`,
+                  oragn: typhoonUtil.organTable["BABJ"],
+                  dateTime: dayjs(tempItem[1]).format("MM月DD日hh时"),
+                  longitude: tempItem[2],
+                  latitude: tempItem[3],
+                  pres: tempItem[4],
+                  speed: tempItem[5],
+                  level: tempItem[7]
+                };
+              })
+            ],
+
+            level: item[3],
+            message: `${dayjs(item[2]).format("MM月DD日hh时")}`
           };
         });
       } else {
@@ -74,8 +112,7 @@ export default {
 
 ## Props
 
-| 名称       | 描述 | 类型          | 取值范围 | 默认值 |
-| ---------- | ---- | ------------- | -------- | ------ |
-| properties | 属性 | object        | -        |        |
-| position   | 坐标 | ol/Coordinate | -        |        |
-| speed      | 风速 | number        | -        |        |
+| 名称       | 描述     | 类型                             | 取值范围 | 默认值 |
+| ---------- | -------- | -------------------------------- | -------- | ------ |
+| properties | 属性     | object                           | -        |        |
+| data       | 节点数据 | [PathData](./Main.html#pathdata) | -        |        |

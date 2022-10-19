@@ -25,7 +25,7 @@ title: Vue2olTyphoonForecastpath
     <vue2ol-layer-vector>
       <vue2ol-source-vector>
         <vue2ol-typhoon-forecastpath
-          :data="realPathData"
+          :data="forecastPathData"
         ></vue2ol-typhoon-forecastpath>
       </vue2ol-source-vector>
     </vue2ol-layer-vector>
@@ -33,6 +33,8 @@ title: Vue2olTyphoonForecastpath
 </template>
 
 <script>
+import dayjs from "dayjs";
+import { typhoonUtil } from "@gis-js/vue2ol-extend";
 export default {
   data() {
     return {
@@ -45,13 +47,19 @@ export default {
     };
   },
   computed: {
-    realPathData() {
+    forecastPathData() {
       if (this.typhoonData) {
-        return this.typhoonData[8][40][11].BABJ.map(item => {
+        let data = this.typhoonData;
+        return data[8][0][11].BABJ.map(tempItem => {
           return {
-            lng: item[2],
-            lat: item[3],
-            speed: item[5]
+            title: `${data[3]} ${data[2]}`,
+            oragn: typhoonUtil.organTable["BABJ"],
+            dateTime: dayjs(tempItem[1]).format("MM月DD日hh时"),
+            longitude: tempItem[2],
+            latitude: tempItem[3],
+            pres: tempItem[4],
+            speed: tempItem[5],
+            level: tempItem[7]
           };
         });
       } else {
@@ -72,7 +80,7 @@ export default {
 
 ## Props
 
-| 名称       | 描述           | 类型           | 取值范围 | 默认值 |
-| ---------- | -------------- | -------------- | -------- | ------ |
-| properties | 属性           | object         | -        |        |
-| data       | 警戒线坐标集合 | Array 坐标集合 | -        |        |
+| 名称       | 描述         | 类型                                                | 取值范围 | 默认值 |
+| ---------- | ------------ | --------------------------------------------------- | -------- | ------ |
+| properties | 属性         | object                                              | -        |        |
+| data       | 预报路径信息 | Array<[ForecastPathData](./Main.html#forecastdata)> | -        |        |

@@ -10,14 +10,9 @@
     <vue2ol-layer-tile>
       <vue2ol-source-osm></vue2ol-source-osm>
     </vue2ol-layer-tile>
-    <vue2ol-layer-vector>
-      <vue2ol-source-vector>
-        <vue2ol-typhoon-realpoint
-          v-for="(item, index) in realPathData"
-          :data="item"
-        ></vue2ol-typhoon-realpoint>
-      </vue2ol-source-vector>
-    </vue2ol-layer-vector>
+    <vue2ol-typhoon-realpointinfo v-if="realPathData.length"
+      :data="realPathData[20]"
+    ></vue2ol-typhoon-realpointinfo>
   </vue2ol-map>
 </template>
 

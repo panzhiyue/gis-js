@@ -20,7 +20,7 @@ import { ObjectMixin } from "@gis-js/vue2ol";
 import { Vue2olFeature, Vue2olGeomLinestring } from "@gis-js/vue2ol";
 import { getTyphoonLevel, colorTable } from "../../utils/typhoon";
 /**
- *
+ * 台风实际路线线段
  */
 export default {
   name: "Vue2olTyphoonRealpath",
@@ -35,7 +35,7 @@ export default {
         let properties = feature.getProperties();
         return new Style({
           stroke: new Stroke({
-            color: colorTable[getTyphoonLevel(properties.speed)],
+            color: colorTable[properties.level],
             width: 2,
           }),
         });
@@ -44,8 +44,8 @@ export default {
   },
   props: {
     /**
-     * 警戒线坐标集合
-     * @typeName Array 坐标集合
+     * 路径数据
+     * @typeName Array<[PathData](./Main.html#pathdata)>
      */
     data: {
       type: Array,
@@ -61,13 +61,14 @@ export default {
           let item2 = this.data[i];
           ls.push({
             coordinates: [
-              [item1.lng, item1.lat],
-              [item2.lng, item2.lat],
+              [item1.longitude, item1.latitude],
+              [item2.longitude, item2.latitude],
             ],
             ...item2,
           });
         }
         return ls;
+        
       } else {
         return [];
       }
