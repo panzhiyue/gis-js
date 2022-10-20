@@ -5,7 +5,9 @@
     :url="newUrl"
     :projection="projection"
     :options="options"
-  ></vue2ol-source-xyz>
+  >
+  <slot></slot>
+  </vue2ol-source-xyz>
 </template>
 <script>
 import { Vue2olSourceXyz, ObjectMixin } from "@gis-js/vue2ol";

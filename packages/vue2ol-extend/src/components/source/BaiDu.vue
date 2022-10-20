@@ -1,5 +1,5 @@
 <template>
-  <div></div>
+  <div><slot v-if="ready"></slot></div>
 </template>
 <script>
 import TileImage from "ol/source/TileImage";
@@ -97,8 +97,21 @@ export default {
     bindListeners(this.mapObject, getListeners(this));
     //监听props属性
     propsBinder(this, this.mapObject, this.$options.props);
+    /**
+     * 地图元素初始化完时触发
+     * @type {object}
+     * @property {import('ol/source/TileImage').default} mapObject  地图元素
+     */
+    this.$emit("init", this.mapObject);
 
     this.parent.setSource(this.mapObject);
+
+    /**
+     * 地图元素初始化完时触发
+     * @type {object}
+     * @property {import('ol/source/TileImage').default} mapObject  地图元素
+     */
+    this.$emit("append", this.mapObject);
 
     this.ready = true;
     this.$nextTick(() => {

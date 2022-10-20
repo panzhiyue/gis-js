@@ -49,3 +49,9 @@ export default {
 | ---------- | ------------------------------ | ------ | -------- | ------ |
 | properties | 属性                           | object | -        |        |
 | options    | ol/source/XYZ 对应的实例化参数 | object | -        |        |
+
+## Slots
+
+| Name    | Description | Bindings |
+| ------- | ----------- | -------- |
+| default |             |          |

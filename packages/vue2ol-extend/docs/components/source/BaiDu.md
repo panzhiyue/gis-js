@@ -68,6 +68,14 @@ export default {
 
 ## Events
 
-| 名称  | 属性                                                              | 描述           |
-| ----- | ----------------------------------------------------------------- | -------------- |
-| ready | **mapObject** `import('ol/source/TileImage').default` - undefined | 组件就绪时触发 |
+| 名称   | 属性                                                              | 描述                   |
+| ------ | ----------------------------------------------------------------- | ---------------------- |
+| init   | **mapObject** `import('ol/source/TileImage').default` - 地图元素  | 地图元素初始化完时触发 |
+| append | **mapObject** `import('ol/source/TileImage').default` - 地图元素  | 地图元素初始化完时触发 |
+| ready  | **mapObject** `import('ol/source/TileImage').default` - undefined | 组件就绪时触发         |
+
+## Slots
+
+| Name    | Description | Bindings |
+| ------- | ----------- | -------- |
+| default |             |          |

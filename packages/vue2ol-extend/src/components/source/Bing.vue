@@ -1,14 +1,16 @@
 <template>
-  <vue2ol-source-xyz :tileUrlFunction="tileUrlFunction2" :options="options"></vue2ol-source-xyz>
+  <vue2ol-source-xyz :tileUrlFunction="tileUrlFunction2" :options="options">
+    <slot></slot
+  ></vue2ol-source-xyz>
 </template>
 <script>
-import {  Vue2olSourceXyz,ObjectMixin } from "@gis-js/vue2ol";
+import { Vue2olSourceXyz, ObjectMixin } from "@gis-js/vue2ol";
 export default {
   name: "Vue2olSourceBind",
   components: {
     Vue2olSourceXyz,
   },
-  mixins:[ObjectMixin],
+  mixins: [ObjectMixin],
   data() {
     return {};
   },

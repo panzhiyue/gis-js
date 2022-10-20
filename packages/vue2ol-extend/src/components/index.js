@@ -20,6 +20,7 @@ export { default as Vue2olSourceTdt } from "./source/TDT.vue";
 
 //renderer
 export { default as Vue2olRendererCanvasclip } from "./renderer/CanvasClip.vue";
+export { default as Vue2olRendererTileclip } from "./renderer/TileClip.vue";
 
 //interaction
 export { default as Vue2olInteractionPlotdraw } from "./interaction/PlotDraw.vue";
@@ -43,5 +44,3 @@ export { default as Vue2olTyphoonRealpointinfo } from "./typhoon/RealPointInfo.v
 export { default as Vue2olTyphoonForecastpointinfo } from "./typhoon/ForecastPointInfo.vue";
 export { default as Vue2olTyphoonLevelname } from "./typhoon/LevelName.vue";
 export { default as Vue2olTyphoonMain } from "./typhoon/Main.vue";
-
-

@@ -168,3 +168,9 @@ export default {
 | tk         |                                                                                                                              | string                             | -                                                                               | () => "cc4ded9c8fa65c654611568acc889439" |
 | projection | 坐标系                                                                                                                       | {import('ol/proj').ProjectionLike} | -                                                                               | "EPSG:4326"                              |
 | options    | ol/source/XYZ 对应的实例化参数                                                                                               | object                             | -                                                                               |                                          |
+
+## Slots
+
+| Name    | Description | Bindings |
+| ------- | ----------- | -------- |
+| default |             |          |

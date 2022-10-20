@@ -57,3 +57,9 @@ export default {
 | properties | 属性                                                                   | object | -                                                         |              |
 | layer      | 矢量地图:normal_map,影像地图:satellite_map,影像注记:satellite_annotion | string | `"normal_map" \| "satellite_map" \| "satellite_annotion"` | "normal_map" |
 | options    | ol/source/XYZ 对应的实例化参数                                         | object | -                                                         |              |
+
+## Slots
+
+| Name    | Description | Bindings |
+| ------- | ----------- | -------- |
+| default |             |          |
