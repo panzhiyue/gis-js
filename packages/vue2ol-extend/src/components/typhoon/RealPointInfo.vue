@@ -48,14 +48,14 @@
 <script>
 import { Style, Fill, Stroke } from "ol/style";
 import { Vue2olOverlay } from "@gis-js/vue2ol";
-import { ObjectMixin } from "@gis-js/vue2ol";
+import { BaseObjectMixin } from "@gis-js/vue2ol";
 
 /**
  * 实际路线节点信息
  */
 export default {
   name: "Vue2olTyphoonRealpointinfo",
-  mixins: [ObjectMixin],
+  mixins: [BaseObjectMixin],
   components: {
     Vue2olOverlay,
   },

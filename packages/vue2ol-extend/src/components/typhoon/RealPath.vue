@@ -16,15 +16,15 @@
 
 <script>
 import { Style, Stroke } from "ol/style";
-import { ObjectMixin } from "@gis-js/vue2ol";
+import { BaseObjectMixin } from "@gis-js/vue2ol";
 import { Vue2olFeature, Vue2olGeomLinestring } from "@gis-js/vue2ol";
-import { getTyphoonLevel, colorTable } from "../../utils/typhoon";
+import { colorTable } from "../../utils/typhoon";
 /**
  * 台风实际路线线段
  */
 export default {
   name: "Vue2olTyphoonRealpath",
-  mixins: [ObjectMixin],
+  mixins: [BaseObjectMixin],
   components: {
     Vue2olFeature,
     Vue2olGeomLinestring,

@@ -1,5 +1,7 @@
 import { getListeners, getAttrs } from "../utils/index";
+import BaseObjectMixins from "./BaseObject";
 export default {
+  mixins: [BaseObjectMixins],
   data() {
     return {
       // mapObject: null, //对应的openlayers对象

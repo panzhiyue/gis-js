@@ -1,4 +1,5 @@
 export { default as BaseLayerMixin } from './BaseLayer';
+export { default as BaseObjectMixin } from './BaseObject';
 export { default as BaseTileLayerMixin } from './BaseTileLayer';
 export { default as BaseVectorLayerMixin } from './BaseVectorLayer';
 export { default as GeometryMixin } from './Geometry';

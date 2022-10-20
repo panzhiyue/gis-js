@@ -7,7 +7,7 @@
 <script>
 import { Style, Fill, Stroke } from "ol/style";
 import { parseWndRadius } from "../../utils/typhoon.js";
-import { ObjectMixin } from "@gis-js/vue2ol";
+import { BaseObjectMixin } from "@gis-js/vue2ol";
 import {Vue2olFeature,Vue2olGeomPolygon} from "@gis-js/vue2ol"
 
 /**
@@ -15,7 +15,7 @@ import {Vue2olFeature,Vue2olGeomPolygon} from "@gis-js/vue2ol"
  */
 export default {
   name: "Vue2olTyphoonWindcircle",
-  mixins: [ObjectMixin],
+  mixins: [BaseObjectMixin],
   components:{
     Vue2olFeature,
     Vue2olGeomPolygon

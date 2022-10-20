@@ -81,8 +81,7 @@ export default {
 
 ## Props
 
-| 名称       | 描述           | 类型                               | 取值范围 | 默认值 |
-| ---------- | -------------- | ---------------------------------- | -------- | ------ |
-| properties | 属性           | object                             | -        |        |
-| position   | 台风位置       | ol/Coordinate                      | -        |        |
-| wndRadius  | 台风四象限半径 | [WndRadius](./Main.html#wndraiuds) | -        |        |
+| 名称      | 描述           | 类型                               | 取值范围 | 默认值 |
+| --------- | -------------- | ---------------------------------- | -------- | ------ |
+| position  | 台风位置       | ol/Coordinate                      | -        |        |
+| wndRadius | 台风四象限半径 | [WndRadius](./Main.html#wndraiuds) | -        |        |

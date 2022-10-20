@@ -6,7 +6,7 @@
 
 <script>
 import { Style, Icon } from "ol/style";
-import { ObjectMixin } from "@gis-js/vue2ol";
+import { BaseObjectMixin } from "@gis-js/vue2ol";
 import { Vue2olFeature, Vue2olGeomPoint } from "@gis-js/vue2ol";
 import icon from "./typhoon.png";
 
@@ -15,7 +15,7 @@ import icon from "./typhoon.png";
  */
 export default {
   name: "Vue2olTyphoonMarker",
-  mixins: [ObjectMixin],
+  mixins: [BaseObjectMixin],
   components: {
     Vue2olFeature,
     Vue2olGeomPoint,

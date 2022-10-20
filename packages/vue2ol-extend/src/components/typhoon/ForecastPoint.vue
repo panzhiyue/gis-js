@@ -8,7 +8,7 @@
 
 <script>
 import { Style, Circle, Fill } from "ol/style";
-import { ObjectMixin } from "@gis-js/vue2ol";
+import { BaseObjectMixin } from "@gis-js/vue2ol";
 import { Vue2olFeature, Vue2olGeomLinestring } from "@gis-js/vue2ol";
 import { colorTable } from "../../utils/typhoon";
 
@@ -17,7 +17,7 @@ import { colorTable } from "../../utils/typhoon";
  */
 export default {
   name: "Vue2olTyphoonForecastpoint",
-  mixins: [ObjectMixin],
+  mixins: [BaseObjectMixin],
   components: {
     Vue2olFeature,
     Vue2olGeomLinestring,

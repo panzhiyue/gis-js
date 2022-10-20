@@ -8,11 +8,11 @@
   >
 </template>
 <script>
-import { ObjectMixin } from "@gis-js/vue2ol";
+import { BaseObjectMixin } from "@gis-js/vue2ol";
 import { levelTable, colorTable } from "../../utils/typhoon.js";
 export default {
   name: "Vue2olTyphoonLevelname",
-  mixins: [ObjectMixin],
+  mixins: [BaseObjectMixin],
   props: {
     /**
      * 台风级别

@@ -6,7 +6,7 @@
 
 <script>
 import { Style, Stroke, Text, Fill } from "ol/style";
-import { ObjectMixin } from "@gis-js/vue2ol";
+import { BaseObjectMixin } from "@gis-js/vue2ol";
 import { Vue2olFeature, Vue2olGeomLinestring } from "@gis-js/vue2ol";
 import { LineString } from "ol/geom";
 
@@ -15,7 +15,7 @@ import { LineString } from "ol/geom";
  */
 export default {
   name: "Vue2olTyphoonPicketline24",
-  mixins: [ObjectMixin],
+  mixins: [BaseObjectMixin],
   components: {
     Vue2olFeature,
     Vue2olGeomLinestring,

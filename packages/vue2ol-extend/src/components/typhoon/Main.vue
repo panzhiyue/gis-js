@@ -65,7 +65,7 @@
 
 <script>
 import { Style, Icon } from "ol/style";
-import { ObjectMixin } from "@gis-js/vue2ol";
+import { BaseObjectMixin } from "@gis-js/vue2ol";
 import { Vue2olLayerVector, Vue2olSourceVector } from "@gis-js/vue2ol";
 
 /**
@@ -73,7 +73,7 @@ import { Vue2olLayerVector, Vue2olSourceVector } from "@gis-js/vue2ol";
  */
 export default {
   name: "Vue2olTyphoonMain",
-  mixins: [ObjectMixin],
+  mixins: [BaseObjectMixin],
   components: {
     Vue2olLayerVector,
     Vue2olSourceVector,

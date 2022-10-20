@@ -232,12 +232,11 @@ import typhoonUtil from "@gis-js/vue2ol-extend";
 
 ## Props
 
-| 名称       | 描述                                               | 类型                                   | 取值范围 | 默认值 |
-| ---------- | -------------------------------------------------- | -------------------------------------- | -------- | ------ |
-| properties | 属性                                               | object                                 | -        |        |
-| data       | 台风数据                                           | [TyphoonData](./Main.html#typhoondata) | -        |        |
-| index      | 节点索引号                                         | number                                 | -        | 0      |
-| showAll    | 是否显示所有路径节点,为 false 只显示到指定索引节点 | boolean                                | -        | true   |
+| 名称    | 描述                                               | 类型                                   | 取值范围 | 默认值 |
+| ------- | -------------------------------------------------- | -------------------------------------- | -------- | ------ |
+| data    | 台风数据                                           | [TyphoonData](./Main.html#typhoondata) | -        |        |
+| index   | 节点索引号                                         | number                                 | -        | 0      |
+| showAll | 是否显示所有路径节点,为 false 只显示到指定索引节点 | boolean                                | -        | true   |
 
 ## Events
 
