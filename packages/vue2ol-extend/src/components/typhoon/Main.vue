@@ -86,13 +86,23 @@ export default {
   },
   emits: ["on-change-index"],
   props: {
+    /**
+     * 台风数据
+     * @typeName [TyphoonData](./Main.html#typhoondata)
+     */
     data: {
       type: Object,
     },
+    /**
+     * 节点索引号
+     */
     index: {
       type: Number,
       default: 0,
     },
+    /**
+     * 是否显示所有路径节点,为false只显示到指定索引节点
+     */
     showAll: {
       type: Boolean,
       default: true,
