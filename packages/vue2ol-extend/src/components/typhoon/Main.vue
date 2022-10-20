@@ -26,24 +26,27 @@
           v-for="(item, index) in currentPoint.wndRadius"
           :position="[currentPoint.longitude, currentPoint.latitude]"
           :wndRadius="item"
+          :key="`vue2ol-typhoon-windcircle${index}`"
         ></vue2ol-typhoon-windcircle>
         <vue2ol-typhoon-realpath :data="path"></vue2ol-typhoon-realpath>
         <vue2ol-typhoon-realpoint
           v-for="(item, index) in path"
           :data="item"
           :options="{ _featureName: 'realpoint', _index: index, ...item }"
+          :key="`vue2ol-typhoon-realpoint${index}`"
         ></vue2ol-typhoon-realpoint>
 
         <div v-for="(forecastPath, index) in currentPoint.forecastPath">
           <vue2ol-typhoon-forecastpath
             :data="[currentPoint].concat(forecastPath)"
+            :key="`vue2ol-typhoon-forecastpath${index}`"
           ></vue2ol-typhoon-forecastpath>
 
           <vue2ol-typhoon-forecastpoint
-            v-for="(item, index) in forecastPath"
+            v-for="(item, index2) in forecastPath"
             :data="item"
             :options="{ _featureName: 'forecastpoint', ...item }"
-            :key="item.longitude + item.latitude"
+            :key="`vue2ol-typhoon-forecastpoint${index}-${index2}`"
           ></vue2ol-typhoon-forecastpoint>
         </div>
         <vue2ol-typhoon-marker
@@ -103,17 +106,18 @@ export default {
       return this.data.path[this.data.path.length - 1];
     },
     currentPoint() {
-      return this.data.path[this.index - 1];
+      return this.data.path[this.index];
     },
     path() {
       if (this.showAll) {
         return this.data.path;
       } else {
-        return this.data.path.slice(0, this.index);
+        return this.data.path.slice(0, this.index + 1);
       }
     },
   },
-  mounted() {},
+  mounted() {
+  },
   methods: {
     handlePointerMove(result) {
       if (result.features.length) {

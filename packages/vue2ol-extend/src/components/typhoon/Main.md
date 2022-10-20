@@ -107,7 +107,6 @@ export default {
       }
     }, 200);
 
-    this.handleChangeIndex(2);
   },
   methods: {
     handleChangeIndex(index) {

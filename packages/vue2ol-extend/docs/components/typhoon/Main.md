@@ -118,8 +118,6 @@ export default {
           this.index >= this.typhoonData.path.length - 1 ? 0 : this.index + 1;
       }
     }, 200);
-
-    this.handleChangeIndex(2);
   },
   methods: {
     handleChangeIndex(index) {
