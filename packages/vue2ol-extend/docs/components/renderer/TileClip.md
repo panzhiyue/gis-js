@@ -26,7 +26,7 @@ title: Vue2olRendererTileclip
       >
         <vue2ol-renderer-tileclip
           :geometry="polygon"
-          mode="clip"
+          mode="show"
         ></vue2ol-renderer-tileclip>
       </vue2ol-source-tdt>
     </vue2ol-layer-tile>
@@ -56,7 +56,6 @@ export default {
     };
   },
   mounted() {
-    console.log(22);
     this.polygon = new Polygon([
       [
         [118, 28],
@@ -74,10 +73,68 @@ export default {
 
 :::
 
+## 浙江省
+
+::: demo
+
+```vue
+<template>
+  <vue2ol-map style="height:400px;" v-if="geometry">
+    <vue2ol-view :zoom="zoom" :center="center" :options="viewOptions">
+    </vue2ol-view>
+    <vue2ol-layer-tile>
+      <vue2ol-source-tdt
+        :layer="'vec'"
+        :options="{ devicePixelRatio: devicePixelRatio }"
+      >
+        <vue2ol-renderer-tileclip
+          :geometry="geometry"
+          mode="show"
+        ></vue2ol-renderer-tileclip>
+      </vue2ol-source-tdt>
+    </vue2ol-layer-tile>
+    <vue2ol-layer-vector>
+      <vue2ol-source-vector>
+        <vue2ol-feature :geometry="geometry"> </vue2ol-feature>
+      </vue2ol-source-vector>
+    </vue2ol-layer-vector>
+  </vue2ol-map>
+</template>
+
+<script>
+import { Vue2olRendererTileclip } from "@gis-js/vue2ol-extend";
+import Polygon from "ol/geom/Polygon";
+import { TopoJSON } from "ol/format";
+export default {
+  data() {
+    return {
+      zoom: 6, //级别
+      center: [119.5, 27.5], //中心点
+      viewOptions: {
+        projection: "EPSG:4326", //坐标系
+        zoomFactor: 2
+      },
+      geometry: null,
+
+      devicePixelRatio: global.devicePixelRatio
+    };
+  },
+  async mounted() {
+    const response = await fetch("/data/ZJ.json");
+    const body = await response.text();
+    this.geometry = new TopoJSON().readFeatures(body)[0].getGeometry();
+  }
+};
+</script>
+```
+
+:::
+
 ## Props
 
-| 名称         | 描述                                       | 类型   | 取值范围 | 默认值 |
-| ------------ | ------------------------------------------ | ------ | -------- | ------ |
-| parentSource | 父亲数据源                                 | null   | -        |        |
-| geometry     | 裁切面几何<br/>`@typeNaem` ol/geom/Polygon |        | -        |        |
-| mode         | 裁切模式（show 显示区域内，裁切区域内）    | string | -        | "show" |
+| 名称         | 描述                                       | 类型    | 取值范围 | 默认值 |
+| ------------ | ------------------------------------------ | ------- | -------- | ------ |
+| parentSource | 父亲数据源                                 | null    | -        |        |
+| geometry     | 裁切面几何<br/>`@typeNaem` ol/geom/Polygon |         | -        |        |
+| mode         | 裁切模式（show 显示区域内，裁切区域内）    | string  | -        | "show" |
+| cache        | 是否缓存切片                               | boolean | -        | true   |

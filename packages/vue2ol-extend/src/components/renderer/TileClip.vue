@@ -35,6 +35,13 @@ export default {
       type: String,
       default: "show",
     },
+    /**
+     * 是否缓存切片
+     */
+    cache: {
+      type: Boolean,
+      default: true,
+    },
   },
 
   data() {
@@ -44,7 +51,6 @@ export default {
     };
   },
   mounted() {
-    console.log(this.mode);
     if (this.parentSource) {
       this.parent = this.parentSource;
     } else {
@@ -57,6 +63,9 @@ export default {
       this.map = findParentMap(this.$parent).mapObject;
     }
     this.parent.setTileLoadFunction((tile, src) => {
+      if (this.cache && this.tileCache[tile.tileCoord]) {
+        tile.getImage().src = this.tileCache[tile.tileCoord];
+      }
       let tileGrid = this.parent.getTileGrid();
 
       let tileExtent = tileGrid.getTileCoordExtent(tile.tileCoord, []);
@@ -71,13 +80,16 @@ export default {
         (this.mode == "show" && state.isOut == true) ||
         (this.mode == "clip" && state.isIn == true)
       ) {
-        tile.getImage().src = canvas.toDataURL("image/png");
+        this.tileCache[tile.tileCoord] = canvas.toDataURL("image/png");
+        tile.getImage().src = this.tileCache[tile.tileCoord];
       }
       if (
         (this.mode == "show" && state.isIn == true) ||
         (this.mode == "clip" && state.isOut == true)
       ) {
-        tile.getImage().src = src;
+        this.tileCache[tile.tileCoord] = src;
+
+        tile.getImage().src = this.tileCache[tile.tileCoord];
       }
       if (state.isInteract == true) {
         const imageObj = new Image();
@@ -100,9 +112,7 @@ export default {
 
           ctx.restore();
 
-          if (!this.tileCache[tile.tileCoord]) {
-            this.tileCache[tile.tileCoord] = canvas.toDataURL("image/png");
-          }
+          this.tileCache[tile.tileCoord] = canvas.toDataURL("image/png");
 
           tile.getImage().src = this.tileCache[tile.tileCoord];
         };
@@ -180,7 +190,6 @@ export default {
      * @param {}
      */
     getClippedGeometry: function(geom, bounds) {
-      // console.log(geom);
       let geom1 = JSON.parse(new GeoJSON().writeGeometry(geom));
       let geom2 = turf.bboxPolygon(bounds).geometry;
       //不相交
