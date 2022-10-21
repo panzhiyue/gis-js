@@ -3,13 +3,8 @@
 </template>
 <script>
 import { findRealParent, findParentMap } from "@gis-js/vue2ol";
-import {
-  create as createTransform,
-  scale as scaleTransform,
-} from "ol/transform.js";
 import * as turf from "@turf/turf";
 import { GeoJSON } from "ol/format";
-import { fromUserCoordinate } from "ol/proj";
 import {
   apply as applyTransform,
   compose as composeTransform,
@@ -33,16 +28,23 @@ export default {
     geometry: {
       require: true,
     },
+    /**
+     * 裁切模式（show显示区域内，裁切区域内）
+     */
+    mode: {
+      type: String,
+      default: "show",
+    },
   },
 
   data() {
     return {
       coordinateToPixelTransform: [1, 0, 0, 1, 0, 0],
       tileCache: {},
-      index: 0,
     };
   },
   mounted() {
+    console.log(this.mode);
     if (this.parentSource) {
       this.parent = this.parentSource;
     } else {
@@ -65,11 +67,19 @@ export default {
       const ctx = canvas.getContext("2d");
 
       let state = this.getClippedGeometry(this.geometry, tileExtent);
-      if (state.isOut == true) {
+      if (
+        (this.mode == "show" && state.isOut == true) ||
+        (this.mode == "clip" && state.isIn == true)
+      ) {
         tile.getImage().src = canvas.toDataURL("image/png");
-      } else if (state.isIn == true) {
+      }
+      if (
+        (this.mode == "show" && state.isIn == true) ||
+        (this.mode == "clip" && state.isOut == true)
+      ) {
         tile.getImage().src = src;
-      } else {
+      }
+      if (state.isInteract == true) {
         const imageObj = new Image();
         imageObj.crossOrigin = "*";
         ctx.save();
@@ -90,18 +100,14 @@ export default {
 
           ctx.restore();
 
-          ctx.strokeRect(0, 0, canvas.width, canvas.height);
-          ctx.strokeStyle = "rgba(0,0,0,0.3)";
-          ctx.stroke();
           if (!this.tileCache[tile.tileCoord]) {
-            this.tileCache[tile.tileCoord] = canvas.toDataURL("image/jpg");
+            this.tileCache[tile.tileCoord] = canvas.toDataURL("image/png");
           }
 
           tile.getImage().src = this.tileCache[tile.tileCoord];
         };
 
-        imageObj.src = src + "&index" + this.index;
-        this.index += 1;
+        imageObj.src = src;
       }
     });
   },
@@ -135,9 +141,7 @@ export default {
       );
 
       //裁剪
-      let pixelRatio = window.devicePixelRatio || 1;
-      let transform;
-      transform = scaleTransform(createTransform(), pixelRatio, pixelRatio);
+
       let coors = boundPolygon.getCoordinates();
 
       let pointArr = [];
@@ -149,7 +153,7 @@ export default {
             applyTransform(this.coordinateToPixelTransform, coorTmp[j])
           );
         }
-        pointArr.push(this.transform2D(pointTmp, transform));
+        pointArr.push(pointTmp);
       }
       context.beginPath();
       for (let i = 0; i < pointArr.length; i++) {
@@ -160,10 +164,15 @@ export default {
           } else {
             context.lineTo(pointTmp[j][0], pointTmp[j][1]);
           }
-          // console.log(pointTmp[j][0], pointTmp[j][1]);
         }
       }
-      context.clip();
+      if (this.mode == "clip") {
+        context.fillStyle = "rgba(0,0,0,1)";
+        context.fill();
+        context.globalCompositeOperation = "source-out";
+      } else {
+        context.clip();
+      }
     },
 
     /**

@@ -26,6 +26,7 @@ title: Vue2olRendererTileclip
       >
         <vue2ol-renderer-tileclip
           :geometry="polygon"
+          mode="clip"
         ></vue2ol-renderer-tileclip>
       </vue2ol-source-tdt>
     </vue2ol-layer-tile>
@@ -55,6 +56,7 @@ export default {
     };
   },
   mounted() {
+    console.log(22);
     this.polygon = new Polygon([
       [
         [118, 28],
@@ -74,7 +76,8 @@ export default {
 
 ## Props
 
-| 名称         | 描述                                       | 类型 | 取值范围 | 默认值 |
-| ------------ | ------------------------------------------ | ---- | -------- | ------ |
-| parentSource | 父亲数据源                                 | null | -        |        |
-| geometry     | 裁切面几何<br/>`@typeNaem` ol/geom/Polygon |      | -        |        |
+| 名称         | 描述                                       | 类型   | 取值范围 | 默认值 |
+| ------------ | ------------------------------------------ | ------ | -------- | ------ |
+| parentSource | 父亲数据源                                 | null   | -        |        |
+| geometry     | 裁切面几何<br/>`@typeNaem` ol/geom/Polygon |        | -        |        |
+| mode         | 裁切模式（show 显示区域内，裁切区域内）    | string | -        | "show" |

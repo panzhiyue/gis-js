@@ -9,7 +9,7 @@
         </vue2ol-view>
         <vue2ol-layer-tile>
             <vue2ol-source-tdt :layer="'vec'" :options="{devicePixelRatio:devicePixelRatio}">
-                <vue2ol-renderer-tileclip :geometry="polygon"></vue2ol-renderer-tileclip>
+                <vue2ol-renderer-tileclip :geometry="polygon" mode="clip"></vue2ol-renderer-tileclip>
             </vue2ol-source-tdt>
         </vue2ol-layer-tile>
         <vue2ol-layer-vector>
@@ -40,6 +40,7 @@ export default{
     }
   },
   mounted(){
+    console.log(22)
        this.polygon=new Polygon([[[118,28],[120,28],[120,27],[119,27],[118,28]]]);
        console.log(9999);
   }
