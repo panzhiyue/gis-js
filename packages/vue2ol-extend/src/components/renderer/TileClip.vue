@@ -65,6 +65,7 @@ export default {
     this.parent.setTileLoadFunction((tile, src) => {
       if (this.cache && this.tileCache[tile.tileCoord]) {
         tile.getImage().src = this.tileCache[tile.tileCoord];
+        return;
       }
       let tileGrid = this.parent.getTileGrid();
 
