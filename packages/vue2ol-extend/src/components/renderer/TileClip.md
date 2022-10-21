@@ -28,7 +28,7 @@ import Polygon from "ol/geom/Polygon"
 export default{
   data(){
     return {
-      zoom:9.2,  //级别
+      zoom:6,  //级别
       center:[119.5,27.5],  //中心点
       viewOptions:{
         projection:"EPSG:4326",  //坐标系

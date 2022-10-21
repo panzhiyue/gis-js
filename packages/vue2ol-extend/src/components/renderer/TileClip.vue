@@ -39,6 +39,7 @@ export default {
     return {
       coordinateToPixelTransform: [1, 0, 0, 1, 0, 0],
       tileCache: {},
+      index: 0,
     };
   },
   mounted() {
@@ -54,7 +55,6 @@ export default {
       this.map = findParentMap(this.$parent).mapObject;
     }
     this.parent.setTileLoadFunction((tile, src) => {
-      console.log(this.map.getView().getZoom());
       let tileGrid = this.parent.getTileGrid();
 
       let tileExtent = tileGrid.getTileCoordExtent(tile.tileCoord, []);
@@ -73,7 +73,13 @@ export default {
         const imageObj = new Image();
         imageObj.crossOrigin = "*";
         ctx.save();
-        this.createclip(ctx, tileExtent, state.geometry, this.map);
+        this.createclip(
+          ctx,
+          tileExtent,
+          state.geometry,
+          this.map,
+          tile.tileCoord
+        );
 
         imageObj.onload = () => {
           let pattern = ctx.createPattern(imageObj, "repeat");
@@ -82,60 +88,22 @@ export default {
           ctx.fillStyle = pattern;
           ctx.fill();
 
+          ctx.restore();
+
+          ctx.strokeRect(0, 0, canvas.width, canvas.height);
+          ctx.strokeStyle = "rgba(0,0,0,0.3)";
+          ctx.stroke();
           if (!this.tileCache[tile.tileCoord]) {
-            this.tileCache[tile.tileCoord] = canvas.toDataURL("image/png");
+            this.tileCache[tile.tileCoord] = canvas.toDataURL("image/jpg");
           }
 
           tile.getImage().src = this.tileCache[tile.tileCoord];
-          ctx.restore();
         };
 
-        imageObj.src = src;
+        imageObj.src = src + "&index" + this.index;
+        this.index += 1;
       }
     });
-
-    // this.parent.on("tileloadstart", (e) => {
-    //   console.log(e);
-    //   let tileGrid = e.target.getTileGrid();
-    //   let tileExtent = tileGrid.getTileCoordExtent(e.tile.tileCoord, []);
-    //   const tile = e.tile;
-    //   const src = tile.src_;
-
-    //   const canvas = document.createElement("canvas");
-    //   canvas.width = canvas.height = 256;
-    //   const ctx = canvas.getContext("2d");
-
-    //   var image = new Image();
-    //   tile.setImage(image);
-    //   image.src = canvas.toDataURL("image/png");
-
-    //   // let state = this.getClippedGeometry(this.geometry, tileExtent);
-    //   // if (state.isOut == true) {
-    //   //   image.src = "";
-    //   // } else {
-    //   //   const imageObj = new Image();
-    //   //   imageObj.crossOrigin = "*";
-
-    //   //   imageObj.onload = () => {
-    //   //     const canvas = document.createElement("canvas");
-    //   //     canvas.width = canvas.height = 256;
-    //   //     const ctx = canvas.getContext("2d");
-
-    //   //     this.createclip(ctx, tileExtent, this.geometry, this.map);
-    //   //     const pattern = ctx.createPattern(imageObj, "repeat");
-
-    //   //     ctx.beginPath();
-    //   //     ctx.rect(0, 0, canvas.width, canvas.height);
-    //   //     ctx.fillStyle = pattern;
-    //   //     ctx.fill();
-    //   //     // this.createclip(ctx, tileExtent, this.geometry, this.map);
-
-    //   //     image.src = canvas.toDataURL("image/png");
-    //   //   };
-
-    //   //   imageObj.src = src;
-    //   // }
-    // });
   },
   methods: {
     transform2D(coordinates, transform) {
@@ -152,60 +120,21 @@ export default {
       dest.length = i;
       return dest;
     },
-    createclip(context, tileExtent, boundPolygon, map) {
-      console.log([tileExtent[0], tileExtent[1]]);
-      console.log(
-        fromUserCoordinate(
-          [tileExtent[0], tileExtent[1]],
-          map.getView().getProjection()
-        )
-      );
-
+    createclip(context, tileExtent, boundPolygon, map, tileCoord) {
       this.coordinateToPixelTransform = [1, 0, 0, 1, 0, 0];
-      // composeTransform(
-      //   coordinateToPixelTransform,
-      //   this.map.getSize()[0] / 2,
-      //   this.map.getSize()[1] / 2,
-      //   1 / viewState.resolution,
-      //   -1 / viewState.resolution,
-      //   -viewState.rotation,
-      //   -viewState.center[0],
-      //   -viewState.center[1]
-      // );
 
       composeTransform(
         this.coordinateToPixelTransform,
-        this.map.getSize()[0] / 2,
-        this.map.getSize()[1] / 2,
-        1 /
-          map
-            .getView()
-            .getResolutionForZoom(Math.floor(map.getView().getZoom())),
-        -1 /
-          map
-            .getView()
-            .getResolutionForZoom(Math.floor(map.getView().getZoom())),
+        256 / 2,
+        256 / 2,
+        1 / map.getView().getResolutionForZoom(tileCoord[0]),
+        -1 / map.getView().getResolutionForZoom(tileCoord[0]),
         -map.getView().getRotation(),
-        -map.getView().getCenter()[0],
-        -map.getView().getCenter()[1]
+        -(tileExtent[0] + tileExtent[2]) / 2,
+        -(tileExtent[1] + tileExtent[3]) / 2
       );
 
-      console.log(
-        applyTransform(this.coordinateToPixelTransform, [
-          tileExtent[0],
-          tileExtent[1],
-        ])
-      );
-      // console.log(map.getView().getResolutionForZoom(8));
-      // console.log(map.getView().getResolutionForZoom(8.2));
-      // let cst =
-      //   map.getView().getResolutionForZoom(8) /
-      //   map.getView().getResolutionForZoom(8.2);
-
-      // cst = 1.2;
-      const pixelExtent = this.getPixelExtent(map, tileExtent);
       //裁剪
-      // context.save();
       let pixelRatio = window.devicePixelRatio || 1;
       let transform;
       transform = scaleTransform(createTransform(), pixelRatio, pixelRatio);
@@ -222,52 +151,19 @@ export default {
         }
         pointArr.push(this.transform2D(pointTmp, transform));
       }
-      // context.globalCompositeOperation = "destination-in";
       context.beginPath();
       for (let i = 0; i < pointArr.length; i++) {
         let pointTmp = pointArr[i];
         for (let j = 0; j < pointTmp.length; j++) {
           if (j == 0) {
-            context.moveTo(
-              pointTmp[j][0] - pixelExtent[0],
-              pointTmp[j][1] - pixelExtent[1]
-            );
+            context.moveTo(pointTmp[j][0], pointTmp[j][1]);
           } else {
-            context.lineTo(
-              pointTmp[j][0] - pixelExtent[0],
-              pointTmp[j][1] - pixelExtent[1]
-            );
+            context.lineTo(pointTmp[j][0], pointTmp[j][1]);
           }
-          console.log(
-            pointTmp[j][0] - pixelExtent[0],
-            pointTmp[j][1] - pixelExtent[1]
-          );
+          // console.log(pointTmp[j][0], pointTmp[j][1]);
         }
       }
       context.clip();
-    },
-    getPixelExtent(map, extent) {
-      let pixelRatio = window.devicePixelRatio || 1;
-      let transform;
-      transform = scaleTransform(createTransform(), pixelRatio, pixelRatio);
-
-      const leftTop = [extent[0], extent[3]];
-      const rightBottom = [extent[2], extent[1]];
-      const leftTopPixel = this.transform2D(
-        [applyTransform(this.coordinateToPixelTransform, leftTop)],
-        transform
-      )[0];
-      const rightBottomPixel = this.transform2D(
-        [applyTransform(this.coordinateToPixelTransform, rightBottom)],
-        transform
-      )[0];
-
-      return [
-        leftTopPixel[0],
-        leftTopPixel[1],
-        rightBottomPixel[0],
-        rightBottomPixel[1],
-      ];
     },
 
     /**
