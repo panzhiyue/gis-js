@@ -4,11 +4,15 @@
 <script>
 import EchartsLayer from "ol-echarts";
 import { BaseObjectMixin, findParentMap } from "@gis-js/vue2ol";
+import ImageLayer from "ol/layer/Image";
+import ImageStaticSource from "ol/source/ImageStatic";
 export default {
   name: "Vue2olLayerEcharts",
   mixins: [BaseObjectMixin],
   data() {
-    return {};
+    return {
+      moving: false,
+    };
   },
   props: {
     /**
@@ -55,6 +59,7 @@ export default {
       forcedRerender: this.forcedRerender,
       forcedPrecomposeRerender: this.forcedPrecomposeRerender,
     });
+
     /**
      * 地图元素初始化完时触发
      * @type {object}
@@ -71,6 +76,12 @@ export default {
      */
     this.$emit("append", this.mapObject);
 
+    this.parent.on("pointerdown", this.handlePointerDown);
+
+    this.parent.on("movestart", this.handleMoveStart);
+
+    this.parent.on("moveend", this.handleMoveEnd);
+
     this.$nextTick(() => {
       /**
        * 组件就绪时触发
@@ -80,13 +91,57 @@ export default {
       this.$emit("ready", this.mapObject);
     });
   },
+  methods: {
+    handlePointerDown() {
+      this.initImageLayer();
+    },
+    handleMoveStart(e) {
+      if (this.imageLayer) {
+        this.imageLayer.setOpacity(1);
+      }
+    },
+    handleMoveEnd() {
+      this.initImageLayer();
+    },
+    dispose() {
+      this.mapObject.remove();
+      this.mapObject = null;
+
+      this.parent.un("pointerdown", this.handlePointerDown);
+
+      this.parent.un("movestart", this.handleMoveStart);
+
+      this.parent.un("moveend", this.handleMoveEnd);
+    },
+    initImageLayer() {
+      this.url = this.mapObject.$chart.getDataURL("image/png");
+      let image = new Image();
+      image.onload = () => {
+        if (this.imageLayer) {
+          this.parent.removeLayer(this.imageLayer);
+          this.imageLayer = null;
+        }
+        this.imageLayer = new ImageLayer({
+          source: new ImageStaticSource({
+            url: this.url,
+            imageExtent: this.parent.getView().calculateExtent(),
+            projection: this.parent.getView().getProjection(),
+          }),
+        });
+        this.imageLayer.setOpacity(0);
+        this.parent.addLayer(this.imageLayer);
+        this.imageLayer.render();
+        // this.imageLayer.getSource().refresh();
+        // this.parent.renderSync();
+      };
+      image.src = this.url;
+    },
+  },
   destroyed() {
-    this.mapObject.remove();
-    this.mapObject = null;
+    this.dispose();
   },
   unmounted() {
-    this.mapObject.remove();
-    this.mapObject = null;
+    this.dispose();
   },
 };
 </script>
