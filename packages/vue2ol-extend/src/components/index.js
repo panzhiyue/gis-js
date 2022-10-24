@@ -11,6 +11,9 @@ export { default as Vue2olControlMouseinfo } from "./control/MouseInfo.vue";
 export { default as Vue2olControlMousetips } from "./control/MouseTips.vue";
 export { default as Vue2olControlPopup } from "./control/Popup.vue";
 
+//layer
+export { default as Vue2olLayerEcharts } from "./layer/Echarts.vue";
+
 //source
 export { default as Vue2olSourceBaidu } from "./source/BaiDu.vue";
 export { default as Vue2olSourceBing } from "./source/Bing.vue";

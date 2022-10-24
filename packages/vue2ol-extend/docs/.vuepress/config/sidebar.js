@@ -30,6 +30,10 @@ module.exports = {
       ],
     },
     {
+      title: "layer",
+      children: ["/components/layer/Echarts"],
+    },
+    {
       title: "source",
       children: [
         "/components/source/BaiDu",
@@ -72,7 +76,6 @@ module.exports = {
         "/components/typhoon/ForecastPointInfo",
         "/components/typhoon/RealPointInfo",
         "/components/typhoon/Main",
- 
       ],
     },
   ],

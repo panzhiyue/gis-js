@@ -136,12 +136,16 @@ importers:
       '@gis-js/utilsol': workspace:*
       '@gis-js/vue2ol': workspace:*
       '@turf/turf': 6.5.0
+      echarts: ^5.4.0
       ol: ^6.14.1
+      ol-echarts: ^3.0.0
     dependencies:
       '@gis-js/utilsol': link:../utilsol
       '@gis-js/vue2ol': link:../vue2ol
       '@turf/turf': 6.5.0
+      echarts: 5.4.0
       ol: 6.15.1
+      ol-echarts: 3.0.0_echarts@5.4.0+ol@6.15.1
 
 packages:
 
@@ -7516,6 +7520,13 @@ packages:
       safer-buffer: 2.1.2
     dev: true
 
+  /echarts/5.4.0:
+    resolution: {integrity: sha512-uPsO9VRUIKAdFOoH3B0aNg7NRVdN7aM39/OjovjO9MwmWsAkfGyeXJhK+dbRi51iDrQWliXV60/XwLA7kg3z0w==}
+    dependencies:
+      tslib: 2.3.0
+      zrender: 5.4.0
+    dev: false
+
   /ee-first/1.1.1:
     resolution: {integrity: sha1-WQxhFWsK4vTwJVcyoViyZrxWsh0=}
     dev: true
@@ -11436,6 +11447,17 @@ packages:
     resolution: {integrity: sha512-PX1wu0AmAdPqOL1mWhqmlOd8kOIZQwGZw6rh7uby9fTc5lhaOWFLX3I6R1hrF9k3zUY40e6igsLGkDXK92LJNg==}
     dev: true
 
+  /ol-echarts/3.0.0_echarts@5.4.0+ol@6.15.1:
+    resolution: {integrity: sha512-3v71ewIISwTakEpVotHc5ELEM+3Pud9pQhn8tXzLj5cZ83E1azajif0Y1WXDdYmjoiGVjWHFzwunjNSdEYEMXA==}
+    engines: {node: '>= 4.0.0', npm: '>= 3.0.0'}
+    peerDependencies:
+      echarts: '>=5.0.0'
+      ol: '>=5.0.0'
+    dependencies:
+      echarts: 5.4.0
+      ol: 6.15.1
+    dev: false
+
   /ol-mapbox-style/8.2.1:
     resolution: {integrity: sha512-3kBBuZC627vDL8vnUdfVbCbfkhkcZj2kXPHQcuLhC4JJEA+XkEVEtEde8x8+AZctRbHwBkSiubTPaRukgLxIRw==}
     dependencies:
@@ -14663,6 +14685,10 @@ packages:
     resolution: {integrity: sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==}
     dev: true
 
+  /tslib/2.3.0:
+    resolution: {integrity: sha512-N82ooyxVNm6h1riLCoyS9e3fuJ3AMG2zIZs2Gd1ATcSFjSA23Q0fzjjZeh0jbJvWVDZ0cJT8yaNNaaXHzueNjg==}
+    dev: false
+
   /tslib/2.4.0:
     resolution: {integrity: sha512-d6xOpEDfsi2CZVlPQzGeux8XMwLT9hssAsaPYExaQMuYskwb+x1x7J371tWlbBdWHroy99KnVB6qIkUbs5X3UQ==}
     dev: true
@@ -15965,3 +15991,9 @@ packages:
   /zepto/1.2.0:
     resolution: {integrity: sha512-C1x6lfvBICFTQIMgbt3JqMOno3VOtkWat/xEakLTOurskYIHPmzJrzd1e8BnmtdDVJlGuk5D+FxyCA8MPmkIyA==}
     dev: true
+
+  /zrender/5.4.0:
+    resolution: {integrity: sha512-rOS09Z2HSVGFs2dn/TuYk5BlCaZcVe8UDLLjj1ySYF828LATKKdxuakSZMvrDz54yiKPDYVfjdKqcX8Jky3BIA==}
+    dependencies:
+      tslib: 2.3.0
+    dev: false

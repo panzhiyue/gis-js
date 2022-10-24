@@ -35,6 +35,8 @@
     "@gis-js/utilsol": "workspace:*",
     "@gis-js/vue2ol": "workspace:*",
     "@turf/turf": "6.5.0",
-    "ol": "^6.14.1"
+    "echarts": "^5.4.0",
+    "ol": "^6.14.1",
+    "ol-echarts": "^3.0.0"
   }
 }
