@@ -14,7 +14,7 @@ title: Vue2olLayerEcharts
 
 ```vue
 <template>
-  <vue2ol-map style="height:400px;">
+  <vue2ol-map style="height:400px;" :key="'map1'">
     <vue2ol-view :zoom="zoom" :center="center" :options="viewOptions">
     </vue2ol-view>
     <vue2ol-layer-tile>
@@ -24,7 +24,7 @@ title: Vue2olLayerEcharts
       key="1"
       v-if="echartsOption"
       :echartsOption="echartsOption"
-      :hideOnMoving="true"
+      :hideOnMoving="hideOnMoving"
     ></vue2ol-layer-echarts>
   </vue2ol-map>
 </template>
@@ -39,7 +39,8 @@ export default {
       viewOptions: {
         projection: "EPSG:4326" //坐标系
       },
-      echartsOption: null
+      echartsOption: null,
+      hideOnMoving: false
     };
   },
   mounted() {
@@ -129,7 +130,7 @@ export default {
 
 ```vue
 <template>
-  <vue2ol-map style="height:400px;">
+  <vue2ol-map style="height:400px;" :key="'map2'">
     <vue2ol-view :zoom="zoom" :center="center" :options="viewOptions">
     </vue2ol-view>
     <vue2ol-layer-tile>
@@ -138,7 +139,7 @@ export default {
     <vue2ol-layer-echarts
       v-if="echartsOption"
       :echartsOption="echartsOption"
-      :hideOnMoving="true"
+      :hideOnMoving="hideOnMoving"
       key="2"
     ></vue2ol-layer-echarts>
   </vue2ol-map>
@@ -155,7 +156,8 @@ export default {
       viewOptions: {
         projection: "EPSG:4326" //坐标系
       },
-      echartsOption: null
+      echartsOption: null,
+      hideOnMoving: true
     };
   },
   async mounted() {
@@ -333,7 +335,7 @@ export default {
 
 ```vue
 <template>
-  <vue2ol-map style="height:400px;">
+  <vue2ol-map style="height:400px;" :key="'map3'">
     <vue2ol-view :zoom="zoom" :center="center" :options="viewOptions">
     </vue2ol-view>
     <vue2ol-layer-tile>
@@ -342,7 +344,7 @@ export default {
     <vue2ol-layer-echarts
       v-if="echartsOption"
       :echartsOption="echartsOption"
-      :hideOnMoving="true"
+      :hideOnMoving="hideOnMoving"
       key="2"
     ></vue2ol-layer-echarts>
   </vue2ol-map>
@@ -359,7 +361,8 @@ export default {
       viewOptions: {
         projection: "EPSG:4326" //坐标系
       },
-      echartsOption: null
+      echartsOption: null,
+      hideOnMoving: false
     };
   },
   async mounted() {

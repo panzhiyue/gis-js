@@ -4,14 +4,12 @@
 <script>
 import EchartsLayer from "ol-echarts";
 import { BaseObjectMixin, findParentMap } from "@gis-js/vue2ol";
-import ImageLayer from "ol/layer/Image";
-import ImageStaticSource from "ol/source/ImageStatic";
 export default {
   name: "Vue2olLayerEcharts",
   mixins: [BaseObjectMixin],
   data() {
     return {
-      moving: false,
+      isMoving: false,
     };
   },
   props: {
@@ -55,7 +53,7 @@ export default {
     this.mapObject = new EchartsLayer(this.echartsOption, {
       source: this.source,
       destination: this.destination,
-      hideOnMoving: this.hideOnMoving,
+      hideOnMoving: true,
       forcedRerender: this.forcedRerender,
       forcedPrecomposeRerender: this.forcedPrecomposeRerender,
     });
@@ -75,12 +73,11 @@ export default {
      * @property {ol-echarts} mapObject  地图元素
      */
     this.$emit("append", this.mapObject);
-
     this.parent.on("pointerdown", this.handlePointerDown);
-
     this.parent.on("movestart", this.handleMoveStart);
 
     this.parent.on("moveend", this.handleMoveEnd);
+    this.parent.on("postcompose", this.handlePostcompose);
 
     this.$nextTick(() => {
       /**
@@ -93,48 +90,53 @@ export default {
   },
   methods: {
     handlePointerDown() {
-      this.initImageLayer();
+      this.extent = this.parent.getView().calculateExtent();
+      this.zoom = this.parent.getView().getZoom();
     },
     handleMoveStart(e) {
-      if (this.imageLayer) {
-        this.imageLayer.setOpacity(1);
-      }
+      this.isMoving = true;
     },
+
     handleMoveEnd() {
-      this.initImageLayer();
+      this.isMoving = false;
+      this.parent.render();
+      this.extent = null;
+      this.zoom = null;
+    },
+    handlePostcompose() {
+      if (
+        !this.mapObject ||
+        this.isMoving == false ||
+        this.extent == null ||
+        this.hideOnMoving == true
+      ) {
+        return;
+      }
+      let topLeft = [this.extent[0], this.extent[3]];
+      let pixelCoor = this.parent.getPixelFromCoordinate(topLeft);
+      this.parent.renderer_.children_.forEach((children, index) => {
+        let canvasArr = children.getElementsByTagName("canvas");
+        for (let i = 0; i < canvasArr.length; i++) {
+          let canvas = canvasArr[i];
+          let context = canvas.getContext("2d");
+          context.drawImage(
+            this.mapObject.$chart.getRenderedCanvas(),
+            pixelCoor[0],
+            pixelCoor[1],
+            canvas.width,
+            canvas.height
+          );
+        }
+      });
     },
     dispose() {
       this.mapObject.remove();
       this.mapObject = null;
-
       this.parent.un("pointerdown", this.handlePointerDown);
-
       this.parent.un("movestart", this.handleMoveStart);
 
       this.parent.un("moveend", this.handleMoveEnd);
-    },
-    initImageLayer() {
-      this.url = this.mapObject.$chart.getDataURL("image/png");
-      let image = new Image();
-      image.onload = () => {
-        if (this.imageLayer) {
-          this.parent.removeLayer(this.imageLayer);
-          this.imageLayer = null;
-        }
-        this.imageLayer = new ImageLayer({
-          source: new ImageStaticSource({
-            url: this.url,
-            imageExtent: this.parent.getView().calculateExtent(),
-            projection: this.parent.getView().getProjection(),
-          }),
-        });
-        this.imageLayer.setOpacity(0);
-        this.parent.addLayer(this.imageLayer);
-        this.imageLayer.render();
-        // this.imageLayer.getSource().refresh();
-        // this.parent.renderSync();
-      };
-      image.src = this.url;
+      this.parent.un("postcompose", this.handlePostcompose);
     },
   },
   destroyed() {
