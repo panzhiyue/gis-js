@@ -33,6 +33,7 @@ export {default as Vue2olSourceImagestatic} from "./source/ImageStatic.vue"
 export {default as Vue2olSourceImagewms} from "./source/ImageWMS.vue"
 export {default as Vue2olSourceRaster} from "./source/Raster.vue"
 export {default as Vue2olSourceTiledebug} from "./source/TileDebug.vue"
+export {default as Vue2olSourceWmts} from "./source/WMTS.vue"
 
 //interaction
 export {default as Vue2olInteractionDraw} from "./interaction/Draw.vue"
