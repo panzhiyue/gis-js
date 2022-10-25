@@ -8,12 +8,15 @@ title: Vue2olInteractionDraganddrop
 
 > [ol/interaction/DragAndDrop](https://openlayers.org/en/latest/apidoc/module-ol_interaction_DragAndDrop-DragAndDrop.html)的 vue 组件
 
+通过拖放处 ​​ 理矢量数据的输入。
+
 Since: v1.0.0
 
 ---
 
 ## 基础用法
 
+[测试数据](/gis-js/vue2ol/data/geojson/1.geojson)
 ::: demo
 
 ```vue
@@ -92,7 +95,8 @@ export default {
 
 ## Events
 
-| 名称  | 属性                                                                    | 描述                   |
-| ----- | ----------------------------------------------------------------------- | ---------------------- |
-| init  | **mapObject** `import('ol/interaction/DragAndDrop').default` - 地图元素 | 地图元素初始化完时触发 |
-| ready | **mapObject** `import('ol/interaction/DragAndDrop').default` - 地图元素 | 地图元素初始化完时触发 |
+| 名称   | 属性                                                                    | 描述                   |
+| ------ | ----------------------------------------------------------------------- | ---------------------- |
+| init   | **mapObject** `import('ol/interaction/DragAndDrop').default` - 地图元素 | 地图元素初始化完时触发 |
+| append | **mapObject** `import('ol/interaction/DragAndDrop').default` - 地图元素 | 地图元素初始化完时触发 |
+| ready  | **mapObject** `import('ol/interaction/DragAndDrop').default` - 地图元素 | 地图元素初始化完时触发 |

@@ -14,6 +14,8 @@ import {
 } from "../../utils";
 /**
  * [ol/interaction/KeyboardPan](https://openlayers.org/en/latest/apidoc/module-ol_interaction_KeyboardPan-KeyboardPan.html)的vue组件
+ * 
+ * 允许用户使用键盘箭头平移地图。需要指定Map的keyboardEventTarget参数，并且指定元素节点有tabindex属性
  * @since v1.0.0
  */
 export default {
@@ -57,7 +59,7 @@ export default {
        * @type {object}
        * @property {import('ol/interaction/KeyboardPan').default} mapObject  地图元素
        */
-      this.$emit("ready", this.mapObject);
+      this.$emit("append", this.mapObject);
 
       this.ready = true;
       this.$nextTick(() => {

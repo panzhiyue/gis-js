@@ -14,6 +14,8 @@ import {
 } from "../../utils";
 /**
  * [ol/interaction/Extent](https://openlayers.org/en/latest/apidoc/module-ol_interaction_Extent-Extent.html)的vue组件
+ * 
+ * 允许用户通过在地图上单击并拖动来绘制矢量框。绘制后，可以通过拖动其顶点或边缘来修改矢量框。
  * @since v1.0.0
  */
 export default {
@@ -67,7 +69,7 @@ export default {
        * @type {object}
        * @property {import('ol/interaction/Extent').default} mapObject  地图元素
        */
-      this.$emit("ready", this.mapObject);
+      this.$emit("append", this.mapObject);
 
       this.ready = true;
       this.$nextTick(() => {

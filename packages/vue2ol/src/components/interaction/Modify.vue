@@ -14,6 +14,8 @@ import {
 } from "../../utils";
 /**
  * [ol/interaction/Modify](https://openlayers.org/en/latest/apidoc/module-ol_interaction_Modify-Modify.html)的vue组件
+ * 
+ * 用于修改特征几何的交互。要修改已添加到现有源的功能，请使用该 source选项构建修改交互。如果要修改集合中的特征（例如，选择交互使用的集合），请使用features选项构造交互。必须使用 a source或features选项构建交互。
  * @since v1.0.0
  */
 export default {
@@ -79,7 +81,7 @@ export default {
        * @type {object}
        * @property {import('ol/interaction/Modify').default} mapObject  地图元素
        */
-      this.$emit("ready", this.mapObject);
+      this.$emit("append", this.mapObject);
 
       this.ready = true;
       this.$nextTick(() => {

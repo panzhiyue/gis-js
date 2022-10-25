@@ -14,6 +14,8 @@ import {
 } from "../../utils";
 /**
  * [ol/interaction/Snap](https://openlayers.org/en/latest/apidoc/module-ol_interaction_Snap-Snap.html)的vue组件
+ *
+ * 在修改或绘制矢量特征时处理它们的捕捉。
  * @since v1.0.0
  */
 export default {
@@ -44,12 +46,14 @@ export default {
         this.parent.removeInteraction(this.mapObject);
         this.mapObject = null;
       }
+
       let options = optionsMerger(
         {
           source: this.source,
         },
         this
       );
+      console.log(options.features);
       this.mapObject = new Snap(options);
       this.mapObject.setActive(this.active);
       this.properties && this.mapObject.setProperties(this.properties);
@@ -70,7 +74,7 @@ export default {
        * @type {object}
        * @property {import('ol/interaction/Snap').default} mapObject  地图元素
        */
-      this.$emit("ready", this.mapObject);
+      this.$emit("append", this.mapObject);
 
       this.ready = true;
       this.$nextTick(() => {

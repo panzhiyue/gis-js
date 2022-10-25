@@ -8,6 +8,8 @@ title: Vue2olInteractionSelect
 
 > [ol/interaction/Select](https://openlayers.org/en/latest/apidoc/module-ol_interaction_Select-Select.html)的 vue 组件
 
+选择矢量元素
+
 Since: v1.0.0
 
 ---
@@ -88,7 +90,8 @@ export default {
 
 ## Events
 
-| 名称  | 属性                                                               | 描述                   |
-| ----- | ------------------------------------------------------------------ | ---------------------- |
-| init  | **mapObject** `import('ol/interaction/Select').default` - 地图元素 | 地图元素初始化完时触发 |
-| ready | **mapObject** `import('ol/interaction/Select').default` - 地图元素 | 地图元素初始化完时触发 |
+| 名称   | 属性                                                               | 描述                   |
+| ------ | ------------------------------------------------------------------ | ---------------------- |
+| init   | **mapObject** `import('ol/interaction/Select').default` - 地图元素 | 地图元素初始化完时触发 |
+| append | **mapObject** `import('ol/interaction/Select').default` - 地图元素 | 地图元素初始化完时触发 |
+| ready  | **mapObject** `import('ol/interaction/Select').default` - 地图元素 | 地图元素初始化完时触发 |

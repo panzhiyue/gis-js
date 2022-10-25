@@ -8,6 +8,8 @@ title: Vue2olInteractionDragzoom
 
 > [ol/interaction/DragZoom](https://openlayers.org/en/latest/apidoc/module-ol_interaction_DragZoom-DragZoom.html)的 vue 组件
 
+允许用户通过在地图上单击并拖动来缩放地图。默认情况下，此交互仅限于按住 shift 键时。
+
 Since: v1.0.0
 
 ---
@@ -88,7 +90,8 @@ export default {
 
 ## Events
 
-| 名称  | 属性                                                                 | 描述                   |
-| ----- | -------------------------------------------------------------------- | ---------------------- |
-| init  | **mapObject** `import('ol/interaction/DragZoom').default` - 地图元素 | 地图元素初始化完时触发 |
-| ready | **mapObject** `import('ol/interaction/DragZoom').default` - 地图元素 | 地图元素初始化完时触发 |
+| 名称   | 属性                                                                 | 描述                   |
+| ------ | -------------------------------------------------------------------- | ---------------------- |
+| init   | **mapObject** `import('ol/interaction/DragZoom').default` - 地图元素 | 地图元素初始化完时触发 |
+| append | **mapObject** `import('ol/interaction/DragZoom').default` - 地图元素 | 地图元素初始化完时触发 |
+| ready  | **mapObject** `import('ol/interaction/DragZoom').default` - 地图元素 | 地图元素初始化完时触发 |

@@ -14,6 +14,8 @@ import {
 } from "../../utils";
 /**
  * [ol/interaction/DragAndDrop](https://openlayers.org/en/latest/apidoc/module-ol_interaction_DragAndDrop-DragAndDrop.html)的vue组件
+ * 
+ * 通过拖放处​​理矢量数据的输入。
  * @since v1.0.0
  */
 export default {
@@ -77,7 +79,7 @@ export default {
        * @type {object}
        * @property {import('ol/interaction/DragAndDrop').default} mapObject  地图元素
        */
-      this.$emit("ready", this.mapObject);
+      this.$emit("append", this.mapObject);
 
       this.ready = true;
       this.$nextTick(() => {

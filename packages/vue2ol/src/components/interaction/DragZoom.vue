@@ -14,6 +14,8 @@ import {
 } from "../../utils";
 /**
  * [ol/interaction/DragZoom](https://openlayers.org/en/latest/apidoc/module-ol_interaction_DragZoom-DragZoom.html)的vue组件
+ * 
+ * 允许用户通过在地图上单击并拖动来缩放地图。默认情况下，此交互仅限于按住 shift 键时。
  * @since v1.0.0
  */
 export default {
@@ -26,8 +28,6 @@ export default {
   },
   data() {
     return {
-      // mapObject: null,
-      // parent: null,
       ready: false,
     };
   },
@@ -96,7 +96,7 @@ export default {
        * @type {object}
        * @property {import('ol/interaction/DragZoom').default} mapObject  地图元素
        */
-      this.$emit("ready", this.mapObject);
+      this.$emit("append", this.mapObject);
 
       this.ready = true;
       this.$nextTick(() => {

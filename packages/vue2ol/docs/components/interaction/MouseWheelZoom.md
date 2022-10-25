@@ -8,6 +8,8 @@ title: Vue2olInteractionMousewheelzoom
 
 > [ol/interaction/MouseWheelZoom](https://openlayers.org/en/latest/apidoc/module-ol_interaction_MouseWheelZoom-MouseWheelZoom.html)的 vue 组件
 
+允许用户通过滚动鼠标滚轮来缩放地图。
+
 Since: v1.0.0
 
 ---
@@ -89,7 +91,8 @@ export default {
 
 ## Events
 
-| 名称  | 属性                                                                       | 描述                   |
-| ----- | -------------------------------------------------------------------------- | ---------------------- |
-| init  | **mapObject** `import('ol/interaction/MouseWheelZoom').default` - 地图元素 | 地图元素初始化完时触发 |
-| ready | **mapObject** `import('ol/interaction/MouseWheelZoom').default` - 地图元素 | 地图元素初始化完时触发 |
+| 名称   | 属性                                                                       | 描述                   |
+| ------ | -------------------------------------------------------------------------- | ---------------------- |
+| init   | **mapObject** `import('ol/interaction/MouseWheelZoom').default` - 地图元素 | 地图元素初始化完时触发 |
+| append | **mapObject** `import('ol/interaction/MouseWheelZoom').default` - 地图元素 | 地图元素初始化完时触发 |
+| ready  | **mapObject** `import('ol/interaction/MouseWheelZoom').default` - 地图元素 | 地图元素初始化完时触发 |

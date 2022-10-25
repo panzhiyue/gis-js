@@ -1,5 +1,5 @@
 ## 基础用法
-
+[测试数据](/gis-js/vue2ol/data/geojson/1.geojson)
 ::: demo
 ```vue
 <template>

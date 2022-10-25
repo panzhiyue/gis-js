@@ -14,6 +14,8 @@ import {
 } from "../../utils";
 /**
  * [ol/interaction/Translate](https://openlayers.org/en/latest/apidoc/module-ol_interaction_Translate-Translate.html)的vue组件
+ * 
+ * 移动矢量元素
  * @since v1.0.0
  */
 export default {
@@ -61,7 +63,7 @@ export default {
        * @type {object}
        * @property {import('ol/interaction/Translate').default} mapObject  地图元素
        */
-      this.$emit("ready", this.mapObject);
+      this.$emit("append", this.mapObject);
 
       this.ready = true;
       this.$nextTick(() => {

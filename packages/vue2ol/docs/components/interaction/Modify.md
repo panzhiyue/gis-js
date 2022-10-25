@@ -8,6 +8,8 @@ title: Vue2olInteractionModify
 
 > [ol/interaction/Modify](https://openlayers.org/en/latest/apidoc/module-ol_interaction_Modify-Modify.html)的 vue 组件
 
+用于修改特征几何的交互。要修改已添加到现有源的功能，请使用该 source 选项构建修改交互。如果要修改集合中的特征（例如，选择交互使用的集合），请使用 features 选项构造交互。必须使用 a source 或 features 选项构建交互。
+
 Since: v1.0.0
 
 ---
@@ -87,7 +89,8 @@ export default {
 
 ## Events
 
-| 名称  | 属性                                                               | 描述                   |
-| ----- | ------------------------------------------------------------------ | ---------------------- |
-| init  | **mapObject** `import('ol/interaction/Modify').default` - 地图元素 | 地图元素初始化完时触发 |
-| ready | **mapObject** `import('ol/interaction/Modify').default` - 地图元素 | 地图元素初始化完时触发 |
+| 名称   | 属性                                                               | 描述                   |
+| ------ | ------------------------------------------------------------------ | ---------------------- |
+| init   | **mapObject** `import('ol/interaction/Modify').default` - 地图元素 | 地图元素初始化完时触发 |
+| append | **mapObject** `import('ol/interaction/Modify').default` - 地图元素 | 地图元素初始化完时触发 |
+| ready  | **mapObject** `import('ol/interaction/Modify').default` - 地图元素 | 地图元素初始化完时触发 |

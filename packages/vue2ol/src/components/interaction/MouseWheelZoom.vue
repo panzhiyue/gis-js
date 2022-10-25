@@ -14,6 +14,8 @@ import {
 } from "../../utils";
 /**
  * [ol/interaction/MouseWheelZoom](https://openlayers.org/en/latest/apidoc/module-ol_interaction_MouseWheelZoom-MouseWheelZoom.html)的vue组件
+ * 
+ * 允许用户通过滚动鼠标滚轮来缩放地图。
  * @since v1.0.0
  */
 export default {
@@ -71,7 +73,7 @@ export default {
        * @type {object}
        * @property {import('ol/interaction/MouseWheelZoom').default} mapObject  地图元素
        */
-      this.$emit("ready", this.mapObject);
+      this.$emit("append", this.mapObject);
 
       this.ready = true;
       this.$nextTick(() => {

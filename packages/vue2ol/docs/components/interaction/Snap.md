@@ -8,6 +8,8 @@ title: Vue2olInteractionSnap
 
 > [ol/interaction/Snap](https://openlayers.org/en/latest/apidoc/module-ol_interaction_Snap-Snap.html)的 vue 组件
 
+在修改或绘制矢量特征时处理它们的捕捉。
+
 Since: v1.0.0
 
 ---
@@ -32,12 +34,15 @@ Since: v1.0.0
     </vue2ol-layer-tile>
     <vue2ol-layer-vector :zIndex="10">
       <vue2ol-source-vector :features="features" @ready="onReadySource">
+        <vue2ol-interaction-modify
+          :active="active == '1'"
+        ></vue2ol-interaction-modify>
       </vue2ol-source-vector>
     </vue2ol-layer-vector>
     <vue2ol-interaction-snap
       v-if="source"
       :active="active == '1'"
-      :options="{ source: source }"
+      :options="{ source: source, pixelTolerance: 50 }"
       @change:active="handleChangeActive"
     ></vue2ol-interaction-snap>
   </vue2ol-map>
@@ -58,7 +63,7 @@ export default {
       mapOptions: {
         interactions: []
       },
-      active: "0",
+      active: "1",
       features: [],
       features2: [],
       source: null
@@ -110,7 +115,8 @@ export default {
 
 ## Events
 
-| 名称  | 属性                                                             | 描述                   |
-| ----- | ---------------------------------------------------------------- | ---------------------- |
-| init  | **mapObject** `import('ol/interaction/Snap').default` - 地图元素 | 地图元素初始化完时触发 |
-| ready | **mapObject** `import('ol/interaction/Snap').default` - 地图元素 | 地图元素初始化完时触发 |
+| 名称   | 属性                                                             | 描述                   |
+| ------ | ---------------------------------------------------------------- | ---------------------- |
+| init   | **mapObject** `import('ol/interaction/Snap').default` - 地图元素 | 地图元素初始化完时触发 |
+| append | **mapObject** `import('ol/interaction/Snap').default` - 地图元素 | 地图元素初始化完时触发 |
+| ready  | **mapObject** `import('ol/interaction/Snap').default` - 地图元素 | 地图元素初始化完时触发 |

@@ -8,6 +8,8 @@ title: Vue2olInteractionKeyboardzoom
 
 > [ol/interaction/KeyboardZoom](https://openlayers.org/en/latest/apidoc/module-ol_interaction_KeyboardZoom-KeyboardZoom.html)的 vue 组件
 
+允许用户使用键盘 + 和 - 缩放地图。需要指定 Map 的 keyboardEventTarget 参数，并且指定元素节点有 tabindex 属性
+
 Since: v1.0.0
 
 ---
@@ -49,7 +51,8 @@ export default {
         projection: "EPSG:4326" //坐标系
       },
       mapOptions: {
-        interactions: []
+        interactions: [],
+        keyboardEventTarget: document
       },
       active: "0"
     };
@@ -77,7 +80,8 @@ export default {
 
 ## Events
 
-| 名称  | 属性                                                                     | 描述                   |
-| ----- | ------------------------------------------------------------------------ | ---------------------- |
-| init  | **mapObject** `import('ol/interaction/KeyboardZoom').default` - 地图元素 | 地图元素初始化完时触发 |
-| ready | **mapObject** `import('ol/interaction/KeyboardZoom').default` - 地图元素 | 地图元素初始化完时触发 |
+| 名称   | 属性                                                                     | 描述                   |
+| ------ | ------------------------------------------------------------------------ | ---------------------- |
+| init   | **mapObject** `import('ol/interaction/KeyboardZoom').default` - 地图元素 | 地图元素初始化完时触发 |
+| append | **mapObject** `import('ol/interaction/KeyboardZoom').default` - 地图元素 | 地图元素初始化完时触发 |
+| ready  | **mapObject** `import('ol/interaction/KeyboardZoom').default` - 地图元素 | 地图元素初始化完时触发 |

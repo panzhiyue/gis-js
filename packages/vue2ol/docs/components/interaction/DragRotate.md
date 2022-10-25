@@ -8,6 +8,8 @@ title: Vue2olInteractionDragrotate
 
 > [ol/interaction/DragRotate](https://openlayers.org/en/latest/apidoc/module-ol_interaction_DragRotate-DragRotate.html)的 vue 组件
 
+允许用户通过在地图上单击和拖动来旋转地图，默认情况下需要按住 alt 和 shift 键
+
 Since: v1.0.0
 
 ---
@@ -48,9 +50,63 @@ export default {
         projection: "EPSG:4326" //坐标系
       },
       mapOptions: {
-        // interactions:[]
+        interactions: []
       },
       active: "0"
+    };
+  },
+  mounted() {}
+};
+</script>
+```
+
+:::
+
+## 没有条件
+
+::: demo
+
+```vue
+<template>
+  <div>
+    <select v-model="active" style="width:200px;">
+      <option value="1">激活</option>
+      <option value="0">取消</option>
+    </select>
+  </div>
+  <vue2ol-map style="height:400px;" :options="mapOptions">
+    <vue2ol-view :zoom="zoom" :center="center" :options="viewOptions">
+    </vue2ol-view>
+    <vue2ol-layer-tile>
+      <vue2ol-source-osm></vue2ol-source-osm>
+    </vue2ol-layer-tile>
+    <vue2ol-interaction-dragrotate
+      :active="active == '1'"
+      :options="interactionOptions"
+    ></vue2ol-interaction-dragrotate>
+  </vue2ol-map>
+</template>
+
+<script>
+import Feature from "ol/Feature";
+import Polygon from "ol/geom/Polygon";
+export default {
+  data() {
+    return {
+      zoom: 10, //级别
+      center: [120, 28], //中心点
+      viewOptions: {
+        projection: "EPSG:4326" //坐标系
+      },
+      mapOptions: {
+        interactions: []
+      },
+      active: "0",
+      interactionOptions: {
+        condition: () => {
+          return true;
+        }
+      }
     };
   },
   mounted() {}
@@ -71,7 +127,8 @@ export default {
 
 ## Events
 
-| 名称  | 属性                                                                   | 描述                   |
-| ----- | ---------------------------------------------------------------------- | ---------------------- |
-| init  | **mapObject** `import('ol/interaction/DragRotate').default` - 地图元素 | 地图元素初始化完时触发 |
-| ready | **mapObject** `import('ol/interaction/DragRotate').default` - 地图元素 | 地图元素初始化完时触发 |
+| 名称   | 属性                                                                   | 描述                   |
+| ------ | ---------------------------------------------------------------------- | ---------------------- |
+| init   | **mapObject** `import('ol/interaction/DragRotate').default` - 地图元素 | 地图元素初始化完时触发 |
+| append | **mapObject** `import('ol/interaction/DragRotate').default` - 地图元素 | 地图元素初始化完时触发 |
+| ready  | **mapObject** `import('ol/interaction/DragRotate').default` - 地图元素 | 地图元素初始化完时触发 |

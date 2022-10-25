@@ -8,6 +8,8 @@ title: Vue2olInteractionPinchzoom
 
 > [ol/interaction/PinchZoom](https://openlayers.org/en/latest/apidoc/module-ol_interaction_PinchZoom-PinchZoom.html)的 vue 组件
 
+允许用户通过在触摸屏上用两根手指捏合来缩放地图。
+
 Since: v1.0.0
 
 ---
@@ -71,7 +73,8 @@ export default {
 
 ## Events
 
-| 名称  | 属性                                                                  | 描述                   |
-| ----- | --------------------------------------------------------------------- | ---------------------- |
-| init  | **mapObject** `import('ol/interaction/PinchZoom').default` - 地图元素 | 地图元素初始化完时触发 |
-| ready | **mapObject** `import('ol/interaction/PinchZoom').default` - 地图元素 | 地图元素初始化完时触发 |
+| 名称   | 属性                                                                  | 描述                   |
+| ------ | --------------------------------------------------------------------- | ---------------------- |
+| init   | **mapObject** `import('ol/interaction/PinchZoom').default` - 地图元素 | 地图元素初始化完时触发 |
+| append | **mapObject** `import('ol/interaction/PinchZoom').default` - 地图元素 | 地图元素初始化完时触发 |
+| ready  | **mapObject** `import('ol/interaction/PinchZoom').default` - 地图元素 | 地图元素初始化完时触发 |

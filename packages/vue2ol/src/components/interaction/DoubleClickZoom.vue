@@ -14,6 +14,8 @@ import {
 } from "../../utils";
 /**
  * [ol/interaction/DoubleClickZoom](https://openlayers.org/en/latest/apidoc/module-ol_interaction_DoubleClickZoom-DoubleClickZoom.html)的vue组件
+ * 
+ * 允许用户通过双击地图进行缩放
  * @since v1.0.0
  */
 export default {
@@ -57,7 +59,7 @@ export default {
        * @type {object}
        * @property {import('ol/interaction/DoubleClickZoom').default} mapObject  地图元素
        */
-      this.$emit("ready", this.mapObject);
+      this.$emit("append", this.mapObject);
 
       this.ready = true;
       this.$nextTick(() => {
