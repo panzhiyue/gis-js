@@ -16,6 +16,7 @@
 </template>
 
 <script>
+import XYZSource from "ol/source/XYZ";
 export default {
   data() {
     return {
@@ -26,7 +27,7 @@ export default {
       },
       sourceOptions: {
         projection: "EPSG:4326", //坐标系
-        tileGrid: xyzSource.getTileGrid(), //获取瓦片图层数据对象（osmSource）的网格信息
+        // tileGrid: xyzSource.getTileGrid(), //获取瓦片图层数据对象（osmSource）的网格信息
       },
     };
   },

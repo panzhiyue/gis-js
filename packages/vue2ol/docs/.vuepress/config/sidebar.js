@@ -39,6 +39,7 @@ module.exports = {
         "source/ImageMapGuide",
         "source/TileDebug",
         "source/WMTS",
+        "source/Zoomify",
       ],
     },
     {

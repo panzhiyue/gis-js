@@ -1,12 +1,12 @@
 ---
 
-title: Vue2olSourceTiledebug
+title: Vue2olSourceZoomify
 
 ---
 
-# Vue2olSourceTiledebug
+# Vue2olSourceZoomify
 
-> ol/source/TileDebug 的 vue 组件
+> [ol/source/Zoomify](https://openlayers.org/en/latest/apidoc/module-ol_source_Zoomify-Zoomify.html)的 vue 组件
 
 Since: v1.0.0
 
@@ -19,29 +19,37 @@ Since: v1.0.0
 ```vue
 <template>
   <vue2ol-map style="height:400px;">
-    <vue2ol-view :zoom="zoom" :center="center" :options="viewOptions">
+    <vue2ol-view :center="center" :zoom="zoom" :options="viewOptions">
     </vue2ol-view>
     <vue2ol-layer-tile>
-      <vue2ol-source-tiledebug
-        :options="sourceOptions"
-      ></vue2ol-source-tiledebug>
+      <vue2ol-source-zoomify :options="sourceOptions"></vue2ol-source-zoomify>
     </vue2ol-layer-tile>
   </vue2ol-map>
 </template>
 
 <script>
-import XYZSource from "ol/source/XYZ";
+import Zoomify from "ol/source/Zoomify";
+const imgWidth = 4000;
+const imgHeight = 3000;
+
+const zoomifyUrl = "https://ol-zoomify.surge.sh/zoomify/";
+
 export default {
   data() {
     return {
-      zoom: 10, //级别
-      center: [120, 28], //中心点
+      zoom: 1,
+      center: [imgWidth / 2, -imgHeight / 2],
       viewOptions: {
-        projection: "EPSG:4326" //坐标系
+        resolutions: [16, 8, 4, 2, 1, 0.5, 0.25, 0.125],
+        // projection: "EPSG:3857", //坐标系
+        extent: [0, -imgHeight, imgWidth, 0],
+        constrainOnlyCenter: true
       },
       sourceOptions: {
-        projection: "EPSG:4326" //坐标系
-        // tileGrid: xyzSource.getTileGrid(), //获取瓦片图层数据对象（osmSource）的网格信息
+        url: zoomifyUrl,
+        size: [imgWidth, imgHeight],
+        crossOrigin: "anonymous",
+        zDirection: -1 // Ensure we get a tile with the screen resolution or higher
       }
     };
   }
@@ -67,11 +75,11 @@ export default {
 
 ## Events
 
-| 名称   | 属性                                                              | 描述                     |
-| ------ | ----------------------------------------------------------------- | ------------------------ |
-| init   | **mapObject** `import('ol/source/TileDebug').default` - 地图元素  | 地图元素初始化完时触发   |
-| append | **mapObject** `import('ol/source/TileDebug').default` - 地图元素  | 地图元素添加到地图时触发 |
-| ready  | **mapObject** `import('ol/source/TileDebug').default` - undefined | 组件就绪时触发           |
+| 名称   | 属性                                                            | 描述                     |
+| ------ | --------------------------------------------------------------- | ------------------------ |
+| init   | **mapObject** `import('ol/source/Zoomify').default` - 地图元素  | 地图元素初始化完时触发   |
+| append | **mapObject** `import('ol/source/Zoomify').default` - 地图元素  | 地图元素添加到地图时触发 |
+| ready  | **mapObject** `import('ol/source/Zoomify').default` - undefined | 组件就绪时触发           |
 
 ## Slots
 

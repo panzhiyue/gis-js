@@ -1,12 +1,12 @@
-<!-- ol/source/TileDebug -->
+<!-- ol/source/Zoomify -->
 <template>
     <div>
       <slot v-if="ready"></slot>
     </div>
   </template>
   <script>
-  import TileDebug from "ol/source/TileDebug";
-  import XYZSourceMixin from "../../mixins/XYZSource";
+  import Zoomify from "ol/source/Zoomify";
+  import TileImageSourceMixin from "../../mixins/TileImageSource";
   import {
     optionsMerger,
     bindListeners,
@@ -14,12 +14,12 @@
     getListeners,
   } from "../../utils/index";
   /**
-   * ol/source/TileDebug的vue组件
+   * [ol/source/Zoomify](https://openlayers.org/en/latest/apidoc/module-ol_source_Zoomify-Zoomify.html)的vue组件
    * @since v1.0.0
    */
   export default {
-    name: "Vue2olSourceTiledebug",
-    mixins: [XYZSourceMixin],
+    name: "Vue2olSourceZoomify",
+    mixins: [TileImageSourceMixin],
     emits: ["init", "append", "ready"],
     data() {
       return {};
@@ -27,9 +27,9 @@
     props: {},
     methods: {},
     mounted() {
-      let options = optionsMerger(this.xyzSourceOptions, this);
+      let options = optionsMerger(this.tileImageSourceOptions, this);
       //初始化view对象
-      this.mapObject = new TileDebug(options);
+      this.mapObject = new Zoomify(options);
       this.properties && this.mapObject.setProperties(this.properties);
   
       //绑定事件
@@ -40,7 +40,7 @@
       /**
        * 地图元素初始化完时触发
        * @type {object}
-       * @property {import('ol/source/TileDebug').default} mapObject 地图元素
+       * @property {import('ol/source/Zoomify').default} mapObject 地图元素
        */
       this.$emit("init", this.mapObject);
   
@@ -49,7 +49,7 @@
       /**
        * 地图元素添加到地图时触发
        * @type {object}
-       * @property {import('ol/source/TileDebug').default} mapObject 地图元素
+       * @property {import('ol/source/Zoomify').default} mapObject 地图元素
        */
       this.$emit("append", this.mapObject);
   
@@ -58,7 +58,7 @@
         /**
          * 组件就绪时触发
          * @type {object}
-         * @property {import('ol/source/TileDebug').default} mapObject
+         * @property {import('ol/source/Zoomify').default} mapObject
          */
         this.$emit("ready", this.mapObject);
       });
