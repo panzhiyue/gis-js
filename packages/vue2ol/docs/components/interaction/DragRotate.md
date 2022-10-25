@@ -6,6 +6,10 @@ title: Vue2olInteractionDragrotate
 
 # Vue2olInteractionDragrotate
 
+> [ol/interaction/DragRotate](https://openlayers.org/en/latest/apidoc/module-ol_interaction_DragRotate-DragRotate.html)的 vue 组件
+
+Since: v1.0.0
+
 ---
 
 ## 基础用法

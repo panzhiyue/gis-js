@@ -6,6 +6,10 @@ title: Vue2olInteractionDoubleclickzoom
 
 # Vue2olInteractionDoubleclickzoom
 
+> [ol/interaction/DoubleClickZoom](https://openlayers.org/en/latest/apidoc/module-ol_interaction_DoubleClickZoom-DoubleClickZoom.html)的 vue 组件
+
+Since: v1.0.0
+
 ---
 
 ## 基础用法

@@ -6,6 +6,10 @@ title: Vue2olInteractionExtent
 
 # Vue2olInteractionExtent
 
+> [ol/interaction/Extent](https://openlayers.org/en/latest/apidoc/module-ol_interaction_Extent-Extent.html)的 vue 组件
+
+Since: v1.0.0
+
 ---
 
 ## 基础用法

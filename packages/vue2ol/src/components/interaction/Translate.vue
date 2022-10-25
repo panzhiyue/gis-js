@@ -12,6 +12,10 @@ import {
   propsBinder,
   findParentMap,
 } from "../../utils";
+/**
+ * [ol/interaction/Translate](https://openlayers.org/en/latest/apidoc/module-ol_interaction_Translate-Translate.html)的vue组件
+ * @since v1.0.0
+ */
 export default {
   name: "Vue2olInteractionTranslate",
   mixins: [PointerInteractionMixin],

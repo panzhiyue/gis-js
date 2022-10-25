@@ -6,6 +6,10 @@ title: Vue2olInteractionDragpan
 
 # Vue2olInteractionDragpan
 
+> [ol/interaction/DragBox](https://openlayers.org/en/latest/apidoc/module-ol_interaction_DragPan-DragPan.html)的 vue 组件
+
+Since: v1.0.0
+
 ---
 
 ## 基础用法

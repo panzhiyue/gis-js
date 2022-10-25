@@ -6,6 +6,10 @@ title: Vue2olInteractionDragrotateandzoom
 
 # Vue2olInteractionDragrotateandzoom
 
+> [ol/interaction/DragRotateAndZoom](https://openlayers.org/en/latest/apidoc/module-ol_interaction_DragRotateAndZoom-DragRotateAndZoom.html)的 vue 组件
+
+Since: v1.0.0
+
 ---
 
 ## 基础用法

@@ -6,6 +6,10 @@ title: Vue2olInteractionDraganddrop
 
 # Vue2olInteractionDraganddrop
 
+> [ol/interaction/DragAndDrop](https://openlayers.org/en/latest/apidoc/module-ol_interaction_DragAndDrop-DragAndDrop.html)的 vue 组件
+
+Since: v1.0.0
+
 ---
 
 ## 基础用法

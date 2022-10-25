@@ -6,6 +6,10 @@ title: Vue2olInteractionMousewheelzoom
 
 # Vue2olInteractionMousewheelzoom
 
+> [ol/interaction/MouseWheelZoom](https://openlayers.org/en/latest/apidoc/module-ol_interaction_MouseWheelZoom-MouseWheelZoom.html)的 vue 组件
+
+Since: v1.0.0
+
 ---
 
 ## 基础用法

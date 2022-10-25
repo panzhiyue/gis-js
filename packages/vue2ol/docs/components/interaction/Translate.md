@@ -6,6 +6,10 @@ title: Vue2olInteractionTranslate
 
 # Vue2olInteractionTranslate
 
+> [ol/interaction/Translate](https://openlayers.org/en/latest/apidoc/module-ol_interaction_Translate-Translate.html)的 vue 组件
+
+Since: v1.0.0
+
 ---
 
 ## 基础用法

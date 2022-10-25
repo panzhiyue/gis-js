@@ -6,6 +6,10 @@ title: Vue2olInteractionSelect
 
 # Vue2olInteractionSelect
 
+> [ol/interaction/Select](https://openlayers.org/en/latest/apidoc/module-ol_interaction_Select-Select.html)的 vue 组件
+
+Since: v1.0.0
+
 ---
 
 ## 基础用法

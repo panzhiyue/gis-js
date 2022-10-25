@@ -12,6 +12,10 @@ import {
   propsBinder,
   findParentMap,
 } from "../../utils";
+/**
+ * [ol/interaction/DragAndDrop](https://openlayers.org/en/latest/apidoc/module-ol_interaction_DragAndDrop-DragAndDrop.html)的vue组件
+ * @since v1.0.0
+ */
 export default {
   name: "Vue2olInteractionDraganddrop",
   mixins: [InteractionMixin],

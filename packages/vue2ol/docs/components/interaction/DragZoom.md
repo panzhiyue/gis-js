@@ -6,6 +6,10 @@ title: Vue2olInteractionDragzoom
 
 # Vue2olInteractionDragzoom
 
+> [ol/interaction/DragZoom](https://openlayers.org/en/latest/apidoc/module-ol_interaction_DragZoom-DragZoom.html)的 vue 组件
+
+Since: v1.0.0
+
 ---
 
 ## 基础用法

@@ -6,6 +6,10 @@ title: Vue2olInteractionDragbox
 
 # Vue2olInteractionDragbox
 
+> [ol/interaction/DragBox](https://openlayers.org/en/latest/apidoc/module-ol_interaction_DragBox-DragBox.html)的 vue 组件
+
+Since: v1.0.0
+
 ---
 
 ## 基础用法
