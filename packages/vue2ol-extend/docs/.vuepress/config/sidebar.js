@@ -45,8 +45,10 @@ module.exports = {
     },
     {
       title: "renderer",
-      children: ["/components/renderer/CanvasClip"],
-      children: ["/components/renderer/TileClip"],
+      children: [
+        "/components/renderer/CanvasClip",
+        "/components/renderer/TileClip",
+      ],
     },
     {
       title: "interaction",
