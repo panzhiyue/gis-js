@@ -41,6 +41,7 @@ module.exports = {
         "source/WMTS",
         "source/Zoomify",
         "source/Cluster",
+        "source/BingMaps",
       ],
     },
     {
