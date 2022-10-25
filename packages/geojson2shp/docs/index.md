@@ -1,4 +1,4 @@
-# @gis-js/geojson2sho
+# @gis-js/geojson2shp
 
 [@gis-js/geojson2shp](https://www.npmjs.com/package/@gis-js/geojson2shp)可以把geojson格式数据转为shp文件
 
