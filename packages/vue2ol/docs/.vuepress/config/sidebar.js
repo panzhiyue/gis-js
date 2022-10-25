@@ -40,6 +40,7 @@ module.exports = {
         "source/TileDebug",
         "source/WMTS",
         "source/Zoomify",
+        "source/Cluster",
       ],
     },
     {

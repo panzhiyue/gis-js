@@ -35,6 +35,7 @@ export {default as Vue2olSourceRaster} from "./source/Raster.vue"
 export {default as Vue2olSourceTiledebug} from "./source/TileDebug.vue"
 export {default as Vue2olSourceWmts} from "./source/WMTS.vue"
 export {default as Vue2olSourceZoomify} from "./source/Zoomify.vue"
+export {default as Vue2olSourceCluster} from "./source/Cluster.vue"
 
 //interaction
 export {default as Vue2olInteractionDraw} from "./interaction/Draw.vue"
