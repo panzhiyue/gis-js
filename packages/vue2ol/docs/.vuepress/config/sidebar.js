@@ -43,6 +43,7 @@ module.exports = {
       'source/ImageWMS',
       'source/Raster',
       'source/ImageMapGuide',
+      'source/TileDebug',
     ]
   },
   {
