@@ -161,7 +161,7 @@ export default {
     };
   },
   async mounted() {
-    let response = await fetch("/data/lines-bus.json");
+    let response = await fetch("/gis-js/vue2ol-extend/data/lines-bus.json");
     let data = await response.json();
 
     let busLines = [].concat.apply(

@@ -65,7 +65,7 @@ export default {
     }
   },
   async mounted() {
-    const response = await fetch("../../data/typhoon.json");
+    const response = await fetch("/gis-js/vue2ol-extend/data/typhoon.json");
     const body = await response.json();
     this.typhoonData = body.typhoon;
   }

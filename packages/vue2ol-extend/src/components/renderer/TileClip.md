@@ -108,7 +108,7 @@ export default {
     };
   },
   async mounted() {
-    const response = await fetch("/data/ZJ.json");
+    const response = await fetch("/gis-js/vue2ol-extend/data/ZJ.json");
     const body = await response.text();
     this.geometry = new TopoJSON().readFeatures(body)[0].getGeometry();
   },
