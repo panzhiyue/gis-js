@@ -23,6 +23,7 @@ export {default as Vue2olLayerImage} from "./layer/Image.vue"
 export {default as Vue2olLayerWebgltile} from "./layer/WebGLTile.vue"
 export {default as Vue2olLayerHeatmap} from "./layer/Heatmap.vue"
 export {default as Vue2olLayerMapboxVector} from "./layer/MapboxVector.vue"
+export {default as Vue2olLayerGraticule} from "./layer/Graticule.vue"
 //source
 export {default as Vue2olSourceOsm} from "./source/OSM.vue"
 export {default as Vue2olSourceStamen} from "./source/Stamen.vue"

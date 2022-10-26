@@ -25,6 +25,7 @@ module.exports = {
         "layer/WebGLTile",
         "layer/Heatmap",
         "layer/MapboxVector",
+        "layer/Graticule"
       ],
     },
     {
