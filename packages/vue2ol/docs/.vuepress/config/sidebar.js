@@ -23,6 +23,7 @@ module.exports = {
         "layer/VectorTile",
         "layer/Image",
         "layer/WebGLTile",
+        "layer/Heatmap",
       ],
     },
     {

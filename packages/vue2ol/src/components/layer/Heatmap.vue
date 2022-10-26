@@ -1,13 +1,12 @@
-
-<!-- ol/layer/VectorImage -->
+<!-- ol/layer/Heatmap -->
 <template>
   <div>
     <slot v-if="ready"></slot>
   </div>
 </template>
 <script>
-import VectorImage from "ol/layer/VectorImage";
-import VectorImageLayerMixin from "../../mixins/VectorImageLayer";
+import Heatmap from "ol/layer/Heatmap";
+import BaseVectorLayerMixin from "../../mixins/BaseVectorLayer";
 import {
   optionsMerger,
   bindListeners,
@@ -15,27 +14,43 @@ import {
   getListeners,
 } from "../../utils/index";
 /**
- * ol/layer/VectorImage的vue组件
+ * ol/layer/Heatmap的vue组件
  * @since v1.0.0
  */
 export default {
-  name: "Vue2olLayerVectorimage",
-  mixins: [VectorImageLayerMixin],
+  name: "Vue2olLayerHeatmap",
+  mixins: [BaseVectorLayerMixin],
   data() {
     return {};
   },
-  props: {},
+  props: {
+    blur: {
+      type: Number,
+    },
+    /**
+     * @typeName string[]
+     */
+    gradient: {
+      type: Array,
+    },
+    radius: {
+      type: Number,
+    },
+  },
   watch: {},
   mounted() {
     let options = optionsMerger(
       {
-        ...(this.vectorImageLayerOptions || {}),
+        ...(this.baseVectorLayerOptions || {}),
+        blur: this.blur,
+        gradient: this.gradient,
+        radius: this.radius,
       },
       this
     );
 
     options.style = options.styleObj;
-    this.mapObject = new VectorImage(options);
+    this.mapObject = new Heatmap(options);
     this.properties && this.mapObject.setProperties(this.properties);
 
     //绑定事件
@@ -46,7 +61,7 @@ export default {
     /**
      * 地图元素初始化完时触发
      * @type {object}
-     * @property {import('ol/layer/VectorImage').default} mapObject  地图元素
+     * @property {import('ol/layer/Heatmap').default} mapObject  地图元素
      */
     this.$emit("init", this.mapObject);
 
@@ -55,7 +70,7 @@ export default {
     /**
      * 地图元素添加到地图时触发
      * @type {object}
-     * @property {import('ol/layer/VectorImage').default} mapObject  地图元素
+     * @property {import('ol/layer/Heatmap').default} mapObject  地图元素
      */
     this.$emit("append", this.mapObject);
 
@@ -64,7 +79,7 @@ export default {
       /**
        * 组件就绪时触发
        * @type {object}
-       * @property {import('ol/layer/VectorImage').default} mapObject  地图元素
+       * @property {import('ol/layer/Heatmap').default} mapObject  地图元素
        */
       this.$emit("ready", this.mapObject);
     });

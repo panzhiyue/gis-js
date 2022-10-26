@@ -69,14 +69,6 @@
         this.$emit("ready", this.mapObject);
       });
     },
-    destroyed() {
-      this.parent.removeLayer(this.mapObject);
-      this.mapObject = null;
-    },
-    unmounted() {
-      this.parent.removeLayer(this.mapObject);
-      this.mapObject = null;
-    },
   };
   </script>
   <style scoped></style>
