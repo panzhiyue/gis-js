@@ -48,7 +48,8 @@ module.exports = {
         "source/IIIF",
         "source/TileArcGISRest",
         "source/TileJSON",
-        "source/TileWMS"
+        "source/TileWMS",
+        "source/CartoDB",
       ],
     },
     {
