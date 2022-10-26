@@ -39,7 +39,7 @@ export {default as Vue2olSourceZoomify} from "./source/Zoomify.vue"
 export {default as Vue2olSourceCluster} from "./source/Cluster.vue"
 export {default as Vue2olSourceBingmaps} from "./source/BingMaps.vue"
 export {default as Vue2olSourceGeotiff} from "./source/GeoTIFF.vue"
-
+export {default as Vue2olSourceIiif} from "./source/IIIF.vue"
 //interaction
 export {default as Vue2olInteractionDraw} from "./interaction/Draw.vue"
 export {default as Vue2olInteractionModify} from "./interaction/Modify.vue"

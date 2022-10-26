@@ -45,6 +45,7 @@ module.exports = {
         "source/BingMaps",
         "source/ImageCanvas",
         "source/GeoTIFF",
+        "source/IIIF",
       ],
     },
     {
