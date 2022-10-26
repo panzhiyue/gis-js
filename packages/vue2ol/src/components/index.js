@@ -20,6 +20,7 @@ export {default as Vue2olLayerVector} from "./layer/Vector.vue"
 export {default as Vue2olLayerVectortile} from "./layer/VectorTile.vue"
 export {default as Vue2olLayerVectorimage} from "./layer/VectorImage.vue"
 export {default as Vue2olLayerImage} from "./layer/Image.vue"
+export {default as Vue2olLayerWebgltile} from "./layer/WebGLTile.vue"
 //source
 export {default as Vue2olSourceOsm} from "./source/OSM.vue"
 export {default as Vue2olSourceStamen} from "./source/Stamen.vue"
@@ -37,6 +38,7 @@ export {default as Vue2olSourceWmts} from "./source/WMTS.vue"
 export {default as Vue2olSourceZoomify} from "./source/Zoomify.vue"
 export {default as Vue2olSourceCluster} from "./source/Cluster.vue"
 export {default as Vue2olSourceBingmaps} from "./source/BingMaps.vue"
+export {default as Vue2olSourceGeotiff} from "./source/GeoTIFF.vue"
 
 //interaction
 export {default as Vue2olInteractionDraw} from "./interaction/Draw.vue"

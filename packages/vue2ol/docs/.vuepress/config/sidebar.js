@@ -22,6 +22,7 @@ module.exports = {
         "layer/VectorImage",
         "layer/VectorTile",
         "layer/Image",
+        "layer/WebGLTile",
       ],
     },
     {
@@ -43,6 +44,7 @@ module.exports = {
         "source/Cluster",
         "source/BingMaps",
         "source/ImageCanvas",
+        "source/GeoTIFF",
       ],
     },
     {
