@@ -46,6 +46,7 @@ module.exports = {
         "source/ImageCanvas",
         "source/GeoTIFF",
         "source/IIIF",
+        "source/TileArcGISRest"
       ],
     },
     {

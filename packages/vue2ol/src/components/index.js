@@ -40,6 +40,7 @@ export {default as Vue2olSourceCluster} from "./source/Cluster.vue"
 export {default as Vue2olSourceBingmaps} from "./source/BingMaps.vue"
 export {default as Vue2olSourceGeotiff} from "./source/GeoTIFF.vue"
 export {default as Vue2olSourceIiif} from "./source/IIIF.vue"
+export {default as Vue2olSourceTilearcgisrest} from "./source/TileArcGISRest.vue"
 //interaction
 export {default as Vue2olInteractionDraw} from "./interaction/Draw.vue"
 export {default as Vue2olInteractionModify} from "./interaction/Modify.vue"
