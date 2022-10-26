@@ -42,6 +42,7 @@ export {default as Vue2olSourceGeotiff} from "./source/GeoTIFF.vue"
 export {default as Vue2olSourceIiif} from "./source/IIIF.vue"
 export {default as Vue2olSourceTilearcgisrest} from "./source/TileArcGISRest.vue"
 export {default as Vue2olSourceTilejson} from "./source/TileJSON.vue"
+export {default as Vue2olSourceTilewms} from "./source/TileWMS.vue"
 //interaction
 export {default as Vue2olInteractionDraw} from "./interaction/Draw.vue"
 export {default as Vue2olInteractionModify} from "./interaction/Modify.vue"
