@@ -50,6 +50,7 @@ module.exports = {
         "source/TileJSON",
         "source/TileWMS",
         "source/CartoDB",
+        "source/UTFGrid",
       ],
     },
     {
