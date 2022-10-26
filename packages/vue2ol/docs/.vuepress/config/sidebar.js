@@ -42,6 +42,7 @@ module.exports = {
         "source/Zoomify",
         "source/Cluster",
         "source/BingMaps",
+        "source/ImageCanvas",
       ],
     },
     {

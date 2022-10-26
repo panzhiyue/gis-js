@@ -1,4 +1,4 @@
-<!-- ol/source/ImageArcGISRest -->
+<!-- ol/source/ImageCanvas -->
 <template>
     <div>
       <slot v-if="ready"></slot>
