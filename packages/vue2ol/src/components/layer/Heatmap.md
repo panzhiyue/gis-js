@@ -10,7 +10,7 @@
     <vue2ol-layer-tile>
       <vue2ol-source-osm></vue2ol-source-osm>
     </vue2ol-layer-tile>
-    <vue2ol-layer-heatmap :options="heatmapOptions">
+    <vue2ol-layer-heatmap v-if="sourceOptions" :options="heatmapOptions">
       <vue2ol-source-vector :options="sourceOptions"> </vue2ol-source-vector>
     </vue2ol-layer-heatmap>
   </vue2ol-map>
@@ -27,12 +27,15 @@ export default {
         projection: "EPSG:3857", //坐标系
       },
       heatmapOptions: {},
-      sourceOptions: {
-        url: "/gis-js/vue2ol/data/kml/2012_Earthquakes_Mag5.kml",
-        format: new KML({
-          extractStyles: false,
-        }),
-      },
+      sourceOptions: null,
+    };
+  },
+  mounted() {
+    this.sourceOptions = {
+      url: "/gis-js/vue2ol/data/kml/2012_Earthquakes_Mag5.kml",
+      format: new KML({
+        extractStyles: false,
+      }),
     };
   },
 };

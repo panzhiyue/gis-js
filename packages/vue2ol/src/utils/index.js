@@ -1,4 +1,3 @@
-
 /**
  * 绑定事件
  * @param {Object} mapObject 绑定事件的对象
@@ -8,7 +7,7 @@ export const bindListeners = (mapObject, listeners) => {
   for (let name in listeners) {
     mapObject.on(name, listeners[name]);
   }
-}
+};
 
 /**
  * 字符串首字母大写
@@ -16,7 +15,7 @@ export const bindListeners = (mapObject, listeners) => {
  * @return {String}
  */
 export const capitalizeFirstLetter = (string) => {
-  if (!string || typeof string.charAt !== 'function') {
+  if (!string || typeof string.charAt !== "function") {
     return string;
   }
   return string.charAt(0).toUpperCase() + string.slice(1);
@@ -30,34 +29,31 @@ export const capitalizeFirstLetter = (string) => {
  */
 export const propsBinder = (vueElement, openlayersElement, props) => {
   for (const key in props) {
-    const setMethodName = 'set' + capitalizeFirstLetter(key);
-    // const deepValue =
-    //   props[key].type === Object ||
-    //   props[key].type === Array ||
-    //   Array.isArray(props[key].type);
+    const setMethodName = "set" + capitalizeFirstLetter(key);
     const deepValue = false;
     if (props[key].custom && vueElement[setMethodName]) {
       vueElement.$watch(
         key,
         (newVal, oldVal) => {
           vueElement[setMethodName](newVal, oldVal);
-        }, {
-        deep: deepValue,
-      }
+        },
+        {
+          deep: deepValue,
+        }
       );
     } else if (openlayersElement[setMethodName]) {
       vueElement.$watch(
         key,
         (newVal, oldVal) => {
           openlayersElement[setMethodName](newVal);
-        }, {
-        deep: deepValue,
-      }
+        },
+        {
+          deep: deepValue,
+        }
       );
     }
   }
 };
-
 
 /**
  * 找到真实的父组件
@@ -66,7 +62,10 @@ export const propsBinder = (vueElement, openlayersElement, props) => {
 export const findRealParent = (firstVueParent) => {
   let found = false;
   while (firstVueParent && !found) {
-    if (firstVueParent.mapObject === undefined || firstVueParent.mapObject === null) {
+    if (
+      firstVueParent.mapObject === undefined ||
+      firstVueParent.mapObject === null
+    ) {
       firstVueParent = firstVueParent.$parent;
     } else {
       found = true;
@@ -75,13 +74,12 @@ export const findRealParent = (firstVueParent) => {
   return firstVueParent;
 };
 
-
 /**
  * 找到真实的地图组件
  * 一直往上找，直到父对象有mapObject对象并且是ol/Map
  */
 export const findParentMap = (firstVueParent) => {
-  return findParent(firstVueParent, "Vue2olMap")
+  return findParent(firstVueParent, "Vue2olMap");
 };
 
 /**
@@ -91,7 +89,11 @@ export const findParentMap = (firstVueParent) => {
 export const findParent = (firstVueParent, name) => {
   let found = false;
   while (firstVueParent && !found) {
-    if (firstVueParent.mapObject !== undefined && firstVueParent.mapObject !== null && firstVueParent.$options.name == name) {
+    if (
+      firstVueParent.mapObject !== undefined &&
+      firstVueParent.mapObject !== null &&
+      firstVueParent.$options.name == name
+    ) {
       found = true;
     } else {
       firstVueParent = firstVueParent.$parent;
@@ -100,22 +102,17 @@ export const findParent = (firstVueParent, name) => {
   return firstVueParent;
 };
 
-
 /**
  * 为组件添加安装方法
  * @param {Object} Mod Vue组件
  * @return {Object}
  */
 export function install(Mod) {
-
-  Mod.install = Vue => {
-    return Vue.component(Mod.name, Mod)
-  }
-  return Mod
+  Mod.install = (Vue) => {
+    return Vue.component(Mod.name, Mod);
+  };
+  return Mod;
 }
-
-
-
 
 /**
  * 清理options中值为null与undefined的项
@@ -133,7 +130,6 @@ export const collectionCleaner = (options) => {
   return result;
 };
 
-
 /**
  * 获取真实的options参数
  * 最终值为:props中与defaultProps中不同的项->options的其他项->props中与defaultProps中相同的项
@@ -149,9 +145,7 @@ export const optionsMerger = (props, instance) => {
   // const options =
   //   instance.options && instance.options.constructor === Object ?
   //   instance.options : {};
-  const options =
-    instance.options ?
-      instance.options : {};
+  const options = instance.options ? instance.options : {};
   const result = collectionCleaner(options);
   //手动构建的的options
   props = props && props.constructor === Object ? props : {};
@@ -162,12 +156,12 @@ export const optionsMerger = (props, instance) => {
   //循环手动构建的options项
   for (const key in props) {
     //props中对应项的默认值
-    const def = defaultProps[key] ?
-      defaultProps[key].default &&
-        typeof defaultProps[key].default === 'function' ?
-        defaultProps[key].default.call() :
-        defaultProps[key].default :
-      Symbol('unique');
+    const def = defaultProps[key]
+      ? defaultProps[key].default &&
+        typeof defaultProps[key].default === "function"
+        ? defaultProps[key].default.call()
+        : defaultProps[key].default
+      : Symbol("unique");
     //props与手动构建对象的值是否相同
     let isEqual = false;
     if (Array.isArray(def)) {
@@ -181,13 +175,13 @@ export const optionsMerger = (props, instance) => {
         `${key} props is overriding the value passed in the options props`
       );
       result[key] = props[key];
-    } else if (!result[key]) { //传入的options没有对应的值
+    } else if (!result[key]) {
+      //传入的options没有对应的值
       result[key] = props[key];
     }
   }
   return Object.assign({}, options, result);
 };
-
 
 export const getListeners = (instance) => {
   if (instance.$listeners) {
@@ -203,8 +197,7 @@ export const getListeners = (instance) => {
     }
     return listeners;
   }
-}
-
+};
 
 export const getAttrs = (instance) => {
   if (instance.$listeners) {
@@ -218,4 +211,4 @@ export const getAttrs = (instance) => {
     }
     return attrs;
   }
-}
+};

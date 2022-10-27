@@ -48,6 +48,7 @@ export {default as Vue2olSourceTilejson} from "./source/TileJSON.vue"
 export {default as Vue2olSourceTilewms} from "./source/TileWMS.vue"
 export {default as Vue2olSourceCartodb} from "./source/CartoDB.vue"
 export {default as Vue2olSourceUtfgrid} from "./source/UTFGrid.vue"
+export {default as Vue2olSourceTileimage} from "./source/TileImage.vue"
 //interaction
 export {default as Vue2olInteractionDraw} from "./interaction/Draw.vue"
 export {default as Vue2olInteractionModify} from "./interaction/Modify.vue"

@@ -25,7 +25,7 @@ module.exports = {
         "layer/WebGLTile",
         "layer/Heatmap",
         "layer/MapboxVector",
-        "layer/Graticule"
+        "layer/Graticule",
       ],
     },
     {
@@ -54,6 +54,7 @@ module.exports = {
         "source/TileWMS",
         "source/CartoDB",
         "source/UTFGrid",
+        "source/TileImage",
       ],
     },
     {

@@ -26,7 +26,7 @@ Since: v1.0.0
       <option value="0">取消</option>
     </select>
   </div>
-  <vue2ol-map style="height:400px;" :options="mapOptions">
+  <vue2ol-map v-if="mapOptions" style="height:400px;" :options="mapOptions">
     <vue2ol-view :zoom="zoom" :center="center" :options="viewOptions">
     </vue2ol-view>
     <vue2ol-layer-tile>
@@ -50,14 +50,15 @@ export default {
       viewOptions: {
         projection: "EPSG:4326" //坐标系
       },
-      mapOptions: {
-        interactions: [],
-        keyboardEventTarget: document
-      },
       active: "0"
     };
   },
-  mounted() {},
+  mounted() {
+    this.mapOptions = {
+      interactions: [],
+      keyboardEventTarget: window.document
+    };
+  },
   methods: {
     handleActive() {
       console.log("change:active");
