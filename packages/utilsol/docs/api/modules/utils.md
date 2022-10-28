@@ -29,6 +29,7 @@
 - [getThirdPoint](utils.md#getthirdpoint)
 - [isClockWise](utils.md#isclockwise)
 - [linearInterpolate](utils.md#linearinterpolate)
+- [newGuid](utils.md#newguid)
 - [parseDecimal](utils.md#parsedecimal)
 - [sliceByDistance](utils.md#slicebydistance)
 - [sliceByPoint](utils.md#slicebypoint)
@@ -385,6 +386,16 @@ ___
 #### Returns
 
 `Coordinate`[]
+
+___
+
+### newGuid
+
+▸ **newGuid**(): `string`
+
+#### Returns
+
+`string`
 
 ___
 

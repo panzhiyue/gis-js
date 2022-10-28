@@ -39,6 +39,12 @@ module.exports = {
           'plot/drawplot',
         ]
       },
+      {
+        title: "source",
+        children: [
+          'source/MapGISDocTile',
+        ]
+      },
       'EShapeFile','EShapeFile'
     ]
 

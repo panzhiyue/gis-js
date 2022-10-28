@@ -1509,7 +1509,15 @@ var geojson2shp = (function (exports) {
 
     }
 
+    exports.DbfWriter = Writer;
+    exports.FieldSize = FieldSize;
+    exports.FieldType = FieldType;
     exports.GeoJson2Shp = GeoJson2Shp;
+    exports.GeometryType = geometryType;
+    exports.MultiPointWriter = MultiPointWriter;
+    exports.PointWriter = PointWriter;
+    exports.PolyWriter = PolyWriter;
+    exports.ShpWriter = Writer$1;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 

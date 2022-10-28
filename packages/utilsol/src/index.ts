@@ -4,5 +4,6 @@ export * as animation from "./animation"
 export * as interaction from "./interaction"
 export * as style from "./style"
 export * as utils from "./utils"
+export * as source from "./source"
 
 export { default as EShapeFile } from "./EShapeFile"

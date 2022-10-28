@@ -28,7 +28,7 @@ export const factorial = (num: number): number => {
  * @param number
  * @return
  */
- export const parseDecimal = (number: number): number => {
+export const parseDecimal = (number: number): number => {
     return parseFloat(number.toFixed(12))
 }
 
@@ -38,7 +38,7 @@ export const factorial = (num: number): number => {
  * @param coordinate2 坐标2
  * @return
  */
- export const equal = (coordinate1: Coordinate, coordinate2: Coordinate): boolean => {
+export const equal = (coordinate1: Coordinate, coordinate2: Coordinate): boolean => {
     if (coordinate1 === coordinate2) return true
     const [x1, y1] = coordinate1
     const [x2, y2] = coordinate2
@@ -407,3 +407,18 @@ export function getArc(center: Coordinate, radius: number, startAngle: number, e
     }
     return pnts;
 };
+
+/**
+ * 生成一个guid
+ * @returns 
+ */
+export function newGuid():string {
+    var guid = "";
+    for (var i = 1; i <= 32; i++) {
+        var n = Math.floor(Math.random() * 16.0).toString(16);
+        guid += n;
+        if ((i == 8) || (i == 12) || (i == 16) || (i == 20))
+            guid += "-";
+    }
+    return guid;
+}

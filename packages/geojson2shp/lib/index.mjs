@@ -1506,4 +1506,4 @@ class GeoJson2Shp {
 
 }
 
-export { GeoJson2Shp };
+export { Writer as DbfWriter, FieldSize, FieldType, GeoJson2Shp, geometryType as GeometryType, MultiPointWriter, PointWriter, PolyWriter, Writer$1 as ShpWriter };
