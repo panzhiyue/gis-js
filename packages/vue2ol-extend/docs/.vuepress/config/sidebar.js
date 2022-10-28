@@ -41,6 +41,7 @@ module.exports = {
         "/components/source/GaoDe",
         "/components/source/GeoQ",
         "/components/source/TDT",
+        "/components/source/MapGISDocTile",
       ],
     },
     {
