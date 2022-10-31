@@ -56,6 +56,7 @@ module.exports = {
       children: [
         "/components/interaction/PlotDraw",
         "/components/interaction/Pickup",
+        "/components/interaction/Measure",
       ],
     },
     {

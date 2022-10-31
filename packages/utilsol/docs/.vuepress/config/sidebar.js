@@ -31,6 +31,7 @@ module.exports = {
         title: "interaction",
         children: [
           'interaction/GeomDrag',
+          'interaction/Measure',
         ]
       },
       {

@@ -1,4 +1,4 @@
-
+import "./index.css"
 export * as plot from "./plot"
 export * as animation from "./animation"
 export * as interaction from "./interaction"

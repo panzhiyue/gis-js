@@ -60,6 +60,7 @@
     "concurrently": "^6.5.1",
     "cross-env": "^7.0.3",
     "rollup": "^2.23.1",
+    "rollup-plugin-css-only": "^4.2.0",
     "rollup-plugin-dts": "^1.4.10",
     "rollup-plugin-node-externals": "^2.2.0",
     "ts-jest": "^27.1.2",

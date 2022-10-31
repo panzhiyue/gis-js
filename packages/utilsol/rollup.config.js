@@ -10,8 +10,8 @@ import resolve from "@rollup/plugin-node-resolve";
 import typescript from "@rollup/plugin-typescript";
 import image from "@rollup/plugin-image";
 import pkg from "./package.json";
+import css from "rollup-plugin-css-only";
 const extensions = [".ts", ".mjs", ".js", ".json"];
-
 
 const external = Object.keys(pkg.dependencies || {});
 // let index = external.indexOf("@turf/turf")
@@ -21,7 +21,8 @@ export default [
   // Bundle
   {
     input: "src/index.ts",
-    output: [{
+    output: [
+      {
         format: "cjs",
         file: pkg.main,
         exports: "auto",
@@ -29,24 +30,27 @@ export default [
       {
         format: "es",
         file: pkg.module,
-      }
-
+      },
     ],
     external,
     plugins: [
       externals({
-        deps: true
+        deps: true,
       }),
       // replace({ "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV) }),
       json(),
       image(),
       resolve({
-        jsnext: true
+        jsnext: true,
       }),
       typescript(),
       commonjs(),
 
       babel(),
+      css({
+        // Optional: filename to write all styles to
+        output: "index.css",
+      }),
     ],
   },
   // Declaration
@@ -54,28 +58,30 @@ export default [
     input: "src/index.ts",
     output: {
       format: "es",
-      file: pkg.types
+      file: pkg.types,
     },
     external,
     plugins: [
       externals({
-        deps: true
+        deps: true,
       }),
       // replace({ "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV) }),
       json(),
       image(),
       resolve({
-        jsnext: true
+        jsnext: true,
       }),
       typescript(),
       commonjs(),
 
       babel({
         babelHelpers: "bundled",
-        extensions
+        extensions,
       }),
-
+      css({
+        // Optional: filename to write all styles to
+        output: "index.css",
+      }),
     ],
   },
-
 ];

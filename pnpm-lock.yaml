@@ -81,6 +81,7 @@ importers:
       ol: ^6.14.1
       proj4: ^2.8.0
       rollup: ^2.23.1
+      rollup-plugin-css-only: ^4.2.0
       rollup-plugin-dts: ^1.4.10
       rollup-plugin-node-externals: ^2.2.0
       shapefile: ^0.6.6
@@ -117,6 +118,7 @@ importers:
       concurrently: 6.5.1
       cross-env: 7.0.3
       rollup: 2.78.0
+      rollup-plugin-css-only: 4.2.0_rollup@2.78.0
       rollup-plugin-dts: 1.4.14_nm5mlcuxlwr6samvke7b2fz27i
       rollup-plugin-node-externals: 2.2.0
       ts-jest: 27.1.5_pnujgi2x4hsmkhu4dsoc7zbd54
@@ -2661,6 +2663,21 @@ packages:
     dependencies:
       '@types/estree': 0.0.39
       estree-walker: 1.0.1
+      picomatch: 2.3.1
+      rollup: 2.78.0
+    dev: true
+
+  /@rollup/pluginutils/5.0.2_rollup@2.78.0:
+    resolution: {integrity: sha512-pTd9rIsP92h+B6wWwFbW8RkZv4hiR/xKsqre4SIuAOaOEQRxi0lqLke9k2/7WegC85GgUs9pjmOjCUi3In4vwA==}
+    engines: {node: '>=14.0.0'}
+    peerDependencies:
+      rollup: ^1.20.0||^2.0.0||^3.0.0
+    peerDependenciesMeta:
+      rollup:
+        optional: true
+    dependencies:
+      '@types/estree': 1.0.0
+      estree-walker: 2.0.2
       picomatch: 2.3.1
       rollup: 2.78.0
     dev: true
@@ -13242,6 +13259,16 @@ packages:
   /robust-predicates/2.0.4:
     resolution: {integrity: sha512-l4NwboJM74Ilm4VKfbAtFeGq7aEjWL+5kVFcmgFA2MrdnQWx9iE/tUGvxY5HyMI7o/WpSIUFLbC5fbeaHgSCYg==}
     dev: false
+
+  /rollup-plugin-css-only/4.2.0_rollup@2.78.0:
+    resolution: {integrity: sha512-X/8hJvi4Sst0BbFSxxdDVFkiYfNHIHEXiayUnPA7FLWmDlpwTSKMV1yLKv3pgmUlUoxlct9jELRQ3osrEcZFiw==}
+    engines: {node: '>=14'}
+    peerDependencies:
+      rollup: <4
+    dependencies:
+      '@rollup/pluginutils': 5.0.2_rollup@2.78.0
+      rollup: 2.78.0
+    dev: true
 
   /rollup-plugin-dts/1.4.14_nm5mlcuxlwr6samvke7b2fz27i:
     resolution: {integrity: sha512-H33aGCUbp/Lm+tbkG5gZePnuWvvaafkwh7Uh4RYJs0/ChOfWlENCby1wOn+xBVsCzpV/g/+OVYqgzVjT80dNJg==}

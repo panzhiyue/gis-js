@@ -29,7 +29,7 @@ export { default as Vue2olRendererTileclip } from "./renderer/TileClip.vue";
 //interaction
 export { default as Vue2olInteractionPlotdraw } from "./interaction/PlotDraw.vue";
 export { default as Vue2olInteractionPickup } from "./interaction/Pickup.vue";
-
+export { default as Vue2olInteractionMeasure } from "./interaction/Measure.vue";
 //event
 export { default as Vue2olEventVector } from "./event/Vector.vue";
 
