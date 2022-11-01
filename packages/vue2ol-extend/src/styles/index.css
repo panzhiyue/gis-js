@@ -1,0 +1,47 @@
+/*Measure*/
+.vue2ol-tooltip {
+    position: relative;
+    white-space: nowrap;
+    border: 1px solid rgb(255, 1, 3);
+    background: #fff;
+    color: black;
+    padding: 4px;
+    font-size: 12px;
+}
+
+.vue2ol-tooltip-result {
+    opacity: 1;
+    font-weight: bold;
+    padding-right: 30px;
+    position:relative;
+}
+
+.vue2ol-tooltip-result .close {
+    display: inline-block;
+    /* width: 20px;
+    height: 20px;
+    background-color: #000; */
+    position: absolute;
+    padding: 0px;
+    margin: 0px;
+    border: 0px;
+    cursor: pointer;
+    width: 12px;
+    height: 12px;
+    right: 4px;
+    top: 6px;
+    transform-origin: 6px 6px;
+    user-select: none;
+    border: 1px solid #f00;
+    color: #f00;
+    font-weight: bold;
+    text-align: center;
+    line-height: 8px;
+    font-size:12px;
+}
+
+
+
+.vue2ol-tooltip-help {}
+
+/*Measure*/

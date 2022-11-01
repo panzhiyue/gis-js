@@ -1,20 +1,21 @@
-import * as components from "./components/index.js"
+import * as components from "./components/index.js";
+import "./styles/index.css";
 
-const install = function (Vue) {
+const install = function(Vue) {
   if (install.installed) return;
-  Object.keys(components).forEach(key => {
-    Vue.component(components[key].name, (components)[key]);
+  Object.keys(components).forEach((key) => {
+    Vue.component(components[key].name, components[key]);
   });
 };
 
-if (typeof window !== 'undefined' && (window).Vue) {
-  install((window).Vue);
+if (typeof window !== "undefined" && window.Vue) {
+  install(window.Vue);
 }
 
 const API = {
-  install
-}
+  install,
+};
 
 export default API;
-export * from "./components/index.js"
-export * from "./utils/index.js"
+export * from "./components/index.js";
+export * from "./utils/index.js";

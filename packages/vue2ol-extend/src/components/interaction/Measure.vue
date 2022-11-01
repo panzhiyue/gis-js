@@ -1,146 +1,104 @@
-<template> </template>
+<template>
+  <div></div>
+</template>
 <script>
-import { findRealParent } from "@gis-js/vue2ol";
-import DrawTool from "ol/interaction/Draw";
-import VectorLayer from "ol/layer/Vector";
-import VectorSource from "ol/source/Vector";
-import * as style from "ol/style";
-import WKT from "ol/format/WKT";
-import Feature from "ol/Feature";
-import * as Extent from "ol/extent";
-
+import { InteractionMixin } from "@gis-js/vue2ol";
+import {
+  optionsMerger,
+  bindListeners,
+  getListeners,
+  propsBinder,
+} from "@gis-js/vue2ol";
+import * as utilsol from "@gis-js/utilsol";
 /**
- *
+ * 量算
  */
 export default {
   name: "Vue2olInteractionMeasure",
+  mixins: [InteractionMixin],
   components: {},
   provide() {
     return {
       interaction: this,
     };
   },
+  inject: {
+    map: {
+      from: "map",
+      default: null,
+    },
+    layer: {
+      from: "layer",
+      default: null,
+    },
+  },
   props: {
-    /**
-     * 地图,如果为null则从parent中获取
-     * @type {import('ol/Map').default}
-     */
-    parentMap: {
-      type: Object,
+    type: {
+      type: String,
+    },
+    active: {
+      type: Boolean,
     },
   },
   data() {
-    return {
-      drawTool: null, //ol/interaction/Draw 对象
-    };
+    return {};
   },
   watch: {},
   mounted() {
     if (this.parentMap) {
       this.parent = this.parentMap;
     } else {
-      this.parent = findRealParent(this.$parent).mapObject;
+      this.parent = this.map.mapObject;
     }
 
-    //初始化并添加矢量图层
-    this.layer = new VectorLayer({
-      source: new VectorSource(),
-      style: this.styleObj
-        ? this.styleObj
-        : new style.Style({
-            image: new style.Circle({
-              radius: 10,
-              stroke: new style.Stroke({
-                color: "#3399CC",
-                width: 1.25,
-              }),
-              fill: new style.Fill({
-                color: "rgba(255,255,255,0.4)",
-              }),
-            }),
-            fill: new style.Fill({
-              color: "rgba(255,255,255,0.4)",
-            }),
-            stroke: new style.Stroke({
-              color: "#3399CC",
-              width: 1.25,
-            }),
-          }),
-    });
-    this.parent.addLayer(this.layer);
-    this.initTool("Point");
+    this.initInteraction();
   },
   beforeDestroy() {},
   methods: {
-    /**
-     * 获取中心点
-     */
-    getCenter() {
-      let centroid = [];
-      let features = this.layer.getSource().getFeatures();
-      if (features.length > 0) {
-        centroid = Extent.getCenter(this.layer.getSource().getExtent());
-      }
-      return centroid;
-    },
-    initFeatures() {
-      if (!this.layer) {
-        return;
-      }
-      this.layer.getSource().clear();
-      //添加几何
-      if (this.geom) {
-        let geom = this.format.readGeometry(this.geom);
-        if (geom.getType() == "MultiPolygon") {
-          let polygons = geom.getPolygons();
-          for (let i = 0; i < polygons.length; i++) {
-            this.layer.getSource().addFeature(
-              new Feature({
-                geometry: polygons[i],
-              })
-            );
-          }
-        } else {
-          this.layer.getSource().addFeature(
-            new Feature({
-              geometry: geom,
-            })
-          );
-        }
-      }
-    },
-    /**
-     * 初始化工具
-     */
-    initTool(type) {
-      if (type == "Point" || type == "LineString" || type == "Polygon") {
-        this.initDraw(type);
-      } else {
-        this.initDraw();
-      }
-    },
-    initDraw(type) {
-      if (this.drawTool) {
-        this.drawTool.setActive(false);
-        this.parent.removeInteraction(this.drawTool);
-        this.drawTool = null;
-      }
+    initInteraction() {
+      let options = optionsMerger(
+        {
+          type: this.type,
+          layer: this.layer ? this.layer.mapObject : null,
+          classPrefix: "vue2ol",
+        },
+        this
+      );
 
-      if (type) {
-        this.drawTool = new DrawTool({
-          source: this.layer.getSource(),
-          type: type,
-        });
+      this.mapObject = new utilsol.interaction.Measure(options);
+      this.mapObject.setActive(this.active);
 
-        this.drawTool.on("drawend", (e) => {
-          //   this.removeGeometry();
-          //   setTimeout(() => {
-          //     this.refresh();
-          //   }, 500);
-        });
+      this.properties && this.mapObject.setProperties(this.properties);
+      //绑定事件
+      bindListeners(this.mapObject, getListeners(this));
+      //监听props属性
+      propsBinder(this, this.mapObject, this.$options.props);
 
-        this.parent.addInteraction(this.drawTool);
-      }
+      /**
+       * 地图元素初始化完时触发
+       * @type {object}
+       * @property {} mapObject  地图元素
+       */
+      this.$emit("init", this.mapObject);
+
+      this.parent.addInteraction(this.mapObject);
+
+      /**
+       * 地图元素初始化完时触发
+       * @type {object}
+       * @property {} mapObject  地图元素
+       */
+      this.$emit("append", this.mapObject);
+
+      this.ready = true;
+      this.$nextTick(() => {
+        /**
+         * 地图元素初始化完时触发
+         * @type {object}
+         * @property {} mapObject  地图元素
+         */
+        this.$emit("ready", this.mapObject);
+      });
     },
   },
 };

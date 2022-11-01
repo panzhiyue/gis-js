@@ -71,9 +71,10 @@ type MeasureResultFunction = (g: MeasureGeometry, isNode: boolean) => string
  * 构造函数参数
  */
 export interface MeasureOptions extends InteractionOptions {
+    type?: MeasureType,
     drawStyle?: MeasureStyle,
     resultStyle?: MeasureStyle,
-    layer?: VectorLayer<VectorSource<MeasureGeometry>>,
+    source?: VectorSource<MeasureGeometry>,
     classPrefix: string,
     measureResultFunction: MeasureResultFunction
 }
@@ -94,6 +95,8 @@ class Measure extends Interaction {
     private resultOverlayArray_: Overlay[];
     //量算结果图层
     private layer_: VectorLayer<VectorSource<MeasureGeometry>>;
+
+    private source_: VectorSource<MeasureGeometry>;
     //绘制样式
     private drawStyle_: MeasureStyle;
     //结果样式
@@ -245,13 +248,11 @@ class Measure extends Interaction {
 
         this.resultStyle_ = options.resultStyle ? options.resultStyle : defaultResultStyle;
 
-        if (options.layer) {
-            this.layer_ = options.layer;
-        } else {
-            this.layer_ = new VectorLayer({
-                source: new VectorSource(),
-            });
-        }
+        this.layer_ = new VectorLayer({
+            source: new VectorSource(),
+        });
+
+        this.source_ = options.source ? options.source : this.layer_.getSource();
 
         /**
          * 获取量算结果
@@ -261,7 +262,7 @@ class Measure extends Interaction {
          */
         this.measureResultFunction = options.measureResultFunction ? options.measureResultFunction : (g: MeasureGeometry, isNode: Boolean): string => {
             const projection = this.getMap().getView().getProjection();
-            if (this.getType() == MeasureType.LINESTRING) {
+            if (g.getType() == "LineString") {
                 let length = measureLength(g as geom.LineString, projection);
                 let output;
                 if (length > 100) {
@@ -270,7 +271,7 @@ class Measure extends Interaction {
                     output = Math.round(length * 100) / 100 + " " + "m";
                 }
                 return (isNode ? "" : "总长：") + output;
-            } else if (this.getType() == MeasureType.POLYGON) {
+            } else if (g.getType() == "Polygon") {
                 let area = measureArea(g as geom.Polygon, projection);
                 let output = (area / 666.66666667).toFixed(2) + " " + "亩";
                 return "面积：" + output;
@@ -297,6 +298,7 @@ class Measure extends Interaction {
         }
 
         this.addChangeListener(InteractionProperty.ACTIVE, this.updateState_);
+        this.set("type", options.type);
     }
 
     /**
@@ -389,7 +391,7 @@ class Measure extends Interaction {
             for (let i = this.resultOverlayArray_.length - 1; i >= 0; i--) {
                 let item = this.resultOverlayArray_[i];
                 if (item.get("id") == id) {
-                    this.layer_.getSource().removeFeature(item.get("feature"));
+                    this.source_.removeFeature(item.get("feature"));
                     this.getMap().removeOverlay(item);
 
                     this.resultOverlayArray_.splice(i, 1);
@@ -451,7 +453,7 @@ class Measure extends Interaction {
         this.getMap().on("pointermove", this.pointerMoveHandler_);
         //初始化绘图交互对象
         this.draw_ = new interaction.Draw({
-            source: this.layer_.getSource(),
+            source: this.source_,
             type: type,
             style: this.drawStyle_,
         });
@@ -506,11 +508,10 @@ class Measure extends Interaction {
      * 清空量算结果
      */
     public clear() {
-        this.layer_.getSource().clear();
-        for (let i = 0; i < this.resultOverlayArray_.length; i++) {
-            let overlay = this.resultOverlayArray_[i];
-            this.getMap().removeOverlay(overlay);
-        }
+        this.resultOverlayArray_.forEach((item) => {
+            item.getMap().removeOverlay(item);
+            this.source_.removeFeature(item.get("feature"));
+        })
         this.resultOverlayArray_ = [];
     }
 
@@ -525,9 +526,11 @@ class Measure extends Interaction {
             this.end_();
         } else {
             this.start_(type);
-
         }
-        this.layer_.setMap(active ? map : null);
+        this.layer_.setMap(map);
+        this.resultOverlayArray_.forEach((item) => {
+            item.setMap(map);
+        })
     }
 
 }
