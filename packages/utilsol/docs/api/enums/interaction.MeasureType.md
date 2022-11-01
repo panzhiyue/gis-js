@@ -8,14 +8,14 @@
 
 ### Enumeration Members
 
-- [LINE\_STRING](interaction.MeasureType.md#line_string)
+- [LINESTRING](interaction.MeasureType.md#linestring)
 - [POLYGON](interaction.MeasureType.md#polygon)
 
 ## Enumeration Members
 
-### LINE\_STRING
+### LINESTRING
 
-• **LINE\_STRING** = ``"LineString"``
+• **LINESTRING** = ``"LineString"``
 
 ___
 

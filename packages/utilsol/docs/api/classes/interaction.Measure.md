@@ -18,16 +18,27 @@
 
 ### Properties
 
+- [drawStyle\_](interaction.Measure.md#drawstyle_)
+- [draw\_](interaction.Measure.md#draw_)
+- [helpOverlay\_](interaction.Measure.md#helpoverlay_)
 - [layer\_](interaction.Measure.md#layer_)
-- [sketchCoords\_](interaction.Measure.md#sketchcoords_)
+- [pointerMoveHandler\_](interaction.Measure.md#pointermovehandler_)
+- [resultOverlayArray\_](interaction.Measure.md#resultoverlayarray_)
+- [resultOverlay\_](interaction.Measure.md#resultoverlay_)
+- [resultStyle\_](interaction.Measure.md#resultstyle_)
 - [sketchFeature\_](interaction.Measure.md#sketchfeature_)
 
 ### Methods
 
-- [addCoordinates\_](interaction.Measure.md#addcoordinates_)
-- [drawEnd\_](interaction.Measure.md#drawend_)
-- [handleEvent](interaction.Measure.md#handleevent)
+- [clear](interaction.Measure.md#clear)
+- [createHelpOverlay\_](interaction.Measure.md#createhelpoverlay_)
+- [createResultOverlay\_](interaction.Measure.md#createresultoverlay_)
+- [end\_](interaction.Measure.md#end_)
+- [getType](interaction.Measure.md#gettype)
 - [setMap](interaction.Measure.md#setmap)
+- [setType](interaction.Measure.md#settype)
+- [start\_](interaction.Measure.md#start_)
+- [updateHelpOverlay\_](interaction.Measure.md#updatehelpoverlay_)
 - [updateState\_](interaction.Measure.md#updatestate_)
 
 ## Constructors
@@ -48,15 +59,51 @@ Interaction.constructor
 
 ## Properties
 
-### layer\_
+### drawStyle\_
 
-• `Private` **layer\_**: `VectorLayer`<`VectorSource`<`Geometry`\>\>
+• `Private` **drawStyle\_**: `Style`
 
 ___
 
-### sketchCoords\_
+### draw\_
 
-• `Private` **sketchCoords\_**: `Coordinate`[]
+• `Private` **draw\_**: `Draw`
+
+___
+
+### helpOverlay\_
+
+• `Private` **helpOverlay\_**: `Overlay`
+
+___
+
+### layer\_
+
+• `Private` **layer\_**: `VectorLayer`<`VectorSource`<`MeasureGeometry`\>\>
+
+___
+
+### pointerMoveHandler\_
+
+• `Private` **pointerMoveHandler\_**: `any`
+
+___
+
+### resultOverlayArray\_
+
+• `Private` **resultOverlayArray\_**: `Overlay`[]
+
+___
+
+### resultOverlay\_
+
+• `Private` **resultOverlay\_**: `Overlay`
+
+___
+
+### resultStyle\_
+
+• `Private` **resultStyle\_**: `Style`
 
 ___
 
@@ -66,15 +113,9 @@ ___
 
 ## Methods
 
-### addCoordinates\_
+### clear
 
-▸ `Private` **addCoordinates_**(`coordinates`): `void`
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `coordinates` | `any` |
+▸ **clear**(): `void`
 
 #### Returns
 
@@ -82,9 +123,9 @@ ___
 
 ___
 
-### drawEnd\_
+### createHelpOverlay\_
 
-▸ `Private` **drawEnd_**(): `void`
+▸ `Private` **createHelpOverlay_**(): `void`
 
 #### Returns
 
@@ -92,23 +133,33 @@ ___
 
 ___
 
-### handleEvent
+### createResultOverlay\_
 
-▸ **handleEvent**(`mapBrowserEvent`): `boolean`
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `mapBrowserEvent` | `MapBrowserEvent`<`any`\> |
+▸ `Private` **createResultOverlay_**(): `void`
 
 #### Returns
 
-`boolean`
+`void`
 
-#### Overrides
+___
 
-Interaction.handleEvent
+### end\_
+
+▸ **end_**(): `void`
+
+#### Returns
+
+`void`
+
+___
+
+### getType
+
+▸ **getType**(): `any`
+
+#### Returns
+
+`any`
 
 ___
 
@@ -118,9 +169,9 @@ ___
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `map` | `any` |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `map` | `any` |  |
 
 #### Returns
 
@@ -129,6 +180,54 @@ ___
 #### Overrides
 
 Interaction.setMap
+
+___
+
+### setType
+
+▸ **setType**(`type`): `void`
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `type` | [`MeasureType`](../enums/interaction.MeasureType.md) |  |
+
+#### Returns
+
+`void`
+
+___
+
+### start\_
+
+▸ **start_**(`type`): `void`
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `type` | [`MeasureType`](../enums/interaction.MeasureType.md) |  |
+
+#### Returns
+
+`void`
+
+___
+
+### updateHelpOverlay\_
+
+▸ `Private` **updateHelpOverlay_**(`coordinate`): `void`
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `coordinate` | `any` |  |
+
+#### Returns
+
+`void`
 
 ___
 

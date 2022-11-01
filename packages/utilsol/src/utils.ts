@@ -131,7 +131,7 @@ export function getIntersectPoint(pntA: Coordinate, pntB: Coordinate, pntC: Coor
 };
 
 /**
- * 获取线段方位角
+ * 获取线段方位角（正西:0,正南:Math.PI/2,正东:Math.PI,正北:Math.PI*3/2）
  * @param startPnt 起点
  * @param endPnt  终点
  * @return 方位角

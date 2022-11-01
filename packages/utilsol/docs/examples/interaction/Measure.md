@@ -7,6 +7,11 @@
 ```vue
 <template>
   <div id="container1" style="width: 100%; height: 500px; position: relative">
+    <select v-model="type">
+      <option value=""></option>
+      <option value="LineString">LineString</option>
+      <option value="Polygon">Polygon</option>
+    </select>
     <div style="position: absolute; top: 0px; left: 0px; z-index: 1000">
       <!-- <button @click="start">开始</button>
       <button @click="stop">停止</button>
@@ -31,7 +36,15 @@ export default {
     return {
       map: null,
       animation: null,
+      type: "Polygon",
+      measure: null,
     };
+  },
+  watch: {
+    type() {
+      console.log(this.type);
+      this.measure.setType(this.type);
+    },
   },
   mounted() {
     var center = transform([37.41, 8.82], "EPSG:4326", "EPSG:3857");
@@ -65,8 +78,12 @@ export default {
     });
     layer.getSource().addFeature(feature);
 
-    let measure = new utilsol.interaction.Measure({});
-    this.map.addInteraction(measure);
+    this.measure = new utilsol.interaction.Measure({
+      map: this.map,
+      layer: this.layer,
+    });
+    this.measure.setType(this.type);
+    this.map.addInteraction(this.measure);
   },
   methods: {},
 };

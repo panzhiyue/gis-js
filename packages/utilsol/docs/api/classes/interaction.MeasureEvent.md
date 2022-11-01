@@ -16,18 +16,37 @@
 
 - [constructor](interaction.MeasureEvent.md#constructor)
 
+### Properties
+
+- [feature](interaction.MeasureEvent.md#feature)
+- [overlay](interaction.MeasureEvent.md#overlay)
+
 ## Constructors
 
 ### constructor
 
-• **new MeasureEvent**(`type`)
+• **new MeasureEvent**(`type`, `feature`, `overlay`)
 
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `type` | `MeasureEventType` |  |
+| `type` | [`MeasureEventType`](../enums/interaction.MeasureEventType.md) |  |
+| `feature` | `Feature`<`Geometry`\> |  |
+| `overlay` | `Overlay` |  |
 
 #### Overrides
 
-Event.constructor
+BaseEvent.constructor
+
+## Properties
+
+### feature
+
+• **feature**: `Feature`<`Geometry`\>
+
+___
+
+### overlay
+
+• **overlay**: `Overlay`

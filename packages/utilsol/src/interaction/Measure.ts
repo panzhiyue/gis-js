@@ -1,21 +1,21 @@
 import * as geom from "ol/geom";
 import * as interaction from "ol/interaction";
+import * as Observable from "ol/Observable";
 import * as sphere from "ol/sphere";
 import * as style from "ol/style";
 
 import Overlay from "ol/Overlay";
 import VectorSource from "ol/source/Vector";
 import VectorLayer from "ol/layer/Vector";
-import Interaction from "ol/Interaction/Interaction"
-import { Stroke, Fill, Style, } from "ol/style"
-import { MapObjectEventTypes } from "ol/PluggableMap";
-import Map from "ol/Map"
-import { Feature, MapBrowserEvent } from "ol";
-import MapBrowserEventType from "ol/MapBrowserEventType";
-import EventType from "ol/events/EventType";
+import { Feature } from "ol";
+import Interaction, { InteractionOptions } from "ol/interaction/Interaction"
 import InteractionProperty from 'ol/interaction/Property.js';
 import { Coordinate } from "ol/coordinate";
-import Event from "ol/events/Event"
+import { newGuid } from "src/utils";
+import { Positioning } from "ol/Overlay"
+import { getAzimuth } from "../utils"
+import BaseEvent from "ol/events/Event"
+import { Projection } from "ol/proj";
 
 /**
  * 量算类型
@@ -25,407 +25,504 @@ export enum MeasureType {
     //面
     POLYGON = "Polygon",
     //线
-    LINE_STRING = "LineString",
+    LINESTRING = "LineString",
 };
 
 /**
- * @enum {string}
+ * 量算事件类型
  */
-enum MeasureEventType {
-    /**
-     * 在绘制开始时触发
-     */
-    DRAWSTART = 'drawstart',
-    /**
-     * 在绘制结束时触发
-     */
-    DRAWEND = 'drawend',
-    /**
-     * 在绘制中断时触发
-     */
-    DRAWABORT = 'drawabort',
-};
+export enum MeasureEventType {
 
-
-/**
- */
-export class MeasureEvent extends Event {
-
-    /**
-     * @param  type 事件类型.
-     */
-    constructor(type: MeasureEventType) {
-        super(type);
-    }
+    //量算绘制开始
+    MEASURESTART = "measurestart",
+    //量算绘制结束
+    MEASUREEND = "measureend"
 }
 
+/**
+ * Measure触发事件的实例
+ */
+export class MeasureEvent extends BaseEvent {
+    public feature: Feature;
+    public overlay: Overlay;
+
+    /**
+     * 构造函数
+     * @param type 量算事件类型
+     * @param feature 量算结果要素
+     * @param overlay 量算结果覆盖物
+     */
+    constructor(type: MeasureEventType, feature: Feature, overlay: Overlay) {
+        super(type)
+
+        this.feature = feature;
+        this.overlay = overlay;
+    }
+}
+//量算几何类型
+type MeasureGeometry = geom.LineString | geom.Polygon;
+//量算样式类型
+type MeasureStyle=style.Style|style.Style[]|Function
+
+/**
+ * 构造函数参数
+ */
+export interface MeasureOptions extends InteractionOptions {
+    drawStyle?: MeasureStyle,
+    resultStyle?: MeasureStyle,
+    layer?: VectorLayer<VectorSource<MeasureGeometry>>
+}
+
+/**
+ * 量算
+ */
 class Measure extends Interaction {
+    //ol.interaction.Draw实例
+    private draw_: interaction.Draw;
+    //当前绘制的要素
     private sketchFeature_: Feature;
-    private sketchCoords_: Coordinate[];
-    private layer_: VectorLayer<VectorSource>;
-    private type_: MeasureType;
-    constructor(opt_options) {
-        let options = Object.assign({ type: "", style: new Style({ fill: new Fill({ color: 'rgba(0,0,0,0.4)' }), stroke: new Stroke({ color: '#000000', width: 1.25 }) }) }, opt_options)
+    //帮助信息地图覆盖物
+    private helpOverlay_: Overlay;
+    //量算结果覆盖物
+    private resultOverlay_: Overlay;
+    //量算结果地图覆盖物集合
+    private resultOverlayArray_: Overlay[];
+    //量算结果图层
+    private layer_: VectorLayer<VectorSource<MeasureGeometry>>;
+    //绘制样式
+    private drawStyle_: MeasureStyle;
+    //结果样式
+    private resultStyle_: MeasureStyle;
+    //鼠标移动方法
+    private pointerMoveHandler_: any;
+
+    /**
+     * 构造函数
+     */
+    constructor(opt_options:MeasureOptions) {
+        let options = Object.assign({}, opt_options)
         super(options);
-        this.sketchFeature_ = null;
 
-        this.sketchCoords_ = [];
+        //默认绘制样式
+        let defaultDrawStyle = (feature: Feature<MeasureGeometry>) => {
+            let styles = [];
+            let geometry: MeasureGeometry = feature.getGeometry()
+            styles.push(
+                new style.Style({
+                    fill: new style.Fill({
+                        color: "rgba(255, 255, 255, 0.2)",
+                    }),
+                    stroke: new style.Stroke({
+                        color: "#EF7E3D",
+                        width: 3,
+                    }),
 
-        this.layer_ = new VectorLayer({
-            source: new VectorSource()
-        })
+                }),
+            );
+            if (this.getType() == MeasureType.LINESTRING && geometry.getType() == "LineString") {
+                const coordinates: Coordinate[] = geometry.getCoordinates() as Coordinate[];
+                coordinates.forEach((coordinate, index) => {
+                    let text = "";
+                    if (index == 0) {
+                        text = "起点";
+                    } else if (index == coordinates.length - 1) {
 
-        this.type_ = options.type;
+                    } else {
+                        text = measureLength(new geom.LineString(coordinates.slice(0, index + 1)), this.getMap().getView().getProjection());
+                    }
+                    styles.push(
+                        new style.Style({
+                            geometry: new geom.Point(coordinate),
+                            image: new style.Circle({
+                                radius: 5,
+                                stroke: new style.Stroke({
+                                    width: 2,
+                                    color: "#f00"
+                                }),
+                                fill: new style.Fill({
+                                    color: "#fff",
+                                }),
+                            }),
+                            text: new style.Text({
+                                text: text,
+                                overflow: true,
+                                fill: new style.Fill({
+                                    color: "#7a7a7a",
+                                }),
+                                backgroundFill: new style.Fill({
+                                    color: "#fff"
+                                }),
+                                backgroundStroke: new style.Stroke({
+                                    width: 1,
+                                    color: "#7a7a7a"
+                                }),
+                                font: "10px sans-serif",
+                                padding: [1, 4, 1, 4],
+                                offsetX: 16,
+                                textAlign: "left"
+                            })
+                        })
+                    );
+                })
+            }
+            return styles;
+        }
+
+        //默认结果样式
+        let defaultResultStyle = (feature: Feature<MeasureGeometry>) => {
+            let styles = [];
+            let geometry: MeasureGeometry = feature.getGeometry()
+
+            styles.push(
+                new style.Style({
+                    fill: new style.Fill({
+                        color: "rgba(255, 255, 255, 0.2)",
+                    }),
+                    stroke: new style.Stroke({
+                        color: "#EF7E3D",
+                        width: 3,
+                    }),
+                }),
+            );
+            if (geometry.getType() == "LineString") {
+                const coordinates: Coordinate[] = geometry.getCoordinates() as Coordinate[];
+                coordinates.forEach((coordinate, index) => {
+                    let text = "";
+                    if (index == 0) {
+                        text = "起点";
+                    } else if (index == coordinates.length - 1) {
+                    } else {
+                        text = measureLength(new geom.LineString(coordinates.slice(0, index + 1)), this.getMap().getView().getProjection());
+                    }
+                    styles.push(
+                        new style.Style({
+                            geometry: new geom.Point(coordinate),
+                            image: new style.Circle({
+                                radius: 5,
+                                stroke: new style.Stroke({
+                                    width: 2,
+                                    color: "#f00"
+                                }),
+                                fill: new style.Fill({
+                                    color: "#fff",
+                                }),
+                            }),
+                            text: new style.Text({
+                                text: text,
+                                overflow: true,
+                                fill: new style.Fill({
+                                    color: "#7a7a7a",
+                                }),
+                                backgroundFill: new style.Fill({
+                                    color: "#fff"
+                                }),
+                                backgroundStroke: new style.Stroke({
+                                    width: 1,
+                                    color: "#7a7a7a"
+                                }),
+                                font: "10px sans-serif",
+                                padding: [1, 4, 1, 4],
+                                offsetX: 16,
+                                textAlign: "left"
+                            })
+                        })
+                    );
+                })
+            }
+            return styles;
+        }
+
+        this.drawStyle_ = options.drawStyle ? options.drawStyle : defaultDrawStyle;
+
+        this.resultStyle_ = options.resultStyle ? options.resultStyle : defaultResultStyle;
+
+        if (options.layer) {
+            this.layer_ = options.layer;
+        } else {
+            this.layer_ = new VectorLayer({
+                source: new VectorSource(),
+            });
+        }
+
+        this.resultOverlayArray_ = [];
+
+        /**
+         * 鼠标移动事件
+         * 量算提示信息跟随鼠标
+         */
+        this.pointerMoveHandler_ = (evt) => {
+            if (evt.dragging) {
+                return;
+            }
+            if (this.getType() == MeasureType.POLYGON) {
+                this.createResultOverlay_();
+            }
+            this.updateHelpOverlay_(evt.coordinate);
+        }
 
         this.addChangeListener(InteractionProperty.ACTIVE, this.updateState_);
     }
 
-    override handleEvent(mapBrowserEvent: MapBrowserEvent<any>): boolean {
-        if (mapBrowserEvent.originalEvent.type === EventType.CONTEXTMENU) {
-            // Avoid context menu for long taps when drawing on mobile
-            mapBrowserEvent.originalEvent.preventDefault();
-        }
-
-        if (mapBrowserEvent.type == MapBrowserEventType.SINGLECLICK) {
-            this.addCoordinates_(mapBrowserEvent.coordinate);
-        } else if (mapBrowserEvent.type == MapBrowserEventType.DBLCLICK) {
-            this.drawEnd_();
-        }
-
-        return true;
-    }
-
-    private addCoordinates_(coordinates) {
-        this.sketchCoords_.push(coordinates);
-
-        if (this.sketchCoords_.length == 1) {
-            this.dispatchEvent(new MeasureEvent(MeasureEventType.DRAWSTART));
-        }
-
-    }
-
-    geometryFunction(){
-
-    }
-
-
-    private drawEnd_() {
-        this.dispatchEvent(new MeasureEvent(MeasureEventType.DRAWEND));
-    }
-
-    private updateState_() {
-        const map = this.getMap();
-        const active = this.getActive();
-
-        // if (!map || !active) {
-        //     this.stop();
-        // }
-        this.layer_.setMap(active ? map : null);
-    }
-
+    /**
+     * 设置地图对象
+     * @param map 地图对象 
+     */
     setMap(map) {
         super.setMap(map);
         this.updateState_();
     }
 
-    // private stop() {
+    /**
+     * 设置量算类型
+     * @param type 量算类型
+     */
+    public setType(type: MeasureType) {
+        this.set("type", type);
+        this.updateState_();
+    }
 
-    // }
+    /**
+     * 获取量算类型
+     * @returns 量算类型
+     */
+    public getType() {
+        return this.get("type");
+    }
 
+    /**
+      * 创建量算结果覆盖物
+      */
+    private createResultOverlay_() {
+        if (!this.sketchFeature_) {
+            return;
+        }
+        let g = this.sketchFeature_.getGeometry();
+        let tooltipCoord;
+        let output;
+        if (g instanceof geom.Polygon) {
+            output = "面积：" + measureArea(g, this.getMap().getView().getProjection());
+            tooltipCoord = g.getInteriorPoint().getCoordinates();
+        } else if (g instanceof geom.LineString) {
+            output = "总长：" + measureLength(g, this.getMap().getView().getProjection());
+            tooltipCoord = g.getLastCoordinate();
+        }
+        if (!this.resultOverlay_) {
+            let element = document.createElement("div");
+            element.className = "measure-tooltip measure-tooltip-result";
+
+            element.innerHTML = output;
+
+            let positioning: Positioning = "center-center"
+            let offset = [0, 0];
+            if (this.getType() == MeasureType.LINESTRING) {
+                let coordinates: Coordinate[] = (this.sketchFeature_.getGeometry() as geom.LineString).getCoordinates();
+                let startP = coordinates[coordinates.length - 2];
+                let endP = coordinates[coordinates.length - 1];
+                let azimuth = getAzimuth(startP, endP)
+                if (azimuth >= 0 && azimuth <= Math.PI) {
+                    positioning = "top-center";
+                    offset = [0, 15];
+                } else {
+                    positioning = "bottom-center";
+                    offset = [0, -15];
+                }
+
+            }
+
+            this.resultOverlay_ = new Overlay({
+                element: element,
+                offset: offset,
+                positioning: positioning,
+                stopEvent: true
+            });
+            this.resultOverlay_.set("id", newGuid());
+            this.getMap().addOverlay(this.resultOverlay_);
+            this.resultOverlayArray_.push(this.resultOverlay_);
+        } else {
+            this.resultOverlay_.getElement().innerHTML = output;
+        }
+
+        this.resultOverlay_.set("feature", this.sketchFeature_);
+        const close = document.createElement("span");
+        close.innerHTML = "x";
+        close.className = "close";
+        close.id = this.resultOverlay_.get("id");
+        close.addEventListener("click", (e: PointerEvent) => {
+            let id = (e.target as HTMLElement).id
+
+            for (let i = this.resultOverlayArray_.length - 1; i >= 0; i--) {
+                let item = this.resultOverlayArray_[i];
+                if (item.get("id") == id) {
+                    this.layer_.getSource().removeFeature(item.get("feature"));
+                    this.getMap().removeOverlay(item);
+
+                    this.resultOverlayArray_.splice(i, 1);
+                }
+            }
+        })
+        this.resultOverlay_.getElement().append(close);
+
+        this.resultOverlay_.setPosition(tooltipCoord);
+    }
+
+    /**
+     * 创建提示信息覆盖物
+     */
+    private createHelpOverlay_() {
+        if (!this.helpOverlay_) {
+            let element = document.createElement("div");
+            element.className = "measure-tooltip";
+            this.helpOverlay_ = new Overlay({
+                element: element,
+                offset: [15, 0],
+                positioning: "center-left",
+            });
+            this.getMap().addOverlay(this.helpOverlay_);
+        }
+    }
+
+    /**
+     * 更新帮助信息覆盖物信息
+     * @param coordinate 显示坐标
+     */
+    private updateHelpOverlay_(coordinate) {
+        /** @type {string} */
+        let helpMsg = "单击确定起点";
+
+        //如果正在绘制图像
+        if (this.sketchFeature_) {
+            let g = this.sketchFeature_.getGeometry();
+            if (g instanceof geom.Polygon) {
+                helpMsg = `双击结束绘制面`;
+            } else if (g instanceof geom.LineString) {
+                helpMsg = `<div>总长:${measureLength(this.sketchFeature_.getGeometry() as geom.LineString, this.getMap().getView().getProjection())}</div><div>单击确定地点，双击结束</div>`;
+            }
+        }
+        //更新提示信息
+        this.helpOverlay_.getElement().innerHTML = helpMsg;
+        this.helpOverlay_.setPosition(coordinate);
+        this.helpOverlay_.getElement().classList.remove("hidden");
+    }
+
+    /**
+     * 激活功能
+     * @param  type
+     */
+    public start_(type: MeasureType) {
+        //先移出之前激活的交互
+        this.end_();
+        //绑定鼠标移动,提示信息跟随事件
+        this.getMap().on("pointermove", this.pointerMoveHandler_);
+        //初始化绘图交互对象
+        this.draw_ = new interaction.Draw({
+            source: this.layer_.getSource(),
+            type: type,
+            style: this.drawStyle_,
+        });
+        this.getMap().addInteraction(this.draw_);
+
+        //创建提示信息覆盖物
+        this.createHelpOverlay_();
+
+        //绑定绘图交互对象事件
+        let listener;
+        //绘图事件开始
+        this.draw_.on(
+            "drawstart",
+            (evt) => {
+                // 设置sketch
+                this.sketchFeature_ = evt.feature;
+                this.dispatchEvent("",);
+            },
+        );
+
+        //绘图结束事件
+        this.draw_.on(
+            "drawend",
+            (evt) => {
+                evt.feature.setStyle(this.resultStyle_);
+                this.createResultOverlay_();
+                // 清空临时对象,事件(包括sketch:正在绘制的要素,listener:图形修改事件等)
+                this.sketchFeature_ = null;
+                this.resultOverlay_ = null;
+                this.updateHelpOverlay_(null);
+                Observable.unByKey(listener);
+            },
+        );
+    }
+
+    /**
+     * 量算结束
+     */
+    public end_() {
+        if (this.draw_) {
+            this.getMap().un("pointermove", this.pointerMoveHandler_);
+            this.getMap().removeOverlay(this.helpOverlay_);
+            this.getMap().removeInteraction(this.draw_);
+        }
+    }
+
+    /**
+     * 清空量算结果
+     */
+    public clear() {
+        this.layer_.getSource().clear();
+        for (let i = 0; i < this.resultOverlayArray_.length; i++) {
+            let overlay = this.resultOverlayArray_[i];
+            this.getMap().removeOverlay(overlay);
+        }
+        this.resultOverlayArray_ = [];
+    }
+
+    /**
+     * 更新状态
+     */
+    private updateState_() {
+        const map = this.getMap();
+        const active = this.getActive();
+        const type = this.getType();
+        if (!map || !active || !type) {
+            this.end_();
+        } else {
+            this.start_(type);
+
+        }
+        this.layer_.setMap(active ? map : null);
+    }
 
 }
 
-
 export default Measure;
-// /**
-//  * 量算
-//  * 绘制一个面显示面积或绘制一条线显示长度
-//  * @param {module:ol/Map} map 地图
-//  * @param {module:ol/layer/Vector} layer 量算图层
-//  * @param {module:ol/style/Style} drawStyle 绘制样式
-//  */
-// export default function Measure(options) {
-//     let draw;
-//     /**
-//      * 当前绘制的要素
-//      * @type {module:ol/Feature}
-//      */
-//     let sketch;
 
-//     let isActive = false;
+/**
+ * 获取面积量算结果输出字符串
+ * @param polygon 面几何图形
+ * @return 面积量算结果输出字符串
+ */
+export const measureArea = (polygon: geom.Polygon, projection: Projection) => {
+    let area = sphere.getArea(polygon, {
+        projection: projection,
+    });
+    let output;
+    output = (area / 666.66666667).toFixed(2) + " " + "亩";
+    return output;
+}
 
-//     /**
-//      * 帮助信息dom节点
-//      * @type {HTMLElement}
-//      */
-//     let helpTooltipElement;
+/**
+ * 获取距离量算结果输出字符串
+ * @param  line 线几何图形
+ * @return 距离量算结果输出字符串
+ */
+export const measureLength = (line: geom.LineString, projection: Projection) => {
+    let length = sphere.getLength(line, {
+        projection: projection,
+    });
+    let output;
+    if (length > 100) {
+        output = Math.round((length / 1000) * 100) / 100 + " " + "km";
+    } else {
+        output = Math.round(length * 100) / 100 + " " + "m";
+    }
+    return output;
+}
 
-//     /**
-//      * 帮助信息地图覆盖物
-//      * @type {module:ol/Overlay}
-//      */
-//     let helpTooltip;
-
-//     /**
-//      * 显示量算结果的dom节点
-//      * @type {HTMLElement}
-//      */
-//     let measureTooltipElement;
-
-//     /**
-//      * 显示量算结果的地图覆盖物
-//      * @type {module:ol/Overlay}
-//      */
-//     let measureTooltip;
-
-//     /**
-//      * 用户绘制多边形时显示的消息
-//      * @type {string}
-//      */
-//     let continuePolygonMsg = "双击结束绘制面";
-
-//     /**
-//      * 当用户绘制线段时显示的消息。
-//      * @type {string}
-//      */
-//     let continueLineMsg = "双击结束绘制";
-
-//     /**
-//      * 量算结果地图覆盖物集合
-//      * @type {module:Array.<module:ol/Overlay>}
-//      */
-//     let measureTooltipArray = [];
-
-//     /**
-//      * 鼠标移动事件
-//      * 量算提示信息跟随鼠标
-//      * @param {module:ol/MapBrowserEvent} evt The event.
-//      */
-//     let pointerMoveHandler = function (evt) {
-//         if (evt.dragging) {
-//             return;
-//         }
-//         /** @type {string} */
-//         let helpMsg = "单击开始绘制";
-
-//         //如果正在绘制图像
-//         if (sketch) {
-//             let g = sketch.getGeometry();
-//             if (g instanceof geom.Polygon) {
-//                 helpMsg = continuePolygonMsg;
-//             } else if (g instanceof geom.LineString) {
-//                 helpMsg = continueLineMsg;
-//             }
-//         }
-//         //更新提示信息
-//         helpTooltipElement.innerHTML = helpMsg;
-//         helpTooltip.setPosition(evt.coordinate);
-//         helpTooltipElement.classList.remove("hidden");
-//     };
-//     //初始化图层
-//     let vector, source;
-//     if (layer) {
-//         source = layer.getSource();
-//         vector = layer;
-//     } else {
-//         source = new VectorSource();
-//         vector = new VectorLayer({
-//             source: source,
-//             style: new style.Style({
-//                 fill: new style.Fill({
-//                     color: "rgba(255, 255, 255, 0.2)",
-//                 }),
-//                 stroke: new style.Stroke({
-//                     color: "#ffcc33",
-//                     width: 2,
-//                 }),
-//                 image: new style.Circle({
-//                     radius: 7,
-//                     fill: new style.Fill({
-//                         color: "#ffcc33",
-//                     }),
-//                 }),
-//             }),
-//         });
-//         map.addLayer(vector);
-//     }
-
-//     map.getViewport().addEventListener("mouseout", function () {
-//         // helpTooltipElement.classList.add('hidden');
-//     });
-
-//     /**
-//      * 获取距离量算结果输出字符串
-//      * @param {module:ol/geom/LineString} line 线几何图形
-//      * @return {string} 距离量算结果输出字符串
-//      */
-//     let formatLength = function (line) {
-//         let length = sphere.getLength(line, {
-//             projection: map.getView().getProjection(),
-//         });
-//         let output;
-//         if (length > 100) {
-//             output = Math.round((length / 1000) * 100) / 100 + " " + "km";
-//         } else {
-//             output = Math.round(length * 100) / 100 + " " + "m";
-//         }
-//         return output;
-//     };
-
-//     /**
-//      * 获取面积量算结果输出字符串
-//      * @param {module:ol/geom/Polygon} polygon 面几何图形
-//      * @return {string} 面积量算结果输出字符串
-//      */
-//     let formatArea = function (polygon) {
-//         let area = sphere.getArea(polygon, {
-//             projection: map.getView().getProjection(),
-//         });
-//         let output;
-//         output = (area / 666.66666667).toFixed(2) + " " + "亩";
-//         //        if (area > 10000) {
-//         //            output = (Math.round(area / 1000000 * 100) / 100) +
-//         //              ' ' + 'km<sup>2</sup>';
-//         //        } else {
-//         //            output = (Math.round(area * 100) / 100) +
-//         //              ' ' + 'm<sup>2</sup>';
-//         //        }
-//         return output;
-//     };
-
-//     /**
-//      * 创建绘制帮助信息
-//      */
-//     function createHelpTooltip() {
-//         if (helpTooltipElement) {
-//             helpTooltipElement.parentNode.removeChild(helpTooltipElement);
-//         }
-
-//         helpTooltipElement = document.createElement("div");
-//         helpTooltipElement.className = "measure-tooltip";
-//         helpTooltip = new Overlay({
-//             element: helpTooltipElement,
-//             offset: [15, 0],
-//             positioning: "center-left",
-//         });
-//         map.addOverlay(helpTooltip);
-//     }
-
-//     /**
-//      * 创建量算结果信息
-//      */
-//     function createMeasureTooltip() {
-//         if (measureTooltipElement) {
-//             measureTooltipElement.parentNode.removeChild(measureTooltipElement);
-//         }
-//         measureTooltipElement = document.createElement("div");
-//         measureTooltipElement.className = "measure-tooltip measure-tooltip-result";
-//         measureTooltip = new Overlay({
-//             element: measureTooltipElement,
-//             offset: [0, -15],
-//             positioning: "bottom-center",
-//         });
-//         map.addOverlay(measureTooltip);
-//         measureTooltipArray.push(measureTooltip);
-//     }
-
-//     /**
-//      * 激活功能
-//      * @param {any} type
-//      */
-//     this.addInteraction = function (type) {
-//         //先移出之前激活的交互
-//         this.removeInteraction();
-//         //更新状态
-//         isActive = true;
-//         //绑定鼠标移动,提示信息跟随事件
-//         map.on("pointermove", pointerMoveHandler);
-//         //初始化绘图交互对象
-//         draw = new interaction.Draw({
-//             source: source,
-//             type: type,
-//             style: drawStyle,
-//         });
-//         map.addInteraction(draw);
-
-//         //创建提示信息覆盖物
-//         createMeasureTooltip();
-//         createHelpTooltip();
-
-//         //绑定绘图交互对象事件
-//         let listener;
-//         //绘图事件开始
-//         draw.on(
-//             "drawstart",
-//             function (evt) {
-//                 // 设置sketch
-//                 sketch = evt.feature;
-
-//                 /** @type {module:ol/Coordinate|undefined} */
-//                 let tooltipCoord = evt.coordinate;
-
-//                 //图形修改,实时显示量算结果
-//                 listener = sketch.getGeometry().on("change", function (evt) {
-//                     let g = evt.target;
-//                     let output;
-//                     if (g instanceof geom.Polygon) {
-//                         output = formatArea(g);
-//                         tooltipCoord = g.getInteriorPoint().getCoordinates();
-//                     } else if (g instanceof geom.LineString) {
-//                         output = formatLength(g);
-//                         tooltipCoord = g.getLastCoordinate();
-//                     }
-//                     measureTooltipElement.innerHTML = output;
-//                     measureTooltip.setPosition(tooltipCoord);
-//                 });
-//             },
-//             this
-//         );
-
-//         //绘图结束事件
-//         draw.on(
-//             "drawend",
-//             function () {
-//                 measureTooltipElement.className = "measure-tooltip measure-tooltip-help";
-//                 measureTooltip.setOffset([0, -7]);
-//                 // 清空临时对象,事件(包括sketch:正在绘制的要素,listener:图形修改事件等)
-//                 sketch = null;
-//                 measureTooltipElement = null;
-//                 createMeasureTooltip();
-//                 Observable.unByKey(listener);
-//             },
-//             this
-//         );
-//     };
-
-//     /**
-//      * 移出交互
-//      */
-//     this.removeInteraction = function () {
-//         if (draw) {
-//             map.un("pointermove", pointerMoveHandler);
-//             map.removeOverlay(helpTooltip);
-//             map.removeInteraction(draw);
-//             isActive = false;
-//         }
-//     };
-
-//     /**
-//      * 清空量算结果
-//      */
-//     this.clear = function () {
-//         source.clear();
-//         for (let i = 0; i < measureTooltipArray.length; i++) {
-//             let overlay = measureTooltipArray[i];
-//             map.removeOverlay(overlay);
-//         }
-//         measureTooltipArray = [];
-//     };
-
-//     /**
-//      * 获取状态
-//      */
-//     this.getIsActive = function () {
-//         return this.isActive;
-//     };
-// }
