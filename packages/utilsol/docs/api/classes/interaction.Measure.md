@@ -18,10 +18,12 @@
 
 ### Properties
 
+- [classPrefix\_](interaction.Measure.md#classprefix_)
 - [drawStyle\_](interaction.Measure.md#drawstyle_)
 - [draw\_](interaction.Measure.md#draw_)
 - [helpOverlay\_](interaction.Measure.md#helpoverlay_)
 - [layer\_](interaction.Measure.md#layer_)
+- [measureResultFunction](interaction.Measure.md#measureresultfunction)
 - [pointerMoveHandler\_](interaction.Measure.md#pointermovehandler_)
 - [resultOverlayArray\_](interaction.Measure.md#resultoverlayarray_)
 - [resultOverlay\_](interaction.Measure.md#resultoverlay_)
@@ -51,7 +53,7 @@
 
 | Name | Type |
 | :------ | :------ |
-| `opt_options` | `any` |
+| `opt_options` | [`MeasureOptions`](../interfaces/interaction.MeasureOptions.md) |
 
 #### Overrides
 
@@ -59,9 +61,15 @@ Interaction.constructor
 
 ## Properties
 
+### classPrefix\_
+
+• `Private` **classPrefix\_**: `string`
+
+___
+
 ### drawStyle\_
 
-• `Private` **drawStyle\_**: `Style`
+• `Private` **drawStyle\_**: `StyleLike`
 
 ___
 
@@ -80,6 +88,12 @@ ___
 ### layer\_
 
 • `Private` **layer\_**: `VectorLayer`<`VectorSource`<`MeasureGeometry`\>\>
+
+___
+
+### measureResultFunction
+
+• **measureResultFunction**: `MeasureResultFunction`
 
 ___
 
@@ -103,7 +117,7 @@ ___
 
 ### resultStyle\_
 
-• `Private` **resultStyle\_**: `Style`
+• `Private` **resultStyle\_**: `StyleLike`
 
 ___
 

@@ -16,6 +16,7 @@ import { Positioning } from "ol/Overlay"
 import { getAzimuth } from "../utils"
 import BaseEvent from "ol/events/Event"
 import { Projection } from "ol/proj";
+import { StyleLike } from "ol/style/Style";
 
 /**
  * 量算类型
@@ -62,7 +63,9 @@ export class MeasureEvent extends BaseEvent {
 //量算几何类型
 type MeasureGeometry = geom.LineString | geom.Polygon;
 //量算样式类型
-type MeasureStyle=style.Style|style.Style[]|Function
+type MeasureStyle = StyleLike
+
+type MeasureResultFunction = (g: MeasureGeometry, isNode: boolean) => string
 
 /**
  * 构造函数参数
@@ -70,7 +73,9 @@ type MeasureStyle=style.Style|style.Style[]|Function
 export interface MeasureOptions extends InteractionOptions {
     drawStyle?: MeasureStyle,
     resultStyle?: MeasureStyle,
-    layer?: VectorLayer<VectorSource<MeasureGeometry>>
+    layer?: VectorLayer<VectorSource<MeasureGeometry>>,
+    classPrefix: string,
+    measureResultFunction: MeasureResultFunction
 }
 
 /**
@@ -95,11 +100,15 @@ class Measure extends Interaction {
     private resultStyle_: MeasureStyle;
     //鼠标移动方法
     private pointerMoveHandler_: any;
+    //样式前缀
+    private classPrefix_: string;
+    //获取量算结果文本
+    public measureResultFunction: MeasureResultFunction;
 
     /**
      * 构造函数
      */
-    constructor(opt_options:MeasureOptions) {
+    constructor(opt_options: MeasureOptions) {
         let options = Object.assign({}, opt_options)
         super(options);
 
@@ -128,7 +137,7 @@ class Measure extends Interaction {
                     } else if (index == coordinates.length - 1) {
 
                     } else {
-                        text = measureLength(new geom.LineString(coordinates.slice(0, index + 1)), this.getMap().getView().getProjection());
+                        text = this.measureResultFunction(new geom.LineString(coordinates.slice(0, index + 1)), true)
                     }
                     styles.push(
                         new style.Style({
@@ -192,7 +201,7 @@ class Measure extends Interaction {
                         text = "起点";
                     } else if (index == coordinates.length - 1) {
                     } else {
-                        text = measureLength(new geom.LineString(coordinates.slice(0, index + 1)), this.getMap().getView().getProjection());
+                        text = this.measureResultFunction(new geom.LineString(coordinates.slice(0, index + 1)), true);
                     }
                     styles.push(
                         new style.Style({
@@ -243,6 +252,33 @@ class Measure extends Interaction {
                 source: new VectorSource(),
             });
         }
+
+        /**
+         * 获取量算结果
+         * @param g 几何
+         * @param isNode 是否为节点
+         * @returns 
+         */
+        this.measureResultFunction = options.measureResultFunction ? options.measureResultFunction : (g: MeasureGeometry, isNode: Boolean): string => {
+            const projection = this.getMap().getView().getProjection();
+            if (this.getType() == MeasureType.LINESTRING) {
+                let length = measureLength(g as geom.LineString, projection);
+                let output;
+                if (length > 100) {
+                    output = Math.round((length / 1000) * 100) / 100 + " " + "km";
+                } else {
+                    output = Math.round(length * 100) / 100 + " " + "m";
+                }
+                return (isNode ? "" : "总长：") + output;
+            } else if (this.getType() == MeasureType.POLYGON) {
+                let area = measureArea(g as geom.Polygon, projection);
+                let output = (area / 666.66666667).toFixed(2) + " " + "亩";
+                return "面积：" + output;
+            }
+            return "";
+        }
+
+        this.classPrefix_ = options.classPrefix ? options.classPrefix : "measure"
 
         this.resultOverlayArray_ = [];
 
@@ -300,15 +336,15 @@ class Measure extends Interaction {
         let tooltipCoord;
         let output;
         if (g instanceof geom.Polygon) {
-            output = "面积：" + measureArea(g, this.getMap().getView().getProjection());
+            output = this.measureResultFunction(this.sketchFeature_.getGeometry() as MeasureGeometry, false);
             tooltipCoord = g.getInteriorPoint().getCoordinates();
         } else if (g instanceof geom.LineString) {
-            output = "总长：" + measureLength(g, this.getMap().getView().getProjection());
+            output = this.measureResultFunction(this.sketchFeature_.getGeometry() as MeasureGeometry, false);
             tooltipCoord = g.getLastCoordinate();
         }
         if (!this.resultOverlay_) {
             let element = document.createElement("div");
-            element.className = "measure-tooltip measure-tooltip-result";
+            element.className = `${this.classPrefix_}-tooltip ${this.classPrefix_}-tooltip-result`;
 
             element.innerHTML = output;
 
@@ -371,7 +407,7 @@ class Measure extends Interaction {
     private createHelpOverlay_() {
         if (!this.helpOverlay_) {
             let element = document.createElement("div");
-            element.className = "measure-tooltip";
+            element.className = `${this.classPrefix_}-tooltip ${this.classPrefix_}-tooltip-help`;
             this.helpOverlay_ = new Overlay({
                 element: element,
                 offset: [15, 0],
@@ -430,6 +466,7 @@ class Measure extends Interaction {
         this.draw_.on(
             "drawstart",
             (evt) => {
+                this.dispatchEvent(new MeasureEvent(MeasureEventType.MEASURESTART, this.sketchFeature_, this.resultOverlay_));
                 // 设置sketch
                 this.sketchFeature_ = evt.feature;
                 this.dispatchEvent("",);
@@ -440,6 +477,7 @@ class Measure extends Interaction {
         this.draw_.on(
             "drawend",
             (evt) => {
+                this.dispatchEvent(new MeasureEvent(MeasureEventType.MEASUREEND, this.sketchFeature_, this.resultOverlay_));
                 evt.feature.setStyle(this.resultStyle_);
                 this.createResultOverlay_();
                 // 清空临时对象,事件(包括sketch:正在绘制的要素,listener:图形修改事件等)
@@ -459,6 +497,8 @@ class Measure extends Interaction {
             this.getMap().un("pointermove", this.pointerMoveHandler_);
             this.getMap().removeOverlay(this.helpOverlay_);
             this.getMap().removeInteraction(this.draw_);
+            this.helpOverlay_ = null;
+            this.draw_ = null;
         }
     }
 
@@ -495,34 +535,25 @@ class Measure extends Interaction {
 export default Measure;
 
 /**
- * 获取面积量算结果输出字符串
+ * 获取面积
  * @param polygon 面几何图形
- * @return 面积量算结果输出字符串
+ * @return 面积
  */
-export const measureArea = (polygon: geom.Polygon, projection: Projection) => {
+export const measureArea = (polygon: geom.Polygon, projection: Projection): number => {
     let area = sphere.getArea(polygon, {
         projection: projection,
     });
-    let output;
-    output = (area / 666.66666667).toFixed(2) + " " + "亩";
-    return output;
+    return area;
 }
 
 /**
- * 获取距离量算结果输出字符串
+ * 获取线长度
  * @param  line 线几何图形
- * @return 距离量算结果输出字符串
+ * @return 长度
  */
-export const measureLength = (line: geom.LineString, projection: Projection) => {
+export const measureLength = (line: geom.LineString, projection: Projection): number => {
     let length = sphere.getLength(line, {
         projection: projection,
     });
-    let output;
-    if (length > 100) {
-        output = Math.round((length / 1000) * 100) / 100 + " " + "km";
-    } else {
-        output = Math.round(length * 100) / 100 + " " + "m";
-    }
-    return output;
+    return length;
 }
-

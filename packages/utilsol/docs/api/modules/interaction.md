@@ -28,7 +28,7 @@
 
 ### measureArea
 
-▸ **measureArea**(`polygon`, `projection`): `any`
+▸ **measureArea**(`polygon`, `projection`): `number`
 
 #### Parameters
 
@@ -39,13 +39,13 @@
 
 #### Returns
 
-`any`
+`number`
 
 ___
 
 ### measureLength
 
-▸ **measureLength**(`line`, `projection`): `any`
+▸ **measureLength**(`line`, `projection`): `number`
 
 #### Parameters
 
@@ -56,4 +56,4 @@ ___
 
 #### Returns
 
-`any`
+`number`

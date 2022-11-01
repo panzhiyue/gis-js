@@ -4,28 +4,48 @@
 
 [interaction](../modules/interaction.md).MeasureOptions
 
+## Hierarchy
+
+- `InteractionOptions`
+
+  ↳ **`MeasureOptions`**
+
 ## Table of contents
 
 ### Properties
 
+- [classPrefix](interaction.MeasureOptions.md#classprefix)
 - [drawStyle](interaction.MeasureOptions.md#drawstyle)
 - [layer](interaction.MeasureOptions.md#layer)
+- [measureResultFunction](interaction.MeasureOptions.md#measureresultfunction)
 - [resultStyle](interaction.MeasureOptions.md#resultstyle)
 
 ## Properties
 
+### classPrefix
+
+• **classPrefix**: `string`
+
+___
+
 ### drawStyle
 
-• `Optional` **drawStyle**: `Style`
+• `Optional` **drawStyle**: `StyleLike`
 
 ___
 
 ### layer
 
-• `Optional` **layer**: `VectorLayer`<`VectorSource`<`Geometry`\>\>
+• `Optional` **layer**: `VectorLayer`<`VectorSource`<`MeasureGeometry`\>\>
+
+___
+
+### measureResultFunction
+
+• **measureResultFunction**: `MeasureResultFunction`
 
 ___
 
 ### resultStyle
 
-• `Optional` **resultStyle**: `Style`
+• `Optional` **resultStyle**: `StyleLike`
