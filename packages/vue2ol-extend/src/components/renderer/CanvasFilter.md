@@ -1,0 +1,46 @@
+
+## 基础用法
+
+::: demo
+```vue
+<template>
+    <vue2ol-map style="height:400px;">
+        <vue2ol-view :zoom="zoom" :center="center" :options="viewOptions">
+        </vue2ol-view>
+        <vue2ol-layer-tile>
+            <vue2ol-source-tdt :options="{devicePixelRatio:devicePixelRatio}">
+            </vue2ol-source-tdt>
+        </vue2ol-layer-tile>
+        <vue2ol-layer-vector>
+          <vue2ol-source-vector>
+            <vue2ol-feature :geometry="polygon">
+
+            </vue2ol-feature>
+          </vue2ol-source-vector>
+        </vue2ol-layer-vector>
+        <vue2ol-renderer-canvasfilter >
+        </vue2ol-renderer-canvasfilter>
+    </vue2ol-map>
+</template>
+
+<script>
+import Polygon from "ol/geom/Polygon"
+export default{
+  data(){
+    return {
+      zoom:8,  //级别
+      center:[119.5,27.5],  //中心点
+      viewOptions:{
+        projection:"EPSG:4326"  //坐标系
+      },
+      polygon:null,
+    }
+  },
+  mounted(){
+       this.polygon=new Polygon([[[118,28],[120,28],[120,27],[119,27],[118,28]]]);
+  }
+}
+</script>
+```
+:::
+

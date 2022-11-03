@@ -1,7 +1,7 @@
 
 import * as format from "ol/format";
 import * as proj from "ol/proj";
-import * as CoordinateSystem from "./CoordinateSystem";
+import * as CoordinateSystem from "./coordinateSystem";
 import * as shapefile from "shapefile";
 
 import Collection from "ol/Collection";

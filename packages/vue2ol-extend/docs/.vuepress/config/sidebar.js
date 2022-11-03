@@ -48,6 +48,7 @@ module.exports = {
       title: "renderer",
       children: [
         "/components/renderer/CanvasClip",
+        "/components/renderer/CanvasFilter",
         "/components/renderer/TileClip",
       ],
     },

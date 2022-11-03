@@ -5,5 +5,6 @@ export * as interaction from "./interaction"
 export * as style from "./style"
 export * as utils from "./utils"
 export * as source from "./source"
+export * as coordinateSystem from "./coordinateSystem"
 
 export { default as EShapeFile } from "./EShapeFile"

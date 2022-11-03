@@ -24,6 +24,7 @@ export { default as Vue2olSourceMapgisdoctile } from "./source/MapGISDocTile.vue
 
 //renderer
 export { default as Vue2olRendererCanvasclip } from "./renderer/CanvasClip.vue";
+export { default as Vue2olRendererCanvasfilter } from "./renderer/CanvasFilter.vue";
 export { default as Vue2olRendererTileclip } from "./renderer/TileClip.vue";
 
 //interaction
