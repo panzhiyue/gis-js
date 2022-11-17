@@ -29,6 +29,7 @@
 - [resultOverlay\_](interaction.Measure.md#resultoverlay_)
 - [resultStyle\_](interaction.Measure.md#resultstyle_)
 - [sketchFeature\_](interaction.Measure.md#sketchfeature_)
+- [source\_](interaction.Measure.md#source_)
 
 ### Methods
 
@@ -124,6 +125,12 @@ ___
 ### sketchFeature\_
 
 • `Private` **sketchFeature\_**: `Feature`<`Geometry`\>
+
+___
+
+### source\_
+
+• `Private` **source\_**: `VectorSource`<`MeasureGeometry`\>
 
 ## Methods
 

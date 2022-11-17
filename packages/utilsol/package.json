@@ -1,6 +1,6 @@
 {
   "name": "@gis-js/utilsol",
-  "version": "1.0.0-beta.5",
+  "version": "1.0.0-beta.6",
   "description": "openlayers帮助类",
   "keywords": [
     "openlayers"
@@ -26,7 +26,8 @@
     "docs:dev": "typedoc --options ./typedoc.config.json && vuepress dev docs",
     "build:md": "typedoc --options ./typedoc.config.json",
     "docs:build": "vuepress build docs",
-    "build:package": "rimraf -rf lib && mkdir lib &&  rollup -c --environment NODE_ENV:production"
+    "build:package": "rimraf -rf lib && mkdir lib &&  rollup -c --environment NODE_ENV:production",
+    "dev:package": "rimraf -rf lib && mkdir lib &&  rollup -c --environment NODE_ENV:production --watch"
   },
   "bugs": {
     "url": "https://github.com/panzhiyue/gis-js/issues"

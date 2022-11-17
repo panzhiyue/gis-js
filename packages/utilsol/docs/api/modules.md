@@ -7,6 +7,9 @@
 ### Namespaces
 
 - [animation](modules/animation.md)
+- [control](modules/control.md)
+- [coordinateSystem](modules/coordinateSystem.md)
+- [editor](modules/editor.md)
 - [interaction](modules/interaction.md)
 - [plot](modules/plot.md)
 - [source](modules/source.md)

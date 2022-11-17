@@ -6,5 +6,8 @@ export * as style from "./style"
 export * as utils from "./utils"
 export * as source from "./source"
 export * as coordinateSystem from "./coordinateSystem"
+export * as control from "./control"
+export * as editor from "./editor"
+export * as format from "./format"
 
 export { default as EShapeFile } from "./EShapeFile"

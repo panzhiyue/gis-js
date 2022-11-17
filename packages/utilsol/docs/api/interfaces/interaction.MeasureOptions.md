@@ -16,9 +16,10 @@
 
 - [classPrefix](interaction.MeasureOptions.md#classprefix)
 - [drawStyle](interaction.MeasureOptions.md#drawstyle)
-- [layer](interaction.MeasureOptions.md#layer)
 - [measureResultFunction](interaction.MeasureOptions.md#measureresultfunction)
 - [resultStyle](interaction.MeasureOptions.md#resultstyle)
+- [source](interaction.MeasureOptions.md#source)
+- [type](interaction.MeasureOptions.md#type)
 
 ## Properties
 
@@ -34,12 +35,6 @@ ___
 
 ___
 
-### layer
-
-• `Optional` **layer**: `VectorLayer`<`VectorSource`<`MeasureGeometry`\>\>
-
-___
-
 ### measureResultFunction
 
 • **measureResultFunction**: `MeasureResultFunction`
@@ -49,3 +44,15 @@ ___
 ### resultStyle
 
 • `Optional` **resultStyle**: `StyleLike`
+
+___
+
+### source
+
+• `Optional` **source**: `VectorSource`<`MeasureGeometry`\>
+
+___
+
+### type
+
+• `Optional` **type**: [`MeasureType`](../enums/interaction.MeasureType.md)

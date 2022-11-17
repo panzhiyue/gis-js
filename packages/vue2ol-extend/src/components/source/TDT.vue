@@ -36,7 +36,7 @@ export default {
     //天地图秘钥
     tk: {
       type: String,
-      default: () => "cc4ded9c8fa65c654611568acc889439",
+      default: () => "6703c18da8b111f1ac38fdcfc4a138d8",
     },
     /**
      * 坐标系
