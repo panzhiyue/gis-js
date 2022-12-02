@@ -77,16 +77,16 @@ class MapGIS {
      * @param attvalue
      * @returns 
      */
-    parseAttribute(attstruct: any, attvalue: any): BaseObject | null {
+    parseAttribute(attstruct: any, attvalue: any): Object | null {
         if (attstruct === undefined || attvalue === undefined) {
             return null;
         }
         if (attstruct.FldName.length != attvalue.length) {
             return null;
         }
-        var attributes = new BaseObject();
+        var attributes = {};
         for (var i = 0, len = attstruct.FldName.length; i < len; i++) {
-            attributes.set(attstruct.FldName[i], attvalue[i]);
+            attributes[attstruct.FldName[i]] = attvalue[i]
         };
         return attributes;
     }
