@@ -8,7 +8,7 @@
         <vue2ol-view :zoom="zoom" :center="center" :options="viewOptions">
         </vue2ol-view>
         <vue2ol-layer-tile>
-            <vue2ol-source-tdt :options="{devicePixelRatio:devicePixelRatio}">
+            <vue2ol-source-tdt>
             </vue2ol-source-tdt>
         </vue2ol-layer-tile>
         <vue2ol-layer-vector>

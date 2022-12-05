@@ -3,7 +3,10 @@
 </template>
 <script>
 import { findRealParent, findParentMap } from "@gis-js/vue2ol";
-import { create as createTransform, scale as scaleTransform } from 'ol/transform.js'
+import {
+  create as createTransform,
+  scale as scaleTransform,
+} from "ol/transform.js";
 /**
  * Canvas裁切(根据传入的面几何裁切地图)
  */
@@ -26,6 +29,12 @@ export default {
      */
     geometry: {
       require: true,
+    },
+    classNameList: {
+      type: Array,
+      default: () => {
+        return ["ol-layer"];
+      },
     },
   },
 
@@ -52,11 +61,11 @@ export default {
         return;
       }
       let map = e.target;
-      if (map.renderer_ && map.renderer_.children_.length > 0) {
-        map.renderer_.children_.forEach((children, index) => {
-          let canvasArr = children.getElementsByTagName("canvas");
-          for (let i = 0; i < canvasArr.length; i++) {
-            let canvas = canvasArr[i];
+      let renderer = map.getRenderer();
+      if (renderer && renderer.children_.length > 0) {
+        renderer.children_.forEach((children, index) => {
+          if (this.classNameList.indexOf(children.className) > -1) {
+            const canvas = children.firstElementChild;
             let context = canvas.getContext("2d");
             this.createclip(context, this.geometry, map);
           }
@@ -114,5 +123,3 @@ export default {
   },
 };
 </script>
-
-

@@ -20,8 +20,7 @@ title: Vue2olRendererCanvasfilter
     <vue2ol-view :zoom="zoom" :center="center" :options="viewOptions">
     </vue2ol-view>
     <vue2ol-layer-tile>
-      <vue2ol-source-tdt :options="{ devicePixelRatio: devicePixelRatio }">
-      </vue2ol-source-tdt>
+      <vue2ol-source-tdt> </vue2ol-source-tdt>
     </vue2ol-layer-tile>
     <vue2ol-layer-vector>
       <vue2ol-source-vector>
@@ -64,6 +63,17 @@ export default {
 
 ## Props
 
-| 名称      | 描述     | 类型 | 取值范围 | 默认值 |
-| --------- | -------- | ---- | -------- | ------ |
-| parentMap | 父亲地图 | null | -        |        |
+| 名称       | 描述     | 类型   | 取值范围 | 默认值 |
+| ---------- | -------- | ------ | -------- | ------ |
+| parentMap  | 父亲地图 | null   | -        |        |
+| grayscale  |          | string | -        | 0      |
+| sepia      |          | string | -        | 0      |
+| saturate   |          | string | -        | 0      |
+| hueRotate  |          | string | -        | 0      |
+| invert     |          | string | -        | 0      |
+| opacity    |          | string | -        | 0      |
+| brightness |          | string | -        | 0      |
+| contrast   |          | string | -        | 0      |
+| blur       |          | string | -        | 0      |
+| dropShadow |          | string | -        | 0      |
+| options    |          | object | -        |        |
