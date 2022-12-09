@@ -162,8 +162,8 @@ export default {
 
 ## Props
 
-| 名称          | 描述                                                           | 类型  | 取值范围 | 默认值       |
-| ------------- | -------------------------------------------------------------- | ----- | -------- | ------------ |
-| parentMap     | 父亲地图                                                       | null  | -        |              |
-| geometry      | 裁切面几何<br/>`@typeNaem` {import('ol/geom/Polygon').default} |       | -        |              |
-| classNameList |                                                                | array | -        | ["ol-layer"] |
+| 名称          | 描述                                                           | 类型       | 取值范围 | 默认值       |
+| ------------- | -------------------------------------------------------------- | ---------- | -------- | ------------ |
+| parentMap     | 父亲地图                                                       | null       | -        |              |
+| geometry      | 裁切面几何<br/>`@typeNaem` {import('ol/geom/Polygon').default} |            | -        |              |
+| classNameList | 需要切割的图层 className 数组                                  | {string[]} | -        | ["ol-layer"] |

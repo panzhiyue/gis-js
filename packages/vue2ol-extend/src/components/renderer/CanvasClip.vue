@@ -30,6 +30,11 @@ export default {
     geometry: {
       require: true,
     },
+    
+    /**
+     * 需要切割的图层className数组
+     * @typeName {string[]}
+     */
     classNameList: {
       type: Array,
       default: () => {
@@ -47,7 +52,7 @@ export default {
     if (this.parentMap) {
       this.parent = this.parentMap;
     } else {
-      this.parent = findRealParent(this.$parent).mapObject;
+      this.parent = findParentMap(this.$parent).mapObject;
     }
 
     this.parent.on("postcompose", this.onPostRender);

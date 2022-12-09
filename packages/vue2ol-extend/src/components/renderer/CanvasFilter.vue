@@ -2,7 +2,7 @@
   <div></div>
 </template>
 <script>
-import { findRealParent, findParentMap } from "@gis-js/vue2ol";
+import { findRealParent, findParentMap, optionsMerger } from "@gis-js/vue2ol";
 /**
  * Canvas滤镜
  */
@@ -20,46 +20,76 @@ export default {
     parentMap: null,
     grayscale: {
       type: String,
-      default: 0,
+      default: null,
     },
     sepia: {
       type: String,
-      default: 0,
+      default: null,
     },
     saturate: {
       type: String,
-      default: 0,
+      default: null,
     },
     hueRotate: {
       type: String,
-      default: 0,
+      default: null,
     },
     invert: {
       type: String,
-      default: 0,
+      default: null,
     },
     opacity: {
       type: String,
-      default: 0,
+      default: null,
     },
     brightness: {
       type: String,
-      default: 0,
+      default: null,
     },
     contrast: {
       type: String,
-      default: 0,
+      default: null,
     },
     blur: {
       type: String,
-      default: 0,
+      default: null,
     },
     dropShadow: {
       type: String,
-      default: 0,
+      default: null,
     },
     options: {
       type: Object,
+    },
+    /**
+     * 需要切割的图层className数组
+     * @typeName {string[]}
+     */
+    classNameList: {
+      type: Array,
+      default: () => {
+        return ["ol-layer"];
+      },
+    },
+    /**
+     * 顺序
+     * @typeName {string[]}
+     */
+    sort: {
+      type: Array,
+      default: () => {
+        return [
+          "blur",
+          "brightness",
+          "contrast",
+          "grayscale",
+          "hue-rotate",
+          "invert",
+          "opacity",
+          "saturate",
+          "sepia",
+        ];
+      },
     },
   },
 
@@ -68,43 +98,26 @@ export default {
   },
   computed: {
     filter() {
-      let options = optionsMerger({}, this);
+      let options = optionsMerger(
+        {
+          grayscale: this.grayscale,
+          sepia: this.sepia,
+          saturate: this.saturate,
+          hueRotate: this.hueRotate,
+          invert: this.invert,
+          opacity: this.opacity,
+          brightness: this.brightness,
+          contrast: this.contrast,
+          blur: this.blur,
+          dropShadow: this.dropShadow,
+        },
+        this
+      );
       let filter = "";
-      for (let field in options) {
-        if (
-          [
-            "blur",
-            "brightness",
-            "contrast",
-            "grayscale",
-            "hue-rotate",
-            "invert",
-            "opacity",
-            "saturate",
-            "sepia",
-          ].indexOf(filed) > -1
-        ) {
-          filter += options[field] ? "" : `${field}(${options[field]}) `;
-        }
+      for (let i in this.sort) {
+        let field = this.sort[i];
+        filter += options[field] ? `${field}(${options[field]}) ` : "";
       }
-
-      // filter += !options.blur ? "" : "blur(" + options.blur + "px)";
-
-      // filter += !options.brightness
-      //   ? ""
-      //   : " brightness(" + options.brightness + "%)";
-      // filter += !options.contrast ? "" : "contrast(" + options.contrast + "%)";
-
-      // filter += !options.grayscale
-      //   ? ""
-      //   : "grayscale(" + options.grayscale + "%)";
-      // filter += !options.hueRotate
-      //   ? ""
-      //   : " hue-rotate(" + options.hueRotate + "deg)";
-      // filter += !options.invert ? "" : " invert(" + options.invert + "%)";
-      // filter += !options.opacity ? "" : " opacity(" + options.opacity + "%)";
-      // filter += !options.saturate ? "" : " saturate(" + options.saturate + "%)";
-      // filter += !options.sepia ? "" : " sepia(" + options.sepia + "%)";
       return filter;
     },
   },
@@ -112,7 +125,7 @@ export default {
     if (this.parentMap) {
       this.parent = this.parentMap;
     } else {
-      this.parent = findRealParent(this.$parent).mapObject;
+      this.parent = findParentMap(this.$parent).mapObject;
     }
 
     this.parent.on("postcompose", this.onPostRender);
@@ -122,8 +135,18 @@ export default {
   },
   methods: {
     onPostRender(e) {
-      console.log(e.target.getRenderer());
-      e.context.filter = this.filter;
+      let map = e.target;
+      let renderer = map.getRenderer();
+
+      if (renderer && renderer.children_.length > 0) {
+        renderer.children_.forEach((children, index) => {
+          if (this.classNameList.indexOf(children.className) > -1) {
+            const canvas = children.firstElementChild;
+            let context = canvas.getContext("2d");
+            context.filter = this.filter;
+          }
+        });
+      }
     },
   },
 };
