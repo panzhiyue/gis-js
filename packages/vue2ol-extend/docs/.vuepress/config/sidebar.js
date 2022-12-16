@@ -24,6 +24,7 @@ module.exports = {
     {
       title: "control",
       children: [
+        "/components/control/Drag",
         "/components/control/MouseInfo",
         "/components/control/MouseTips",
         "/components/control/Popup",

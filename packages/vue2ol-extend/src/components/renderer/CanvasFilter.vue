@@ -18,40 +18,64 @@ export default {
      * 父亲地图
      */
     parentMap: null,
+    /**
+     * 灰度
+     */
     grayscale: {
-      type: String,
+      type: Number|String,
       default: null,
     },
+    /**
+     * 深褐色
+     */
     sepia: {
-      type: String,
+      type: Number|String,
       default: null,
     },
+    /**
+     * 饱和度
+     */
     saturate: {
-      type: String,
+      type: Number|String,
       default: null,
     },
+    /**
+     * 色相
+     */
     hueRotate: {
-      type: String,
+      type: Number|String,
       default: null,
     },
+    /**
+     * 反相
+     */
     invert: {
-      type: String,
+      type: Number|String,
       default: null,
     },
+    /**
+     * 透明度
+     */
     opacity: {
-      type: String,
+      type: Number|String,
       default: null,
     },
+    /**
+     * 亮度
+     */
     brightness: {
-      type: String,
+      type: Number|String,
       default: null,
     },
+    /**
+     * 对比度
+     */
     contrast: {
-      type: String,
+      type: Number|String,
       default: null,
     },
     blur: {
-      type: String,
+      type: Number|String,
       default: null,
     },
     dropShadow: {
@@ -83,11 +107,12 @@ export default {
           "brightness",
           "contrast",
           "grayscale",
-          "hue-rotate",
+          "hueRotate",
           "invert",
           "opacity",
           "saturate",
           "sepia",
+          "dropShadow",
         ];
       },
     },
@@ -116,7 +141,13 @@ export default {
       let filter = "";
       for (let i in this.sort) {
         let field = this.sort[i];
-        filter += options[field] ? `${field}(${options[field]}) ` : "";
+        if (options[field]) {
+          if (field == "hueRotate") {
+            filter += `${field}(${options[field]}deg) `;
+          } else {
+            filter += `${field}(${options[field]}) `;
+          }
+        }
       }
       return filter;
     },

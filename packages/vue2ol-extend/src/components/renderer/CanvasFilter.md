@@ -16,8 +16,8 @@
       </vue2ol-source-vector>
     </vue2ol-layer-vector>
     <vue2ol-renderer-canvasfilter
-      :grayscale="'50%'"
-      :brightness="'50%'"
+      
+      :brightness="'0.5'"
       :sort="['brightness', 'grayscale']"
     >
     </vue2ol-renderer-canvasfilter>
