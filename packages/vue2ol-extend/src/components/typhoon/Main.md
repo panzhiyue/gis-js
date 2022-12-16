@@ -106,7 +106,6 @@ export default {
           this.index >= this.typhoonData.path.length - 1 ? 0 : this.index + 1;
       }
     }, 200);
-
   },
   methods: {
     handleChangeIndex(index) {
@@ -116,15 +115,144 @@ export default {
 };
 </script>
 ```
+
 :::
 
+## 读取中国气象网数据
+
+::: demo
+
+```vue
+<template>
+  <button @click="animation = !animation">开始/停止</button>
+
+  <vue2ol-map style="height:400px;">
+    <vue2ol-view :zoom="zoom" :center="center" :options="viewOptions">
+    </vue2ol-view>
+    <vue2ol-layer-tile>
+      <vue2ol-source-osm></vue2ol-source-osm>
+    </vue2ol-layer-tile>
+    <vue2ol-typhoon-main
+      v-if="typhoonData"
+      :data="typhoonData"
+      :index="index"
+      :showAll="false"
+      @on-change-index="handleChangeIndex"
+    ></vue2ol-typhoon-main>
+  </vue2ol-map>
+</template>
+
+<script>
+import dayjs from "dayjs";
+import { typhoonUtil } from "@gis-js/vue2ol-extend";
+export default {
+  data() {
+    return {
+      zoom: 4, //级别
+      center: [124.7, 26.6], //中心点
+      viewOptions: {
+        projection: "EPSG:4326", //坐标系
+      },
+      data: null,
+      index: 0,
+      animation: false,
+    };
+  },
+  computed: {
+    typhoonData() {
+      let data = this.data;
+      if (data) {
+        return {
+          id: data[3],
+          iname: data[1],
+          name: data[2],
+          status: data[7],
+          path: data[8].map((item) => {
+            return {
+              title: `${data[3]} ${data[2]}`,
+              dateTime: dayjs(item[2]).format("MM月DD日hh时"),
+              longitude: item[4],
+              latitude: item[5],
+              pres: item[6],
+              moveSpeed: item[9],
+              dir: item[8]
+                .split("")
+                .map((item) => {
+                  return typhoonUtil.dirTable[item];
+                })
+                .join(""),
+              speed: item[7],
+              wndRadius: item[10].map((tempItem) => {
+                return {
+                  speed: tempItem[0],
+                  ne: tempItem[1],
+                  es: tempItem[2],
+                  ws: tempItem[3],
+                  wn: tempItem[4],
+                };
+              }),
+              forecastPath: [
+                item[11].BABJ.map((tempItem) => {
+                  return {
+                    title: `${data[3]} ${data[2]}`,
+                    oragn: typhoonUtil.organTable["BABJ"],
+                    dateTime: dayjs(tempItem[1]).format("MM月DD日hh时"),
+                    longitude: tempItem[2],
+                    latitude: tempItem[3],
+                    pres: tempItem[4],
+                    speed: tempItem[5],
+                    level: tempItem[7],
+                  };
+                }),
+              ],
+
+              level: item[3],
+              message: `${dayjs(item[2]).format("MM月DD日hh时")}`,
+            };
+          }),
+        };
+      } else {
+        return null;
+      }
+    },
+  },
+  async mounted() {
+    const response = await fetch(
+      "http://typhoon.nmc.cn/weatherservice/typhoon/jsons/view_2822227"
+    );
+    const body = await response.text();
+
+    var regExp = /\(([^)]+)\)/;
+    console.log(JSON.parse(regExp.exec(body)[1]));
+    let data = JSON.parse(regExp.exec(body)[1]);
+
+    this.data = data.typhoon;
+
+    setInterval(() => {
+      if (this.animation) {
+        this.index =
+          this.index >= this.typhoonData.path.length - 1 ? 0 : this.index + 1;
+      }
+    }, 200);
+  },
+  methods: {
+    handleChangeIndex(index) {
+      this.index = index;
+    },
+  },
+};
+</script>
+```
+
+:::
 
 ## API
+
 ### TyphoonData
 
 | 名称   | 描述     | 类型       |
 | ------ | -------- | ---------- |
-| id     | 台风id   | String     |
+| id     | 台风 id  | String     |
 | iname  | 英文名称 | String     |
 | name   | 中文名称 | String     |
 | status | 状态     | start/stop |
@@ -169,14 +297,10 @@ export default {
 | ws   | 西南半径 | Number |
 | wn   | 西北半径 | Number |
 
-
-
-
-
 ## 方法
 
 ```javascript
-import typhoonUtil from "@gis-js/vue2ol-extend"
+import typhoonUtil from "@gis-js/vue2ol-extend";
 ```
 
 ### parseWndRadius(wndRadius, center)
