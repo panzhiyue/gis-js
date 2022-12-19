@@ -28,6 +28,7 @@ module.exports = {
         "/components/control/MouseInfo",
         "/components/control/MouseTips",
         "/components/control/Popup",
+        "/components/control/Resize",
       ],
     },
     {
