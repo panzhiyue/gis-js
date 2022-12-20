@@ -60,8 +60,8 @@ export default {
   },
 };
 </script>
-<style scoped>
-.vue2ol-mousetips {
+<style>
+.vue2ol-control-mousetips {
   background: #363636;
   background: rgba(0, 0, 0, 0.5);
   border: 1px solid transparent;
@@ -79,7 +79,7 @@ export default {
   min-height: 20px;
 }
 
-.vue2ol-mousetips:before {
+.vue2ol-control-mousetips:before {
   border-right: 6px solid black;
   border-right-color: rgba(0, 0, 0, 0.5);
   border-top: 6px solid transparent;

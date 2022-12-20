@@ -30,6 +30,7 @@ module.exports = {
         "/components/control/Popup",
         "/components/control/Resize",
         "/components/control/Placement",
+        "/components/control/Panel",
       ],
     },
     {

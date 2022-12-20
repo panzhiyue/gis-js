@@ -62,7 +62,7 @@ export default {
   },
 };
 </script>
-<style scoped>
+<style>
 .vue2ol-control-placement {
   position: absolute;
   border-radius: 2px;

@@ -234,7 +234,7 @@ export default {
   },
 };
 </script>
-<style scoped>
+<style>
 .vue2ol-control-resize {
   position: relative;
   display: inline-block;
@@ -254,7 +254,7 @@ export default {
   top: 0;
   z-index: 2000;
 }
-.vue2ol-control-resize__ctrl-h.my-drag__handle {
+.vue2ol-control-resize__ctrl-h.vue2ol-control-drag__handle {
   cursor: e-resize;
 }
 .vue2ol-control-resize__ctrl-v {
@@ -266,7 +266,7 @@ export default {
   bottom: 0;
   z-index: 2000;
 }
-.vue2ol-control-resize__ctrl-v.my-drag__handle {
+.vue2ol-control-resize__ctrl-v.vue2ol-control-drag__handle {
   cursor: s-resize;
 }
 .vue2ol-control-resize__ctrl {
@@ -278,7 +278,7 @@ export default {
   bottom: 0;
   z-index: 2000;
 }
-.vue2ol-control-resize__ctrl.my-drag__handle {
+.vue2ol-control-resize__ctrl.vue2ol-control-drag__handle {
   cursor: se-resize;
 }
 .vue2ol-control-resize__helper {

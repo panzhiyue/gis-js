@@ -118,7 +118,7 @@ export default {
   },
 };
 </script>
-<style scoped>
+<style>
 .vue2ol-control-popup {
 }
 .vue2ol-control-popup-content-wrapper {

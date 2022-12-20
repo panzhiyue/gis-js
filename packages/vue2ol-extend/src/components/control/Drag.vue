@@ -78,7 +78,7 @@ const DEFAULT_RANGE = {
 };
 
 // 拖拽句柄样式名
-const HANDLE_CLASS = "my-drag__handle";
+const HANDLE_CLASS = "vue2ol-control-drag__handle";
 
 /**
  * 元素拖拽组件
@@ -132,7 +132,7 @@ export default {
      */
     revert: Boolean,
     /**
-     * 分组名称， 与my-drop配合使用
+     * 分组名称， 与vue2ol-control-drop配合使用
      * @typeName String
      */
     group: String,
@@ -200,7 +200,7 @@ export default {
         "is-dragging": this.dragging,
         "is-disabled": this.disabled,
         "is-dragged": this.dragged,
-        "my-drag__handle": this.$el === this.handleEl,
+        "vue2ol-control-drag__handle": this.$el === this.handleEl,
       };
     },
   },
@@ -271,7 +271,7 @@ export default {
         // 克隆组件自己
         this.dragEl = this.$el.cloneNode(true);
       }
-      addClass(this.dragEl, "my-drag__clone");
+      addClass(this.dragEl, "vue2ol-control-drag__clone");
       if (this.cloneClass) {
         addClass(this.dragEl, this.cloneClass);
       }
@@ -353,7 +353,7 @@ export default {
         };
       }
     },
-    // 是否有my-resize子组件正在resizing
+    // 是否有vue2ol-control-resize子组件正在resizing
     isResizing() {
       return !!this.$children.find((item) => {
         if (item.$options && item.$options.name === "MyResize") {
@@ -377,7 +377,7 @@ export default {
       this.cacheRange = null;
       // 标识正在拖拽
       this.dragging = true;
-      // 初始化已放置，开始是未放置，这个属性的修改是在 my-drop 组件中修改为true
+      // 初始化已放置，开始是未放置，这个属性的修改是在 vue2ol-control-drop 组件中修改为true
       this.dropped = false;
       this.createDragEl(e);
       this.updateOffset(e);
@@ -392,7 +392,7 @@ export default {
        * @param {VueComponent} vm MyDrag实例
        */
       this.$emit("start", this);
-      //   bus.$emit("my-drag:start", this);
+      //   bus.$emit("vue2ol-control-drag:start", this);
     },
     // 锁定拖拽方向
     lockAxis(x, y) {
@@ -443,7 +443,7 @@ export default {
        * @param {VueComponent} vm MyDrag实例
        */
       this.$emit("drag", this);
-      //   bus.$emit("my-drag:dragging", this);
+      //   bus.$emit("vue2ol-control-drag:dragging", this);
     },
     // 停止拖拽
     stop() {
@@ -453,8 +453,8 @@ export default {
        * @param {VueComponent} vm MyDrag实例
        */
       this.$emit("stop", this);
-      //   bus.$emit("my-drag:stop", this);
-      // 已过成功放置，清除拖拽副本，否则就重置，dropped 在my-drop中更新，这行要放在触发stop事件之后
+      //   bus.$emit("vue2ol-control-drag:stop", this);
+      // 已过成功放置，清除拖拽副本，否则就重置，dropped 在vue2ol-control-drop中更新，这行要放在触发stop事件之后
       this.dropped ? this.clearDragEl() : this.revertDragEl();
       // 清空缓存
       this.cacheRange = null;
@@ -467,7 +467,7 @@ export default {
       if (this.disabled) return;
       // 为了防止点击的行为触发拖拽，加定时器
       this.timer = setTimeout(() => {
-        // 如果有my-resize 子组件正在resizing， 禁止拖拽
+        // 如果有vue2ol-control-resize 子组件正在resizing， 禁止拖拽
         if (this.isResizing()) {
           return;
         }
@@ -520,9 +520,44 @@ export default {
   },
 };
 </script>
-<style scoped>
+<style>
 .vue2ol-control-drag {
   display: inline-block;
   position: absolute;
+}
+.vue2ol-control-drag__handle {
+  cursor: move;
+}
+.vue2ol-control-drag__handle.is-disabled {
+  cursor: auto;
+}
+.vue2ol-control-drag__clone {
+  position: absolute;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  opacity: 0.6;
+  z-index: 2000;
+}
+.vue2ol-control-drag__clone.is-clone {
+  position: absolute !important;
+}
+.vue2ol-control-drag__clone.is-revert {
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+}
+.vue2ol-control-drag.is-dragging {
+  position: absolute;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.vue2ol-control-drag.is-disabled .vue2ol-control-drag__handle {
+  cursor: auto;
+}
+.vue2ol-control-drag.is-clone {
+  position: static;
 }
 </style>

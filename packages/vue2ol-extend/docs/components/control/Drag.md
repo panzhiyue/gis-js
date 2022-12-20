@@ -207,7 +207,7 @@ export default {
 | target     | 在目标元素范围内                                   | String\|HTMLElement\|Function | -        |                                      |
 | clone      | 是否克隆拖拽                                       | Boolean\|Function             | -        |                                      |
 | revert     | 拖拽放置后动画返回原来位置，clone 为 true 时才有效 | Boolean                       | -        |                                      |
-| group      | 分组名称， 与 my-drop 配合使用                     | String                        | -        |                                      |
+| group      | 分组名称， 与 vue2ol-control-drop 配合使用         | String                        | -        |                                      |
 | disabled   | 是否禁用拖拽                                       | Boolean                       | -        |                                      |
 | data       | 附加数据                                           | String\|Number\|Object\|Array | -        |                                      |
 | cloneClass | 克隆元素添加 className                             | String                        | -        |                                      |
