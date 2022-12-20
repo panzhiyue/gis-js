@@ -65,7 +65,6 @@ export default {
         [118, 28]
       ]
     ]);
-    console.log(9999);
   }
 };
 </script>

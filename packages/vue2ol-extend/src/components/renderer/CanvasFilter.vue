@@ -22,60 +22,60 @@ export default {
      * 灰度
      */
     grayscale: {
-      type: Number|String,
+      type: Number | String,
       default: null,
     },
     /**
      * 深褐色
      */
     sepia: {
-      type: Number|String,
+      type: Number | String,
       default: null,
     },
     /**
      * 饱和度
      */
     saturate: {
-      type: Number|String,
+      type: Number | String,
       default: null,
     },
     /**
      * 色相
      */
     hueRotate: {
-      type: Number|String,
+      type: Number | String,
       default: null,
     },
     /**
      * 反相
      */
     invert: {
-      type: Number|String,
+      type: Number | String,
       default: null,
     },
     /**
      * 透明度
      */
     opacity: {
-      type: Number|String,
+      type: Number | String,
       default: null,
     },
     /**
      * 亮度
      */
     brightness: {
-      type: Number|String,
+      type: Number | String,
       default: null,
     },
     /**
      * 对比度
      */
     contrast: {
-      type: Number|String,
+      type: Number | String,
       default: null,
     },
     blur: {
-      type: Number|String,
+      type: Number | String,
       default: null,
     },
     dropShadow: {
@@ -143,13 +143,21 @@ export default {
         let field = this.sort[i];
         if (options[field]) {
           if (field == "hueRotate") {
-            filter += `${field}(${options[field]}deg) `;
+            filter += `hue-rotate(${options[field]}deg) `;
           } else {
             filter += `${field}(${options[field]}) `;
           }
         }
       }
       return filter;
+    },
+  },
+  watch: {
+    options: {
+      deep: true,
+      handler(val) {
+        this.parent.render();
+      },
     },
   },
   mounted() {
@@ -174,6 +182,7 @@ export default {
           if (this.classNameList.indexOf(children.className) > -1) {
             const canvas = children.firstElementChild;
             let context = canvas.getContext("2d");
+            // this.filter = "brightness(0.5)";
             context.filter = this.filter;
           }
         });

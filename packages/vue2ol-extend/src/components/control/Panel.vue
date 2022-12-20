@@ -181,7 +181,7 @@ export default {
   },
   mounted() {
     this.setFooterHeight();
-    this.mapWarp = this.myMap?.$el || this.$parent.$el;
+    this.mapWarp = this.$parent.$el;
   },
 };
 </script>

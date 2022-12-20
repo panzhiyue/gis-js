@@ -14,6 +14,7 @@ export { default as Vue2olControlPopup } from "./control/Popup.vue";
 export { default as Vue2olControlResize } from "./control/Resize.vue";
 export { default as Vue2olControlPlacement } from "./control/Placement.vue";
 export { default as Vue2olControlPanel } from "./control/Panel.vue";
+export { default as Vue2olControlPalette } from "./control/Palette.vue";
 //layer
 export { default as Vue2olLayerEcharts } from "./layer/Echarts.vue";
 

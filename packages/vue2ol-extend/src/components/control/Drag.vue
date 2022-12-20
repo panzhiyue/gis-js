@@ -234,6 +234,7 @@ export default {
         return this.cacheRange;
       }
       const target = this.getTarget();
+
       if (target) {
         const rect = target.getBoundingClientRect();
         const elRect = this.$el.getBoundingClientRect();
@@ -356,7 +357,7 @@ export default {
     // 是否有vue2ol-control-resize子组件正在resizing
     isResizing() {
       return !!this.$children.find((item) => {
-        if (item.$options && item.$options.name === "MyResize") {
+        if (item.$options && item.$options.name === "Vue2olControlResize") {
           return item.resizing;
         }
         return false;
