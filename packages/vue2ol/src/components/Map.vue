@@ -127,7 +127,7 @@ export default {
   },
 };
 </script>
-<style scoped>
+<style>
 .vue2ol-map {
   width: 100%;
   height: 100%;
