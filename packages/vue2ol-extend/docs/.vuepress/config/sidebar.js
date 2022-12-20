@@ -29,6 +29,7 @@ module.exports = {
         "/components/control/MouseTips",
         "/components/control/Popup",
         "/components/control/Resize",
+        "/components/control/Placement",
       ],
     },
     {

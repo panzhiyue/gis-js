@@ -12,6 +12,7 @@ export { default as Vue2olControlMouseinfo } from "./control/MouseInfo.vue";
 export { default as Vue2olControlMousetips } from "./control/MouseTips.vue";
 export { default as Vue2olControlPopup } from "./control/Popup.vue";
 export { default as Vue2olControlResize } from "./control/Resize.vue";
+export { default as Vue2olControlPlacement } from "./control/Placement.vue";
 
 //layer
 export { default as Vue2olLayerEcharts } from "./layer/Echarts.vue";
