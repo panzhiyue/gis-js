@@ -370,8 +370,8 @@ export default {
      */
     userSelect(disabled) {
       disabled
-        ? addClass(this.document.body, "user-select-none")
-        : removeClass(this.document.body, "user-select-none");
+        ? addClass(this.document.body, "vue2ol-select-none")
+        : removeClass(this.document.body, "vue2ol-select-none");
     },
     // 拖拽开始
     start(e) {
@@ -560,5 +560,15 @@ export default {
 }
 .vue2ol-control-drag.is-clone {
   position: static;
+}
+
+.vue2ol-select-none {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.vue2ol-select-none iframe {
+  pointer-events: none;
 }
 </style>
