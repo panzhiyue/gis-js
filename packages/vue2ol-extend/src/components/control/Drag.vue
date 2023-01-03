@@ -519,6 +519,12 @@ export default {
     this.clearDragEl();
     this.document = null;
   },
+  beforeUnmount() {
+    clearTimeout(this.timer);
+    this.unbindHandle();
+    this.clearDragEl();
+    this.document = null;
+  },
 };
 </script>
 <style>

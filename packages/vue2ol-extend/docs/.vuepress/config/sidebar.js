@@ -31,7 +31,7 @@ module.exports = {
         "/components/control/Resize",
         "/components/control/Placement",
         "/components/control/Panel",
-        "/components/control/Palette"
+        "/components/control/Palette",
       ],
     },
     {

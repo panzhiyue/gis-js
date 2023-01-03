@@ -7,8 +7,8 @@ export default {
   name: "Vue2olEventVector",
   data() {
     return {
-    //   parent: null,
-    //   map: null,
+      //   parent: null,
+      //   map: null,
     };
   },
   props: {
@@ -42,6 +42,11 @@ export default {
     this.map.on("pointermove", this.handlePointerMove);
   },
   beforeDestroy() {
+    this.map.un("singleclick", this.handleSingleClick);
+
+    this.map.un("pointermove", this.handlePointerMove);
+  },
+  beforeUnmount() {
     this.map.un("singleclick", this.handleSingleClick);
 
     this.map.un("pointermove", this.handlePointerMove);

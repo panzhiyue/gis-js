@@ -46,6 +46,9 @@ export default {
   destory() {
     this.parent.un("pointermove", this.onPointerMove);
   },
+  unmounted(){
+    this.parent.un("pointermove", this.onPointerMove);
+  },
   methods: {
     onPointerMove(event) {
       let position = this.parent.getCoordinateFromPixel([
