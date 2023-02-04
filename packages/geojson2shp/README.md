@@ -20,7 +20,6 @@ import { GeoJson2Shp } from "@gis-js/geojson2shp";
 
 ## 示例
 
-::: demo
 
 ```vue
 <template>
@@ -104,5 +103,3 @@ export default {
 </script>
 <style></style>
 ```
-
-:::

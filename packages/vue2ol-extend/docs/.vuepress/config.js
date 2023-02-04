@@ -39,24 +39,12 @@ module.exports = {
         text: '组件',
         link: '/components/'
       },
-      {
-        text: '插件',
-        link: '/plugins/'
-      },
+    
       {
         text: '相关',
-        items: [{
-          text: 'vuepress',
-          link: 'https://v2.vuepress.vuejs.org/zh/reference/config.html#%E7%AB%99%E7%82%B9%E9%85%8D%E7%BD%AE'
-        }, {
-          text: 'vue-docgen',
-          link: 'https://vue-styleguidist.github.io/docs/docgen-cli.html#install'
-        }, {
+        items: [ {
           text: 'openlayers',
           link: 'https://openlayers.org/'
-        }, {
-          text: 'vue2leaflet',
-          link: 'https://vue2-leaflet.netlify.app/'
         }, {
           text: 'vue2ol',
           link: 'https://panzhiyue.github.io/gis-js/vue2ol/'

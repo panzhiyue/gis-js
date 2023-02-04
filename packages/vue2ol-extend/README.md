@@ -79,5 +79,4 @@ export default {
 ```
 
 ## 计划
-1.解决CanvasClip在缩放浏览器时与部分电脑错乱的问题
 

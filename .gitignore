@@ -8,3 +8,6 @@
 /packages/vue2ol/node_modules
 /packages/vue2ol-extend/node_modules
 /packages/geojson2shp/node_modules
+/packages/utilsol/docs/api
+/packages/vue2ol/docs/components
+/packages/vue2ol-extend/docs/components
