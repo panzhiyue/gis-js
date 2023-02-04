@@ -1,6 +1,7 @@
 {
   "name": "root",
   "private": true,
+  "description":"vue,openlayers,vue2ol",
   "scripts": {
     "build:package": "pnpm -r build:package",
     "build:md": "pnpm  -r build:md ",
