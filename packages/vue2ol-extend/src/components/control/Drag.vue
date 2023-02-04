@@ -464,6 +464,7 @@ export default {
       this.userSelect(false);
     },
     handleMouseDown(e) {
+      console.log(333);
       // 禁用不触发
       if (this.disabled) return;
       // 为了防止点击的行为触发拖拽，加定时器
