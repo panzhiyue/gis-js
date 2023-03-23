@@ -1,6 +1,6 @@
 {
   "name": "@gis-js/geojson2shp",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "geojson转为shp",
   "keywords": [
     "map",
