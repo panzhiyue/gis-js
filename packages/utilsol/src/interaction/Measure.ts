@@ -41,6 +41,14 @@ export enum MeasureEventType {
 }
 
 /**
+ * 量算停止触发
+ */
+export enum MeasureStopType {
+    DOUBLELEFT = "doubleleft",
+    RIGHT = "right"
+}
+
+/**
  * Measure触发事件的实例
  */
 export class MeasureEvent extends BaseEvent {
@@ -76,6 +84,7 @@ export interface MeasureOptions extends InteractionOptions {
     resultStyle?: MeasureStyle,
     source?: VectorSource<MeasureGeometry>,
     classPrefix: string,
+    stopType: MeasureStopType,
     measureResultFunction: MeasureResultFunction
 }
 
@@ -105,6 +114,8 @@ class Measure extends Interaction {
     private pointerMoveHandler_: any;
     //样式前缀
     private classPrefix_: string;
+
+    private stopType_: MeasureStopType;
     //获取量算结果文本
     public measureResultFunction: MeasureResultFunction;
 
@@ -114,6 +125,8 @@ class Measure extends Interaction {
     constructor(opt_options: MeasureOptions) {
         let options = Object.assign({}, opt_options)
         super(options);
+
+        this.stopType_ = options.stopType;
 
         //默认绘制样式
         let defaultDrawStyle = (feature: Feature<MeasureGeometry>) => {
@@ -386,6 +399,7 @@ class Measure extends Interaction {
         close.className = "close";
         close.id = this.resultOverlay_.get("id");
         close.addEventListener("click", (e: PointerEvent) => {
+
             let id = (e.target as HTMLElement).id
 
             for (let i = this.resultOverlayArray_.length - 1; i >= 0; i--) {
@@ -431,9 +445,9 @@ class Measure extends Interaction {
         if (this.sketchFeature_) {
             let g = this.sketchFeature_.getGeometry();
             if (g instanceof geom.Polygon) {
-                helpMsg = `双击结束绘制面`;
+                helpMsg = `${this.stopType_==MeasureStopType.RIGHT?'右键':'双击'}结束绘制面`;
             } else if (g instanceof geom.LineString) {
-                helpMsg = `<div>总长:${measureLength(this.sketchFeature_.getGeometry() as geom.LineString, this.getMap().getView().getProjection())}</div><div>单击确定地点，双击结束</div>`;
+                helpMsg = `<div>总长:${measureLength(this.sketchFeature_.getGeometry() as geom.LineString, this.getMap().getView().getProjection())}</div><div>单击确定地点，${this.stopType_==MeasureStopType.RIGHT?'右键':'双击'}结束</div>`;
             }
         }
         //更新提示信息
@@ -456,6 +470,15 @@ class Measure extends Interaction {
             source: this.source_,
             type: type,
             style: this.drawStyle_,
+            condition: (e) => {
+                //左键
+                if (this.stopType_ == MeasureStopType.RIGHT && e.originalEvent.buttons == 2) {
+                    this.draw_.finishDrawing()
+                    return false;
+                }
+                return true;
+
+            }
         });
         this.getMap().addInteraction(this.draw_);
 
@@ -489,6 +512,10 @@ class Measure extends Interaction {
                 Observable.unByKey(listener);
             },
         );
+
+        // this.draw_.on("click",()=>{
+        //     console.log(333);
+        // })
     }
 
     /**
