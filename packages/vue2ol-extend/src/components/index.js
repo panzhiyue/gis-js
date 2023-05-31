@@ -17,7 +17,7 @@ export { default as Vue2olControlPanel } from "./control/Panel.vue";
 export { default as Vue2olControlPalette } from "./control/Palette.vue";
 //layer
 export { default as Vue2olLayerEcharts } from "./layer/Echarts.vue";
-
+export { default as Vue2olLayerShadow } from "./layer/Shadow.vue";
 //source
 export { default as Vue2olSourceBaidu } from "./source/BaiDu.vue";
 export { default as Vue2olSourceBing } from "./source/Bing.vue";

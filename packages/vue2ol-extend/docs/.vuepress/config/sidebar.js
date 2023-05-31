@@ -36,7 +36,7 @@ module.exports = {
     },
     {
       title: "layer",
-      children: ["/components/layer/Echarts"],
+      children: ["/components/layer/Echarts","/components/layer/Shadow"],
     },
     {
       title: "source",
