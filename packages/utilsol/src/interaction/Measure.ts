@@ -11,12 +11,12 @@ import { Feature } from "ol";
 import Interaction, { InteractionOptions } from "ol/interaction/Interaction"
 import InteractionProperty from 'ol/interaction/Property.js';
 import { Coordinate } from "ol/coordinate";
-import { newGuid } from "src/utils";
+import { newGuid } from "../utils";
 import { Positioning } from "ol/Overlay"
 import { getAzimuth } from "../utils"
 import BaseEvent from "ol/events/Event"
 import { Projection } from "ol/proj";
-import { StyleLike } from "ol/style/Style";
+import { StyleFunction, StyleLike } from "ol/style/Style";
 
 /**
  * 量算类型
@@ -93,13 +93,13 @@ export interface MeasureOptions extends InteractionOptions {
  */
 class Measure extends Interaction {
     //ol.interaction.Draw实例
-    private draw_: interaction.Draw;
+    private draw_: interaction.Draw | null;
     //当前绘制的要素
-    private sketchFeature_: Feature;
+    private sketchFeature_: Feature | null;
     //帮助信息地图覆盖物
-    private helpOverlay_: Overlay;
+    private helpOverlay_: Overlay | null;
     //量算结果覆盖物
-    private resultOverlay_: Overlay;
+    private resultOverlay_: Overlay | null;
     //量算结果地图覆盖物集合
     private resultOverlayArray_: Overlay[];
     //量算结果图层
@@ -129,9 +129,9 @@ class Measure extends Interaction {
         this.stopType_ = options.stopType;
 
         //默认绘制样式
-        let defaultDrawStyle = (feature: Feature<MeasureGeometry>) => {
-            let styles = [];
-            let geometry: MeasureGeometry = feature.getGeometry()
+        let defaultDrawStyle = (feature: Feature<geom.Geometry>) => {
+            let styles: style.Style[] = [];
+            let geometry: MeasureGeometry = feature.getGeometry()! as MeasureGeometry
             styles.push(
                 new style.Style({
                     fill: new style.Fill({
@@ -190,13 +190,13 @@ class Measure extends Interaction {
                     );
                 })
             }
-            return styles;
+            return styles as StyleLike;
         }
 
         //默认结果样式
-        let defaultResultStyle = (feature: Feature<MeasureGeometry>) => {
-            let styles = [];
-            let geometry: MeasureGeometry = feature.getGeometry()
+        let defaultResultStyle = (feature: Feature<geom.Geometry>) => {
+            let styles: style.Style[] = [];
+            let geometry: MeasureGeometry = feature.getGeometry()! as MeasureGeometry
 
             styles.push(
                 new style.Style({
@@ -257,15 +257,15 @@ class Measure extends Interaction {
             return styles;
         }
 
-        this.drawStyle_ = options.drawStyle ? options.drawStyle : defaultDrawStyle;
+        this.drawStyle_ = options.drawStyle ? options.drawStyle : defaultDrawStyle as StyleFunction;
 
-        this.resultStyle_ = options.resultStyle ? options.resultStyle : defaultResultStyle;
+        this.resultStyle_ = options.resultStyle ? options.resultStyle : defaultResultStyle as StyleFunction;
 
         this.layer_ = new VectorLayer({
             source: new VectorSource(),
         });
 
-        this.source_ = options.source ? options.source : this.layer_.getSource();
+        this.source_ = options.source ? options.source : this.layer_.getSource()!;
 
         /**
          * 获取量算结果
@@ -274,7 +274,7 @@ class Measure extends Interaction {
          * @returns 
          */
         this.measureResultFunction = options.measureResultFunction ? options.measureResultFunction : (g: MeasureGeometry, isNode: Boolean): string => {
-            const projection = this.getMap().getView().getProjection();
+            const projection = this.getMap()!.getView().getProjection();
             if (g.getType() == "LineString") {
                 let length = measureLength(g as geom.LineString, projection);
                 let output;
@@ -387,10 +387,10 @@ class Measure extends Interaction {
                 stopEvent: true
             });
             this.resultOverlay_.set("id", newGuid());
-            this.getMap().addOverlay(this.resultOverlay_);
+            this.getMap()!.addOverlay(this.resultOverlay_);
             this.resultOverlayArray_.push(this.resultOverlay_);
         } else {
-            this.resultOverlay_.getElement().innerHTML = output;
+            this.resultOverlay_.getElement()!.innerHTML = output;
         }
 
         this.resultOverlay_.set("feature", this.sketchFeature_);
@@ -398,7 +398,7 @@ class Measure extends Interaction {
         close.innerHTML = "x";
         close.className = "close";
         close.id = this.resultOverlay_.get("id");
-        close.addEventListener("click", (e: PointerEvent) => {
+        close.addEventListener("click", (e: any) => {
 
             let id = (e.target as HTMLElement).id
 
@@ -406,13 +406,14 @@ class Measure extends Interaction {
                 let item = this.resultOverlayArray_[i];
                 if (item.get("id") == id) {
                     this.source_.removeFeature(item.get("feature"));
-                    this.getMap().removeOverlay(item);
+                    this.getMap()!.removeOverlay(item);
 
                     this.resultOverlayArray_.splice(i, 1);
                 }
             }
+
         })
-        this.resultOverlay_.getElement().append(close);
+        this.resultOverlay_.getElement()!.append(close);
 
         this.resultOverlay_.setPosition(tooltipCoord);
     }
@@ -429,7 +430,7 @@ class Measure extends Interaction {
                 offset: [15, 0],
                 positioning: "center-left",
             });
-            this.getMap().addOverlay(this.helpOverlay_);
+            this.getMap()!.addOverlay(this.helpOverlay_);
         }
     }
 
@@ -445,15 +446,15 @@ class Measure extends Interaction {
         if (this.sketchFeature_) {
             let g = this.sketchFeature_.getGeometry();
             if (g instanceof geom.Polygon) {
-                helpMsg = `${this.stopType_==MeasureStopType.RIGHT?'右键':'双击'}结束绘制面`;
+                helpMsg = `${this.stopType_ == MeasureStopType.RIGHT ? '右键' : '双击'}结束绘制面`;
             } else if (g instanceof geom.LineString) {
-                helpMsg = `<div>总长:${measureLength(this.sketchFeature_.getGeometry() as geom.LineString, this.getMap().getView().getProjection())}</div><div>单击确定地点，${this.stopType_==MeasureStopType.RIGHT?'右键':'双击'}结束</div>`;
+                helpMsg = `<div>总长:${measureLength(this.sketchFeature_.getGeometry() as geom.LineString, this.getMap()!.getView().getProjection())}</div><div>单击确定地点，${this.stopType_ == MeasureStopType.RIGHT ? '右键' : '双击'}结束</div>`;
             }
         }
         //更新提示信息
-        this.helpOverlay_.getElement().innerHTML = helpMsg;
-        this.helpOverlay_.setPosition(coordinate);
-        this.helpOverlay_.getElement().classList.remove("hidden");
+        this.helpOverlay_!.getElement()!.innerHTML = helpMsg;
+        this.helpOverlay_!.setPosition(coordinate);
+        this.helpOverlay_!.getElement()!.classList.remove("hidden");
     }
 
     /**
@@ -464,7 +465,7 @@ class Measure extends Interaction {
         //先移出之前激活的交互
         this.end_();
         //绑定鼠标移动,提示信息跟随事件
-        this.getMap().on("pointermove", this.pointerMoveHandler_);
+        this.getMap()!.on("pointermove", this.pointerMoveHandler_);
         //初始化绘图交互对象
         this.draw_ = new interaction.Draw({
             source: this.source_,
@@ -473,14 +474,14 @@ class Measure extends Interaction {
             condition: (e) => {
                 //左键
                 if (this.stopType_ == MeasureStopType.RIGHT && e.originalEvent.buttons == 2) {
-                    this.draw_.finishDrawing()
+                    this.draw_!.finishDrawing()
                     return false;
                 }
                 return true;
 
             }
         });
-        this.getMap().addInteraction(this.draw_);
+        this.getMap()!.addInteraction(this.draw_);
 
         //创建提示信息覆盖物
         this.createHelpOverlay_();
@@ -491,7 +492,7 @@ class Measure extends Interaction {
         this.draw_.on(
             "drawstart",
             (evt) => {
-                this.dispatchEvent(new MeasureEvent(MeasureEventType.MEASURESTART, this.sketchFeature_, this.resultOverlay_));
+                this.dispatchEvent(new MeasureEvent(MeasureEventType.MEASURESTART, this.sketchFeature_!, this.resultOverlay_!));
                 // 设置sketch
                 this.sketchFeature_ = evt.feature;
                 this.dispatchEvent("",);
@@ -502,7 +503,7 @@ class Measure extends Interaction {
         this.draw_.on(
             "drawend",
             (evt) => {
-                this.dispatchEvent(new MeasureEvent(MeasureEventType.MEASUREEND, this.sketchFeature_, this.resultOverlay_));
+                this.dispatchEvent(new MeasureEvent(MeasureEventType.MEASUREEND, this.sketchFeature_!, this.resultOverlay_!));
                 evt.feature.setStyle(this.resultStyle_);
                 this.createResultOverlay_();
                 // 清空临时对象,事件(包括sketch:正在绘制的要素,listener:图形修改事件等)
@@ -523,9 +524,9 @@ class Measure extends Interaction {
      */
     public end_() {
         if (this.draw_) {
-            this.getMap().un("pointermove", this.pointerMoveHandler_);
-            this.getMap().removeOverlay(this.helpOverlay_);
-            this.getMap().removeInteraction(this.draw_);
+            this.getMap()!.un("pointermove", this.pointerMoveHandler_);
+            this.getMap()!.removeOverlay(this.helpOverlay_!);
+            this.getMap()!.removeInteraction(this.draw_);
             this.helpOverlay_ = null;
             this.draw_ = null;
         }
@@ -536,7 +537,7 @@ class Measure extends Interaction {
      */
     public clear() {
         this.resultOverlayArray_.forEach((item) => {
-            item.getMap().removeOverlay(item);
+            item.getMap()!.removeOverlay(item);
             this.source_.removeFeature(item.get("feature"));
         })
         this.resultOverlayArray_ = [];
