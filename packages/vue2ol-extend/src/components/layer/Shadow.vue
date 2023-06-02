@@ -1,6 +1,7 @@
 <template>
   <vue2ol-layer-vector :style-obj="style" :options="{ className: className }">
     <vue2ol-source-vector :features="features">
+      <!-- @slot default -->
       <slot></slot>
     </vue2ol-source-vector>
   </vue2ol-layer-vector>
@@ -17,22 +18,38 @@ export default {
     };
   },
   props: {
+    /**
+     * 阴影X轴偏移（正数向右，负数向左）
+     */
     offsetX: {
       type: Number,
       default: 10,
     },
+    /**
+     * 阴影Y轴偏移（正数向下，负数向上）
+     */
     offsetY: {
       type: Number,
       default: -11,
     },
+    /**
+     * 阴影颜色
+     */
     color: {
       type: String,
       default: "rgba(104,117,124,1)",
     },
+    /**
+     * 画布名称
+     */
     className: {
       type: String,
       default: "shadow",
     },
+    /**
+     * 矢量要素
+     * @typeName ol/Feature
+     */
     features: {},
   },
   mounted() {
