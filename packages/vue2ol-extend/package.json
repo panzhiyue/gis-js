@@ -31,6 +31,7 @@
   "bugs": {
     "url": "https://github.com/panzhiyue/gis-js/issues"
   },
+  
   "dependencies": {
     "@gis-js/utilsol": "workspace:*",
     "@gis-js/vue2ol": "workspace:*",

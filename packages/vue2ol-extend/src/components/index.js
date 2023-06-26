@@ -53,3 +53,6 @@ export { default as Vue2olTyphoonRealpointinfo } from "./typhoon/RealPointInfo.v
 export { default as Vue2olTyphoonForecastpointinfo } from "./typhoon/ForecastPointInfo.vue";
 export { default as Vue2olTyphoonLevelname } from "./typhoon/LevelName.vue";
 export { default as Vue2olTyphoonMain } from "./typhoon/Main.vue";
+
+//debug
+export { default as Vue2olDebugMapinfo } from "./debug/Mapinfo.vue";

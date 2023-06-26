@@ -88,5 +88,11 @@ module.exports = {
         "/components/typhoon/Main",
       ],
     },
+    {
+      title:'debug',
+      children:[
+        "/components/debug/Mapinfo"
+      ]
+    }
   ],
 };
