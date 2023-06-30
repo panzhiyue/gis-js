@@ -56,3 +56,4 @@ export { default as Vue2olTyphoonMain } from "./typhoon/Main.vue";
 
 //debug
 export { default as Vue2olDebugMapinfo } from "./debug/Mapinfo.vue";
+export { default as Vue2olDebugFunction } from "./debug/Function.vue";

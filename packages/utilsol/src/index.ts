@@ -10,5 +10,6 @@ export * as control from "./control"
 export * as editor from "./editor"
 export * as format from "./format"
 export * as helper from "./helper"
+export * as debug from "./debug"
 
 export { default as EShapeFile } from "./EShapeFile"

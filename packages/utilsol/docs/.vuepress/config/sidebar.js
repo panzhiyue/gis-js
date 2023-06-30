@@ -43,6 +43,10 @@ module.exports = {
           title: "source",
           children: ["source/MapGISDocTile"],
         },
+        {
+          title: "debug",
+          children: ["debug/loadFile"],
+        },
         "EShapeFile",
         "EShapeFile",
       ],
