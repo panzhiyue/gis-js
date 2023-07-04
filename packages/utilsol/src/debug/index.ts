@@ -6,6 +6,7 @@ import FileType from "./FileType";
 import * as fit from "./fit"
 
 export * from "./loadFile"
+export * from "./saveAsFile"
 
 export const init = (global, map: olMap, vectorLayer: VectorLayer<any>) => {
     let isPrint = true;

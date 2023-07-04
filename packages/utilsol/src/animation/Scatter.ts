@@ -315,7 +315,7 @@ class Scatter extends OLObject {
         if (style instanceof Style) {
             this.centerStyle_ = [style];
         } else if (style instanceof Function || style instanceof Array) {
-            this.centerStyle_ = style;
+            this.centerStyle_ = style as any;
         }
         else if (style instanceof Object) {
             this.centerStyle_ = [parseStyle(style)];
@@ -330,7 +330,7 @@ class Scatter extends OLObject {
         if (style instanceof Style) {
             this.rippleStyle_ = [style];
         } else if (style instanceof Function || style instanceof Array) {
-            this.rippleStyle_ = style;
+            this.rippleStyle_ = style as any;
         }
         else if (style instanceof Object) {
             this.rippleStyle_ = [parseStyle(style)];

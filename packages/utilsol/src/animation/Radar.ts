@@ -451,7 +451,7 @@ class Radar extends OLObject {
         if (style instanceof Style) {
             this.centerStyle_ = [style];
         } else if (style instanceof Function || style instanceof Array) {
-            this.centerStyle_ = style;
+            this.centerStyle_ = style as any;
         }
         else if (style instanceof Object) {
             this.centerStyle_ = [parseStyle(style)];
@@ -466,7 +466,7 @@ class Radar extends OLObject {
         if (style instanceof Style) {
             this.circleStyle_ = [style];
         } else if (style instanceof Function || style instanceof Array) {
-            this.circleStyle_ = style;
+            this.circleStyle_ = style as any;
         }
         else if (style instanceof Object) {
             this.circleStyle_ = [parseStyle(style)];
@@ -481,7 +481,7 @@ class Radar extends OLObject {
         if (style instanceof Style) {
             this.arcStyle_ = [style];
         } else if (style instanceof Function || style instanceof Array) {
-            this.arcStyle_ = style;
+            this.arcStyle_ = style as any;
         }
         else if (style instanceof Object) {
             this.arcStyle_ = [parseStyle(style)];

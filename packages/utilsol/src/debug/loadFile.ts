@@ -58,7 +58,7 @@ export const loadFormat = (format): Promise<Feature[]> => {
 
 /**
  * 加载geojson文件
- * @returns 
+ * @returns aa
  */
 export const loadGeoJson = (): Promise<Feature[]> => {
     let f = new format.GeoJSON();
@@ -140,7 +140,7 @@ export const loadShp = (options): Promise<Feature[]> => {
 
 /**
  * 加载文件
- * @param type 
+ * @param type
  * @returns 
  */
 export const loadFile = (type, options): Promise<Feature[]> => {

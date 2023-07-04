@@ -490,7 +490,7 @@ class Flight extends OLObject {
         if (style instanceof Style) {
             this.lineStyle_ = [style];
         } else if (style instanceof Function || style instanceof Array) {
-            this.lineStyle_ = style;
+            this.lineStyle_ = style as any;
         }
         else if (style instanceof Object) {
             this.lineStyle_ = [parseStyle(style)];
@@ -506,7 +506,7 @@ class Flight extends OLObject {
         if (style instanceof Style) {
             this.lineAnimationStyle_ = [style];
         } else if (style instanceof Function || style instanceof Array) {
-            this.lineAnimationStyle_ = style;
+            this.lineAnimationStyle_ = style as any;
         }
 
         else if (style instanceof Object) {
@@ -523,7 +523,7 @@ class Flight extends OLObject {
         if (style instanceof Style) {
             this.pointAnimationStyle_ = [style];
         } else if (style instanceof Function || style instanceof Array) {
-            this.pointAnimationStyle_ = style;
+            this.pointAnimationStyle_ = style as any;
         }
         else if (style instanceof Object) {
             this.pointAnimationStyle_ = [parseStyle(style)];

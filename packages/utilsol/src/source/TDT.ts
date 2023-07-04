@@ -8,8 +8,11 @@ export interface Options extends XYZOptions {
     layer?: string,
     /**
      * 秘钥
+     *
+     * @type {string}
+     * @memberof Options
      */
-    tk?: string
+    tk?: string 
 }
 
 /**

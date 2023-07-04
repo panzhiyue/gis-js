@@ -45,5 +45,5 @@
         "types", "./node_modules/@types",
       ],
     },
-    "include": ["src/*.ts","src/**/*.ts", "types/*.d.ts", "__tests__/*.ts"]
+    "include": ["src/*.ts","src/**/*.ts", "types/*.d.ts", "__tests__/*.ts","plugin/**/*.ts",]
   }

@@ -23,11 +23,12 @@
     "url": "git+https://github.com/panzhiyue/gis-js.git"
   },
   "scripts": {
-    "docs:dev": "typedoc --options ./typedoc.config.json && vuepress dev docs",
+    "docs:dev": "typedoc --plugin typedoc-plugin-markdown --options ./typedoc.config.json && vuepress dev docs",
     "build:md": "typedoc --options ./typedoc.config.json",
     "docs:build": "vuepress build docs",
     "build:package": "rimraf -rf lib && mkdir lib &&  rollup -c --environment NODE_ENV:production",
-    "dev:package": "rimraf -rf lib && mkdir lib &&  rollup -c --environment NODE_ENV:production --watch"
+    "dev:package": "rimraf -rf lib && mkdir lib &&  rollup -c --environment NODE_ENV:production --watch",
+    "build:plugin":"tsc ./plugin/typedoc-plugin-links/index.ts"
   },
   "bugs": {
     "url": "https://github.com/panzhiyue/gis-js/issues"
@@ -66,8 +67,8 @@
     "rollup-plugin-node-externals": "^2.2.0",
     "ts-jest": "^27.1.2",
     "tslib": "^2.3.1",
-    "typedoc": "^0.22.13",
-    "typedoc-plugin-markdown": "^3.11.14",
+    "typedoc": "^0.24.4",
+    "typedoc-plugin-markdown": "^3.15.3",
     "typescript": "^4.5.4"
   }
 }
