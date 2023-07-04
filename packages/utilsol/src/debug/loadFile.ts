@@ -1,10 +1,7 @@
 import { Feature } from "ol";
 import * as format from "ol/format"
-export const FileType = {
-    "SHP": "shp",
-    "GEOJSON": "geojson",
-    "TOPOJSON":"topojson"
-}
+import EShapeFile from "src/EShapeFile";
+import FileType from "./FileType"
 
 /**
  * 获取文件
@@ -78,21 +75,107 @@ export const loadTopoJson = (): Promise<Feature[]> => {
 }
 
 /**
+ * 加载gpx文件
+ * @returns 
+ */
+export const loadGpx = (): Promise<Feature[]> => {
+    let f = new format.GPX();
+    return loadFormat(f);
+}
+
+/**
+ * 加载KML文件
+ * @returns 
+ */
+export const loadKml = (): Promise<Feature[]> => {
+    let f = new format.KML();
+    return loadFormat(f);
+}
+
+/**
+ * 加载Polyline文件
+ * @returns 
+ */
+export const loadPolyline = (): Promise<Feature[]> => {
+    let f = new format.Polyline();
+    return loadFormat(f);
+}
+
+/**
+ * 加载Wkt文件
+ * @returns 
+ */
+export const loadWkt = (): Promise<Feature[]> => {
+    let f = new format.WKT();
+    return loadFormat(f);
+}
+
+/**
+ * TODO 待开发
+ * @returns 
+ */
+export const loadExcel = (options): Promise<Feature[]> => {
+    return null;
+
+}
+
+/**
+ * 加载shp文件
+ * @returns 
+ */
+export const loadShp = (options): Promise<Feature[]> => {
+    return new Promise((resolve) => {
+        //加载shapefile文件
+        getFile(true, (files) => {
+            var eShapeFile = new EShapeFile(options);
+            eShapeFile.on("loaded" as any, () => {
+                var features = eShapeFile.getFeatures();
+                resolve(features);
+            });
+            eShapeFile.readFile(files);
+        });
+    })
+
+}
+
+/**
  * 加载文件
  * @param type 
  * @returns 
  */
-export const loadFile = (type): Promise<Feature[]> => {
-    console.log(type,FileType.TOPOJSON);
+export const loadFile = (type, options): Promise<Feature[]> => {
     let result = null;
     switch (type) {
+        case FileType.SHP: {
+            result = loadShp(options);
+            break;
+        }
         case FileType.GEOJSON: {
             result = loadGeoJson();
             break;
         }
         case FileType.TOPOJSON: {
-            console.log(333);
             result = loadTopoJson();
+            break;
+        }
+        case FileType.GPX: {
+            result = loadGpx();
+            break;
+        }
+        case FileType.KML: {
+            result = loadKml();
+            break;
+        }
+        case FileType.POLYLINE: {
+            result = loadPolyline();
+            break;
+        }
+        case FileType.WKT: {
+            result = loadWkt();
+            break;
+        }
+        case FileType.EXCEL: {
+            result = loadExcel(options);
             break;
         }
     }
