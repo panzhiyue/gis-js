@@ -41,13 +41,12 @@ module.exports = {
         },
         {
           title: "source",
-          children: ["source/MapGISDocTile"],
+          children: ["source/MapGISDocTile","source/TDT"],
         },
         {
           title: "debug",
           children: ["debug/loadFile"],
         },
-        "EShapeFile",
         "EShapeFile",
       ],
     },
