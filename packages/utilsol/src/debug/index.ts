@@ -3,6 +3,7 @@ import olMap from "ol/Map"
 import VectorLayer from "ol/layer/Vector";
 import { saveAsFile } from "./saveAsFile";
 import FileType from "./FileType";
+import * as fit from "./fit"
 
 export * from "./loadFile"
 
@@ -37,7 +38,7 @@ export const init = (global, map: olMap, vectorLayer: VectorLayer<any>) => {
     global.loadShp = (isFit: Boolean) => {
         global.loadFile(FileType.SHP, isFit);
     }
-    global.loadGeoJson = (isFit: Boolean ) => {
+    global.loadGeoJson = (isFit: Boolean) => {
         global.loadFile(FileType.GEOJSON, isFit);
     }
     global.loadTopoJson = (isFit: Boolean) => {
@@ -90,10 +91,28 @@ export const init = (global, map: olMap, vectorLayer: VectorLayer<any>) => {
         global.saveAsFile(FileType.WKT, options);
     }
     //#endregion
-    global.fit = map.getView().fit;
-    global.fitToLayer = (options) => {
-        map.getView().fit(vectorLayer.getSource().getExtent(), options);
+
+    //#region fit
+    global.fitToPoint = (lon: number, lat: number, options: Object) => {
+        fit.fitToPoint(map, lon, lat, options);
     }
+    global.fitToExtent = (extent: number[], options: Object) => {
+        fit.fitToExtent(map, extent, options);
+    }
+    global.fitToLayer = (options: Object) => {
+        fit.fitToExtent(map, vectorLayer.getSource().getExtent(), options);
+    }
+
+    //#endregion
+
+    //#region layer
+    global.addLayer = () => {
+
+    }
+
+    //#endregion
+
+
 
     global.printMapInfo = () => {
         let output = {
