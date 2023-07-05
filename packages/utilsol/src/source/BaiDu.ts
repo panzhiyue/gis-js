@@ -10,7 +10,7 @@ export interface BaiDuOptions extends TileImageOptions {
 }
 
 /**
- * 全国天地图的图层数据源
+ * 百度地图地图的图层数据源
  */
 class BaiDu extends TileImage {
     /**
