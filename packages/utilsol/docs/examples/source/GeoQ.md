@@ -1,4 +1,4 @@
-# utilsol/source/Bing（必应）
+# utilsol/source/GeoQ（智图）
 
 ## 基础用法
 
@@ -29,13 +29,15 @@ export default {
       target: "container",
       view: new View({
         center: center,
-        zoom: 1,
+        zoom: 3,
         projection: "EPSG:4326",
       }),
     });
 
     let layer = new Tile({
-      source: new utilsol.source.Bing(),
+      source: new utilsol.source.GeoQ({
+        layer:"normal_map"
+      }),
     });
     this.map.addLayer(layer);
   },

@@ -13,3 +13,6 @@ export * from "./source/Bing"
 
 export { default as GaoDe } from "./source/GaoDe"
 export * from "./source/GaoDe"
+
+export { default as GeoQ } from "./source/GeoQ"
+export * from "./source/GeoQ"
