@@ -4,3 +4,6 @@ export * from "./source/MapGISDocTile"
 
 export { default as TDT } from "./source/TDT"
 export * from "./source/TDT"
+
+export { default as BaiDu } from "./source/BaiDu"
+export * from "./source/BaiDu"
