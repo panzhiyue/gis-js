@@ -41,7 +41,7 @@ module.exports = {
         },
         {
           title: "source",
-          children: ["source/MapGISDocTile","source/TDT","source/BaiDu","source/Bing"],
+          children: ["source/MapGISDocTile","source/TDT","source/BaiDu","source/Bing","source/GaoDe"],
         },
         {
           title: "debug",

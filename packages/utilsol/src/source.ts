@@ -10,3 +10,6 @@ export * from "./source/BaiDu"
 
 export { default as Bing } from "./source/Bing"
 export * from "./source/Bing"
+
+export { default as GaoDe } from "./source/GaoDe"
+export * from "./source/GaoDe"
