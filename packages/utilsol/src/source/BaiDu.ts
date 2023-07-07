@@ -2,7 +2,7 @@ import TileImage from "ol/source/TileImage"
 import { Options as TileImageOptions } from "ol/source/TileImage"
 import TileGrid from "ol/tilegrid/TileGrid";
 
-export interface BaiDuOptions extends TileImageOptions {
+export interface BaiDuSourceOptions extends TileImageOptions {
     /**
      * 矢量地图:normal_map,影像地图:satellite_map,影像注记:satellite_annotion
      */
@@ -17,8 +17,8 @@ class BaiDu extends TileImage {
      * 
      * @param options 
      */
-    constructor(opt_options: BaiDuOptions) {
-        const options: BaiDuOptions = opt_options || {};
+    constructor(opt_options?: BaiDuSourceOptions) {
+        const options: BaiDuSourceOptions = Object.assign({}, opt_options)
         let layer = options.layer === undefined ? 'normal_map' : options.layer;
         let projection = options.projection === undefined ? 'EPSG:3857' : options.projection;
         let url;

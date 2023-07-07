@@ -33,11 +33,6 @@ export default {
 
     this.map = new Map({
       target: "container1",
-      layers: [
-        new Tile({
-          source: new OSM(),
-        }),
-      ],
       view: new View({
         center: center,
         zoom: 4,

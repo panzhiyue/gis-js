@@ -83,9 +83,9 @@ export interface MeasureOptions extends InteractionOptions {
     drawStyle?: MeasureStyle,
     resultStyle?: MeasureStyle,
     source?: VectorSource<MeasureGeometry>,
-    classPrefix: string,
-    stopType: MeasureStopType,
-    measureResultFunction: MeasureResultFunction
+    classPrefix?: string,
+    stopType?: MeasureStopType,
+    measureResultFunction?: MeasureResultFunction
 }
 
 /**
@@ -122,7 +122,7 @@ class Measure extends Interaction {
     /**
      * 构造函数
      */
-    constructor(opt_options: MeasureOptions) {
+    constructor(opt_options?: MeasureOptions) {
         let options = Object.assign({}, opt_options)
         super(options);
 

@@ -34,7 +34,7 @@ class MapGISDocTile extends TileImage {
      * 构造函数
      * @param opt_options 
      */
-    constructor(opt_options: MapGISDocTileSourceOptions) {
+    constructor(opt_options?: MapGISDocTileSourceOptions) {
         const options: MapGISDocTileSourceOptions = Object.assign({}, opt_options)
         let interpolate =
             options.imageSmoothing !== undefined ? options.imageSmoothing : true;

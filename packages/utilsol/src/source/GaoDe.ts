@@ -1,7 +1,7 @@
 import XYZ from "ol/source/XYZ"
 import { Options as XYZOptions } from "ol/source/XYZ"
 
-export interface GaoDeOptions extends XYZOptions {
+export interface GaoDeSourceOptions extends XYZOptions {
     /**
      * 矢量地图:normal_map,影像地图:satellite_map,影像注记:satellite_annotion
      */
@@ -16,8 +16,8 @@ class GaoDe extends XYZ {
      * 
      * @param options 
      */
-    constructor(opt_options: GaoDeOptions) {
-        const options: GaoDeOptions = opt_options || {};
+    constructor(opt_options?: GaoDeSourceOptions) {
+        const options: GaoDeSourceOptions = Object.assign({}, opt_options)
         let layer = options.layer === undefined ? 'normal_map' : options.layer;
         let url;
         if (layer == "normal_map") {

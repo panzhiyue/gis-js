@@ -1,7 +1,7 @@
 import XYZ from "ol/source/XYZ"
 import { Options as XYZOptions } from "ol/source/XYZ"
 
-export interface BingOptions extends XYZOptions {
+export interface BingSourceOptions extends XYZOptions {
 }
 
 /**
@@ -12,8 +12,8 @@ class Bing extends XYZ {
      * 
      * @param options 
      */
-    constructor(opt_options: BingOptions) {
-        const options: BingOptions = opt_options || {};
+    constructor(opt_options?: BingSourceOptions) {
+        const options: BingSourceOptions = Object.assign({}, opt_options)
         super({
             ...options,
         });

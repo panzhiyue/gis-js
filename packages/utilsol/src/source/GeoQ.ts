@@ -1,7 +1,7 @@
 import XYZ from "ol/source/XYZ"
 import { Options as XYZOptions } from "ol/source/XYZ"
 
-export interface GeoQOptions extends XYZOptions {
+export interface GeoQSourceOptions extends XYZOptions {
   /**
    * 矢量地图:normal_map,午夜蓝:normal_purplishblue,灰色:normal_gray,暖色:normal_warm,水系:theme_hydro
    */
@@ -16,8 +16,8 @@ class GeoQ extends XYZ {
    * 
    * @param options 
    */
-  constructor(opt_options: GeoQOptions) {
-    const options: GeoQOptions = opt_options || {};
+  constructor(opt_options?: GeoQSourceOptions) {
+    const options: GeoQSourceOptions = Object.assign({}, opt_options)
     let layer = options.layer === undefined ? 'normal_map' : options.layer;
     let url;
     if (layer == "normal_map") {

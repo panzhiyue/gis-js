@@ -4,6 +4,8 @@ import VectorLayer from "ol/layer/Vector";
 import { saveAsFile } from "./saveAsFile";
 import FileType from "./FileType";
 import * as fit from "./fit"
+import { createImageLayer } from "./layer"
+import { Measure } from "src/interaction";
 
 export * from "./loadFile"
 export * from "./saveAsFile"
@@ -22,6 +24,8 @@ export const init = (global, map: olMap, vectorLayer: VectorLayer<any>) => {
 
     global.map = map;
     global.vectorLayer = vectorLayer;
+    global.measure = new Measure()
+    global.measure.setMap(global.map);
     //#region loadFile
     global.loadFile = (type, isFit: Boolean = true) => {
         print("start-loadFile");
@@ -94,26 +98,42 @@ export const init = (global, map: olMap, vectorLayer: VectorLayer<any>) => {
     //#endregion
 
     //#region fit
-    global.fitToPoint = (lon: number, lat: number, options: Object) => {
+    global.fitToPoint = (lon: number, lat: number, options: object) => {
         fit.fitToPoint(map, lon, lat, options);
     }
-    global.fitToExtent = (extent: number[], options: Object) => {
+    global.fitToExtent = (extent: number[], options: object) => {
         fit.fitToExtent(map, extent, options);
     }
-    global.fitToLayer = (options: Object) => {
+    global.fitToLayer = (options: object) => {
         fit.fitToExtent(map, vectorLayer.getSource().getExtent(), options);
     }
-
     //#endregion
 
     //#region layer
-    global.addLayer = () => {
+    global.createImageLayer = (type: string, options: object) => {
+        let layer = createImageLayer(type, options);
+        map.addLayer(layer);
+    }
 
+    global.removeLayerByIndex = (index?: number) => {
+        let layers = map.getLayers().getArray();
+        map.removeLayer(layers[index == undefined ? layers.length - 1 : index]);
+    }
+
+    global.removeLayerAll = (index?: number) => {
+        let layers = map.getLayers().getArray();
+        for (let i = layers.length - 1; i >= 0; i--) {
+            map.removeLayer(layers[i]);
+        }
     }
 
     //#endregion
 
-
+    //#region tool
+    global.setMeasureType = (type) => {
+        global.measure.setType(type);
+    }
+    //#endregion
 
     global.printMapInfo = () => {
         let output = {
