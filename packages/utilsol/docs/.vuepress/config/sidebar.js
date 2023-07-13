@@ -47,6 +47,10 @@ module.exports = {
           title: "debug",
           children: ["debug/loadFile"],
         },
+        {
+          title: "renderer",
+          children: ["renderer/CanvasFilter"],
+        },
         "EShapeFile",
       ],
     },

@@ -11,5 +11,6 @@ export * as editor from "./editor"
 export * as format from "./format"
 export * as helper from "./helper"
 export * as debug from "./debug"
+export * as renderer from "./renderer"
 
 export { default as EShapeFile } from "./EShapeFile"
