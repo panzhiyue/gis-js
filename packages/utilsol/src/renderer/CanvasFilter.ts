@@ -168,14 +168,13 @@ class CanvasFilter extends OLObject {
     private filter: string;
 
     /**
-     * 事件Key
+     * 事件key
      *
      * @private
      * @type {any}
      * @memberof CanvasFilter
      */
     private _key: any;
-
     /**
      * 
      * @param opt_options 
@@ -215,9 +214,33 @@ class CanvasFilter extends OLObject {
      * @param map 地图
      */
     public setMap(map: olMap) {
-
+        if (this.map) {
+            unlistenByKey(this._key)
+            this._setCanvasFilter(null);
+            this.map.render();
+        }
         this.map = map;
-        this._updateFilter();
+        if (this.map) {
+            this._key = this.map.on("postcompose", this._onPostRender.bind(this));
+            this._updateFilter();
+            this.render();
+        }
+
+    }
+
+    /**
+     * 销毁
+     */
+    public dispose(): void {
+        this.setMap(null);
+    }
+
+
+    /**
+     * 渲染函数
+     */
+    private _onPostRender() {
+        this._setCanvasFilter(this.filter);
     }
 
     public render() {
@@ -262,15 +285,25 @@ class CanvasFilter extends OLObject {
         }
         this.filter = filter;
 
+        this._setCanvasFilter(this.filter);
+    }
+
+    /**
+     * 设置filter值
+     * @param filter filter值
+     */
+    private _setCanvasFilter(filter: string) {
+        console.log(this.map);
         if (this.map) {
             let renderer: any = this.map.getRenderer();
 
             if (renderer && renderer.children_.length > 0) {
+                console.log(999);
                 renderer.children_.forEach((children, index) => {
                     if (this.classNameList.indexOf(children.className) > -1) {
                         const canvas = children.firstElementChild;
                         let context = canvas.getContext("2d");
-                        context.filter = this.filter ? this.filter : "none";
+                        context.filter = filter ? filter : "none";
                     }
                 });
             }

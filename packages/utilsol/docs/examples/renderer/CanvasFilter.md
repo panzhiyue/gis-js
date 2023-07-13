@@ -72,6 +72,7 @@
         <div class="palette__title">深褐色</div>
         <input type="range" :max="100" :step="0.01" v-model="model.sepia" />
       </div>
+      <input type="button" value="清空" @click="handleClick" />
     </div>
   </div>
 </template>
@@ -115,19 +116,11 @@ export default {
     model: {
       deep: true,
       handler() {
-        setTimeout(() => {
-          this.refresh();
-        }, 100);
+        this.refresh();
       },
     },
     isBlur(newValue) {
-      console.log(newValue);
-      if (newValue) {
-        this.canvasFilter.setBlur(this.model.blur + "px");
-      } else {
-        this.canvasFilter.setBlur(null);
-      }
-      console.log(this.canvasFilter.getBlur());
+      this.refresh();
     },
     isHueRotate() {
       this.refresh();
@@ -173,7 +166,9 @@ export default {
     });
     this.map.addLayer(layer);
 
-    this.canvasFilter = new utilsol.renderer.CanvasFilter();
+    this.canvasFilter = new utilsol.renderer.CanvasFilter({
+      blur: "10px",
+    });
     this.canvasFilter.setMap(this.map);
   },
   methods: {
@@ -228,6 +223,9 @@ export default {
       }
 
       this.canvasFilter.render();
+    },
+    handleClick() {
+      this.canvasFilter.dispose();
     },
   },
 };
