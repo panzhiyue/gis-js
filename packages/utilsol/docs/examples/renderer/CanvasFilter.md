@@ -226,6 +226,8 @@ export default {
       } else {
         this.canvasFilter.setSepia(null);
       }
+
+      this.canvasFilter.render();
     },
   },
 };

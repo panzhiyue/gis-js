@@ -216,31 +216,8 @@ class CanvasFilter extends OLObject {
      */
     public setMap(map: olMap) {
 
-        if (this._key) {
-            unlistenByKey(this._key);
-        }
         this.map = map;
-        if (this.map) {
-            this._key = this.map.on("postcompose", this._onPostRender.bind(this));
-        }
-        this._updateFilter(true);
-    }
-
-    /**
-     * 渲染函数
-     */
-    private _onPostRender() {
-        let renderer: any = this.map.getRenderer();
-
-        if (renderer && renderer.children_.length > 0) {
-            renderer.children_.forEach((children, index) => {
-                if (this.classNameList.indexOf(children.className) > -1) {
-                    const canvas = children.firstElementChild;
-                    let context = canvas.getContext("2d");
-                    context.filter = this.filter ? this.filter : "none";
-                }
-            });
-        }
+        this._updateFilter();
     }
 
     public render() {
@@ -259,7 +236,7 @@ class CanvasFilter extends OLObject {
      * 更新filter字段值
      * @param render 是否重新渲染
      */
-    private _updateFilter(render: boolean) {
+    private _updateFilter() {
         let options: any = {
             grayscale: this.grayscale,
             sepia: this.sepia,
@@ -284,10 +261,20 @@ class CanvasFilter extends OLObject {
             }
         }
         this.filter = filter;
-        if (render) {
-            this._render();
-        }
 
+        if (this.map) {
+            let renderer: any = this.map.getRenderer();
+
+            if (renderer && renderer.children_.length > 0) {
+                renderer.children_.forEach((children, index) => {
+                    if (this.classNameList.indexOf(children.className) > -1) {
+                        const canvas = children.firstElementChild;
+                        let context = canvas.getContext("2d");
+                        context.filter = this.filter ? this.filter : "none";
+                    }
+                });
+            }
+        }
     }
 
     /**
@@ -298,7 +285,7 @@ class CanvasFilter extends OLObject {
      */
     public setGrayscale(grayscale: number | string) {
         this.grayscale = grayscale;
-        this._updateFilter(true);
+        this._updateFilter();
     }
 
     /**
@@ -316,7 +303,7 @@ class CanvasFilter extends OLObject {
      */
     public setSepia(sepia: number | string) {
         this.sepia = sepia;
-        this._updateFilter(true);
+        this._updateFilter();
     }
 
     /**
@@ -334,7 +321,7 @@ class CanvasFilter extends OLObject {
      */
     public setSaturate(saturate: number | string) {
         this.saturate = saturate;
-        this._updateFilter(true);
+        this._updateFilter();
     }
 
     /**
@@ -352,7 +339,7 @@ class CanvasFilter extends OLObject {
      */
     public setHueRotate(hueRotate: number | string) {
         this.hueRotate = hueRotate;
-        this._updateFilter(true);
+        this._updateFilter();
     }
 
     /**
@@ -370,7 +357,7 @@ class CanvasFilter extends OLObject {
      */
     public setInvert(invert: number | string) {
         this.invert = invert;
-        this._updateFilter(true);
+        this._updateFilter();
     }
 
     /**
@@ -388,7 +375,7 @@ class CanvasFilter extends OLObject {
      */
     public setOpacity(opacity: number | string) {
         this.opacity = opacity;
-        this._updateFilter(true);
+        this._updateFilter();
     }
 
     /**
@@ -406,7 +393,7 @@ class CanvasFilter extends OLObject {
      */
     public setBrightness(brightness: number | string) {
         this.brightness = brightness;
-        this._updateFilter(true);
+        this._updateFilter();
     }
 
     /**
@@ -424,7 +411,7 @@ class CanvasFilter extends OLObject {
      */
     public setContrast(contrast: number | string) {
         this.contrast = contrast;
-        this._updateFilter(true);
+        this._updateFilter();
     }
 
     /**
@@ -442,7 +429,7 @@ class CanvasFilter extends OLObject {
      */
     public setBlur(blur: string) {
         this.blur = blur;
-        this._updateFilter(true);
+        this._updateFilter();
     }
 
     /**
@@ -459,7 +446,7 @@ class CanvasFilter extends OLObject {
      */
     public setDropShadow(dropShadow: string) {
         this.dropShadow = dropShadow;
-        this._updateFilter(true);
+        this._updateFilter();
     }
 
     /**
@@ -468,14 +455,6 @@ class CanvasFilter extends OLObject {
      */
     public getDropShadow(): string {
         return this.dropShadow;
-    }
-    /**
-     * 设置classNameList值
-     * @param classNameList 
-     */
-    public setClassNameList(classNameList: string[]) {
-        this.classNameList = classNameList;
-        this._updateFilter(true);
     }
 
     /**
@@ -491,7 +470,7 @@ class CanvasFilter extends OLObject {
      */
     public setSort(sort: string[]) {
         this.sort = sort;
-        this._updateFilter(true);
+        this._updateFilter();
     }
 
     /**
