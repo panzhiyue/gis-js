@@ -222,11 +222,21 @@ class EShapeFile extends OLObject {
                                     );
                                 }.bind(this)
                             )
-                            .catch((error) => console.error(error.stack));
+                            .catch((error) => {
+                                console.error(error.stack)
+                                this.dispatchEvent({
+                                    type: "error",
+                                    message: error.stack,
+                                });
+                            });
                     }.bind(this)
                 )
                 .catch(function (error) {
                     console.error(error);
+                    this.dispatchEvent({
+                        type: "error",
+                        message: error,
+                    });
                 });
         }
     }
