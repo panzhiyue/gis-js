@@ -4,7 +4,12 @@
 
 ```vue
 <template>
+    <div style="background-color:white;position:absolute;z-index:1000;">
+      <input type="checkbox" v-model="isFilter" />启用
+      
+    </div>
   <vue2ol-map style="height:400px;">
+
     <vue2ol-view :zoom="zoom" :center="center" :options="viewOptions">
     </vue2ol-view>
     <vue2ol-layer-tile>
@@ -16,8 +21,8 @@
       </vue2ol-source-vector>
     </vue2ol-layer-vector>
     <vue2ol-renderer-canvasfilter
-      
-      :brightness="'0.5'"
+      v-if="isFilter"
+      :brightness="'0.8'"
       :sort="['brightness', 'grayscale']"
     >
     </vue2ol-renderer-canvasfilter>
@@ -26,6 +31,7 @@
 
 <script>
 import Polygon from "ol/geom/Polygon";
+
 export default {
   data() {
     return {
@@ -35,6 +41,7 @@ export default {
         projection: "EPSG:4326", //坐标系
       },
       polygon: null,
+      isFilter: true,
     };
   },
   mounted() {

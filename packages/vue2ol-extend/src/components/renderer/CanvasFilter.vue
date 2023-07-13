@@ -2,17 +2,27 @@
   <div></div>
 </template>
 <script>
-import { findRealParent, findParentMap, optionsMerger } from "@gis-js/vue2ol";
+import {
+  findRealParent,
+  findParentMap,
+  optionsMerger,
+  bindListeners,
+  propsBinder,
+  getListeners 
+} from "@gis-js/vue2ol";
+import * as utilsol from "@gis-js/utilsol";
 /**
  * Canvas滤镜
  */
 export default {
   name: "Vue2olRendererCanvasfilter",
+
   provide() {
     return {
       renderer: this,
     };
   },
+  emits: ["init", "append", "ready"],
   props: {
     /**
      * 父亲地图
@@ -121,45 +131,6 @@ export default {
   data() {
     return {};
   },
-  computed: {
-    filter() {
-      let options = optionsMerger(
-        {
-          grayscale: this.grayscale,
-          sepia: this.sepia,
-          saturate: this.saturate,
-          hueRotate: this.hueRotate,
-          invert: this.invert,
-          opacity: this.opacity,
-          brightness: this.brightness,
-          contrast: this.contrast,
-          blur: this.blur,
-          dropShadow: this.dropShadow,
-        },
-        this
-      );
-      let filter = "";
-      for (let i in this.sort) {
-        let field = this.sort[i];
-        if (options[field]) {
-          if (field == "hueRotate") {
-            filter += `hue-rotate(${options[field]}deg) `;
-          } else {
-            filter += `${field}(${options[field]}) `;
-          }
-        }
-      }
-      return filter;
-    },
-  },
-  watch: {
-    options: {
-      deep: true,
-      handler(val) {
-        this.parent.render();
-      },
-    },
-  },
   mounted() {
     if (this.parentMap) {
       this.parent = this.parentMap;
@@ -167,28 +138,65 @@ export default {
       this.parent = findParentMap(this.$parent).mapObject;
     }
 
-    this.parent.on("postcompose", this.onPostRender);
-  },
-  beforeDestroy() {
-    this.parent.un("postcompose", this.onPostRender);
-  },
-  methods: {
-    onPostRender(e) {
-      let map = e.target;
-      let renderer = map.getRenderer();
+    let options = optionsMerger(
+      {
+        grayscale: this.grayscale,
+        sepia: this.sepia,
+        saturate: this.saturate,
+        hueRotate: this.hueRotate,
+        invert: this.invert,
+        opacity: this.opacity,
+        brightness: this.brightness,
+        contrast: this.contrast,
+        blur: this.blur,
+        dropShadow: this.dropShadow,
+      },
+      this
+    );
+    console.log(options);
+    //初始化view对象
+    this.mapObject = new utilsol.renderer.CanvasFilter(options);
 
-      if (renderer && renderer.children_.length > 0) {
-        renderer.children_.forEach((children, index) => {
-          if (this.classNameList.indexOf(children.className) > -1) {
-            const canvas = children.firstElementChild;
-            let context = canvas.getContext("2d");
-            // this.filter = "brightness(0.5)";
-            context.filter = this.filter;
-          }
-        });
-      }
-    },
+    //绑定事件
+    bindListeners(this.mapObject, getListeners(this));
+    //监听props属性
+    propsBinder(this, this.mapObject, this.$options.props);
+
+    /**
+     * 地图元素初始化完时触发
+     * @type {object}
+     * @property {import('utilsol/renderer/CanvasFilter').default} mapObject 地图元素
+     */
+    this.$emit("init", this.mapObject);
+
+    this.mapObject.setMap(this.parent);
+
+    /**
+     * 地图元素初始化完时触发
+     * @type {object}
+     * @property {import('utilsol/renderer/CanvasFilter').default} mapObject 地图元素
+     */
+    this.$emit("append", this.mapObject);
+
+    this.ready = true;
+    this.$nextTick(() => {
+      /**
+       * 组件就绪时触发
+       * @type {object}
+       * @property {import('utilsol/renderer/CanvasFilter').default} mapObject 地图元素
+       */
+      this.$emit("ready", this.mapObject);
+    });
   },
+  destroyed() {
+    this.mapObject.setMap(null);
+    this.mapObject = null;
+  },
+  unmounted() {
+    this.mapObject.setMap(null);
+    this.mapObject = null;
+  },
+  methods: {},
 };
 
 /**

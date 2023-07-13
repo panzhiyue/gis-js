@@ -293,12 +293,10 @@ class CanvasFilter extends OLObject {
      * @param filter filter值
      */
     private _setCanvasFilter(filter: string) {
-        console.log(this.map);
         if (this.map) {
             let renderer: any = this.map.getRenderer();
 
             if (renderer && renderer.children_.length > 0) {
-                console.log(999);
                 renderer.children_.forEach((children, index) => {
                     if (this.classNameList.indexOf(children.className) > -1) {
                         const canvas = children.firstElementChild;
