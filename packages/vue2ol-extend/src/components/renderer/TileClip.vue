@@ -23,7 +23,7 @@ export default {
 
     /**
      * 裁切面几何
-     * @typeNaem ol/geom/Polygon
+     * @typeName ol/geom/Polygon
      */
     geometry: {
       require: true,

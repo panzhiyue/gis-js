@@ -25,7 +25,7 @@ export default {
 
     /**
      * 裁切面几何
-     * @typeNaem {import('ol/geom/Polygon').default}
+     * @typeName {import('ol/geom/Polygon').default}
      */
     geometry: {
       require: true,
