@@ -90,7 +90,7 @@ export default {
      * 拖拽句柄元素，不设置就是自身
      * @typeName String|HTMLElement|Function
      */
-    handle: [String, HTMLElement, Function],
+    handle: [String, Object, Function],
     /**
      * 限制拖拽方向可选: v 垂直、h 水平，默认不限制
      * @typeName String
@@ -120,7 +120,7 @@ export default {
      * 在目标元素范围内
      * @typeName String|HTMLElement|Function
      */
-    target: [String, HTMLElement, Function],
+    target: [String, Object, Function],
     /**
      * 是否克隆拖拽
      * @typeName Boolean|Function
@@ -156,7 +156,7 @@ export default {
      * @typeName String|HTMLElement|Function
      */
     origin: {
-      type: [String, HTMLElement, Function],
+      type: [String, Object, Function],
       default() {
         return null;
       },
