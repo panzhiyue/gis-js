@@ -8,7 +8,8 @@
     "build:docs": "pnpm  -r build:docs ",
     "build": "pnpm  build:package && pnpm  build:md && pnpm  build:docs",
     "dev:docs": "pnpm -r  dev:docs  ",
-    "docs:deploy": "node ./scripts/deploy.js"
+    "docs:deploy": "node ./scripts/deploy.js",
+    "docs:deploy2": "node ./scripts/deploy2.js"
   },
   "devDependencies": {
     "@gis-js/geojson2shp": "workspace:*",

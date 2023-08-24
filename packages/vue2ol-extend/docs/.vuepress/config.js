@@ -39,7 +39,10 @@ module.exports = {
         text: '组件',
         link: '/components/animation/ArrowLine'
       },
-    
+      {
+        text: '示例',
+        link: '/examples/'
+      },
       {
         text: '相关',
         items: [ {

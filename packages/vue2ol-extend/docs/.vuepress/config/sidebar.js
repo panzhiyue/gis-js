@@ -36,7 +36,7 @@ module.exports = {
     },
     {
       title: "layer",
-      children: ["/components/layer/Echarts","/components/layer/Shadow"],
+      children: ["/components/layer/Echarts", "/components/layer/Shadow"],
     },
     {
       title: "source",
@@ -89,10 +89,15 @@ module.exports = {
       ],
     },
     {
-      title:'debug',
-      children:[
-        "/components/debug/Mapinfo"
-      ]
-    }
+      title: "debug",
+      children: ["/components/debug/Mapinfo"],
+    },
+  ],
+  "/examples/": [
+    {
+      title: "示例",
+      collapsable: false,
+      children: ["Cloud"],
+    },
   ],
 };
