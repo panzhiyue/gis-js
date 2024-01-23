@@ -57,7 +57,7 @@ module.exports = {
             // common: 'common'
         }),
         new CopyPlugin([
-            { from: '../../dist/utilscesium.js', to: 'js' },
+            { from: '../../dist/utilscesium.iife.js', to: 'js' },
             { from: 'template', to: 'template' },
             { from: 'js', to: 'js' },
             { from: 'img', to: 'img' },
@@ -74,6 +74,6 @@ module.exports = {
     ,
     output: {
         filename: '[name].js',
-        path: path.join(__dirname, '..', '..', '..', 'build', 'examples')
+        path: path.join(__dirname, '..', '..', '..','..', '..',  'dist', 'utilscesium/examples')
     }
 };

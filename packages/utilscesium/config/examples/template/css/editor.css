@@ -1,4 +1,13 @@
 ﻿/* 2020-3-24 08:23:56 | 鐗堟潈鎵€鏈� 鐏槦绉戞妧 http://marsgis.cn */
+html,
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, "Heiti SC", "Microsoft Yahei",
+    sans-serif;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
 .wrapper, body, html {
     height: 100% !important
 }

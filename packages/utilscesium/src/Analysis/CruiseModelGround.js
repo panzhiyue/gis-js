@@ -1,4 +1,4 @@
-import CoorManager from "utilscesium/Manager/CoorManager"
+import CoorManager from "../Manager/CoorManager"
 
 /**
  * @module utilscesium/Analysis/CruiseModelGround

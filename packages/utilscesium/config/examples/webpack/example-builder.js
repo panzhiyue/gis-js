@@ -175,7 +175,7 @@ ExampleBuilder.prototype.render = async function (dir, chunk) {
         }
     }
     data.js = {
-        tag: `<script src="js/utilscesium.js"></script>`,
+        tag: `<script src="js/utilscesium.iife.js"></script>`,
         source: jsSource
     };
 

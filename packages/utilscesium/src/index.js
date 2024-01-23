@@ -12,4 +12,5 @@ import * as Manager from "./Manager/index.js";
 import * as Plot from "./Plot/index.js";
 import * as Shaders from "./Shaders/index.js";
 import * as Coordinate from "./Coordinate.js";
-export { Analysis, Draw, Manager, Plot, Shaders, Coordinate };
+import * as ImageryProvider from "./ImageryProvider/index.js";
+export { Analysis, Draw, Manager, Plot, Shaders, Coordinate,ImageryProvider };
