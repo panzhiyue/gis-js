@@ -57,7 +57,7 @@ module.exports = {
             // common: 'common'
         }),
         new CopyPlugin([
-            { from: '../../build/utilscesium.js', to: 'js' },
+            { from: '../../dist/utilscesium.js', to: 'js' },
             { from: 'template', to: 'template' },
             { from: 'js', to: 'js' },
             { from: 'img', to: 'img' },

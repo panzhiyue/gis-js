@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const pkg = require('../package.json');
 
-const buildDir = path.resolve(__dirname, '../build/utilscesium');
+const buildDir = path.resolve(__dirname, '../dist');
 
 // update the version number in util.js
 //const utilPath = path.join(buildDir, 'util.js');

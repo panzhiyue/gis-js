@@ -1,5 +1,5 @@
 ﻿/**
- * @module utilscesium/Coordinate
+ * @module utilscesium/coordinate
  */
 
 /**
