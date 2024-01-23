@@ -1,0 +1,21 @@
+﻿<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+    <script src="js/extend/jquery.js"></script>
+    {{{ extraHead.local }}}
+    <title>{{ title }}</title>
+    {{{ js.tag }}}
+</head>
+<body>
+    <h4 id="title">{{ title }}</h4>
+    <div id="docs">{{ md docs }}</div>
+
+    {{{ contents }}}
+    <script type="module">
+        {{{ js.source }}}</script>
+</body>
+
+</html>

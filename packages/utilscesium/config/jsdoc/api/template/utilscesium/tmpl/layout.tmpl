@@ -1,0 +1,80 @@
+﻿<?js
+var version = obj.packageInfo.version;
+?>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <link rel="shortcut icon" type="image/x-icon" href="logo.png" />
+    <title>utilscesium v<?js= version ?> API - <?js= title ?></title>
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <script src="scripts/jquery.min.js"> </script>
+    <script src="scripts/bootstrap.bundle.min.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/font-awesome.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/jaguar.css">
+    <link type="text/css" rel="stylesheet" href="styles/gzsoft.css">
+    <link type="text/css" rel="stylesheet" href="styles/site.css">
+    <link type="text/css" rel="stylesheet" href="styles/header.css">
+    
+  </head>
+  <body>
+    <div class="container-fluid">
+     <header class="header-wrapper main-header icl-header">
+     <nav class="navbar navbar-static-top">
+
+    <div class="nav-header">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="index.html">
+                <span class="dinlineblock width55 mr10">
+                    <img class="project-logo" src="logo.png" style="visibility: visible" id="logo">
+                </span>
+                <span class="project-title vm" id="title">
+                    utilscesium
+                 
+                </span>
+            </a>
+            <div id="suffix-title"></div>
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"><i class="fa fa-bars"></i></button>
+        </div>
+        <div class="collapse navbar-collapse navbar-custom-menu" id="navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="overview-menu" id="headerIndex"><a href="../index.html" class="center">首页</a></li>
+                <li class="overview-menu" id="headerIndex"><a href="../examples/index.html" class="center">示例</a></li>
+                <li class="overview-menu" id="headerIndex"><a href="../apidoc/index.html" class="center">API</a></li>
+
+
+                <li class="dropdown nav-dropdown-menu guide-menu">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">技术专题 <i class="fa fa-sort-down"></i></a>
+                    <ul class="dropdown-menu">
+                   
+                    </ul>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</nav>
+</header>
+      <div id="wrap" class="row">
+          <?js= this.navigationHtml ?>
+          <div class="main" style="margin-left:20%;width:100%;">
+              <h1 class="page-title" data-filename="<?js= filename ?>"><?js= title ?></h1>
+              <div id="latest-check" class="alert alert-warning alert-dismissible" role="alert" style="display:none">
+                <button id="latest-dismiss" type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                This documentation is for GZSoft v<span id="package-version"><?js= version ?></span>. The <a id="latest-link" href="#" class="alert-link">latest</a> is v<span id="latest-version"></span>.
+              </div>
+              <?js= content ?>
+          </div>
+      </div>
+      <script>prettyPrint();</script>
+      <script src="scripts/linenumber.js"></script>
+      <script src="scripts/main.js"></script>
+    </div>
+  </body>
+</html>

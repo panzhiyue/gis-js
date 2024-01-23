@@ -1,0 +1,109 @@
+/* 2020-3-24 08:23:56 | 版权所有 火星科技 http://marsgis.cn */
+.main-sidebar {
+    position: fixed;
+}
+
+.menuTitle a.active {
+    color: #f8f8f8;
+}
+
+.skin-blue .main-sidebar {
+    background-color: #1F6B76;
+}
+
+.skin-blue .sidebar-menu > li.treeview:hover > a {
+    border-left: 3px solid rgba(0,0,0,.1);
+}
+
+.skin-blue .sidebar-menu > li.treeview.active > a {
+    border-left: 3px solid rgba(0,0,0,.1);
+}
+
+.skin-blue .sidebar .second-menu, .skin-blue .sidebar .third-menu {
+    padding-left: 0;
+}
+
+    .skin-blue .sidebar .third-menu a {
+        padding-left: 30px;
+    }
+
+.skin-blue .sidebar .sidebar-toggle {
+    width: 100%;
+    height: 36px;
+    line-height: 36px;
+    text-align: center;
+    background-color: #4E96D8;
+    color: white !important;
+    display: block;
+}
+
+.skin-blue .treeview-menu li > a {
+    border-left: 3px solid #1F6B76;
+}
+
+    .skin-blue .treeview-menu li.active > a, .skin-blue .treeview-menu li > a:hover {
+        background-color: rgba(0,0,0,.1);
+        border-left-color: rgba(0,0,0,.3);
+    }
+
+.skin-blue .treeview-menu > li > a {
+    color: #000;
+    padding-left: 35px;
+}
+
+.skin-blue .sidebar-menu > li > .treeview-menu {
+    margin: 0;
+    background: #1F6B76;
+}
+
+.sidebar-menu li.active > .treeview-menu {
+    background: #1F6B76;
+}
+
+.sidebar-mini.sidebar-collapse .sidebar-menu > li:hover > .treeview-menu, .sidebar-mini.sidebar-collapse .sidebar-menu > li:hover > a > span:not(.pull-right) {
+    border-radius: 0;
+    width: 220px;
+}
+
+.sidebar-mini.sidebar-collapse .sidebar-menu > li:hover > a > .pull-right-container {
+    left: 220px !important;
+}
+
+.sidebar-mini.sidebar-collapse .sidebar-menu > li > .treeview-menu {
+    padding-top: 0;
+    padding-bottom: 0;
+    border-radius: 0;
+}
+
+.skin-blue .sidebar-menu > li.active > a, .skin-blue .sidebar-menu > li:hover > a {
+    color: #1F6B76;
+    background: #4688c3;
+}
+
+.skin-blue .treeview-menu > li.active > a, .skin-blue .treeview-menu > li > a:hover {
+    color: #000;
+}
+
+.main-sidebar .iconName {
+    margin-right: 10px;
+    color: #fff;
+}
+
+.main-sidebar .firstMenuTitle {
+    color: #fff;
+}
+
+.main-sidebar .secondMenuTitle {
+    color: #fff;
+    padding-left: 10px;
+}
+
+.main-sidebar .thirdMenuTitle {
+    color: #fff;
+    font-size: 12px;
+    padding-left: 32px;
+}
+
+.main-sidebar .pull-right {
+    color: #fff;
+}
