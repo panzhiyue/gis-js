@@ -16,10 +16,10 @@ class TdtTerrainProvider extends Cesium.GeoTerrainProvider {
   /**
    * 构造函数
    * @param {*} e
-   * @param {string} [e.token] token
+   * @param {string} [e.token] 天地图服务token令牌
    * @param {string} [e.urls]
-   * @param {string} [e.url] url地址
-   * @param {string[]} [e.subdomains] subdomains
+   * @param {string} [e.url='https://t{s}.tianditu.gov.cn/mapservice/swdx'] 天地图服务地址
+   * @param {string} [e.subdomains='01234567'] 服务负载子域
    */
   constructor(e = {}) {
     if (!e.urls) {

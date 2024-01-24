@@ -83,7 +83,7 @@ importers:
       i18n-webpack-plugin: ^1.0.0
       istanbul: 0.4.5
       jquery: 3.3.1
-      jsdoc: ^3.6.6
+      jsdoc: ^3.6.11
       jsdoc-plugin-typescript: ^2.0.6
       jsdoc-to-markdown: ^4.0.1
       karma: ^2.0.0
@@ -16363,14 +16363,6 @@ packages:
     version: 1.1.1
     dev: true
 
-  registry.nlark.com/file-uri-to-path/1.0.0:
-    resolution: {integrity: sha1-VTp7hEb/b2hDWcRF8eN6BdrMM90=, registry: http://registry.npm.taobao.org/, tarball: https://registry.nlark.com/file-uri-to-path/download/file-uri-to-path-1.0.0.tgz}
-    name: file-uri-to-path
-    version: 1.0.0
-    requiresBuild: true
-    dev: true
-    optional: true
-
   registry.nlark.com/forwarded/0.2.0:
     resolution: {integrity: sha1-ImmTZCiq1MFcfr6XeahL8LKoGBE=, registry: http://registry.npm.taobao.org/, tarball: https://registry.nlark.com/forwarded/download/forwarded-0.2.0.tgz}
     name: forwarded
@@ -18991,7 +18983,7 @@ packages:
     version: 1.5.0
     requiresBuild: true
     dependencies:
-      file-uri-to-path: registry.nlark.com/file-uri-to-path/1.0.0
+      file-uri-to-path: registry.npmmirror.com/file-uri-to-path/1.0.0
     dev: true
     optional: true
 
@@ -22128,6 +22120,7 @@ packages:
     resolution: {integrity: sha512-0Zt+s3L7Vf1biwWZ29aARiVYLx7iMGnEUl9x33fbB/j3jR81u/O2LbqK+Bm1CDSNDKVtJ/YjwY7TUd5SkeLQLw==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/file-uri-to-path/-/file-uri-to-path-1.0.0.tgz}
     name: file-uri-to-path
     version: 1.0.0
+    requiresBuild: true
     dev: true
     optional: true
 
