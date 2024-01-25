@@ -1,0 +1,48 @@
+﻿---
+layout: example.html
+title: 创建地球
+shortdesc: 创建地球
+icon: 快速开始_创建三维场景_快速创建地球.jpg
+docs: >
+  这个示例展示了如何在画布中添加一个点几何图形
+tags: geometry, point"
+---
+
+<div id="mapContainer" style="width:100%;height:100%;"></div>
+<style>
+  .marsBlueGradientPnl {
+  text-align: center;
+  padding: 5px 30px;
+  margin: 0;
+  color: #fff;
+  background: linear-gradient(rgb(7 10 203 / 75%), rgb(16 238 220));
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  max-height: 130px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.marsBlueGradientPnl:after {
+  content: "";
+  position: absolute;
+  bottom: -60px;
+  left: calc(50% - 3px);
+  display: block;
+  width: 3px;
+  height: 60px;
+  border-right: 3px solid #2bcdbb;
+}
+
+.marsBlueGradientPnl-highlight {
+  border: 2px solid yellow;
+}
+.marsBlueGradientPnl-highlight:after {
+  border-right: 3px solid yellow;
+}
+
+</style>
