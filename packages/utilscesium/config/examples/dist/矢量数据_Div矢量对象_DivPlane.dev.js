@@ -26,34 +26,50 @@ var viewer = new Cesium.Viewer("mapContainer", {
 }); // 隐藏Cesium自身的logo
 
 viewer._cesiumWidget._creditContainer.style.display = "none";
-var overlayManager = new utilscesium.Manager.OverlayManager({
+var DivPlane = utilscesium.Graphic.DivPlane;
+var GraphicLayer = utilscesium.Layer.GraphicLayer;
+var layer = new GraphicLayer({
   viewer: viewer
 });
 var element = document.createElement("div");
 element.className = "marsBlueGradientPnl";
 element.innerHTML = "<div>我是Overlay</div>";
-var overlay = new utilscesium.Overlay({
+var graphic = new DivPlane({
   element: element,
-  offset: [0, -60],
-  positioning: "bottom-center"
+  offset: [0, -70],
+  positioning: "bottom-center",
+  heading: -90,
+  pitch: 0,
+  roll: 90,
+  scale: 20,
+  horizontalOrigin: Cesium.HorizontalOrigin.CENTER,
+  verticalOrigin: Cesium.VerticalOrigin.BOTTOM
 });
-overlayManager.addOverlay(overlay);
-overlay.setPosition(Cesium.Cartesian3.fromDegrees(120, 28)); // 将三维球定位到中国
+layer.addGraphic(graphic);
+graphic.setPosition(Cesium.Cartesian3.fromDegrees(116.266763, 30.9272, 905.9)); // 将三维球定位到中国
 
-viewer.camera.flyTo({
-  destination: Cesium.Cartesian3.fromDegrees(120, 28, 17850),
+viewer.camera.setView({
+  destination: Cesium.Cartesian3.fromDegrees(116.318889, 30.769641, 7432.2),
   orientation: {
-    heading: Cesium.Math.toRadians(348.4202942851978),
-    pitch: Cesium.Math.toRadians(-89.74026687972041),
+    heading: Cesium.Math.toRadians(1),
+    pitch: Cesium.Math.toRadians(-19.6),
     roll: Cesium.Math.toRadians(0)
   },
   complete: function callback() {// 定位完成之后的回调函数
   }
 });
 viewer.entities.add({
-  position: Cesium.Cartesian3.fromDegrees(120, 28),
+  position: Cesium.Cartesian3.fromDegrees(116.266763, 30.9272, 905.9),
   point: {
     pixelSize: 10,
     color: Cesium.Color.YELLOW
   }
 });
+setTimeout(function () {
+  // layer.setViewer(null);
+  layer.removeGraphic(graphic);
+}, 2000);
+setTimeout(function () {
+  // layer.setViewer(viewer);
+  layer.addGraphic(graphic);
+}, 4000);

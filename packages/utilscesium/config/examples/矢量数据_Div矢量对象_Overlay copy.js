@@ -230,7 +230,7 @@ class Overlay {
    */
   setVisible(visible) {
     if (this.rendered.visible !== visible) {
-      this.element.style.display = visible ? "" : "none";
+      // this.element.style.display = visible ? "" : "none";
       this.rendered.visible = visible;
     }
   }
@@ -255,15 +255,13 @@ class Overlay {
     let matrix4 = this._getModelMatrix(position);
 
     // this.element.style = getCameraCSSMatrix(matrix4);
-    console.log(matrix4);
-    matrix4[1] = -matrix4[1];
+    // matrix4[1] = -matrix4[1];
     let a = `${getObjectCSSMatrix(matrix4)} scale(10)`;
+    console.log(a);
     // a =
     //   "matrix3d(-0.896498, -0.443048, 0, 0, 0.380016, -0.768953, -0.5141, 0, -0.227771, 0.46089, -0.85773, 0, -2.42616e+06, 4.90927e+06, 3.26023e+06, 1) scale(10)";
 
     this.element.style.transform = a;
-    // console.log(this.element.style);
-    // this.updateRenderedPosition(pixel, mapSize);
   }
   _getModelMatrix(position) {
     let heading = Cesium.Math.toRadians(this.heading_ || 0);
@@ -272,7 +270,6 @@ class Overlay {
 
     var converter = Cesium.Transforms.eastNorthUpToFixedFrame;
     var hpr = new Cesium.HeadingPitchRoll(Cesium.Math.toRadians(-80), 0, 0);
-    console.log(position);
     const matrix4 = Cesium.Transforms.headingPitchRollToFixedFrame(
       position,
       hpr,
@@ -280,8 +277,6 @@ class Overlay {
       null
     );
 
-    console.log(position, hpr, Cesium.Ellipsoid.WGS84, null);
-    console.log(matrix4);
     // return matrix4
     // console.log(Cesium.Matrix4.multiplyByScale(matrix4, 10));
     // let m = new Cesium.Matrix4();
@@ -407,14 +402,8 @@ class OverlayManager {
     let clientWidth = mapContainer["clientWidth"] / 0x2;
     let perspective =
       this.getViewer().scene.camera.frustum.projectionMatrix[5] * clientHeight;
-    console.log(
-      this.getViewer().scene.camera.frustum.projectionMatrix,
-      perspective
-    );
 
-    //  let perspective= this.viewer_.scene.requestRenderMode.projectionMatrix[5]*1+'px'
     container.style.perspective = perspective + "px";
-    // console.log(perspective);
     this.viewer_.container.appendChild(container);
     if (!Cesium.defined(this.overlayContainer_)) {
       this.overlayContainer_ = document.createElement("div");
@@ -530,8 +519,8 @@ overlay.setPosition(Cesium.Cartesian3.fromDegrees(116.29854, 30.937322, 568.1));
 viewer.camera.setView({
   destination: Cesium.Cartesian3.fromDegrees(116.318889, 30.769641, 7432.2),
   orientation: {
-    heading: Cesium.Math.toRadians(1),
-    pitch: Cesium.Math.toRadians(-19.6),
+    heading: Cesium.Math.toRadians(0),
+    pitch: Cesium.Math.toRadians(0),
     roll: Cesium.Math.toRadians(0),
   },
   complete: function callback() {
@@ -552,8 +541,9 @@ function formatNum(_0x121ebc) {
 }
 
 function getObjectCSSMatrix(_0x2532b3) {
+
   return (
-    "matrix3d(" +
+    "matrix3d("  +
     formatNum(_0x2532b3[0x0]) +
     "," +
     formatNum(_0x2532b3[0x1]) +
@@ -588,54 +578,60 @@ function getObjectCSSMatrix(_0x2532b3) {
     ")"
   );
 }
-function getCameraCSSMatrix(_0x481c86) {
+function getCameraCSSMatrix(_0x3c571f) {
   return (
     "matrix3d(" +
-    formatNum(_0x481c86[0x0]) +
+    formatNum(_0x3c571f[0x0]) +
     "," +
-    formatNum(-_0x481c86[0x1]) +
+    formatNum(-_0x3c571f[0x1]) +
     "," +
-    formatNum(_0x481c86[0x2]) +
+    formatNum(_0x3c571f[0x2]) +
     "," +
-    formatNum(_0x481c86[0x3]) +
+    formatNum(_0x3c571f[0x3]) +
     "," +
-    formatNum(_0x481c86[0x4]) +
+    formatNum(_0x3c571f[0x4]) +
     "," +
-    formatNum(-_0x481c86[0x5]) +
+    formatNum(-_0x3c571f[0x5]) +
     "," +
-    formatNum(_0x481c86[0x6]) +
+    formatNum(_0x3c571f[0x6]) +
     "," +
-    formatNum(_0x481c86[0x7]) +
+    formatNum(_0x3c571f[0x7]) +
     "," +
-    formatNum(_0x481c86[0x8]) +
+    formatNum(_0x3c571f[0x8]) +
     "," +
-    formatNum(-_0x481c86[0x9]) +
+    formatNum(-_0x3c571f[0x9]) +
     "," +
-    formatNum(_0x481c86[0xa]) +
+    formatNum(_0x3c571f[0xa]) +
     "," +
-    formatNum(_0x481c86[0xb]) +
+    formatNum(_0x3c571f[0xb]) +
     "," +
-    formatNum(_0x481c86[0xc]) +
+    formatNum(_0x3c571f[0xc]) +
     "," +
-    formatNum(-_0x481c86[0xd]) +
+    formatNum(-_0x3c571f[0xd]) +
     "," +
-    formatNum(_0x481c86[0xe]) +
+    formatNum(_0x3c571f[0xe]) +
     "," +
-    formatNum(_0x481c86[0xf]) +
+    formatNum(_0x3c571f[0xf]) +
     ")"
   );
 }
 
-setInterval(() => {
+setInterval(() => {}, 1000);
+
+const initMatrix = () => {
   let mapContainer = viewer.container;
   let clientHeight = mapContainer["clientHeight"] / 0x2;
   let clientWidth = mapContainer["clientWidth"] / 0x2;
   let perspective =
     viewer.scene.camera.frustum.projectionMatrix[5] * clientHeight;
-
+  console.log(viewer.camera.viewMatrix);
   let a = `translateZ(${perspective}px) ${getCameraCSSMatrix(
     viewer.camera.viewMatrix
   )} translate(${clientWidth}px, ${clientHeight}px)`;
   overlayManager.overlayContainer_.style.transform = a;
   overlayManager.overlayContainer_.style.transformStyle = "preserve-3d";
-}, 1000);
+};
+initMatrix();
+viewer.scene.postUpdate.addEventListener(() => {
+  initMatrix();
+});

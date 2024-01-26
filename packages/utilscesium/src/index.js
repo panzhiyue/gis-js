@@ -14,4 +14,6 @@ import * as Shaders from "./Shaders/index.js";
 import * as Coordinate from "./Coordinate.js";
 import * as ImageryProvider from "./ImageryProvider/index.js";
 import * as TerrainProvider from "./TerrainProvider/index.js";
-export { Analysis, Draw, Manager, Plot, Shaders, Coordinate,ImageryProvider,TerrainProvider };
+import * as Graphic from "./Graphic/index.js";
+import * as Layer from "./Layer/index.js";
+export { Analysis, Draw, Manager, Plot, Shaders, Coordinate,ImageryProvider,TerrainProvider,Graphic,Layer };
