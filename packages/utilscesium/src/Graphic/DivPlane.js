@@ -22,13 +22,13 @@ class DivPlane {
    * @param {offset} [opt_options.offset]  偏移
    * @param {boolean} [opt_options.stopEvent]
    * @param {boolean} [opt_options.insertFirst] 是否插入首位
-   * @param {Number} [opt_options.heading] 
-   * @param {Number} [opt_options.pitch] 
-   * @param {Number} [opt_options.roll] 
-   * @param {Number} [opt_options.scale] 
+   * @param {Number} [opt_options.heading]
+   * @param {Number} [opt_options.pitch]
+   * @param {Number} [opt_options.roll]
+   * @param {Number} [opt_options.scale]
    * @param {boolean} [opt_options.visible] 是否显示
-   * @param {module:Cesium.HorizontalOrigin} [opt_options.horizontalOrigin] 
-   * @param {module:Cesium.VerticalOrigin} [opt_options.verticalOrigin] 
+   * @param {module:Cesium.HorizontalOrigin} [opt_options.horizontalOrigin]
+   * @param {module:Cesium.VerticalOrigin} [opt_options.verticalOrigin]
    */
   constructor(opt_options) {
     let options = Object.assign(
@@ -51,7 +51,7 @@ class DivPlane {
     this.prototype = {};
 
     this.insertFirst_ = options.insertFirst;
-    this.stopEvent_ = options.stopEvent_;
+    this.stopEvent_ = options.stopEvent;
     this.heading_ = options.heading;
     this.pitch_ = options.pitch;
     this.roll_ = options.roll;
@@ -65,7 +65,12 @@ class DivPlane {
         ? options.className
         : "utilscesium-divGraphic";
     this.graphic_container_.style.position = "absolute";
-    this.graphic_container_.style.pointerEvents = "auto";
+    this.graphic_container_.style.pointerEvents = this.stopEvent_
+      ? "none"
+      : "auto";
+      console.log(this.stopEvent_,this.stopEvent_
+        ? "none"
+        : "auto");
 
     this.graphic_container_m_ = document.createElement("div");
     this.graphic_container_m_.className = "utilscesium-divGraphic-m";

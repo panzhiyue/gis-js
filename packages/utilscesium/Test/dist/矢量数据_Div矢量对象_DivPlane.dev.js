@@ -47,7 +47,8 @@ var graphic = new _DivPlane["default"]({
   roll: 90,
   scale: 20,
   horizontalOrigin: Cesium.HorizontalOrigin.CENTER,
-  verticalOrigin: Cesium.VerticalOrigin.BOTTOM
+  verticalOrigin: Cesium.VerticalOrigin.BOTTOM,
+  stopEvent: true
 });
 layer.addGraphic(graphic);
 graphic.setPosition(Cesium.Cartesian3.fromDegrees(116.266763, 30.9272, 905.9)); // 将三维球定位到中国
