@@ -29,7 +29,7 @@ Object.defineProperty(exports, "Viewer", {
     return _Viewer["default"];
   }
 });
-exports.Layer = exports.Graphic = exports.TerrainProvider = exports.ImageryProvider = exports.Coordinate = exports.Shaders = exports.Plot = exports.Manager = exports.Draw = exports.Analysis = void 0;
+exports.Entity = exports.Layer = exports.Graphic = exports.TerrainProvider = exports.ImageryProvider = exports.Coordinate = exports.Shaders = exports.Plot = exports.Manager = exports.Draw = exports.Analysis = void 0;
 
 var _Collection = _interopRequireDefault(require("./Collection.js"));
 
@@ -78,6 +78,10 @@ exports.Graphic = Graphic;
 var Layer = _interopRequireWildcard(require("./Layer/index.js"));
 
 exports.Layer = Layer;
+
+var Entity = _interopRequireWildcard(require("./Entity/index.js"));
+
+exports.Entity = Entity;
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function _getRequireWildcardCache() { return cache; }; return cache; }
 

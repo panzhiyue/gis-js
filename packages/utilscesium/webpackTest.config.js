@@ -7,7 +7,7 @@ const CopywebpackPlugin = require('copy-webpack-plugin');
 module.exports = {
     context: __dirname,
     entry: {
-        app: './Test/矢量数据_Div矢量对象_DivPlane.js'
+        app: './Test/矢量数据_矢量对象_PlaneLabel.js'
     },
     devtool: 'source-map',
     //mode: 'production',
@@ -68,7 +68,7 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: 'Test/矢量数据_Div矢量对象_DivPlane.html'
+            template: 'Test/矢量数据_矢量对象_PlaneLabel.html'
         }),
         new CopywebpackPlugin([{
             from: "static",
