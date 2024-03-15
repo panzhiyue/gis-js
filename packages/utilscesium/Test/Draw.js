@@ -21,7 +21,7 @@ let viewer = new Viewer("map", {
     navigationInstructionsInitiallyVisible: false,
     navigationHelpButton: false,
     selectionIndicator: false,
-    terrainProvider: Cesium.createWorldTerrain({}),
+    // terrainProvider: Cesium.createWorldTerrain({}),
 });
 
 viewer._cesiumWidget._creditContainer.style.display = "none"; //去除版权信息
@@ -58,11 +58,13 @@ function drawPolyline() {
     if (draw) {
         draw.setActive(false);
     }
+    console.log(222);
     draw = new Polyline({
         enableRight: true
     });
     draw.drawStart.addEventListener(function () {});
     draw.drawEnd.addEventListener(function (event) {
+        console.log(event);
         let positions = event.positions;
         viewer.entities.add({
             polyline: {

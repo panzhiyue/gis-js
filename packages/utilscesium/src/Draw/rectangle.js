@@ -50,6 +50,7 @@ import PlotTypes from "../Plot/PlotTypes"
                     this.drawStart.raiseEvent({ type: "drawStart" });
 
                     let position = this.viewer_.scene.globe.ellipsoid.cartesianToCartographic(this.screenPositionToCartesian(event.position));
+                    
                     this.positions_.push(position);
                 }
             }.bind(this), Cesium.ScreenSpaceEventType.LEFT_CLICK);
