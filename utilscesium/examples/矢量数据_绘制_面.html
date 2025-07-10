@@ -1,0 +1,110 @@
+﻿<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+    <script src="js/extend/jquery.js"></script>
+    <link href="template/third-party/cesium/Widgets/widgets.css" rel="stylesheet" type="text/css" />
+    <script src="template/third-party/cesium/Cesium.js" type="text/javascript"></script>
+    <script src="template/third-party/Sandcastle-header.js" type="text/javascript"></script>
+    <!-- <script type="text/javascript" cesium="true" src="https://api.tianditu.gov.cn/cdn/plugins/cesium/Cesium_ext_min.js"></script> -->
+    
+    <title></title>
+    <script src="js/utilscesium.iife.js"></script>
+</head>
+<body>
+    <!-- <h4 id="title"></h4>
+    <div id="docs"></div> -->
+
+    
+<div id="map" style="width:100%;height:100%;">
+</div>
+
+    <script type="module">
+        ﻿const ToolBar = utilscesium.Control.ToolBar;
+Cesium.Ion.defaultAccessToken =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJlNmZlMThiNC05MjZjLTRhMzQtYjk1NC04Mzk1OWUzNGQyNDYiLCJpZCI6MTE2NjEsInNjb3BlcyI6WyJhc2wiLCJhc3IiLCJhc3ciLCJnYyJdLCJpYXQiOjE1NTk1NTEwODh9.1sP9cG15Apatkf1x1g1_P_86wc3gFNOZM66XoWLUsxc";
+  var viewer = new Cesium.Viewer('map', {
+    animation: false,
+    homeButton: false,
+    fullscreenButton: false,
+    geocoder: false,
+    sceneModePicker: false,
+    baseLayerPicker: false,
+    timeline: false,
+    infoBox: false,
+    navigationHelpButton: false,
+    selectionIndicator: false,
+    terrainProvider: null,
+    imageryProvider: false,
+    baseLayerPicker: false
+
+});
+
+//全球影像地图服务
+viewer.imageryLayers.addImageryProvider(new Cesium.WebMapTileServiceImageryProvider({
+    url: "http://t0.tianditu.com/img_w/wmts?service=wmts&request=GetTile&version=1.0.0&LAYER=img&tileMatrixSet=w&TileMatrix={TileMatrix}&TileRow={TileRow}&TileCol={TileCol}&style=default&format=tiles&tk=3d39ca67a01fce08edecd7fe32adfa20",
+    layer: "tdtBasicLayer",
+    style: "default",
+    format: "image/jpeg",
+    tileMatrixSetID: "GoogleMapsCompatible",
+    show: false
+}));
+
+//全球影像中文注记服务
+viewer.imageryLayers.addImageryProvider(new Cesium.WebMapTileServiceImageryProvider({
+    url: "http://t0.tianditu.com/cva_w/wmts?service=wmts&request=GetTile&version=1.0.0&LAYER=cva&tileMatrixSet=w&TileMatrix={TileMatrix}&TileRow={TileRow}&TileCol={TileCol}&style=default.jpg&tk=3d39ca67a01fce08edecd7fe32adfa20",
+    layer: "tdtAnnoLayer",
+    style: "default",
+    format: "image/jpeg",
+    tileMatrixSetID: "GoogleMapsCompatible"
+}));
+//加载地形
+viewer.terrainProvider = new Cesium.CesiumTerrainProvider({
+    url: 'http://hzgzsoft.com:5681/data/terrain/china/'
+})
+viewer.scene.globe.depthTestAgainstTerrain = true;
+
+var view = {
+    //destination: Cesium.Cartesian3.fromDegrees(120.3, 26, 300000),   //坐标点
+    destination: Cesium.Rectangle.fromDegrees(119.05283765744, 27.3397589411195, 119.252892017179, 27.3897617948041),
+    orientation: {
+        heading: Cesium.Math.toRadians(0), //水平角度   //是当前方向 由北向东旋转的角度
+        pitch: Cesium.Math.toRadians(-30), //俯视角度    //方向和水平平面的夹角,为正 表示方向向量指向水平平面上方，反之表示方向向量指向平面下方
+        roll: 0 //是方向向量以正东方向为轴的旋转角度
+    }
+};
+viewer.camera.setView(view);
+
+
+var draw = new utilscesium.Draw.Polygon();
+draw.drawStart.addEventListener(function() {
+    console.log(11);
+});
+draw.drawEnd.addEventListener(function(event) {
+    var positions = event.positions;
+    viewer.entities.add({
+        polygon: {
+            hierarchy: {
+                positions: positions
+            },
+            material: Cesium.Color.GREEN.withAlpha(1),
+            heightReference: Cesium.HeightReference.CLAMP_TO_GROUND
+        }
+    });
+});
+draw.setViewer(viewer);
+draw.setActive(true);</script>
+    <style>
+        html,body {
+            font-family: "Helvetica Neue", Helvetica, Arial, "Heiti SC", "Microsoft Yahei",sans-serif;
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+</body>
+
+</html>

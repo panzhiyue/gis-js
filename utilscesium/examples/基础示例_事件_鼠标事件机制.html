@@ -1,0 +1,91 @@
+﻿<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+    <script src="js/extend/jquery.js"></script>
+    <link href="template/third-party/cesium/Widgets/widgets.css" rel="stylesheet" type="text/css" />
+    <script src="template/third-party/cesium/Cesium.js" type="text/javascript"></script>
+    <script src="template/third-party/Sandcastle-header.js" type="text/javascript"></script>
+    <!-- <script type="text/javascript" cesium="true" src="https://api.tianditu.gov.cn/cdn/plugins/cesium/Cesium_ext_min.js"></script> -->
+    
+    <title></title>
+    <script src="js/utilscesium.iife.js"></script>
+</head>
+<body>
+    <!-- <h4 id="title"></h4>
+    <div id="docs"></div> -->
+
+    
+<div id="map" style="width:100%;height:100%;">
+    <div style="z-index: 999; color: #000; position: absolute; background: #fff;">
+        <div  onclick="run1()">
+            <a href="#">1.类似javascript的onclick事件,同时定义2个事件只会执行最后一个</a>
+        </div>
+        <div >
+            2.类似javascript的onclick事件,同时定义2个事件只会执行最后一个
+            <div  onclick="run21()">
+                <a href="#">&nbsp;&nbsp;(1)handler1定义的事件不能在handler2注销</a>
+            </div>
+            <div  onclick="run22()">
+                <a href="#">&nbsp;&nbsp;(2)handler1与handler2定义的事件可以同时执行</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <script type="module">
+        ﻿const ToolBar = utilscesium.Control.ToolBar;
+Cesium.Ion.defaultAccessToken =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJlNmZlMThiNC05MjZjLTRhMzQtYjk1NC04Mzk1OWUzNGQyNDYiLCJpZCI6MTE2NjEsInNjb3BlcyI6WyJhc2wiLCJhc3IiLCJhc3ciLCJnYyJdLCJpYXQiOjE1NTk1NTEwODh9.1sP9cG15Apatkf1x1g1_P_86wc3gFNOZM66XoWLUsxc";
+viewer = new Cesium.Viewer("map");
+
+//1.类似javascript的onclick事件,同时定义2个事件只会执行最后一个
+function run1() {
+  var handler = new Cesium.ScreenSpaceEventHandler(viewer.scene.canvas);
+  handler.setInputAction(function(click) {
+    console.log("左键单击事件1：", click.position);
+  }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
+
+  handler.setInputAction(function(click) {
+    console.log("左键单击事件2：", click.position);
+  }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
+}
+//2.每个ScreenSpaceEventHandler事件独立
+//(1)handler1定义的事件不能在handler2注销
+function run21() {
+  var handler1 = new Cesium.ScreenSpaceEventHandler(viewer.scene.canvas);
+  var handler2 = new Cesium.ScreenSpaceEventHandler(viewer.scene.canvas);
+  handler1.setInputAction(function(click) {
+    console.log("左键单击事件1：", click.position);
+  }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
+
+  handler2.removeInputAction(Cesium.ScreenSpaceEventType.LEFT_CLICK);
+}
+//(2)handler1与handler2定义的事件可以同时执行
+function run22() {
+  var handler1 = new Cesium.ScreenSpaceEventHandler(viewer.scene.canvas);
+  var handler2 = new Cesium.ScreenSpaceEventHandler(viewer.scene.canvas);
+  handler1.setInputAction(function(click) {
+    console.log("左键单击事件1：", click.position);
+  }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
+
+  handler2.setInputAction(function(click) {
+    console.log("左键单击事件2：", click.position);
+  }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
+}
+//(3)
+</script>
+    <style>
+        html,body {
+            font-family: "Helvetica Neue", Helvetica, Arial, "Heiti SC", "Microsoft Yahei",sans-serif;
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+</body>
+
+</html>

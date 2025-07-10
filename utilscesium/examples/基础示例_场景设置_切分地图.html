@@ -1,0 +1,89 @@
+﻿<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+    <script src="js/extend/jquery.js"></script>
+    <link href="template/third-party/cesium/Widgets/widgets.css" rel="stylesheet" type="text/css" />
+    <script src="template/third-party/cesium/Cesium.js" type="text/javascript"></script>
+    <script src="template/third-party/Sandcastle-header.js" type="text/javascript"></script>
+    <!-- <script type="text/javascript" cesium="true" src="https://api.tianditu.gov.cn/cdn/plugins/cesium/Cesium_ext_min.js"></script> -->
+    
+    <title></title>
+    <script src="js/utilscesium.iife.js"></script>
+</head>
+<body>
+    <!-- <h4 id="title"></h4>
+    <div id="docs"></div> -->
+
+    <div id="toolbar"></div>
+<div id="map" style="width:100%;height:100%;"></div>
+
+    <script type="module">
+        ﻿const ToolBar = utilscesium.Control.ToolBar;
+Cesium.Ion.defaultAccessToken =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJlNmZlMThiNC05MjZjLTRhMzQtYjk1NC04Mzk1OWUzNGQyNDYiLCJpZCI6MTE2NjEsInNjb3BlcyI6WyJhc2wiLCJhc3IiLCJhc3ciLCJnYyJdLCJpYXQiOjE1NTk1NTEwODh9.1sP9cG15Apatkf1x1g1_P_86wc3gFNOZM66XoWLUsxc";
+var viewer = new Cesium.Viewer("map", {
+  animation: false,
+  homeButton: false,
+  fullscreenButton: false,
+  geocoder: false,
+  sceneModePicker: false,
+  baseLayerPicker: false,
+  timeline: false,
+  infoBox: false,
+  navigationHelpButton: false,
+  selectionIndicator: false,
+  terrainProvider: null,
+  imageryProvider: false,
+  baseLayerPicker: false,
+});
+ //显示地图的矩形
+ var coffeeBeltRectangle = Cesium.Rectangle.fromDegrees(-180.0, -23.43687, 180.0, 23.43687);
+
+ viewer.scene.globe.cartographicLimitRectangle = coffeeBeltRectangle;
+ viewer.scene.skyAtmosphere.show = false;
+ // 添加边框
+ var rectangles = [];
+
+ for (var i = 0; i < 10; i++) {
+     rectangles.push(viewer.entities.add({
+         rectangle: {
+             coordinates: coffeeBeltRectangle,
+             material: Cesium.Color.WHITE.withAlpha(0.0),
+             height: i * 5000.0,
+             outline: true,
+             outlineWidth: 4.0,
+             outlineColor: Cesium.Color.WHITE
+         }
+     }));
+ }
+ //是否切分
+ Sandcastle.addToggleButton('Limit Enabled', true, function (checked) {
+     if (checked) {
+         viewer.scene.globe.cartographicLimitRectangle = coffeeBeltRectangle;
+     } else {
+         viewer.scene.globe.cartographicLimitRectangle = Cesium.Rectangle.MAX_VALUE;
+     }
+ });
+ //是否显示边框
+ Sandcastle.addToggleButton('Show Bounds', true, function (checked) {
+     var rectanglesLength = rectangles.length;
+     for (var i = 0; i < rectanglesLength; i++) {
+         var rectangleEntity = rectangles[i];
+         rectangleEntity.show = checked;
+     }
+ });</script>
+    <style>
+        html,body {
+            font-family: "Helvetica Neue", Helvetica, Arial, "Heiti SC", "Microsoft Yahei",sans-serif;
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+</body>
+
+</html>

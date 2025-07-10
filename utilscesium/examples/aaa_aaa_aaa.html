@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+    <script src="js/extend/jquery.js"></script>
+    
+    <title>几何图形点</title>
+    <script src="js/utilscesium.js"></script>
+</head>
+<body>
+    <h4 id="title">几何图形点</h4>
+    <div id="docs"><p>这个示例展示了如何在画布中添加一个点几何图形</p>
+</div>
+
+    <canvas id="main" width="500" height="500" style="border:1px solid #ccc;">
+</canvas>
+
+    <script type="module">
+        ﻿
+
+console.log(1991);
+var canvas = new utilscesium.Canvas("main");
+var point = new utilscesium.geom.Point();
+point.setCoordinates([30, 30]);
+
+
+var feature = new utilscesium.Feature(point);
+var style = new utilscesium.style.Style({
+    stroke: new utilscesium.style.Stroke({
+        width: 2,
+        color: "#ff0000"
+    }),
+    fill: new utilscesium.style.Fill({
+        color: "rgba(55,0,0,0.5)"
+    })
+    ,
+    image: new utilscesium.style.Circle({
+        radius: 7,
+        stroke: new utilscesium.style.Stroke({
+            width: 5,
+            color: 'rgba(0, 0, 0, 0.7)'
+        }),
+        fill: new utilscesium.style.Fill({
+            color: 'rgba(0, 255, 255, 1)'
+        })
+    })
+});
+
+
+feature.setStyle(style);
+var layer = new utilscesium.Layer();
+layer.on("addFeature", function () {
+
+});
+layer.addFeature(feature);
+canvas.addLayer(layer);
+canvas.render();
+</script>
+</body>
+
+</html>

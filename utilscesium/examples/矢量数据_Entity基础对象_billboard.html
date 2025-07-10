@@ -1,0 +1,332 @@
+﻿<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+    <script src="js/extend/jquery.js"></script>
+    <link href="template/third-party/cesium/Widgets/widgets.css" rel="stylesheet" type="text/css" />
+    <script src="template/third-party/cesium/Cesium.js" type="text/javascript"></script>
+    <script src="template/third-party/Sandcastle-header.js" type="text/javascript"></script>
+    <!-- <script type="text/javascript" cesium="true" src="https://api.tianditu.gov.cn/cdn/plugins/cesium/Cesium_ext_min.js"></script> -->
+    
+    <title></title>
+    <script src="js/utilscesium.iife.js"></script>
+</head>
+<body>
+    <!-- <h4 id="title"></h4>
+    <div id="docs"></div> -->
+
+    
+<div id="map" style="width:100%;height:100%;">
+  <div
+    id="toolbar"
+    style="position: absolute; z-index: 10; background: rgba(42, 42, 42, 0.8);
+  padding: 4px; border-radius: 4px; margin: 5px; color: #fff; font-size: 14px;
+  font-family: 微软雅黑;"
+  >
+    <div id="viewChangDiegoed">View Changed</div>
+    <div id="cameraChanged">Camera Changed</div>
+  </div>
+</div>
+
+    <script type="module">
+        ﻿const ToolBar = utilscesium.Control.ToolBar;
+Cesium.Ion.defaultAccessToken =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJlNmZlMThiNC05MjZjLTRhMzQtYjk1NC04Mzk1OWUzNGQyNDYiLCJpZCI6MTE2NjEsInNjb3BlcyI6WyJhc2wiLCJhc3IiLCJhc3ciLCJnYyJdLCJpYXQiOjE1NTk1NTEwODh9.1sP9cG15Apatkf1x1g1_P_86wc3gFNOZM66XoWLUsxc";
+var viewer = new Cesium.Viewer("map", {
+  animation: false,
+  homeButton: false,
+  fullscreenButton: false,
+  geocoder: false,
+  sceneModePicker: false,
+  baseLayerPicker: false,
+  timeline: false,
+  infoBox: false,
+  navigationHelpButton: false,
+  selectionIndicator: false,
+  terrainProvider: null,
+  imageryProvider: false,
+  baseLayerPicker: false,
+});
+function addBillboard() {
+  console.log(33);
+  viewer.entities.add({
+    position: Cesium.Cartesian3.fromDegrees(-75.59777, 40.03883),
+    billboard: {
+      image: "./img/igs/Cesium_Logo_overlay.png",
+    },
+  });
+}
+
+function setBillboardProperties() {
+  viewer.entities.add({
+    position: Cesium.Cartesian3.fromDegrees(-75.59777, 40.03883),
+    billboard: {
+      image: "./img/igs/Cesium_Logo_overlay.png", // default: undefined
+      show: true, // default
+      pixelOffset: new Cesium.Cartesian2(0, -50), // default: (0, 0)
+      eyeOffset: new Cesium.Cartesian3(0.0, 0.0, 0.0), // default
+      horizontalOrigin: Cesium.HorizontalOrigin.CENTER, // default
+      verticalOrigin: Cesium.VerticalOrigin.BOTTOM, // default: CENTER
+      scale: 2.0, // default: 1.0
+      color: Cesium.Color.LIME, // default: WHITE
+      rotation: Cesium.Math.PI_OVER_FOUR, // default: 0.0
+      alignedAxis: Cesium.Cartesian3.ZERO, // default
+      width: 100, // default: undefined
+      height: 25, // default: undefined
+    },
+  });
+}
+
+function changeBillboardProperties() {
+  var entity = viewer.entities.add({
+    position: Cesium.Cartesian3.fromDegrees(-75.59777, 40.03883, 300000.0),
+    billboard: {
+      image: "./img/igs/Cesium_Logo_overlay.png",
+    },
+  });
+
+  var billboard = entity.billboard;
+  billboard.scale = 3.0;
+  billboard.color = Cesium.Color.WHITE.withAlpha(0.25);
+}
+
+function sizeBillboardInMeters() {
+  var entity = viewer.entities.add({
+    position: Cesium.Cartesian3.fromDegrees(-75.59777, 40.03883),
+    billboard: {
+      image: "./img/igs/Cesium_Logo_overlay.png",
+      sizeInMeters: true,
+    },
+  });
+
+  viewer.zoomTo(entity);
+}
+
+function addMultipleBillboards() {
+  var logoUrl = "./img/igs/Cesium_Logo_overlay.png";
+  var facilityUrl = "./img/igs/facility.gif";
+
+  viewer.entities.add({
+    position: Cesium.Cartesian3.fromDegrees(-75.59777, 40.03883),
+    billboard: {
+      image: logoUrl,
+    },
+  });
+  viewer.entities.add({
+    position: Cesium.Cartesian3.fromDegrees(-80.5, 35.14),
+    billboard: {
+      image: facilityUrl,
+    },
+  });
+  viewer.entities.add({
+    position: Cesium.Cartesian3.fromDegrees(-80.12, 25.46),
+    billboard: {
+      image: facilityUrl,
+    },
+  });
+}
+
+function scaleByDistance() {
+  viewer.entities.add({
+    position: Cesium.Cartesian3.fromDegrees(-75.59777, 40.03883),
+    billboard: {
+      image: "./img/igs/facility.gif",
+      scaleByDistance: new Cesium.NearFarScalar(1.5e2, 2.0, 1.5e7, 0.5),
+    },
+  });
+}
+
+function fadeByDistance() {
+  viewer.entities.add({
+    position: Cesium.Cartesian3.fromDegrees(-75.59777, 40.03883),
+    billboard: {
+      image: "./img/igs/Cesium_Logo_overlay.png",
+      translucencyByDistance: new Cesium.NearFarScalar(1.5e2, 2.0, 1.5e7, 0.5),
+    },
+  });
+}
+
+function offsetByDistance() {
+  Cesium.when.all(
+    [
+      Cesium.Resource.fetchImage("./img/igs/Cesium_Logo_overlay.png"),
+      Cesium.Resource.fetchImage("./img/igs/facility.gif"),
+    ],
+    function(images) {
+      // As viewer zooms closer to facility billboard,
+      // increase pixelOffset on CesiumLogo billboard to this height
+      var facilityHeight = images[1].height;
+
+      // colocated billboards, separate as viewer gets closer
+      viewer.entities.add({
+        position: Cesium.Cartesian3.fromDegrees(-75.59777, 40.03883),
+        billboard: {
+          image: images[1],
+          horizontalOrigin: Cesium.HorizontalOrigin.CENTER,
+          verticalOrigin: Cesium.VerticalOrigin.BOTTOM,
+        },
+      });
+      viewer.entities.add({
+        position: Cesium.Cartesian3.fromDegrees(-75.59777, 40.03883),
+        billboard: {
+          image: images[0],
+          horizontalOrigin: Cesium.HorizontalOrigin.CENTER,
+          verticalOrigin: Cesium.VerticalOrigin.BOTTOM,
+          pixelOffset: new Cesium.Cartesian2(0.0, -facilityHeight),
+          pixelOffsetScaleByDistance: new Cesium.NearFarScalar(
+            1.0e3,
+            1.0,
+            1.5e6,
+            0.0
+          ),
+          translucencyByDistance: new Cesium.NearFarScalar(
+            1.0e3,
+            1.0,
+            1.5e6,
+            0.1
+          ),
+        },
+      });
+    }
+  );
+}
+
+function addMarkerBillboards() {
+  // Add several billboards based on the above image in the atlas.
+  viewer.entities.add({
+    position: Cesium.Cartesian3.fromDegrees(-75.59777, 40.03883),
+    billboard: {
+      image: "./img/igs/whiteShapes.png",
+      imageSubRegion: new Cesium.BoundingRectangle(49, 43, 18, 18),
+      color: Cesium.Color.LIME,
+    },
+  });
+  viewer.entities.add({
+    position: Cesium.Cartesian3.fromDegrees(-84.0, 39.0),
+    billboard: {
+      image: "./img/igs/whiteShapes.png",
+      imageSubRegion: new Cesium.BoundingRectangle(61, 23, 18, 18),
+      color: new Cesium.Color(0, 0.5, 1.0, 1.0),
+    },
+  });
+  viewer.entities.add({
+    position: Cesium.Cartesian3.fromDegrees(-70.0, 41.0),
+    billboard: {
+      image: "./img/igs/whiteShapes.png",
+      imageSubRegion: new Cesium.BoundingRectangle(67, 80, 14, 14),
+      color: new Cesium.Color(0.5, 0.9, 1.0, 1.0),
+    },
+  });
+  viewer.entities.add({
+    position: Cesium.Cartesian3.fromDegrees(-73.0, 37.0),
+    billboard: {
+      image: "./img/igs/whiteShapes.png",
+      imageSubRegion: new Cesium.BoundingRectangle(27, 103, 22, 22),
+      color: Cesium.Color.RED,
+    },
+  });
+  viewer.entities.add({
+    position: Cesium.Cartesian3.fromDegrees(-79.0, 35.0),
+    billboard: {
+      image: "./img/igs/whiteShapes.png",
+      imageSubRegion: new Cesium.BoundingRectangle(105, 105, 18, 18),
+      color: Cesium.Color.YELLOW,
+    },
+  });
+}
+
+var terrainProvider;
+function disableDepthTest() {
+  terrainProvider = viewer.terrainProvider;
+  viewer.terrainProvider = Cesium.createWorldTerrain();
+  viewer.scene.globe.depthTestAgainstTerrain = true;
+
+  viewer.entities.add({
+    position: Cesium.Cartesian3.fromDegrees(-122.1958, 46.1915),
+    billboard: {
+      image: "./img/igs/facility.gif",
+      heightReference: Cesium.HeightReference.CLAMP_TO_GROUND,
+      disableDepthTestDistance: Number.POSITIVE_INFINITY,
+    },
+  });
+  viewer.zoomTo(viewer.entities);
+}
+
+new ToolBar(document.getElementById("toolbar")).addMenus([
+  {
+    name: "show",
+    menuType: ToolBar.MenuType.SELECT,
+    values: [
+      "Add billboard",
+      "Set billboard properties at creation",
+      "Change billboard properties",
+      "Size billboard in meters",
+      "Add multiple billboards",
+      "Scale by viewer distance",
+      "Fade by viewer distance",
+      "Offset by viewer distance",
+      "Add marker billboards",
+      "Disable the depth test when clamped to ground",
+    ],
+    defaultValue: "Camera Options",
+    onchange: function(event) {
+      switch (event.currentTarget.value) {
+        case "Add billboard": {
+          addBillboard();
+          break;
+        }
+        case "Set billboard properties at creation": {
+          setBillboardProperties();
+          break;
+        }
+        case "Change billboard properties": {
+          changeBillboardProperties();
+          break;
+        }
+        case "Size billboard in meters": {
+          sizeBillboardInMeters();
+          break;
+        }
+        case "Add multiple billboards": {
+          addMultipleBillboards();
+          break;
+        }
+        case "Scale by viewer distance": {
+          scaleByDistance();
+          break;
+        }
+        case "Fade by viewer distance": {
+          fadeByDistance();
+          break;
+        }
+        case "Offset by viewer distance": {
+          offsetByDistance();
+          break;
+        }
+        case "Add marker billboards": {
+          addMarkerBillboards();
+          break;
+        }
+        case "Disable the depth test when clamped to ground": {
+          disableDepthTest();
+          break;
+        }
+      }
+    },
+  },
+]);
+</script>
+    <style>
+        html,body {
+            font-family: "Helvetica Neue", Helvetica, Arial, "Heiti SC", "Microsoft Yahei",sans-serif;
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+</body>
+
+</html>

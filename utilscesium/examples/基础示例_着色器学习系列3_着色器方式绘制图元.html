@@ -1,0 +1,132 @@
+﻿<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+    <script src="js/extend/jquery.js"></script>
+    <link href="template/third-party/cesium/Widgets/widgets.css" rel="stylesheet" type="text/css" />
+    <script src="template/third-party/cesium/Cesium.js" type="text/javascript"></script>
+    <script src="template/third-party/Sandcastle-header.js" type="text/javascript"></script>
+    <!-- <script type="text/javascript" cesium="true" src="https://api.tianditu.gov.cn/cdn/plugins/cesium/Cesium_ext_min.js"></script> -->
+    
+    <title></title>
+    <script src="js/utilscesium.iife.js"></script>
+</head>
+<body>
+    <!-- <h4 id="title"></h4>
+    <div id="docs"></div> -->
+
+    
+<div id="map" style="width:100%;height:100%;"></div>
+
+    <script type="module">
+        ﻿const ToolBar = utilscesium.Control.ToolBar;
+Cesium.Ion.defaultAccessToken =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJlNmZlMThiNC05MjZjLTRhMzQtYjk1NC04Mzk1OWUzNGQyNDYiLCJpZCI6MTE2NjEsInNjb3BlcyI6WyJhc2wiLCJhc3IiLCJhc3ciLCJnYyJdLCJpYXQiOjE1NTk1NTEwODh9.1sP9cG15Apatkf1x1g1_P_86wc3gFNOZM66XoWLUsxc";
+  var viewer = new Cesium.Viewer('map',{
+    terrainProvider: new Cesium.ArcGISTiledElevationTerrainProvider({
+      url: 'https://elevation3d.arcgis.com/arcgis/rest/services/WorldElevation3D/Terrain3D/ImageServer'
+  })
+  });
+
+  let v = `
+  attribute vec3 position3DHigh;
+  attribute vec3 position3DLow;
+  // attribute vec3 position2DHigh;
+  // attribute vec3 position2DLow;
+  attribute vec4 color;
+  varying vec4 v_color;
+  attribute float batchId;
+  void main()
+  {
+    //vec4 p = czm_translateRelativeToEye(position3DHigh, position3DLow);
+     vec4 p = czm_computePosition();  //The position relative to eye
+     v_color =color;
+     p = czm_modelViewProjectionRelativeToEye * p;
+     gl_Position=p;
+    // gl_Position =  czm_modelViewProjectionRelativeToEye * p;
+     gl_PointSize=20.0;
+  }`
+let f = `  varying vec4 v_color;
+      void main()
+      {
+            float d = distance(gl_PointCoord, vec2(0.5,0.5));
+           if(d < 0.5){
+              gl_FragColor = v_color;
+           }else{
+              discard;
+           }
+      }`
+var appearance = new Cesium.Appearance({
+ renderState: {
+     blending: Cesium.BlendingState.PRE_MULTIPLIED_ALPHA_BLEND,  //混合
+     depthTest: { enabled: true }, //深度测试
+     depthMask: true
+ },
+ fragmentShaderSource: f,
+ vertexShaderSource: v
+});
+
+viewer.camera.setView({
+ destination: Cesium.Cartesian3.fromDegrees(110.20, 34.55, 3000000)
+});
+var p1 = Cesium.Cartesian3.fromDegrees(120.6822, 50.9247, 10);
+var p2 = Cesium.Cartesian3.fromDegrees(120.6822, 38.9247, 10);
+var p3 = Cesium.Cartesian3.fromDegrees(133.6822, 38.9247, 10);
+var p4 = Cesium.Cartesian3.fromDegrees(133.6822, 50.9247, 10);
+var positions = new Float64Array([
+ p1.x, p1.y, p1.z,
+ p2.x, p2.y, p2.z,
+ p3.x, p3.y, p3.z,
+ p4.x, p4.y, p4.z
+]);
+var colors = new Float32Array([
+ 1.0, 0.0, 0.0, 1.0,
+ 0.0, 1.0, 0.0, 1.0,
+ 1.0, 1.0, 0.0, 1.0,
+ 1.0, 1.0, 1.0, 1.0
+]);
+var geometry = new Cesium.Geometry({
+ attributes: {
+     position: new Cesium.GeometryAttribute({
+         componentDatatype: Cesium.ComponentDatatype.DOUBLE,
+         componentsPerAttribute: 3,
+         values: positions
+     }),
+     color: new Cesium.GeometryAttribute({
+         componentDatatype: Cesium.ComponentDatatype.FLOAT,
+         componentsPerAttribute: 4,
+         values: colors
+     })
+ },
+ //索引
+ indices: new Uint16Array([
+     0, 1, 2,  //第一个三角形用的坐标点
+     1, 2, 3  //第二个三角形用的坐标点
+ ]),
+ //绘制类型
+ primitiveType: Cesium.PrimitiveType.TRIANGLE_FAN,
+ boundingSphere: Cesium.BoundingSphere.fromVertices(positions)
+});
+
+
+viewer.scene.primitives.add(new Cesium.Primitive({
+ geometryInstances: new Cesium.GeometryInstance({
+     geometry: geometry
+ }),
+ appearance: appearance,
+ asynchronous: false
+}));</script>
+    <style>
+        html,body {
+            font-family: "Helvetica Neue", Helvetica, Arial, "Heiti SC", "Microsoft Yahei",sans-serif;
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+</body>
+
+</html>

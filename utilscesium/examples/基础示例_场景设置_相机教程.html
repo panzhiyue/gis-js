@@ -1,0 +1,199 @@
+﻿<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+    <script src="js/extend/jquery.js"></script>
+    <link href="template/third-party/cesium/Widgets/widgets.css" rel="stylesheet" type="text/css" />
+    <script src="template/third-party/cesium/Cesium.js" type="text/javascript"></script>
+    <script src="template/third-party/Sandcastle-header.js" type="text/javascript"></script>
+    <!-- <script type="text/javascript" cesium="true" src="https://api.tianditu.gov.cn/cdn/plugins/cesium/Cesium_ext_min.js"></script> -->
+    
+    <title></title>
+    <script src="js/utilscesium.iife.js"></script>
+</head>
+<body>
+    <!-- <h4 id="title"></h4>
+    <div id="docs"></div> -->
+
+    
+<div id="map" style="width:100%;height:100%;">
+  <div id="toolbar">
+    <table class="infoPanel">
+      <tbody>
+        <tr>
+          <td>Click on the Cesium display to start.</td>
+        </tr>
+        <tr>
+          <td>w/s - move forward/backward</td>
+        </tr>
+        <tr>
+          <td>a/d - move left/right</td>
+        </tr>
+        <tr>
+          <td>q/e - move up/down</td>
+        </tr>
+        <tr>
+          <td>
+            left mouse button down plus mouse move changes the look direction
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+    <script type="module">
+        ﻿const ToolBar = utilscesium.Control.ToolBar;
+Cesium.Ion.defaultAccessToken =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJlNmZlMThiNC05MjZjLTRhMzQtYjk1NC04Mzk1OWUzNGQyNDYiLCJpZCI6MTE2NjEsInNjb3BlcyI6WyJhc2wiLCJhc3IiLCJhc3ciLCJnYyJdLCJpYXQiOjE1NTk1NTEwODh9.1sP9cG15Apatkf1x1g1_P_86wc3gFNOZM66XoWLUsxc";
+var viewer = new Cesium.Viewer("map", {
+  animation: false,
+  homeButton: false,
+  fullscreenButton: false,
+  geocoder: false,
+  sceneModePicker: false,
+  baseLayerPicker: false,
+  timeline: false,
+  infoBox: false,
+  navigationHelpButton: false,
+  selectionIndicator: false,
+  terrainProvider: null,
+  imageryProvider: false,
+  baseLayerPicker: false,
+});
+var scene = viewer.scene;
+            var canvas = viewer.canvas;
+
+            //Canvas 无法直接获得键盘焦点，但可以通过设置 tabindex 属性的方式获得焦点
+            canvas.setAttribute('tabindex', '0');
+            canvas.onclick = function () {
+                canvas.focus();
+            }
+
+            var ellipsoid = scene.globe.ellipsoid;
+
+            // 禁用默认事件
+            scene.screenSpaceCameraController.enableRotate = false;
+            scene.screenSpaceCameraController.enableTranslate = false;
+            scene.screenSpaceCameraController.enableZoom = false;
+            scene.screenSpaceCameraController.enableTilt = false;
+            scene.screenSpaceCameraController.enableLook = false;
+
+            //鼠标左键按下位置
+            var startMousePosition;
+            //鼠标移动后位置
+            var mousePosition;
+            var flags = {
+                looking: false,
+                moveForward: false,
+                moveBackward: false,
+                moveUp: false,
+                moveDown: false,
+                moveLeft: false,
+                moveRight: false
+            };
+
+            //画布事件
+            var handler = new Cesium.ScreenSpaceEventHandler(canvas);
+            //画布左键按下开始looking
+            handler.setInputAction(function (movement) {
+                flags.looking = true;
+                mousePosition = startMousePosition = Cesium.Cartesian3.clone(movement.position);
+            }, Cesium.ScreenSpaceEventType.LEFT_DOWN);
+            //计算移动后位置
+            handler.setInputAction(function (movement) {
+                mousePosition = movement.endPosition;
+            }, Cesium.ScreenSpaceEventType.MOUSE_MOVE);
+            //左键弹起结束looking
+            handler.setInputAction(function (position) {
+                flags.looking = false;
+            }, Cesium.ScreenSpaceEventType.LEFT_UP);
+
+            //根据键盘代码获取事件名称
+            function getFlagForKeyCode(keyCode) {
+                switch (keyCode) {
+                    case 'W'.charCodeAt(0):
+                        return 'moveForward';
+                    case 'S'.charCodeAt(0):
+                        return 'moveBackward';
+                    case 'Q'.charCodeAt(0):
+                        return 'moveUp';
+                    case 'E'.charCodeAt(0):
+                        return 'moveDown';
+                    case 'D'.charCodeAt(0):
+                        return 'moveRight';
+                    case 'A'.charCodeAt(0):
+                        return 'moveLeft';
+                    default:
+                        return undefined;
+                }
+            }
+            //键盘按下
+            document.addEventListener('keydown', function (e) {
+                var flagName = getFlagForKeyCode(e.keyCode);
+                if (typeof flagName !== 'undefined') {
+                    flags[flagName] = true;
+                }
+            }, false);
+            //键盘弹起
+            document.addEventListener('keyup', function (e) {
+                var flagName = getFlagForKeyCode(e.keyCode);
+                if (typeof flagName !== 'undefined') {
+                    flags[flagName] = false;
+                }
+            }, false);
+            //时钟事件
+            viewer.clock.onTick.addEventListener(function (clock) {
+
+                var camera = viewer.camera;
+
+                if (flags.looking) {
+                    var width = canvas.clientWidth;
+                    var height = canvas.clientHeight;
+
+                    // Coordinate (0.0, 0.0) will be where the mouse was clicked.
+                    var x = (mousePosition.x - startMousePosition.x) / width;
+                    var y = -(mousePosition.y - startMousePosition.y) / height;
+
+                    var lookFactor = 0.05;
+                    camera.lookRight(x * lookFactor);
+                    camera.lookUp(y * lookFactor);
+                }
+
+                // Change movement speed based on the distance of the camera to the surface of the ellipsoid.
+                var cameraHeight = ellipsoid.cartesianToCartographic(camera.position).height;
+                var moveRate = cameraHeight / 100.0;
+
+                if (flags.moveForward) {
+                    camera.moveForward(moveRate);
+                }
+                if (flags.moveBackward) {
+                    camera.moveBackward(moveRate);
+                }
+                if (flags.moveUp) {
+                    camera.moveUp(moveRate);
+                }
+                if (flags.moveDown) {
+                    camera.moveDown(moveRate);
+                }
+                if (flags.moveLeft) {
+                    camera.moveLeft(moveRate);
+                }
+                if (flags.moveRight) {
+                    camera.moveRight(moveRate);
+                }
+            });</script>
+    <style>
+        html,body {
+            font-family: "Helvetica Neue", Helvetica, Arial, "Heiti SC", "Microsoft Yahei",sans-serif;
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+</body>
+
+</html>

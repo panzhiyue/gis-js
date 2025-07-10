@@ -1,0 +1,98 @@
+﻿<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+    <script src="js/extend/jquery.js"></script>
+    <link href="template/third-party/cesium/Widgets/widgets.css" rel="stylesheet" type="text/css" />
+    <script src="template/third-party/cesium/Cesium.js" type="text/javascript"></script>
+    <script src="template/third-party/Sandcastle-header.js" type="text/javascript"></script>
+    <!-- <script type="text/javascript" cesium="true" src="https://api.tianditu.gov.cn/cdn/plugins/cesium/Cesium_ext_min.js"></script> -->
+    
+    <title></title>
+    <script src="js/utilscesium.iife.js"></script>
+</head>
+<body>
+    <!-- <h4 id="title"></h4>
+    <div id="docs"></div> -->
+
+    
+<div
+  id="info"
+  style="width: 100%; height: 40px; line-height: 40px; position: absolute;
+                                          background: rgba(0,0,0,0.5); color: #ffffff; z-index: 1000;"
+></div>
+<div id="map" style="width:100%;height:100%;"></div>
+
+    <script type="module">
+        ﻿const ToolBar = utilscesium.Control.ToolBar;
+Cesium.Ion.defaultAccessToken =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJlNmZlMThiNC05MjZjLTRhMzQtYjk1NC04Mzk1OWUzNGQyNDYiLCJpZCI6MTE2NjEsInNjb3BlcyI6WyJhc2wiLCJhc3IiLCJhc3ciLCJnYyJdLCJpYXQiOjE1NTk1NTEwODh9.1sP9cG15Apatkf1x1g1_P_86wc3gFNOZM66XoWLUsxc";
+var viewer = new Cesium.Viewer("map");
+
+//得到当前三维场景
+var scene = viewer.scene;
+//得到当前三维场景的椭球体
+var ellipsoid = scene.globe.ellipsoid;
+// 定义当前场景的画布元素的事件处理
+var handler = new Cesium.ScreenSpaceEventHandler(scene.canvas);
+//设置鼠标移动事件的处理函数，这里负责监听x,y坐标值变化
+handler.setInputAction(function(movement) {
+  //通过指定的椭球或者地图对应的坐标系，将鼠标的二维坐标转换为对应椭球体三维坐标
+  cartesian = viewer.camera.pickEllipsoid(movement.endPosition, ellipsoid);
+  if (cartesian) {
+    //将笛卡尔坐标转换为地理坐标
+    var cartographic = ellipsoid.cartesianToCartographic(cartesian);
+
+    //将弧度转为度的十进制度表示
+    longitudeString = Cesium.Math.toDegrees(cartographic.longitude);
+    latitudeString = Cesium.Math.toDegrees(cartographic.latitude);
+
+    var haiba = viewer.scene.globe.getHeight(cartographic);
+    //获取相机高度
+    var height = Math.ceil(viewer.camera.positionCartographic.height);
+    document.getElementById("info").innerHTML =
+      "精度:" +
+      longitudeString.toFixed(7) +
+      ",纬度:" +
+      latitudeString.toFixed(7) +
+      ",视高:" +
+      height.toFixed(2) +
+      ",海拔:" +
+      haiba.toFixed(2) +
+      ",方向:" +
+      Cesium.Math.toDegrees(viewer.camera.heading).toFixed(2) +
+      ",俯仰角:" +
+      Cesium.Math.toDegrees(viewer.camera.pitch).toFixed(2) +
+      ",范围:" +
+      Cesium.Math.toDegrees(viewer.camera.computeViewRectangle().west).toFixed(
+        7
+      ) +
+      "," +
+      Cesium.Math.toDegrees(viewer.camera.computeViewRectangle().south).toFixed(
+        7
+      ) +
+      "," +
+      Cesium.Math.toDegrees(viewer.camera.computeViewRectangle().east).toFixed(
+        7
+      ) +
+      "," +
+      Cesium.Math.toDegrees(viewer.camera.computeViewRectangle().north).toFixed(
+        7
+      );
+  }
+}, Cesium.ScreenSpaceEventType.MOUSE_MOVE);
+</script>
+    <style>
+        html,body {
+            font-family: "Helvetica Neue", Helvetica, Arial, "Heiti SC", "Microsoft Yahei",sans-serif;
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+</body>
+
+</html>

@@ -1,0 +1,159 @@
+﻿<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+    <script src="js/extend/jquery.js"></script>
+    <link href="template/third-party/cesium/Widgets/widgets.css" rel="stylesheet" type="text/css" />
+    <script src="template/third-party/cesium/Cesium.js" type="text/javascript"></script>
+    <script src="template/third-party/Sandcastle-header.js" type="text/javascript"></script>
+    <!-- <script type="text/javascript" cesium="true" src="https://api.tianditu.gov.cn/cdn/plugins/cesium/Cesium_ext_min.js"></script> -->
+    
+    <title></title>
+    <script src="js/utilscesium.iife.js"></script>
+</head>
+<body>
+    <!-- <h4 id="title"></h4>
+    <div id="docs"></div> -->
+
+    <div id="map" style="width:100%;height:100%;"></div>
+
+    <script type="module">
+        ﻿const ToolBar = utilscesium.Control.ToolBar;
+Cesium.Ion.defaultAccessToken =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJlNmZlMThiNC05MjZjLTRhMzQtYjk1NC04Mzk1OWUzNGQyNDYiLCJpZCI6MTE2NjEsInNjb3BlcyI6WyJhc2wiLCJhc3IiLCJhc3ciLCJnYyJdLCJpYXQiOjE1NTk1NTEwODh9.1sP9cG15Apatkf1x1g1_P_86wc3gFNOZM66XoWLUsxc";
+  var viewer = new Cesium.Viewer('map', {
+    animation: false,
+    homeButton: false,
+    fullscreenButton: false,
+    geocoder: false,
+    sceneModePicker: false,
+    baseLayerPicker: false,
+    timeline: false,
+    infoBox: false,
+    navigationHelpButton: false,
+    selectionIndicator: false,
+    terrainProvider: null,
+    imageryProvider: false,
+    baseLayerPicker: false
+
+});
+
+//全球影像地图服务
+viewer.imageryLayers.addImageryProvider(new Cesium.WebMapTileServiceImageryProvider({
+    url: "http://t0.tianditu.com/img_w/wmts?service=wmts&request=GetTile&version=1.0.0&LAYER=img&tileMatrixSet=w&TileMatrix={TileMatrix}&TileRow={TileRow}&TileCol={TileCol}&style=default&format=tiles&tk=6703c18da8b111f1ac38fdcfc4a138d8",
+    layer: "tdtBasicLayer",
+    style: "default",
+    format: "image/jpeg",
+    tileMatrixSetID: "GoogleMapsCompatible",
+    show: false
+}));
+
+//全球影像中文注记服务
+viewer.imageryLayers.addImageryProvider(new Cesium.WebMapTileServiceImageryProvider({
+    url: "http://t0.tianditu.com/cva_w/wmts?service=wmts&request=GetTile&version=1.0.0&LAYER=cva&tileMatrixSet=w&TileMatrix={TileMatrix}&TileRow={TileRow}&TileCol={TileCol}&style=default.jpg&tk=6703c18da8b111f1ac38fdcfc4a138d8",
+    layer: "tdtAnnoLayer",
+    style: "default",
+    format: "image/jpeg",
+    tileMatrixSetID: "GoogleMapsCompatible"
+}));
+
+viewer.terrainProvider = Cesium.createWorldTerrain({
+    requestWaterMask: true,
+    requestVertexNormals: true
+});
+
+// 开启地形深度监测
+viewer.scene.globe.depthTestAgainstTerrain = true;
+
+
+var view = {
+    //destination: Cesium.Cartesian3.fromDegrees(120.3, 26, 300000),   //坐标点
+    destination: Cesium.Rectangle.fromDegrees(119.05283765744, 27.3397589411195, 119.252892017179, 27.3897617948041),
+    orientation: {
+        heading: Cesium.Math.toRadians(0), //水平角度   //是当前方向 由北向东旋转的角度
+        pitch: Cesium.Math.toRadians(-30), //俯视角度    //方向和水平平面的夹角,为正 表示方向向量指向水平平面上方，反之表示方向向量指向平面下方
+        roll: 0 //是方向向量以正东方向为轴的旋转角度
+    }
+};
+viewer.camera.setView(view);
+
+//得到当前三维场景
+var scene = viewer.scene;
+//得到当前三维场景的椭球体
+var ellipsoid = scene.globe.ellipsoid;
+var isStart = true;
+var startP, endP;
+var handler = new Cesium.ScreenSpaceEventHandler(viewer.scene.canvas);
+//单击鼠标左键画点
+handler.setInputAction(function(event) {
+    var ray = viewer.camera.getPickRay(event.position);
+    var position = viewer.scene.globe.pick(ray, viewer.scene);
+    if (isStart == true) {
+        isStart = false;
+        startP = position;
+        //                // 加载坐标轴,便于测试
+        //                var transform = Cesium.Transforms.eastNorthUpToFixedFrame(startP);
+        //                var modelMatrixPrimitive = viewer.scene.primitives.add(new Cesium.DebugModelMatrixPrimitive({
+        //                    modelMatrix: transform,
+        //                    length: 1000.0
+        //                }));
+
+        //                // 世界坐标转换为投影坐标
+        //                var webMercatorProjection = new Cesium.WebMercatorProjection(viewer.scene.globe.ellipsoid);
+        //                var viewPointWebMercator = webMercatorProjection.project(Cesium.Cartographic.fromCartesian(startP));
+
+    } else {
+        isStart = true;
+        endP = position;
+        //                endP = Cesium.Cartesian3.fromDegrees(119.05283765744, 27.3397589411195);
+        start(startP, endP);
+    }
+}.bind(this), Cesium.ScreenSpaceEventType.LEFT_CLICK);
+
+
+function start(startP, endP) {
+    var direction = Cesium.Cartesian3.normalize(Cesium.Cartesian3.subtract(endP, startP, new Cesium.Cartesian3()), new Cesium.Cartesian3());
+    // 建立射线
+    var ray = new Cesium.Ray(startP, direction);
+    var result = viewer.scene.pickFromRay(ray); // 计算交互点，返回第一个
+    showIntersection(result, startP, endP);
+
+}
+
+
+// 处理交互点
+function showIntersection(result, startP, endP) {
+    // 如果是场景模型的交互点，排除交互点是地球表面
+    if (Cesium.defined(result)) {
+        drawLine(result.position, startP, Cesium.Color.GREEN); // 可视区域
+        drawLine(result.position, endP, Cesium.Color.RED); // 不可视区域
+    } else {
+        drawLine(startP, endP, Cesium.Color.GREEN);
+    }
+}
+// 绘制线
+function drawLine(leftPoint, secPoint, color) {
+    viewer.entities.add({
+        polyline: {
+            positions: [leftPoint, secPoint],
+            arcType: Cesium.ArcType.NONE,
+            width: 5,
+            material: color,
+            depthFailMaterial: color
+        }
+    })
+}</script>
+    <style>
+        html,body {
+            font-family: "Helvetica Neue", Helvetica, Arial, "Heiti SC", "Microsoft Yahei",sans-serif;
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+</body>
+
+</html>

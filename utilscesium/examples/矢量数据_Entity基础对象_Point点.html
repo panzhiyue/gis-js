@@ -1,0 +1,223 @@
+﻿<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+    <script src="js/extend/jquery.js"></script>
+    <link href="template/third-party/cesium/Widgets/widgets.css" rel="stylesheet" type="text/css" />
+    <script src="template/third-party/cesium/Cesium.js" type="text/javascript"></script>
+    <script src="template/third-party/Sandcastle-header.js" type="text/javascript"></script>
+    <!-- <script type="text/javascript" cesium="true" src="https://api.tianditu.gov.cn/cdn/plugins/cesium/Cesium_ext_min.js"></script> -->
+    
+    <title>创建地球</title>
+    <script src="js/utilscesium.iife.js"></script>
+</head>
+<body>
+    <!-- <h4 id="title">创建地球</h4>
+    <div id="docs"><p>这个示例展示了如何在画布中添加一个点几何图形</p>
+</div> -->
+
+    <div id="toolbar" style="position: absolute; z-index: 10;">
+</div>
+<div id="mapContainer" style="width:100%;height:100%;"></div>
+    <script type="module">
+        ﻿
+Cesium.Ion.defaultAccessToken =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJlNmZlMThiNC05MjZjLTRhMzQtYjk1NC04Mzk1OWUzNGQyNDYiLCJpZCI6MTE2NjEsInNjb3BlcyI6WyJhc2wiLCJhc3IiLCJhc3ciLCJnYyJdLCJpYXQiOjE1NTk1NTEwODh9.1sP9cG15Apatkf1x1g1_P_86wc3gFNOZM66XoWLUsxc";
+  var viewer = new Cesium.Viewer('map', {
+    animation: false,
+    homeButton: false,
+    fullscreenButton: false,
+    geocoder: false,
+    sceneModePicker: false,
+    baseLayerPicker: false,
+    timeline: false,
+    infoBox: false,
+    navigationHelpButton: false,
+    selectionIndicator: false,
+    terrainProvider: null,
+    imageryProvider: false,
+    baseLayerPicker: false
+
+});
+
+//全球影像地图服务
+viewer.imageryLayers.addImageryProvider(new Cesium.WebMapTileServiceImageryProvider({
+    url: "http://t0.tianditu.com/img_w/wmts?service=wmts&request=GetTile&version=1.0.0&LAYER=img&tileMatrixSet=w&TileMatrix={TileMatrix}&TileRow={TileRow}&TileCol={TileCol}&style=default&format=tiles&tk=6703c18da8b111f1ac38fdcfc4a138d8",
+    layer: "tdtBasicLayer",
+    style: "default",
+    format: "image/jpeg",
+    tileMatrixSetID: "GoogleMapsCompatible",
+    show: false
+}));
+
+//全球影像中文注记服务
+viewer.imageryLayers.addImageryProvider(new Cesium.WebMapTileServiceImageryProvider({
+    url: "http://t0.tianditu.com/cva_w/wmts?service=wmts&request=GetTile&version=1.0.0&LAYER=cva&tileMatrixSet=w&TileMatrix={TileMatrix}&TileRow={TileRow}&TileCol={TileCol}&style=default.jpg&tk=6703c18da8b111f1ac38fdcfc4a138d8",
+    layer: "tdtAnnoLayer",
+    style: "default",
+    format: "image/jpeg",
+    tileMatrixSetID: "GoogleMapsCompatible"
+}));
+//加载地形
+viewer.terrainProvider = new Cesium.CesiumTerrainProvider({
+    url: 'http://hzgzsoft.com:5681/data/terrain/china/'
+});
+//            viewer.scene.globe.depthTestAgainstTerrain = true;
+
+function addPoint() {
+    Sandcastle.declare(addPoint);
+
+    viewer.entities.add({
+        position: Cesium.Cartesian3.fromDegrees(-75.59777, 40.03883),
+        point: {
+            pixelSize: 10,
+            color: Cesium.Color.YELLOW
+        }
+    });
+}
+
+function setPointProperties() {
+    Sandcastle.declare(setPointProperties);
+
+    viewer.entities.add({
+        position: Cesium.Cartesian3.fromDegrees(-75.59777, 40.03883),
+        point: {
+            show: true, // default
+            color: Cesium.Color.SKYBLUE, // default: WHITE
+            pixelSize: 10, // default: 1
+            outlineColor: Cesium.Color.YELLOW, // default: BLACK
+            outlineWidth: 3 // default: 0
+        }
+    });
+}
+
+function changePointProperties() {
+    Sandcastle.declare(changePointProperties);
+
+    var entity = viewer.entities.add({
+        position: Cesium.Cartesian3.fromDegrees(-75.59777,
+            40.03883,
+            300000.0
+        ),
+        point: {
+            pixelSize: 2
+        }
+    });
+
+    var point = entity.point;
+    point.pixelSize = 20.0;
+    point.color = Cesium.Color.YELLOW.withAlpha(0.33);
+}
+
+function addMultiplePoints() {
+    Sandcastle.declare(addMultiplePoints);
+
+    viewer.entities.add({
+        position: Cesium.Cartesian3.fromDegrees(-75.59777, 40.03883),
+        point: {
+            color: Cesium.Color.RED,
+            pixelSize: 8
+        }
+    });
+    viewer.entities.add({
+        position: Cesium.Cartesian3.fromDegrees(-80.5, 35.14),
+        point: {
+            color: Cesium.Color.BLUE,
+            pixelSize: 16
+        }
+    });
+    viewer.entities.add({
+        position: Cesium.Cartesian3.fromDegrees(-80.12, 25.46),
+        point: {
+            color: Cesium.Color.LIME,
+            pixelSize: 32
+        }
+    });
+}
+
+function scaleByDistance() {
+    Sandcastle.declare(scaleByDistance);
+
+    viewer.entities.add({
+        position: Cesium.Cartesian3.fromDegrees(-75.59777, 40.03883),
+        point: {
+            // pixelSize will multiply by the scale factor, so in this
+            // example the size will range from 20px (near) to 5px (far).
+            pixelSize: 10,
+            scaleByDistance: new Cesium.NearFarScalar(1.5e2, 2.0, 1.5e7, 0.5)
+        }
+    });
+}
+
+function fadeByDistance() {
+    Sandcastle.declare(fadeByDistance);
+
+    viewer.entities.add({
+        position: Cesium.Cartesian3.fromDegrees(-75.59777, 40.03883),
+        point: {
+            pixelSize: 20,
+            translucencyByDistance: new Cesium.NearFarScalar(
+                1.5e2,
+                1.0,
+                1.5e7,
+                0.2
+            )
+        }
+    });
+}
+
+Sandcastle.addToolbarMenu([{
+    text: "Add point",
+    onselect: function() {
+        addPoint();
+        Sandcastle.highlight(addPoint);
+    }
+}, {
+    text: "Set point properties at creation",
+    onselect: function() {
+        setPointProperties();
+        Sandcastle.highlight(setPointProperties);
+    }
+}, {
+    text: "Change point properties",
+    onselect: function() {
+        changePointProperties();
+        Sandcastle.highlight(changePointProperties);
+    }
+}, {
+    text: "Add multiple points",
+    onselect: function() {
+        addMultiplePoints();
+        Sandcastle.highlight(addMultiplePoints);
+    }
+}, {
+    text: "Scale by viewer distance",
+    onselect: function() {
+        scaleByDistance();
+        Sandcastle.highlight(scaleByDistance);
+    }
+}, {
+    text: "Fade by viewer distance",
+    onselect: function() {
+        fadeByDistance();
+        Sandcastle.highlight(fadeByDistance);
+    }
+}]);
+
+Sandcastle.reset = function() {
+    viewer.entities.removeAll();
+};</script>
+    <style>
+        html,body {
+            font-family: "Helvetica Neue", Helvetica, Arial, "Heiti SC", "Microsoft Yahei",sans-serif;
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+</body>
+
+</html>

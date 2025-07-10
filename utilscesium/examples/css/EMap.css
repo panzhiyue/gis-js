@@ -1,0 +1,374 @@
+﻿
+*, *:before, *:after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+
+
+
+body, div, ul, ol, li, h1, h2, h3, h4, h5, h6, form, input, fieldset, textarea, p, th, td, figure {
+    margin: 0;
+    padding: 0;
+    font-weight: normal;
+    font-size: 100%;
+    border: 0px;
+    font-family: inherit;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -webkit-text-size-adjust: 100%;
+    word-break: break-word;
+}
+
+body, fieldset, img {
+    border: none;
+}
+
+body {
+    position: relative;
+    width: 100%;
+    font-size: 14px;
+    line-height: 1.428571429;
+    color: #333333;
+    font-family: "Microsoft YaHei", "sans-serif", "San Francisco Display" !important;
+    background: #E7EAEA;
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+    cursor: pointer;
+    color: inherit;
+}
+
+    a:link,
+    a:visited,
+    a:hover,
+    a:focus,
+    a:active,
+    input,
+    button,
+    textarea,
+    select {
+        outline: 0;
+    }
+
+b,
+strong {
+    font-weight: bold;
+}
+
+ul, ol, li {
+    list-style: none;
+}
+
+
+
+input,
+textarea,
+select {
+    font-size: 16px;
+}
+
+    select,
+    textarea,
+    input[type='text'],
+    input[type='search'],
+    input[type='password'],
+    input[type='datetime'],
+    input[type='datetime-local'],
+    input[type='date'],
+    input[type='month'],
+    input[type='time'],
+    input[type='week'],
+    input[type='number'],
+    input[type='email'],
+    input[type='url'],
+    input[type='tel'],
+    input[type='color'] {
+        display: inline-block;
+        font-size: 14px;
+        font-weight: normal;
+        line-height: 20px;
+        -webkit-user-select: text;
+        border: 1px solid #cecece;
+        color: inherit;
+        font-family: inherit;
+        transition: border linear .2s,box-shadow linear .2s;
+    }
+
+select {
+    height: 30px;
+    appearance: none;
+    padding-right: 30px !important;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    padding-left: 3px;
+    background-image: url(../images/select.png);
+    background-position: right center;
+    background-repeat: no-repeat;
+}
+
+    input:hover,
+    textarea:hover,
+    select:hover {
+        border-color: #aaaaaa;
+        z-index: 99;
+    }
+
+    input[disabled], textarea[disabled], select[disabled], input[disabled='disabled'], textarea[disabled='disabled'], select[disabled='disabled'],
+    input[disabled]:hover, textarea[disabled]:hover, select[disabled]:hover, input[disabled='disabled']:hover, textarea[disabled='disabled']:hover, select[disabled='disabled']:hover {
+        border-color: #e9e9e9;
+        background-color: #f9f9f9;
+    }
+
+
+html, body, form {
+    width: 100%;
+    height: 100%;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 12px;
+    font-family: 微软雅黑,"arial";
+    cursor: default;
+}
+/*overflow:hidden;*/
+form, ul, button, div, li, table, img {
+    border-style: none;
+    border-color: inherit;
+    border-width: 0;
+    padding: 0;
+    font-size: 12px;
+    font-weight: normal;
+    color: #515459;
+    word-wrap: break-word;
+    font-family: 宋体;
+}
+
+html, body, #main {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    font-size: 14px;
+    font-family: 宋体;
+    color: #444444;
+}
+
+iframe {
+    border: 0px;
+}
+
+::-ms-clear,
+::-ms-reveal {
+    display: none;
+}
+
+.layer {
+    width: 0px;
+    height: 0px;
+    z-index: 10;
+    position: absolute;
+}
+/*图层翻书效果*/
+.utilscesium-animation-books-right {
+    transform-origin: right;
+    transform-style: preserve-3d;
+    animation-name: utilscesium-animation-books-right;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+}
+
+@keyframes utilscesium-animation-books-right {
+    0% {
+        transform: rotatey(0deg);
+    }
+
+    100% {
+        transform: rotatey(-90deg);
+    }
+}
+
+.utilscesium-animation-books-up {
+    transform-origin: top;
+    transform-style: preserve-3d;
+    animation-name: utilscesium-animation-books-up;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+}
+
+@keyframes utilscesium-animation-books-up {
+    0% {
+        transform: rotatex(0deg);
+    }
+
+    100% {
+        transform: rotatex(90deg);
+    }
+}
+
+
+.ol-popup {
+    position: absolute;
+    background-color: white;
+    -webkit-filter: drop-shadow(0 1px 4px rgba(0,0,0,0.2));
+    filter: drop-shadow(0 1px 4px rgba(0,0,0,0.2));
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid #cccccc;
+    bottom: 12px;
+    left: -50px;
+}
+
+    .ol-popup:after, .ol-popup:before {
+        top: 100%;
+        border: solid transparent;
+        content: " ";
+        height: 0;
+        width: 0;
+        position: absolute;
+        pointer-events: none;
+    }
+
+    .ol-popup:after {
+        border-top-color: white;
+        border-width: 10px;
+        left: 48px;
+        margin-left: -10px;
+    }
+
+    .ol-popup:before {
+        border-top-color: #cccccc;
+        border-width: 11px;
+        left: 48px;
+        margin-left: -11px;
+    }
+
+.ol-popup-closer {
+    text-decoration: none;
+    position: absolute;
+    top: 2px;
+    right: 8px;
+}
+
+    .ol-popup-closer:after {
+        content: "✖";
+    }
+
+
+/*radio*/
+.radio {
+    margin: 0;
+    margin-right: 10px;
+    padding-left: 0;
+    display: inline-block;
+    cursor: pointer;
+}
+
+    .radio label {
+        display: inline-block;
+        position: relative;
+        padding-left: 10px;
+    }
+
+        .radio label::before {
+            content: "";
+            display: inline-block;
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            left: 0;
+            margin-left: -14px;
+            margin-top: -14px;
+            border: 1px solid #cecece;
+            border-radius: 50%;
+            background-color: #fff;
+            -webkit-transition: border 0.15s ease-in-out;
+            -o-transition: border 0.15s ease-in-out;
+            transition: border 0.15s ease-in-out;
+        }
+
+        .radio label::after {
+            display: inline-block;
+            position: absolute;
+            content: " ";
+            width: 10px;
+            height: 10px;
+            left: 4px;
+            top: 4px;
+            margin-left: -14px;
+            margin-top: -14px;
+            padding-left: 0px;
+            padding-top: 0px;
+            border-radius: 50%;
+            background-color: #666;
+            -webkit-transform: scale(0, 0);
+            -ms-transform: scale(0, 0);
+            -o-transform: scale(0, 0);
+            transform: scale(0, 0);
+            -webkit-transition: -webkit-transform 0.1s cubic-bezier(0.8, -0.33, 0.2, 1.33);
+            -moz-transition: -moz-transform 0.1s cubic-bezier(0.8, -0.33, 0.2, 1.33);
+            -o-transition: -o-transform 0.1s cubic-bezier(0.8, -0.33, 0.2, 1.33);
+            transition: transform 0.1s cubic-bezier(0.8, -0.33, 0.2, 1.33);
+        }
+
+    .radio input[type="radio"] {
+        opacity: 0;
+    }
+
+        .radio input[type="radio"]:focus + label::before {
+            outline: 0px;
+            outline-offset: -2px;
+        }
+
+        .radio input[type="radio"]:checked + label::after {
+            -webkit-transform: scale(1, 1);
+            -ms-transform: scale(1, 1);
+            -o-transform: scale(1, 1);
+            transform: scale(1, 1);
+            transition: all 0.4s ease;
+        }
+
+        .radio input[type="radio"]:disabled + label {
+            opacity: 0.65;
+        }
+
+            .radio input[type="radio"]:disabled + label::before {
+                cursor: not-allowed;
+            }
+
+    .radio.radio-inline {
+        margin-top: 0;
+    }
+    /*orange*/
+    .checkbox.checkbox-orange label::before, .radio.radio-orange label::before {
+        border-color: #ff6600;
+    }
+
+.checkbox.checkbox-orange label::after {
+    color: #ff6600;
+}
+
+.radio.radio-orange label::after {
+    background-color: #ff6600;
+}
+/*green*/
+.checkbox.checkbox-green label::before, .radio.radio-green label::before {
+    border-color: rgb(41,173,128);
+}
+
+.checkbox.checkbox-green label::after {
+    color: rgb(41,173,128);
+}
+
+.radio.radio-green label::after {
+    background-color: rgb(41,173,128);
+}

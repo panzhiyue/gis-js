@@ -1,0 +1,104 @@
+﻿<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+    <script src="js/extend/jquery.js"></script>
+    <link href="template/third-party/cesium/Widgets/widgets.css" rel="stylesheet" type="text/css" />
+    <script src="template/third-party/cesium/Cesium.js" type="text/javascript"></script>
+    <script src="template/third-party/Sandcastle-header.js" type="text/javascript"></script>
+    <!-- <script type="text/javascript" cesium="true" src="https://api.tianditu.gov.cn/cdn/plugins/cesium/Cesium_ext_min.js"></script> -->
+    
+    <title></title>
+    <script src="js/utilscesium.iife.js"></script>
+</head>
+<body>
+    <!-- <h4 id="title"></h4>
+    <div id="docs"></div> -->
+
+    
+<div id="map" style="width:100%;height:100%;"></div>
+<video id="trailer" autoplay loop crossorigin controls style="display: none;">
+  <source src="data/video/20180615104251.mp4" type="video/mp4" />
+</video>
+<style>
+  #trailer {
+    position: absolute;
+    bottom: 75px;
+    right: 0;
+    width: 320px;
+    height: 180px;
+  }
+</style>
+
+    <script type="module">
+        ﻿const ToolBar = utilscesium.Control.ToolBar;
+Cesium.Ion.defaultAccessToken =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJlNmZlMThiNC05MjZjLTRhMzQtYjk1NC04Mzk1OWUzNGQyNDYiLCJpZCI6MTE2NjEsInNjb3BlcyI6WyJhc2wiLCJhc3IiLCJhc3ciLCJnYyJdLCJpYXQiOjE1NTk1NTEwODh9.1sP9cG15Apatkf1x1g1_P_86wc3gFNOZM66XoWLUsxc";
+  var viewer = new Cesium.Viewer('map', {
+    animation: false,
+    homeButton: false,
+    fullscreenButton: false,
+    geocoder: false,
+    sceneModePicker: false,
+    baseLayerPicker: false,
+    timeline: false,
+    infoBox: false,
+    navigationHelpButton: false,
+    selectionIndicator: false,
+    terrainProvider: null,
+    imageryProvider: false,
+    baseLayerPicker: false
+
+});
+
+//全球影像地图服务
+viewer.imageryLayers.addImageryProvider(new Cesium.WebMapTileServiceImageryProvider({
+    url: "http://t0.tianditu.com/img_w/wmts?service=wmts&request=GetTile&version=1.0.0&LAYER=img&tileMatrixSet=w&TileMatrix={TileMatrix}&TileRow={TileRow}&TileCol={TileCol}&style=default&format=tiles&tk=6703c18da8b111f1ac38fdcfc4a138d8",
+    layer: "tdtBasicLayer",
+    style: "default",
+    format: "image/jpeg",
+    tileMatrixSetID: "GoogleMapsCompatible",
+    show: false
+}));
+
+//加载地形
+viewer.terrainProvider = new Cesium.CesiumTerrainProvider({
+    url: 'http://hzgzsoft.com:5681/data/terrain/china/'
+})
+viewer.scene.globe.depthTestAgainstTerrain = true;
+
+var videoElement = document.getElementById('trailer');
+
+var video = viewer.entities.add({
+    polygon: {
+        hierarchy: new Cesium.PolygonHierarchy(Cesium.Cartesian3.fromDegreesArray([114.25, 30.34, 114.30, 30.34, 114.30, 30.36, 114.25, 30.36])),
+        classificationType: Cesium.ClassificationType.BOTH
+            //material: videoElement
+    }
+});
+
+var videoElement = document.getElementById('trailer');
+video.polygon.material = videoElement;
+
+viewer.zoomTo(video);
+
+// 设置与时钟同步
+var synchronizer = new Cesium.VideoSynchronizer({
+    clock: viewer.clock,
+    element: videoElement
+});
+</script>
+    <style>
+        html,body {
+            font-family: "Helvetica Neue", Helvetica, Arial, "Heiti SC", "Microsoft Yahei",sans-serif;
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+</body>
+
+</html>

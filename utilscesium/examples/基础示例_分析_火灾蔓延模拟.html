@@ -1,0 +1,318 @@
+﻿<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+    <script src="js/extend/jquery.js"></script>
+    <link href="template/third-party/cesium/Widgets/widgets.css" rel="stylesheet" type="text/css" />
+    <script src="template/third-party/cesium/Cesium.js" type="text/javascript"></script>
+    <script src="template/third-party/Sandcastle-header.js" type="text/javascript"></script>
+    <!-- <script type="text/javascript" cesium="true" src="https://api.tianditu.gov.cn/cdn/plugins/cesium/Cesium_ext_min.js"></script> -->
+    
+    <title></title>
+    <script src="js/utilscesium.iife.js"></script>
+</head>
+<body>
+    <!-- <h4 id="title"></h4>
+    <div id="docs"></div> -->
+
+    
+<div id="map" style="width:100%;height:600px;"></div>
+<div>
+    <label>起点经度</label><input id="txtLng" type="text" value="102.72018737249509">(度)
+    <label>起点纬度</label><input id="txtLat" type="text" value="35.603403214463846">(度)
+    <label>火险指数</label><input id="txtTempf" type="text" value="0.04">
+    <label>模拟时间</label><input id="txtTimeStep" type="text" value="60">(分钟)
+    <label>点数</label><input id="txtCount" type="text" value="32">(个)
+    <input type="button" value="初始化参数" id="btnInit" />
+    <br />
+    <input type="button" value="定位到火灾点" id="btnLocation" />
+    <input type="button" value="添加火灾点" id="btnAddFirePoint" />
+    <input type="button" value="隐藏火灾点" id="btnHideFirePoint" />
+    <input type="button" value="火灾蔓延模拟" id="btnSpread" />
+    <br />
+    <span style="color:red;">注意:地图应该包含火灾点与区域，否则无法计算高度与坡度</span>
+</div>
+    <script type="module">
+        ﻿const ToolBar = utilscesium.Control.ToolBar;
+Cesium.Ion.defaultAccessToken =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJlNmZlMThiNC05MjZjLTRhMzQtYjk1NC04Mzk1OWUzNGQyNDYiLCJpZCI6MTE2NjEsInNjb3BlcyI6WyJhc2wiLCJhc3IiLCJhc3ciLCJnYyJdLCJpYXQiOjE1NTk1NTEwODh9.1sP9cG15Apatkf1x1g1_P_86wc3gFNOZM66XoWLUsxc";
+//创建点图
+var viewer = new Cesium.Viewer("map", {
+  shouldAnimate: true,  //必须为ture,否则无法显示火灾点
+  animation: false,
+
+  homeButton: false,
+
+  fullscreenButton: false,
+
+  geocoder: false,
+
+  sceneModePicker: false,
+
+  baseLayerPicker: false,
+
+  timeline: false,
+
+  infoBox: false,
+
+  navigationHelpButton: false,
+
+  selectionIndicator: false
+});
+
+//添加地形
+viewer.terrainProvider = Cesium.createWorldTerrain({
+  requestWaterMask: true,
+  requestVertexNormals: true
+});
+//地形遮挡
+viewer.scene.globe.depthTestAgainstTerrain = true;
+
+
+var fireParticlePrimitive = null;
+var tempf = 0.04;  //火险指数:可自行设置任意数测试
+let start = [102.72018737249509, 35.603403214463846];  //起点
+let timeStep = 60;   //每次执行的时间（分钟）
+let pointCount = 32;  //面点数
+
+let angles, startPs, endPs, polygon;
+
+let style = {
+  startScale: 3,
+  endScale: 1.5,
+  minimumParticleLife: 1.5,
+  maximumParticleLife: 1.8,
+  minimumSpeed: 7,
+  maximumSpeed: 9,
+  particleSize: 8,
+  emissionRate: 200,
+}
+
+/**
+* 添加起火点
+*/
+function addFirePoint(point) {
+  fireParticlePrimitive = viewer.scene.primitives.add(new Cesium.ParticleSystem({
+      image: './resources/img/fire.png',
+      startColor: new Cesium.Color(1, 1, 1, 1),
+      endColor: new Cesium.Color(0.5, 0, 0, 0),
+
+      startScale: style.startScale,
+      endScale: style.endScale,
+      minimumParticleLife: style.minimumParticleLife,
+      maximumParticleLife: style.maximumParticleLife,
+      minimumSpeed: style.minimumSpeed,
+      maximumSpeed: style.maximumSpeed,
+      imageSize: new Cesium.Cartesian2(style.particleSize, style.particleSize),
+      emissionRate: style.emissionRate,
+
+      lifetime: 16.0,
+      loop: true,
+      emitter: new Cesium.ConeEmitter(Cesium.Math.toRadians(45.0)),
+      sizeInMeters: true,
+      modelMatrix: Cesium.Transforms.eastNorthUpToFixedFrame(Cesium.Cartesian3.fromDegrees(point[0], point[1], getHeight(point) + 5))
+  }));
+
+}
+
+/**
+* 删除起火点
+*/
+function removeFirePoint() {
+  if (fireParticlePrimitive) {
+      viewer.scene.primitives.remove(fireParticlePrimitive);
+      fireParticlePrimitive = null;
+  }
+}
+
+
+
+/**
+* 定位到火灾点
+*/
+function locationPoint(start) {
+  viewer.scene.camera.flyTo({
+      destination: new Cesium.Cartesian3.fromDegrees(start[0], start[1], 10000),
+      duration: 2
+  });
+  setTimeout(() => {
+      viewer.scene.camera.flyTo({
+          destination: new Cesium.Cartesian3.fromDegrees(start[0], start[1] + 0.005, getHeight(start) + 500),
+          orientation: {
+              heading: Cesium.Math.toRadians(-180.0),
+              pitch: Cesium.Math.toRadians(-35.0),
+              roll: 0.0
+          }
+      });
+  }, 2500)
+}
+
+/**
+* 火灾蔓延（每次模拟制定时间）
+*/
+function spread(count) {
+  if (!polygon) {
+      angles = [];
+      startPs = [];
+      endPs = [];
+      for (let i = 0; i < count; i++) {
+          let angle = Math.PI * 2 / count * i;   //角度
+          angles.push(angle);
+          startPs.push(start);
+          endPs.push(getEndPoint(start, angle, 0.0001));
+      }
+
+      polygon = viewer.entities.add({
+          name: "Green extruded polygon",
+          polygon: {
+              hierarchy: new Cesium.CallbackProperty((time, result) => {
+                  let position = new Cesium.Cartesian3.fromDegreesArray(endPs.flat(), Cesium.Ellipsoid.WGS84,
+                      result)
+                  return new Cesium.PolygonHierarchy(position)
+              }, false),
+              // extrudedHeight: 500000.0,
+              material: Cesium.Color.RED.withAlpha(0.8),
+              closeTop: false,
+              closeBottom: false
+          }
+      });
+  }
+
+  //
+  let tempPs = [];
+  for (let j = 0; j < angles.length; j++) {
+      let startP = startPs[j];
+      let endP = endPs[j];
+      let angle = angles[j];
+      let slope = getSlope(startP, angle);
+      let speed = getgrove(tempf, slope) / (60 / timeStep);  //蔓延速度
+      let length = speed * Math.abs(Math.cos(slope / 180 * Math.PI));
+      let tempP = getEndPoint(endP, angle, speed);
+      tempPs.push(tempP);
+  }
+  startPs = endPs;
+  endPs = tempPs;
+}
+
+
+/**
+* 获取点高度
+* @param {Array<Number>} point 经纬度点坐标  
+* @return {number} 指定点高度
+*/
+function getHeight(point) {
+  let cartographic = Cesium.Cartographic.fromDegrees(point[0], point[1]);
+  let height = viewer.scene.globe.getHeight(cartographic);
+  return height
+}
+
+/**
+* 获取坡度
+* @param {Array<Number>}  start 起点坐标
+* @param {Number} angle 角度
+*/
+function getSlope(start, angle) {
+  let end = getEndPoint(start, angle, 0.000001);
+  let startH = getHeight(start);
+
+  let endH = getHeight(end);
+  var slope = Math.atan((startH - endH) / (Cesium.Cartesian3.distance(
+      Cesium.Cartesian3.fromDegrees(start[0], start[1], startH),
+      Cesium.Cartesian3.fromDegrees(end[0], end[1], endH)))) / Math.PI * 180
+
+  return -slope;
+}
+/**
+*  计算下一个火灾点
+* @param {Array<Number>} 起点坐标
+* @param {Number} angle 角度
+* @param {Number} speed 速度 
+*/
+function getEndPoint(start, angle, speed) {
+  let xStep = Math.sin(angle) * speed;
+  let yStep = Math.cos(angle) * speed;
+  let cartesian = new Cesium.Cartesian3.fromDegrees(start[0], start[1])
+  cartesian.x += xStep;
+  cartesian.y += yStep;
+  let ellipsoid = viewer.scene.globe.ellipsoid;
+  let cartographic = ellipsoid.cartesianToCartographic(cartesian);
+
+  return [Cesium.Math.toDegrees(cartographic.longitude), Cesium.Math.toDegrees(cartographic.latitude)];
+}
+
+
+/**
+* 获取蔓延速度(米/小时)
+* @param {Number} tempf 火险指数:可自行设置任意数测试
+* @param {Number} slope 坡度
+* @return {NUmber} 速度
+*/
+function getgrove(tempf, slope) {
+  return 0.13 * tempf * Math.exp(0.064 * slope) * 1000;
+}
+
+// var handler = new Cesium.ScreenSpaceEventHandler(viewer.scene.canvas);
+// handler.setInputAction(function (event) {
+
+// }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
+
+
+// function screenPositionToCartographic(position) {
+//     let cartesianPosition;
+//     let cartographicPosition = null;
+//     if (position) {
+//         if (viewer.scene._mode === Cesium.SceneMode.SCENE3D) {
+//             const ray = viewer.camera.getPickRay(position);
+//             cartesianPosition = viewer.scene.globe.pick(ray, viewer.scene);
+//         } else {
+//             cartesianPosition = viewer.camera.pickEllipsoid(position, viewer.scene.globe.ellipsoid);
+//         }
+//         if (Cesium.defined(cartesianPosition)) {
+//             cartographicPosition = viewer.scene.globe.ellipsoid.cartesianToCartographic(cartesianPosition);
+//         }
+//     }
+//     return cartographicPosition;
+// }
+
+// /**
+//  * 三维弧度坐标转三维经纬度坐标
+//  * @param {Position} position 三维弧度坐标点
+//  * @returns {Position} 三维经纬度坐标点
+//  */
+// function cartographicToDegree(position) {
+//     position.longitude = Cesium.Math.toDegrees(position.longitude);
+//     position.latitude = Cesium.Math.toDegrees(position.latitude);
+//     return position;
+// }
+
+document.getElementById("btnLocation").onclick = () => {
+  locationPoint(start)
+};
+document.getElementById("btnAddFirePoint").onclick = () => {
+  addFirePoint(start);
+}
+document.getElementById("btnHideFirePoint").onclick = removeFirePoint;
+document.getElementById("btnSpread").onclick = () => {
+  spread(pointCount)
+};
+document.getElementById("btnInit").onclick = () => {
+  start = [parseFloat(document.getElementById("txtLng").value), parseFloat(document.getElementById("txtLat").value)];
+  tempf = parseFloat(document.getElementById("txtTempf").value)
+  pointCount = parseFloat(document.getElementById("txtCount").value)
+  timeStep = parseFloat(document.getElementById("txtTimeStep").value)
+
+};</script>
+    <style>
+        html,body {
+            font-family: "Helvetica Neue", Helvetica, Arial, "Heiti SC", "Microsoft Yahei",sans-serif;
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+</body>
+
+</html>
